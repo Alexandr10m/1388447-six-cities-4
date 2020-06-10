@@ -4,7 +4,7 @@ const rating = (grade) => ({width: `${grade}%`});
 
 const Main = (props) => {
   // eslint-disable-next-line react/prop-types
-  const {offersCount} = props;
+  const {offersCount, grade, selected} = props;
 
   return (
     <main className="page__main page__main--index">
@@ -64,7 +64,7 @@ const Main = (props) => {
                 <li className="places__option" tabIndex="0">Price: high to low</li>
                 <li className="places__option" tabIndex="0">Top rated first</li>
               </ul>
-              <select className="places__sorting-type" id="places-sorting" defaultValue={`popular`}>
+              <select className="places__sorting-type" id="places-sorting" defaultValue={selected}>
                 <option className="places__option" value="popular">Popular</option>
                 <option className="places__option" value="to-high">Price: low to high</option>
                 <option className="places__option" value="to-low">Price: high to low</option>
@@ -96,7 +96,7 @@ const Main = (props) => {
                   </div>
                   <div className="place-card__rating rating">
                     <div className="place-card__stars rating__stars">
-                      <span style={rating(80)} />
+                      <span style={rating(grade)} />
                       <span className="visually-hidden">Rating</span>
                     </div>
                   </div>
@@ -128,7 +128,7 @@ const Main = (props) => {
                   </div>
                   <div className="place-card__rating rating">
                     <div className="place-card__stars rating__stars">
-                      <span style={rating(80)} />
+                      <span style={rating(grade)} />
                       <span className="visually-hidden">Rating</span>
                     </div>
                   </div>
@@ -160,7 +160,7 @@ const Main = (props) => {
                   </div>
                   <div className="place-card__rating rating">
                     <div className="place-card__stars rating__stars">
-                      <span style={rating(80)} />
+                      <span style={rating(grade)} />
                       <span className="visually-hidden">Rating</span>
                     </div>
                   </div>
@@ -195,7 +195,7 @@ const Main = (props) => {
                   </div>
                   <div className="place-card__rating rating">
                     <div className="place-card__stars rating__stars">
-                      <span style={rating(100)} />
+                      <span style={rating(grade + 20)} />
                       <span className="visually-hidden">Rating</span>
                     </div>
                   </div>
@@ -227,7 +227,7 @@ const Main = (props) => {
                   </div>
                   <div className="place-card__rating rating">
                     <div className="place-card__stars rating__stars">
-                      <span style={rating(80)} />
+                      <span style={rating(grade)} />
                       <span className="visually-hidden">Rating</span>
                     </div>
                   </div>
