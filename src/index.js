@@ -2,14 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
 
-const Settings = {
-  OFFERS_COUNT: 5,
+const SETTINGS = {
+  offersCount: 5,
   grade: 80,
   seleced: `popular`
 
 };
 
 ReactDOM.render(
-    <App mainOptions={Settings} />,
+    <App {...SETTINGS} />,
     document.querySelector(`#root`)
 );
