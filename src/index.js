@@ -2,11 +2,20 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
 
-const SETTINGS = {
-  offersCount: 5,
-  grade: 80,
-  seleced: `popular`
+const offersNames = [
+  `Beautiful & luxurious apartment at great location`,
+  `Wood and stone place`,
+  `Beautiful & luxurious apartment at great location`,
+  `Wood and stone place`, `Wood and stone place`,
+  `Beautiful & luxurious apartment at great location`,
+  `Wood and stone place`
+];
 
+const SETTINGS = {
+  offersCount: offersNames.length,
+  grade: 80,
+  selected: `popular`,
+  offersNames,
 };
 
 ReactDOM.render(
