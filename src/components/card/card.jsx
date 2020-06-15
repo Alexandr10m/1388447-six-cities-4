@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const rating = (grade) => ({width: `${grade}%`});
 
 const Card = (props) => {
-  const {offerName, grade} = props;
+  const {offerName, grade, onCardTitleClick} = props;
 
   return (
     <article className="cities__place-card place-card">
@@ -36,7 +36,12 @@ const Card = (props) => {
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
-        <h2 className="place-card__name">
+        <h2
+
+          onClick={onCardTitleClick}
+          className="place-card__name"
+
+        >
           <a href="#">{offerName}</a>
         </h2>
         <p className="place-card__type">Apartment</p>
@@ -49,6 +54,7 @@ const Card = (props) => {
 Card.propTypes = {
   grade: PropTypes.number.isRequired,
   offerName: PropTypes.string.isRequired,
+  onCardTitleClick: PropTypes.func.isRequired,
 };
 
 

@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import Card from "../card/card.jsx";
 
 
+const cardTitleHandler = () => {};
+
 const Main = (props) => {
   const {offersCount, grade, selected, offersNames} = props;
 
@@ -72,7 +74,16 @@ const Main = (props) => {
               </select>
             </form>
             <div className="cities__places-list places__list tabs__content">
-              {offersNames.map((offerName, i) => <Card key={offerName + i} offerName={offerName} grade={grade}/>)}
+
+              {offersNames.map((offerName, i) => {
+                return <Card
+                  key={offerName + i}
+                  offerName={offerName}
+                  grade={grade}
+                  onCardTitleClick={cardTitleHandler}
+                />;
+              })}
+
             </div>
           </section>
           <div className="cities__right-section">
