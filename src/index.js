@@ -1,22 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
+import {createOffers} from "./mocks/offers.js";
 
-const offersNames = [
-  `Beautiful & luxurious apartment at great location`,
-  `Wood and stone place`,
-  `Beautiful & luxurious apartment at great location`,
-  `Wood and stone place`, `Wood and stone place`,
-  `Beautiful & luxurious apartment at great location`,
-  `Wood and stone place`
-];
+const COUNT_OF_OFFERS = 4;
+const offers = createOffers(COUNT_OF_OFFERS);
 
 const SETTINGS = {
-  offersCount: offersNames.length,
-  grade: 80,
   selected: `popular`,
-  offersNames,
+  offers
 };
+
 
 ReactDOM.render(
     <App {...SETTINGS} />,
