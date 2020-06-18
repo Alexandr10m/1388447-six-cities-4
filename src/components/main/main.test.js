@@ -3,24 +3,60 @@ import renderer from "react-test-renderer";
 import Main from "./main.jsx";
 
 
-const offersNames = [
-  `Beautiful & luxurious apartment at great location`,
-  `Wood and stone place`,
-  `Beautiful & luxurious apartment at great location`,
-  `Wood and stone place`, `Wood and stone place`,
-  `Beautiful & luxurious apartment at great location`,
-  `Wood and stone place`
+const offerWithPremium = {
+  isPremium: true,
+  picture: `picture`,
+  price: 100,
+  isFavourite: false,
+  grade: 4,
+  title: `title`,
+  type: `Hotel`,
+};
+
+const offerWithoutPremium = {
+  isPremium: true,
+  picture: `picture`,
+  price: 100,
+  isFavourite: false,
+  grade: 4,
+  title: `title`,
+  type: `Hotel`,
+};
+
+const offerWithFavourite = {
+  isPremium: true,
+  picture: `picture`,
+  price: 100,
+  isFavourite: true,
+  grade: 4,
+  title: `title`,
+  type: `Hotel`,
+};
+
+const offerWithoutFavourite = {
+  isPremium: true,
+  picture: `picture`,
+  price: 100,
+  isFavourite: false,
+  grade: 4,
+  title: `title`,
+  type: `Hotel`,
+};
+
+const offers = [
+  offerWithPremium,
+  offerWithoutPremium,
+  offerWithFavourite,
+  offerWithoutFavourite
 ];
+
 
 describe(`Snapshot of Main`, () => {
   it(`MainComponent should render`, () => {
     const tree = renderer
       .create(
           <Main
-            offersCount={offersNames.length}
-            grade={80}
-            selected={`popular`}
-            offersNames={offersNames}
+            offers={offers}
           />)
       .toJSON();
 
