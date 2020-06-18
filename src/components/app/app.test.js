@@ -3,28 +3,64 @@ import renderer from "react-test-renderer";
 import App from "./app.jsx";
 
 
-const offersNames = [
-  `Beautiful & luxurious apartment at great location`,
-  `Wood and stone place`,
-  `Beautiful & luxurious apartment at great location`,
-  `Wood and stone place`, `Wood and stone place`,
-  `Beautiful & luxurious apartment at great location`,
-  `Wood and stone place`
+const offerWithPremium = {
+  isPremium: true,
+  picture: `picture`,
+  price: 100,
+  isFavourite: false,
+  grade: 4,
+  title: `title`,
+  type: `Hotel`,
+};
+
+const offerWithoutPremium = {
+  isPremium: true,
+  picture: `picture`,
+  price: 100,
+  isFavourite: false,
+  grade: 4,
+  title: `title`,
+  type: `Hotel`,
+};
+
+const offerWithFavourite = {
+  isPremium: true,
+  picture: `picture`,
+  price: 100,
+  isFavourite: true,
+  grade: 4,
+  title: `title`,
+  type: `Hotel`,
+};
+
+const offerWithoutFavourite = {
+  isPremium: true,
+  picture: `picture`,
+  price: 100,
+  isFavourite: false,
+  grade: 4,
+  title: `title`,
+  type: `Hotel`,
+};
+
+const offers = [
+  offerWithPremium,
+  offerWithoutPremium,
+  offerWithFavourite,
+  offerWithoutFavourite
 ];
 
-const SETTINGS = {
-  offersCount: offersNames.length,
-  grade: 80,
-  selected: `popular`,
-  offersNames,
+const props = {
+  offers
 };
+
 
 describe(`Snapshot of App`, () => {
   it(`AppComponent should render`, () => {
     const tree = renderer
       .create(
           <App
-            {...SETTINGS}
+            {...props}
           />
       )
       .toJSON();
