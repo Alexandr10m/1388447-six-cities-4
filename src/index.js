@@ -7,7 +7,6 @@ const COUNT_OF_OFFERS = 4;
 const offers = createOffers(COUNT_OF_OFFERS);
 
 const SETTINGS = {
-  selected: `popular`,
   offers
 };
 
