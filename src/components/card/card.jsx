@@ -15,13 +15,14 @@ const Card = (props) => {
     type
   } = offer;
   const favouriteClasse = isFavourite ? `place-card__bookmark-button--active` : ``;
+  const handlerCardMouseEnter = () => {
+    onActiveCard(offer);
+  };
 
   return (
     <article
       className="cities__place-card place-card"
-      onMouseEnter={() => {
-        onActiveCard(offer);
-      }}
+      onMouseEnter={handlerCardMouseEnter}
     >
 
       {isShowingPremium ? <div className="place-card__mark">
