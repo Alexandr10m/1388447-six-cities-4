@@ -1,29 +1,49 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {firstWordInUpper} from "../../utils.js";
 
 
-const rating = (grade) => ({width: `${grade}%`});
+const rating = (grade) => ({width: `${grade * 20}%`});
 
 const Card = (props) => {
-  const {offerName, grade, onCardTitleClick} = props;
+  const {offer, onCardTitleClick, onActiveCard} = props;
+  const {
+    grade,
+    title,
+    isPremium: isShowingPremium,
+    picture, price, isFavourite,
+    type
+  } = offer;
+  const favouriteClasse = isFavourite ? `place-card__bookmark-button--active` : ``;
+  const handlerCardMouseEnter = () => {
+    onActiveCard(offer);
+  };
 
   return (
-    <article className="cities__place-card place-card">
-      <div className="place-card__mark">
+    <article
+      className="cities__place-card place-card"
+      onMouseEnter={handlerCardMouseEnter}
+    >
+
+      {isShowingPremium ? <div className="place-card__mark">
         <span>Premium</span>
-      </div>
+      </div> : ``}
+
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
-          <img className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={picture} width="260" height="200" alt="Place image" />
         </a>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">€120</b>
+            <b className="place-card__price-value">€{price}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button button" type="button">
+          <button
+            className={`place-card__bookmark-button ${favouriteClasse} button`}
+            type="button"
+          >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark" />
             </svg>
@@ -37,14 +57,12 @@ const Card = (props) => {
           </div>
         </div>
         <h2
-
           onClick={onCardTitleClick}
           className="place-card__name"
-
         >
-          <a href="#">{offerName}</a>
+          <a href="#">{title}</a>
         </h2>
-        <p className="place-card__type">Apartment</p>
+        <p className="place-card__type">{firstWordInUpper(type)}</p>
       </div>
     </article>
   );
@@ -52,9 +70,17 @@ const Card = (props) => {
 
 
 Card.propTypes = {
-  grade: PropTypes.number.isRequired,
-  offerName: PropTypes.string.isRequired,
+  offer: PropTypes.shape({
+    isPremium: PropTypes.bool.isRequired,
+    picture: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    isFavourite: PropTypes.bool.isRequired,
+    grade: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+  }),
   onCardTitleClick: PropTypes.func.isRequired,
+  onActiveCard: PropTypes.func.isRequired,
 };
 
 

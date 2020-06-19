@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from "./app.jsx";
+import ListCards from "./list-cards.jsx";
 
 
 const offerWithPremium = {
@@ -50,19 +50,15 @@ const offers = [
   offerWithoutFavourite
 ];
 
-const props = {
-  offers
-};
 
-
-describe(`Snapshot of App`, () => {
-  it(`AppComponent should render`, () => {
+describe(`Snapshot of ListCards`, () => {
+  it(`Card should render correctly with Primium`, () => {
     const tree = renderer
       .create(
-          <App
-            {...props}
-          />
-      )
+          <ListCards
+            offers={offers}
+            onCardTitleClick={() => {}}
+          />)
       .toJSON();
 
     expect(tree).toMatchSnapshot();

@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Card from "../card/card.jsx";
+import ListCards from "../list-cards/list-cards.jsx";
 
 
 const cardTitleHandler = () => {};
 
 const Main = (props) => {
-  const {offersCount, grade, selected, offersNames} = props;
+  const {offers} = props;
 
   return (
     <main className="page__main page__main--index">
@@ -51,7 +51,7 @@ const Main = (props) => {
         <div className="cities__places-container container">
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{offersCount} places to stay in Amsterdam</b>
+            <b className="places__found">{offers.length} places to stay in Amsterdam</b>
             <form className="places__sorting" action="#" method="get">
               <span className="places__sorting-caption">Sort by</span>
               <span className="places__sorting-type" tabIndex="0">
@@ -66,25 +66,18 @@ const Main = (props) => {
                 <li className="places__option" tabIndex="0">Price: high to low</li>
                 <li className="places__option" tabIndex="0">Top rated first</li>
               </ul>
-              <select className="places__sorting-type" id="places-sorting" defaultValue={selected}>
+              <select className="places__sorting-type" id="places-sorting" defaultValue={`popular`}>
                 <option className="places__option" value="popular">Popular</option>
                 <option className="places__option" value="to-high">Price: low to high</option>
                 <option className="places__option" value="to-low">Price: high to low</option>
                 <option className="places__option" value="top-rated">Top rated first</option>
               </select>
             </form>
-            <div className="cities__places-list places__list tabs__content">
 
-              {offersNames.map((offerName, i) => {
-                return <Card
-                  key={offerName + i}
-                  offerName={offerName}
-                  grade={grade}
-                  onCardTitleClick={cardTitleHandler}
-                />;
-              })}
-
-            </div>
+            <ListCards
+              offers={offers}
+              onCardTitleClick={cardTitleHandler}
+            />
           </section>
           <div className="cities__right-section">
             <section className="cities__map map"></section>
@@ -97,10 +90,15 @@ const Main = (props) => {
 
 
 Main.propTypes = {
-  offersCount: PropTypes.number.isRequired,
-  grade: PropTypes.number.isRequired,
-  selected: PropTypes.string.isRequired,
-  offersNames: PropTypes.arrayOf(PropTypes.string).isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape({
+    isPremium: PropTypes.bool.isRequired,
+    picture: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    isFavourite: PropTypes.bool.isRequired,
+    grade: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+  })),
 };
 
 
