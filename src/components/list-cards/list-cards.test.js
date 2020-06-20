@@ -5,42 +5,54 @@ import ListCards from "./list-cards.jsx";
 
 const offerWithPremium = {
   isPremium: true,
-  picture: `picture`,
+  pictures: [`picture`],
   price: 100,
   isFavourite: false,
   grade: 4,
   title: `title`,
   type: `Hotel`,
+  bedroom: 1,
+  maxAdults: 1,
+  facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
 };
 
 const offerWithoutPremium = {
   isPremium: true,
-  picture: `picture`,
+  pictures: [`picture`],
   price: 100,
   isFavourite: false,
   grade: 4,
   title: `title`,
   type: `Hotel`,
+  bedroom: 1,
+  maxAdults: 1,
+  facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
 };
 
 const offerWithFavourite = {
   isPremium: true,
-  picture: `picture`,
+  pictures: [`picture`],
   price: 100,
   isFavourite: true,
   grade: 4,
   title: `title`,
   type: `Hotel`,
+  bedroom: 1,
+  maxAdults: 1,
+  facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
 };
 
 const offerWithoutFavourite = {
   isPremium: true,
-  picture: `picture`,
+  pictures: [`picture`],
   price: 100,
   isFavourite: false,
   grade: 4,
   title: `title`,
   type: `Hotel`,
+  bedroom: 1,
+  maxAdults: 1,
+  facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
 };
 
 const offers = [

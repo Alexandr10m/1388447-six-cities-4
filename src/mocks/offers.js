@@ -8,15 +8,27 @@ const PICTURES = [
   `img/apartment-01.jpg`,
   `img/room.jpg`,
   `img/apartment-02.jpg`,
-  `img/apartment-03.jpg`
+  `img/apartment-03.jpg`,
+  `img/apartment-01.jpg`,
+  `img/room.jpg`,
 ];
+const FACILITIES = [`Wi-Fi`, `Heating`, `Kitchen`, `Fridge`, `Washing machine`, `Coffee machine`, `Dishwasher`, `Towels`, `Baby seat`, `Cabel TV`];
 
+// надо дописать мокки как в задании и переписать Card, ListCards, OfferPage под данные
+// дописать state в App о пробросить вниз оброботчик клика на title Card
+// добавить в OfferPage предложение не подолеку и взять его в <React.Fragment>
 const getRandomArrayItem = (array) => {
   const randomItem = getRandomIntegerNumber(0, array.length);
   return array[randomItem];
 };
 const getRandomIntegerNumber = (min, max) => {
   return min + Math.floor(Math.random() * (max - min));
+};
+const getRandomArrayLength = (array) => {
+  const length = getRandomIntegerNumber(1, array.length);
+  const copyArray = [...array];
+  copyArray.length = length;
+  return copyArray;
 };
 
 const createOffers = (count) => {
@@ -25,12 +37,15 @@ const createOffers = (count) => {
   for (let i = 0; i < count; i++) {
     offers.push({
       isPremium: Math.random() > 0.5,
-      picture: getRandomArrayItem(PICTURES),
+      pictures: getRandomArrayLength(PICTURES),
       price: getRandomIntegerNumber(1, 1000),
       isFavourite: Math.random() > 0.5,
       grade: getRandomIntegerNumber(0, 5),
       title: getRandomArrayItem(TITLES),
       type: getRandomArrayItem(TYPES_OF_PLACES),
+      bedroom: getRandomIntegerNumber(0, 5),
+      maxAdults: getRandomIntegerNumber(1, 10),
+      facilities: getRandomArrayLength(FACILITIES),
     });
   }
 

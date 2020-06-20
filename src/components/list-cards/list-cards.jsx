@@ -39,7 +39,7 @@ class ListCards extends PureComponent {
 ListCards.propTypes = {
   offers: PropTypes.arrayOf(PropTypes.shape({
     isPremium: PropTypes.bool.isRequired,
-    picture: PropTypes.string.isRequired,
+    pictures: PropTypes.array.isRequired,
     price: PropTypes.number.isRequired,
     isFavourite: PropTypes.bool.isRequired,
     grade: PropTypes.number.isRequired,

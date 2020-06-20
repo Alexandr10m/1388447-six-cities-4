@@ -5,7 +5,7 @@ import Card from "./card.jsx";
 
 const offer = {
   isPremium: true,
-  picture: `picture`,
+  pictures: [`picture`],
   price: 100,
   isFavourite: false,
   grade: 4,

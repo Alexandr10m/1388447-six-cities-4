@@ -1,14 +1,59 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import Main from "../main/main.jsx";
+import OfferPage from "../offer-page/offer-page.jsx";
+import {Switch, Route, BrowserRouter} from "react-router-dom";
+import PropTypes from "prop-types";
 
 
-const App = (props) => {
+class App extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showedOffer: null,
+    };
+    this.handlerCardTitleClick = this.handlerCardTitleClick.bind(this);
+  }
 
-  return (
-    <Main
-      {...props}
-    />
-  );
+  handlerCardTitleClick(offer) {
+    this.setState({showedOffer: offer});
+  }
+
+  _renderMainPage() {
+    if (this.state.showedOffer) {
+      return (
+        <OfferPage
+          offer={this.state.showedOffer}
+        />);
+    } else {
+      return (
+        <Main
+          offers={this.props.offers}
+          onCardTitleClick={this.handlerCardTitleClick}
+        />);
+    }
+  }
+
+  render() {
+    const {offers} = this.props;
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            {this._renderMainPage()}
+          </Route>
+          <Route exact path="/offer">
+            {<OfferPage
+              offer={offers[0]}
+            />}
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    );
+  }
+}
+
+App.propTypes = {
+  offers: PropTypes.array.isRequired,
 };
 
 

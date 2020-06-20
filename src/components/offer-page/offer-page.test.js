@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from "./app.jsx";
+import OfferPage from "./offer-page.jsx";
 
 
 const offerWithPremium = {
@@ -62,19 +62,47 @@ const offers = [
   offerWithoutFavourite
 ];
 
-const props = {
-  offers
-};
 
-
-describe(`Snapshot of App`, () => {
-  it(`AppComponent should render`, () => {
+describe(`Snapshot of OfferPage`, () => {
+  it(`OfferPage should render whit Premium`, () => {
     const tree = renderer
       .create(
-          <App
-            {...props}
-          />
-      )
+          <OfferPage
+            offer={offers[0]}
+          />)
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`OfferPage should render whitout Premium`, () => {
+    const tree = renderer
+      .create(
+          <OfferPage
+            offer={offers[1]}
+          />)
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`OfferPage should render whit Favourite`, () => {
+    const tree = renderer
+      .create(
+          <OfferPage
+            offer={offers[2]}
+          />)
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`OfferPage should render whitout Favourite`, () => {
+    const tree = renderer
+      .create(
+          <OfferPage
+            offer={offers[3]}
+          />)
       .toJSON();
 
     expect(tree).toMatchSnapshot();
