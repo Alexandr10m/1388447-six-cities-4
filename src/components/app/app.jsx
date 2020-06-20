@@ -8,12 +8,29 @@ import PropTypes from "prop-types";
 class App extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      showedOffer: null,
+    };
+    this.handlerCardTitleClick = this.handlerCardTitleClick.bind(this);
+  }
+
+  handlerCardTitleClick(offer) {
+    this.setState({showedOffer: offer});
   }
 
   _renderMainPage() {
-    return (<Main {...this.props} />
-    );
+    if (this.state.showedOffer) {
+      return (
+        <OfferPage
+          offer={this.state.showedOffer}
+        />);
+    } else {
+      return (
+        <Main
+          offers={this.props.offers}
+          onCardTitleClick={this.handlerCardTitleClick}
+        />);
+    }
   }
 
   render() {

@@ -14,8 +14,12 @@ const Card = (props) => {
   } = offer;
   const firstPicture = pictures[0];
   const favouriteClasse = isFavourite ? `place-card__bookmark-button--active` : ``;
+
   const handlerCardMouseEnter = () => {
     onActiveCard(offer);
+  };
+  const handlerCartTitleClick = () => {
+    onCardTitleClick(offer);
   };
 
   return (
@@ -56,7 +60,7 @@ const Card = (props) => {
           </div>
         </div>
         <h2
-          onClick={onCardTitleClick}
+          onClick={handlerCartTitleClick}
           className="place-card__name"
         >
           <a href="#">{title}</a>

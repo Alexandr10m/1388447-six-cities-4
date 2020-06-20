@@ -3,10 +3,8 @@ import PropTypes from "prop-types";
 import ListCards from "../list-cards/list-cards.jsx";
 
 
-const cardTitleHandler = () => {};
-
 const Main = (props) => {
-  const {offers} = props;
+  const {offers, onCardTitleClick} = props;
 
   return (
     <main className="page__main page__main--index">
@@ -76,7 +74,7 @@ const Main = (props) => {
 
             <ListCards
               offers={offers}
-              onCardTitleClick={cardTitleHandler}
+              onCardTitleClick={onCardTitleClick}
             />
           </section>
           <div className="cities__right-section">
@@ -99,6 +97,7 @@ Main.propTypes = {
     title: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
   })),
+  onCardTitleClick: PropTypes.func.isRequired,
 };
 
 

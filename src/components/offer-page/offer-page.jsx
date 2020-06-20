@@ -53,7 +53,7 @@ const OfferPage = (props) => {
                 {title}
               </h1>
               <button className={`property__bookmark-button ${favouriteClass} button`} type="button">
-                <svg className="property__bookmark-icon" width="31" height="33">
+                <svg className="place-card__bookmark-icon" width="31" height="33">
                   <use xlinkHref="#icon-bookmark" />
                 </svg>
                 <span className="visually-hidden">To bookmarks</span>

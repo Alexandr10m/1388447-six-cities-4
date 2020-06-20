@@ -57,6 +57,7 @@ describe(`Snapshot of Main`, () => {
       .create(
           <Main
             offers={offers}
+            onCardTitleClick={() => {}}
           />)
       .toJSON();
 
