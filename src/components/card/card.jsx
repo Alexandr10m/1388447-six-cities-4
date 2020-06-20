@@ -1,9 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {firstWordInUpper} from "../../utils.js";
+import {firstWordInUpper, rating} from "../../utils.js";
 
-
-const rating = (grade) => ({width: `${grade * 20}%`});
 
 const Card = (props) => {
   const {offer, onCardTitleClick, onActiveCard} = props;
@@ -11,9 +9,10 @@ const Card = (props) => {
     grade,
     title,
     isPremium: isShowingPremium,
-    picture, price, isFavourite,
+    pictures, price, isFavourite,
     type
   } = offer;
+  const firstPicture = pictures[0];
   const favouriteClasse = isFavourite ? `place-card__bookmark-button--active` : ``;
   const handlerCardMouseEnter = () => {
     onActiveCard(offer);
@@ -31,7 +30,7 @@ const Card = (props) => {
 
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
-          <img className="place-card__image" src={picture} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={firstPicture} width="260" height="200" alt="Place image" />
         </a>
       </div>
       <div className="place-card__info">
@@ -72,7 +71,7 @@ const Card = (props) => {
 Card.propTypes = {
   offer: PropTypes.shape({
     isPremium: PropTypes.bool.isRequired,
-    picture: PropTypes.string.isRequired,
+    pictures: PropTypes.array.isRequired,
     price: PropTypes.number.isRequired,
     isFavourite: PropTypes.bool.isRequired,
     grade: PropTypes.number.isRequired,
