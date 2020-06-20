@@ -1,14 +1,42 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import Main from "../main/main.jsx";
+import OfferPage from "../offer-page/offer-page.jsx";
+import {Switch, Route, BrowserRouter} from "react-router-dom";
+import PropTypes from "prop-types";
 
 
-const App = (props) => {
+class App extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
-  return (
-    <Main
-      {...props}
-    />
-  );
+  _renderMainPage() {
+    return (<Main {...this.props} />
+    );
+  }
+
+  render() {
+    const {offers} = this.props;
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            {this._renderMainPage()}
+          </Route>
+          <Route exact path="/offer">
+            {<OfferPage
+              offer={offers[0]}
+            />}
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    );
+  }
+}
+
+App.propTypes = {
+  offers: PropTypes.array.isRequired,
 };
 
 
