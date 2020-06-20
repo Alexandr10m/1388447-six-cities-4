@@ -5,7 +5,7 @@ import Main from "./main.jsx";
 
 const offerWithPremium = {
   isPremium: true,
-  picture: `picture`,
+  pictures: [`picture`],
   price: 100,
   isFavourite: false,
   grade: 4,
@@ -15,7 +15,7 @@ const offerWithPremium = {
 
 const offerWithoutPremium = {
   isPremium: true,
-  picture: `picture`,
+  pictures: [`picture`],
   price: 100,
   isFavourite: false,
   grade: 4,
@@ -25,7 +25,7 @@ const offerWithoutPremium = {
 
 const offerWithFavourite = {
   isPremium: true,
-  picture: `picture`,
+  pictures: [`picture`],
   price: 100,
   isFavourite: true,
   grade: 4,
@@ -35,7 +35,7 @@ const offerWithFavourite = {
 
 const offerWithoutFavourite = {
   isPremium: true,
-  picture: `picture`,
+  pictures: [`picture`],
   price: 100,
   isFavourite: false,
   grade: 4,
