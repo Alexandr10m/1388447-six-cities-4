@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {firstWordInUpper, rating} from "../../utils.js";
 import ReviewList from "../review-list/review-list.jsx";
+import Map from "../map/map.jsx";
 
 
 const propertyInsideItepTmpl = (item, index) => {
@@ -21,7 +22,7 @@ const propertyImageTmpl = (src, index) => {
 };
 
 const OfferPage = (props) => {
-  const {offer} = props;
+  const {offers, offer} = props;
   const {
     grade,
     isFavourite,
@@ -36,6 +37,7 @@ const OfferPage = (props) => {
     reviews
   } = offer;
   const favouriteClass = isFavourite ? `property__bookmark-button--active` : ``;
+  const nearestOffers = offers.filter((it) => it !== offer);
 
   return (
     <React.Fragment>
@@ -113,7 +115,11 @@ const OfferPage = (props) => {
             />
           </div>
         </div>
-        <section className="property__map map"></section>
+        <section className="property__map map">
+          <Map
+            offers={nearestOffers}
+          />
+        </section>
       </section>
 
       <div className="container">
@@ -223,6 +229,7 @@ const OfferPage = (props) => {
 };
 
 OfferPage.propTypes = {
+  offers: PropTypes.array.isRequired,
   offer: PropTypes.shape({
     grade: PropTypes.number.isRequired,
     isFavourite: PropTypes.bool.isRequired,

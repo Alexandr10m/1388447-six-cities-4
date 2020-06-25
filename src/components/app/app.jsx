@@ -23,6 +23,7 @@ class App extends PureComponent {
       return (
         <OfferPage
           offer={this.state.showedOffer}
+          offers={this.props.offers}
         />);
     } else {
       return (
