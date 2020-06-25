@@ -56,11 +56,17 @@ const offers = [
 
 describe(`Snapshot of Map`, () => {
   it(`Map should render correctly`, () => {
+    jest.mock(`leaflet`);
+
     const tree = renderer
       .create(
           <Map
             offers={offers}
-          />)
+          />, {
+            createNodeMock: () => {
+              return {};
+            }
+          })
       .toJSON();
 
     expect(tree).toMatchSnapshot();

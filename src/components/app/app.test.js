@@ -14,6 +14,7 @@ const offerWithPremium = {
   bedroom: 1,
   maxAdults: 1,
   facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
+  coords: [52.3909553943508, 4.85309666406198],
 };
 
 const offerWithoutPremium = {
@@ -27,6 +28,7 @@ const offerWithoutPremium = {
   bedroom: 1,
   maxAdults: 1,
   facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
+  coords: [52.3909553943508, 4.85309666406198],
 };
 
 const offerWithFavourite = {
@@ -40,6 +42,7 @@ const offerWithFavourite = {
   bedroom: 1,
   maxAdults: 1,
   facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
+  coords: [52.3909553943508, 4.85309666406198],
 };
 
 const offerWithoutFavourite = {
@@ -53,6 +56,7 @@ const offerWithoutFavourite = {
   bedroom: 1,
   maxAdults: 1,
   facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
+  coords: [52.3909553943508, 4.85309666406198],
 };
 
 const offers = [

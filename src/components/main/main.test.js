@@ -11,6 +11,7 @@ const offerWithPremium = {
   grade: 4,
   title: `title`,
   type: `Hotel`,
+  coords: [52.3909553943508, 4.85309666406198],
 };
 
 const offerWithoutPremium = {
@@ -21,6 +22,7 @@ const offerWithoutPremium = {
   grade: 4,
   title: `title`,
   type: `Hotel`,
+  coords: [52.3909553943508, 4.85309666406198],
 };
 
 const offerWithFavourite = {
@@ -31,6 +33,7 @@ const offerWithFavourite = {
   grade: 4,
   title: `title`,
   type: `Hotel`,
+  coords: [52.3909553943508, 4.85309666406198],
 };
 
 const offerWithoutFavourite = {
@@ -41,6 +44,7 @@ const offerWithoutFavourite = {
   grade: 4,
   title: `title`,
   type: `Hotel`,
+  coords: [52.3909553943508, 4.85309666406198],
 };
 
 const offers = [
