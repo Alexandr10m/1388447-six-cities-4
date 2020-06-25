@@ -48,9 +48,9 @@ const OfferPage = (props) => {
         </div>
         <div className="property__container container">
           <div className="property__wrapper">
-            {isShowingPrimium ? <div className="property__mark">
+            {isShowingPrimium && <div className="property__mark">
               <span>Premium</span>
-            </div> : ``}
+            </div>}
             <div className="property__name-wrapper">
               <h1 className="property__name">
                 {title}
