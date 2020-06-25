@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from "./app.jsx";
+import Map from "./map.jsx";
 
 
 const offerWithPremium = {
@@ -11,9 +11,6 @@ const offerWithPremium = {
   grade: 4,
   title: `title`,
   type: `Hotel`,
-  bedroom: 1,
-  maxAdults: 1,
-  facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
   coords: [52.3909553943508, 4.85309666406198],
 };
 
@@ -25,10 +22,7 @@ const offerWithoutPremium = {
   grade: 4,
   title: `title`,
   type: `Hotel`,
-  bedroom: 1,
-  maxAdults: 1,
-  facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
-  coords: [52.3909553943508, 4.85309666406198],
+  coords: [52.3909553943508, 4.929309666406198],
 };
 
 const offerWithFavourite = {
@@ -39,10 +33,7 @@ const offerWithFavourite = {
   grade: 4,
   title: `title`,
   type: `Hotel`,
-  bedroom: 1,
-  maxAdults: 1,
-  facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
-  coords: [52.3909553943508, 4.85309666406198],
+  coords: [52.369553943508, 4.85309666406198],
 };
 
 const offerWithoutFavourite = {
@@ -53,9 +44,6 @@ const offerWithoutFavourite = {
   grade: 4,
   title: `title`,
   type: `Hotel`,
-  bedroom: 1,
-  maxAdults: 1,
-  facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
   coords: [52.3909553943508, 4.85309666406198],
 };
 
@@ -66,19 +54,19 @@ const offers = [
   offerWithoutFavourite
 ];
 
-const props = {
-  offers
-};
+describe(`Snapshot of Map`, () => {
+  it(`Map should render correctly`, () => {
+    jest.mock(`leaflet`);
 
-
-describe(`Snapshot of App`, () => {
-  it(`AppComponent should render`, () => {
     const tree = renderer
       .create(
-          <App
-            {...props}
-          />
-      )
+          <Map
+            offers={offers}
+          />, {
+            createNodeMock: () => {
+              return {};
+            }
+          })
       .toJSON();
 
     expect(tree).toMatchSnapshot();
