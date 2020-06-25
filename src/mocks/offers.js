@@ -26,6 +26,7 @@ const getRandomArrayLength = (array) => {
   const length = getRandomIntegerNumber(1, array.length);
   const copyArray = [...array];
   copyArray.length = length;
+
   return copyArray;
 };
 
@@ -44,7 +45,7 @@ const createOffers = (count) => {
       bedroom: getRandomIntegerNumber(0, 5),
       maxAdults: getRandomIntegerNumber(1, 10),
       facilities: getRandomArrayLength(FACILITIES),
-      coords: getRandomArrayItem(COORDS),
+      coords: COORDS[i],
     });
   }
 

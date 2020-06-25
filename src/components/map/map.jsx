@@ -8,7 +8,8 @@ class Map extends PureComponent {
   }
 
   componentDidMount() {
-    // const {offers} = this.props;
+    const {offers} = this.props;
+
     const city = [52.38333, 4.9];
     const icon = LeafLet.icon({
       iconUrl: `img/pin.svg`,
@@ -21,6 +22,7 @@ class Map extends PureComponent {
       zoomControl: false,
       marker: true
     });
+
     map.setView(city, zoom);
 
     LeafLet.tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -28,18 +30,14 @@ class Map extends PureComponent {
     })
     .addTo(map);
 
-    const offerCords = [52.3709553943508, 4.89309666406198];
-    LeafLet.marker(offerCords, {icon})
+    offers.map((offer) => {
+      LeafLet.marker(offer.coords, {icon})
       .addTo(map);
-
-    // offers.map((offer) => {
-    //   LeafLet.marker(offer.coords, {icon})
-    //   .addTo(map);
-    // });
+    });
   }
 
   render() {
-    return <div id="map"></div>;
+    return <div id="map" style={{width: `100%`, height: `100%`}}></div>;
   }
 }
 
