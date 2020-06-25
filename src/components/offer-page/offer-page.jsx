@@ -13,7 +13,6 @@ const propertyInsideItepTmpl = (item, index) => {
 };
 
 const propertyImageTmpl = (src, index) => {
-
   return (
     <div className="property__image-wrapper" key={src + index}>
       <img className="property__image" src={src} alt="Photo studio"/>

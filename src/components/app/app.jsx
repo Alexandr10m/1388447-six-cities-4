@@ -45,6 +45,7 @@ class App extends PureComponent {
           <Route exact path="/offer">
             {<OfferPage
               offer={offers[0]}
+              offers={this.props.offers}
             />}
           </Route>
         </Switch>
