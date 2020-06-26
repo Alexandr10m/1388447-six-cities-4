@@ -19,16 +19,18 @@ class App extends PureComponent {
   }
 
   _renderMainPage() {
+    const {offers} = this.props;
     if (this.state.showedOffer) {
       return (
         <OfferPage
           offer={this.state.showedOffer}
-          offers={this.props.offers}
+          offers={offers}
+          onCardTitleClick={this.handlerCardTitleClick}
         />);
     } else {
       return (
         <Main
-          offers={this.props.offers}
+          offers={offers}
           onCardTitleClick={this.handlerCardTitleClick}
         />);
     }
@@ -45,7 +47,8 @@ class App extends PureComponent {
           <Route exact path="/offer">
             <OfferPage
               offer={offers[0]}
-              offers={this.props.offers}
+              offers={offers}
+              onCardTitleClick={this.handlerCardTitleClick}
             />
           </Route>
         </Switch>
