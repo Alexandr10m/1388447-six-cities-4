@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import ListCards from "./list-cards.jsx";
+import ListNearestCards from "./list-nearest-cards.jsx";
 
 
 const offerWithPremium = {
@@ -15,7 +15,7 @@ const offerWithPremium = {
   maxAdults: 1,
   facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
   coords: [52.3909553943508, 4.85309666406198],
-  id: `qqqq`,
+  id: `1111`,
   reviews: [{
     image: `img/avatar-max.jpg`,
     text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
@@ -36,7 +36,7 @@ const offerWithoutPremium = {
   maxAdults: 1,
   facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
   coords: [52.3909553943508, 4.85309666406198],
-  id: `qqq`,
+  id: `111`,
   reviews: [{
     image: `img/avatar-max.jpg`,
     text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
@@ -57,7 +57,7 @@ const offerWithFavourite = {
   maxAdults: 1,
   facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
   coords: [52.3909553943508, 4.85309666406198],
-  id: `qq`,
+  id: `11`,
   reviews: [{
     image: `img/avatar-max.jpg`,
     text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
@@ -78,7 +78,7 @@ const offerWithoutFavourite = {
   maxAdults: 1,
   facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
   coords: [52.3909553943508, 4.85309666406198],
-  id: `q`,
+  id: `1`,
   reviews: [{
     image: `img/avatar-max.jpg`,
     text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
@@ -99,7 +99,7 @@ describe(`Snapshot of ListCards`, () => {
   it(`Card should render correctly with Primium`, () => {
     const tree = renderer
       .create(
-          <ListCards
+          <ListNearestCards
             offers={offers}
             onCardTitleClick={() => {}}
           />)
