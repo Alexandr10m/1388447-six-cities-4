@@ -10,10 +10,13 @@ const Card = (props) => {
     title,
     isPremium: isShowingPremium,
     pictures, price, isFavourite,
-    type
+    type,
+    className,
   } = offer;
   const firstPicture = pictures[0];
-  const favouriteClasse = isFavourite ? `place-card__bookmark-button--active` : ``;
+  const tempPartClass = className || `cities__place-card`;
+  const partClassName = (str) => str.split(`__`)[0];
+  const favouriteClasse = isFavourite && `place-card__bookmark-button--active`;
 
   const handlerCardMouseEnter = () => {
     onActiveCard(offer);
@@ -24,15 +27,15 @@ const Card = (props) => {
 
   return (
     <article
-      className="cities__place-card place-card"
+      className={`${tempPartClass} place-card`}
       onMouseEnter={handlerCardMouseEnter}
     >
 
-      {isShowingPremium ? <div className="place-card__mark">
+      {isShowingPremium && <div className="place-card__mark">
         <span>Premium</span>
-      </div> : ``}
+      </div>}
 
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${partClassName(tempPartClass)}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
           <img className="place-card__image" src={firstPicture} width="260" height="200" alt="Place image" />
         </a>
@@ -81,6 +84,7 @@ Card.propTypes = {
     grade: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
+    className: PropTypes.string,
   }),
   onCardTitleClick: PropTypes.func.isRequired,
   onActiveCard: PropTypes.func.isRequired,

@@ -2,7 +2,7 @@
 
 exports[`Snapshot of ListCards Card should render correctly with Primium 1`] = `
 <div
-  className="cities__places-list places__list tabs__content"
+  className="near-places__list places__list"
 >
   <article
     className="cities__place-card place-card"
