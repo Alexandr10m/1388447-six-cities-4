@@ -2,48 +2,78 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import LeafLet from "leaflet";
 
+
 class Map extends PureComponent {
   constructor(props) {
     super(props);
+
+    this._zoom = 12;
+    this._icon = null;
+    this._map = null;
+    this._markers = null;
   }
 
-  componentDidMount() {
-    const {offers} = this.props;
+  _initMap() {
+    const {city} = this.props;
 
-    const city = [52.38333, 4.9];
-    const icon = LeafLet.icon({
+    this._icon = LeafLet.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]
     });
-    const zoom = 12;
-    const map = LeafLet.map(`map`, {
+
+    this._map = LeafLet.map(`map`, {
       center: city,
-      zoom,
+      zoom: this._zoom,
       zoomControl: false,
       marker: true
     });
 
-    map.setView(city, zoom);
+    this._map.setView(city, this._zoom);
 
     LeafLet.tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
       attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
     })
-    .addTo(map);
+    .addTo(this._map);
 
-    offers.map((offer) => {
-      LeafLet.marker(offer.coords, {icon})
-      .addTo(map);
+    this._addMarkers();
+  }
+
+  _addMarkers() {
+    const {localOffers} = this.props;
+
+    this._markers = LeafLet.layerGroup().addTo(this._map);
+
+    localOffers.map((offer) => {
+      LeafLet.marker(offer.coords, this._icon)
+      .addTo(this._map);
     });
   }
 
+  componentDidMount() {
+    this._initMap();
+  }
+
+  componentDidUpdate() {
+    const {city} = this.props;
+
+    this._markers.clearLayers();
+    this._map.setView(city, this._zoom);
+
+    this._addMarkers();
+  }
+
   render() {
-    return <div id="map" style={{width: `100%`, height: `100%`}}></div>;
+    return <div ref={this._mapRef} id="map" style={{width: `100%`, height: `100%`}}></div>;
+  }
+
+  componentWillUnmount() {
+    this._map.remove();
   }
 }
 
 
 Map.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape({
+  localOffers: PropTypes.arrayOf(PropTypes.shape({
     isPremium: PropTypes.bool.isRequired,
     pictures: PropTypes.array.isRequired,
     price: PropTypes.number.isRequired,
@@ -53,6 +83,7 @@ Map.propTypes = {
     type: PropTypes.string.isRequired,
     coords: PropTypes.array.isRequired,
   })),
+  city: PropTypes.array.isRequired,
 };
 
 export default Map;
