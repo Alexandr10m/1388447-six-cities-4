@@ -36,8 +36,10 @@ const OfferPage = (props) => {
     facilities,
     reviews,
   } = offer;
+
   const favouriteClass = isFavourite ? `property__bookmark-button--active` : ``;
-  const nearestOffers = offers.filter((it) => it !== offer);
+  const cityCoords = offers.cityCoords;
+  const nearestOffers = offers.localOffers.filter((it) => it !== offer);
 
   return (
     <React.Fragment>
@@ -117,7 +119,8 @@ const OfferPage = (props) => {
         </div>
         <section className="property__map map">
           <Map
-            offers={nearestOffers}
+            localOffers={nearestOffers}
+            city={cityCoords}
           />
         </section>
       </section>
@@ -136,7 +139,7 @@ const OfferPage = (props) => {
 };
 
 OfferPage.propTypes = {
-  offers: PropTypes.array.isRequired,
+  offers: PropTypes.object.isRequired,
   offer: PropTypes.shape({
     grade: PropTypes.number.isRequired,
     isFavourite: PropTypes.bool.isRequired,
