@@ -1,17 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import {createStore} from "redux";
+import {Provider} from "react-redux";
 import App from "./components/app/app.jsx";
-import {createOffers} from "./mocks/offers.js";
+import {reducer} from "./reducer.js";
 
-const COUNT_OF_OFFERS = 4;
-const offers = createOffers(COUNT_OF_OFFERS);
 
-const SETTINGS = {
-  offers
-};
-
+const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f;
+const store = createStore(reducer, reduxDevTools);
 
 ReactDOM.render(
-    <App {...SETTINGS} />,
+    <Provider store={store}>
+      <App/>
+    </Provider>,
     document.querySelector(`#root`)
 );
