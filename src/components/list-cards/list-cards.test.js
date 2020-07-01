@@ -15,7 +15,7 @@ const offerWithPremium = {
   maxAdults: 1,
   facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
   coords: [52.3909553943508, 4.85309666406198],
-  id: `qqqq`,
+  id: `1111`,
   reviews: [{
     image: `img/avatar-max.jpg`,
     text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
@@ -23,7 +23,6 @@ const offerWithPremium = {
     time: `April 2019`,
   }],
 };
-
 const offerWithoutPremium = {
   isPremium: true,
   pictures: [`picture`],
@@ -36,7 +35,7 @@ const offerWithoutPremium = {
   maxAdults: 1,
   facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
   coords: [52.3909553943508, 4.85309666406198],
-  id: `qqq`,
+  id: `111`,
   reviews: [{
     image: `img/avatar-max.jpg`,
     text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
@@ -44,7 +43,6 @@ const offerWithoutPremium = {
     time: `April 2019`,
   }],
 };
-
 const offerWithFavourite = {
   isPremium: true,
   pictures: [`picture`],
@@ -57,7 +55,7 @@ const offerWithFavourite = {
   maxAdults: 1,
   facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
   coords: [52.3909553943508, 4.85309666406198],
-  id: `qq`,
+  id: `11`,
   reviews: [{
     image: `img/avatar-max.jpg`,
     text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
@@ -65,7 +63,6 @@ const offerWithFavourite = {
     time: `April 2019`,
   }],
 };
-
 const offerWithoutFavourite = {
   isPremium: true,
   pictures: [`picture`],
@@ -78,7 +75,7 @@ const offerWithoutFavourite = {
   maxAdults: 1,
   facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
   coords: [52.3909553943508, 4.85309666406198],
-  id: `q`,
+  id: `1`,
   reviews: [{
     image: `img/avatar-max.jpg`,
     text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
@@ -87,21 +84,23 @@ const offerWithoutFavourite = {
   }],
 };
 
-const offers = [
-  offerWithPremium,
-  offerWithoutPremium,
-  offerWithFavourite,
-  offerWithoutFavourite
-];
+const props = {
+  localOffers: [
+    offerWithPremium,
+    offerWithoutPremium,
+    offerWithFavourite,
+    offerWithoutFavourite
+  ],
+  onCardTitleClick: ()=>{},
+};
 
 
 describe(`Snapshot of ListCards`, () => {
-  it(`Card should render correctly with Primium`, () => {
+  it(`Card should render correctly`, () => {
     const tree = renderer
       .create(
           <ListCards
-            offers={offers}
-            onCardTitleClick={() => {}}
+            {...props}
           />)
       .toJSON();
 

@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot of CityItem CityItem should render correctly with active-class 1`] = `
+<li
+  className="locations__item"
+>
+  <a
+    className="locations__item-link tabs__item tabs__item--active"
+    href="#"
+  >
+    <span>
+      Amsterdame
+    </span>
+  </a>
+</li>
+`;
+
+exports[`Snapshot of CityItem CityItem should render correctly without active-class 1`] = `
+<li
+  className="locations__item"
+>
+  <a
+    className="locations__item-link tabs__item "
+    href="#"
+  >
+    <span>
+      Paris
+    </span>
+  </a>
+</li>
+`;

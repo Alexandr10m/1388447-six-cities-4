@@ -17,11 +17,12 @@ class ListCards extends PureComponent {
   }
 
   render() {
-    const {offers, onCardTitleClick} = this.props;
+    const {localOffers, onCardTitleClick} = this.props;
+
     return (
       <div className="cities__places-list places__list tabs__content">
 
-        {offers.map((offer, i) => {
+        {localOffers.map((offer, i) => {
           return <Card
             key={`${i}-${offer.title}`}
             offer={offer}
@@ -37,7 +38,7 @@ class ListCards extends PureComponent {
 
 
 ListCards.propTypes = {
-  offers: PropTypes.array.isRequired,
+  localOffers: PropTypes.array.isRequired,
   onCardTitleClick: PropTypes.func.isRequired,
 };
 

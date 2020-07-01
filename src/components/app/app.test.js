@@ -1,7 +1,10 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from "./app.jsx";
+import {App} from "./app.jsx";
+import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
 
+const mockStore = configureStore([]);
 
 const offerWithPremium = {
   isPremium: true,
@@ -23,7 +26,6 @@ const offerWithPremium = {
     time: `April 2019`,
   }],
 };
-
 const offerWithoutPremium = {
   isPremium: true,
   pictures: [`picture`],
@@ -44,7 +46,6 @@ const offerWithoutPremium = {
     time: `April 2019`,
   }],
 };
-
 const offerWithFavourite = {
   isPremium: true,
   pictures: [`picture`],
@@ -65,7 +66,6 @@ const offerWithFavourite = {
     time: `April 2019`,
   }],
 };
-
 const offerWithoutFavourite = {
   isPremium: true,
   pictures: [`picture`],
@@ -87,24 +87,61 @@ const offerWithoutFavourite = {
   }],
 };
 
-const offers = [
-  offerWithPremium,
-  offerWithoutPremium,
-  offerWithFavourite,
-  offerWithoutFavourite
-];
+const offers = {
+  city: `Amsterdam`,
+  cityCoords: [52.38333, 4.9],
+  localOffers: [
+    offerWithPremium,
+    offerWithoutPremium,
+    offerWithFavourite,
+    offerWithoutFavourite
+  ],
+};
+
+const city = `Amsterdam`;
 
 const props = {
+  city,
   offers,
+  onCityClick: ()=>{},
+  onCardTitleClick: ()=>{},
 };
 
 describe(`Snapshot of App`, () => {
-  it(`AppComponent should render`, () => {
+  it(`AppComponent should render OfferPage with offerWithoutFavourite`, () => {
+    const store = mockStore({
+      showedOffer: offerWithoutFavourite,
+      city: `Amsterdam`,
+      offers,
+    });
+
     const tree = renderer
       .create(
-          <App
-            {...props}
-          />
+          <Provider store={store}>
+            <App
+              {...props}
+            />
+          </Provider>
+      )
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`AppComponent should render Main page`, () => {
+    const store = mockStore({
+      showedOffer: null,
+      city: `Amsterdam`,
+      offers,
+    });
+
+    const tree = renderer
+      .create(
+          <Provider store={store}>
+            <App
+              {...props}
+            />
+          </Provider>
       )
       .toJSON();
 

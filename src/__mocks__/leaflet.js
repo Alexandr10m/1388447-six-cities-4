@@ -20,6 +20,11 @@ const leaflet = {
       addTo: jest.fn(),
     };
   },
+  layerGroup() {
+    return {
+      addTo: jest.fn(),
+    };
+  }
 };
 
 module.exports = leaflet;

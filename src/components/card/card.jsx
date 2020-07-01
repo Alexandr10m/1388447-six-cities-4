@@ -13,6 +13,7 @@ const Card = (props) => {
     type,
     className,
   } = offer;
+
   const firstPicture = pictures[0];
   const tempPartClass = className || `cities__place-card`;
   const partClassName = (str) => str.split(`__`)[0];

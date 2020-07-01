@@ -23,7 +23,6 @@ const offerWithPremium = {
     time: `April 2019`,
   }],
 };
-
 const offerWithoutPremium = {
   isPremium: true,
   pictures: [`picture`],
@@ -44,7 +43,6 @@ const offerWithoutPremium = {
     time: `April 2019`,
   }],
 };
-
 const offerWithFavourite = {
   isPremium: true,
   pictures: [`picture`],
@@ -65,7 +63,6 @@ const offerWithFavourite = {
     time: `April 2019`,
   }],
 };
-
 const offerWithoutFavourite = {
   isPremium: true,
   pictures: [`picture`],
@@ -87,12 +84,22 @@ const offerWithoutFavourite = {
   }],
 };
 
-const offers = [
-  offerWithPremium,
-  offerWithoutPremium,
-  offerWithFavourite,
-  offerWithoutFavourite
-];
+const offers = {
+  city: `Amsterdam`,
+  cityCoords: [52.38333, 4.9],
+  localOffers: [
+    offerWithPremium,
+    offerWithoutPremium,
+    offerWithFavourite,
+    offerWithoutFavourite
+  ],
+};
+
+
+const props = {
+  offers,
+  onCardTitleClick: ()=>{},
+};
 
 
 describe(`Snapshot of OfferPage`, () => {
@@ -100,9 +107,8 @@ describe(`Snapshot of OfferPage`, () => {
     const tree = renderer
       .create(
           <OfferPage
-            offer={offers[0]}
-            offers={offers}
-            onCardTitleClick={()=>{}}
+            {...props}
+            offer={offerWithPremium}
           />)
       .toJSON();
 
@@ -113,9 +119,8 @@ describe(`Snapshot of OfferPage`, () => {
     const tree = renderer
       .create(
           <OfferPage
-            offer={offers[1]} offers={offers} onCardTitleClick={()=>{}}
-
-
+            {...props}
+            offer={offerWithoutPremium}
           />)
       .toJSON();
 
@@ -126,9 +131,8 @@ describe(`Snapshot of OfferPage`, () => {
     const tree = renderer
       .create(
           <OfferPage
-            offer={offers[2]}
-            offers={offers}
-            onCardTitleClick={()=>{}}
+            {...props}
+            offer={offerWithFavourite}
           />)
       .toJSON();
 
@@ -139,9 +143,8 @@ describe(`Snapshot of OfferPage`, () => {
     const tree = renderer
       .create(
           <OfferPage
-            offer={offers[3]}
-            offers={offers}
-            onCardTitleClick={() => {}}
+            {...props}
+            offer={offerWithoutFavourite}
           />)
       .toJSON();
 

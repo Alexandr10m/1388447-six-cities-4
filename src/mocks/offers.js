@@ -13,15 +13,23 @@ const PICTURES = [
   `img/room.jpg`,
 ];
 const FACILITIES = [`Wi-Fi`, `Heating`, `Kitchen`, `Fridge`, `Washing machine`, `Coffee machine`, `Dishwasher`, `Towels`, `Baby seat`, `Cabel TV`];
-const COORDS = [[52.3909553943508, 4.85309666406198], [52.369553943508, 4.85309666406198], [52.3909553943508, 4.929309666406198], [52.3809553943508, 4.939309666406198]];
+
+const getRandomIntegerNumber = (min, max) => {
+  return min + Math.floor(Math.random() * (max - min));
+};
+
+const COORDS = [
+  [52.3909553943508, 4.85309666406198],
+  [52.369553943508, 4.85309666406198],
+  [52.3909553943508, 4.929309666406198],
+  [52.3809553943508, 4.939309666406198]
+];
 
 const getRandomArrayItem = (array) => {
   const randomItem = getRandomIntegerNumber(0, array.length);
   return array[randomItem];
 };
-const getRandomIntegerNumber = (min, max) => {
-  return min + Math.floor(Math.random() * (max - min));
-};
+
 const getRandomArrayLength = (array) => {
   const length = getRandomIntegerNumber(1, array.length);
   const copyArray = [...array];
@@ -30,11 +38,25 @@ const getRandomArrayLength = (array) => {
   return copyArray;
 };
 
-const createOffers = (count) => {
-  const offers = [];
+const City = {
+  Paris: [48.85341, 2.34880],
+  Amsterdam: [52.38333, 4.9],
+  Cologne: [45.57862, 9.941800],
+  Brussels: [50.85045, 4.3487800],
+  Hamburg: [53.57532, 10.0153400],
+  Dusseldorf: [51.22172, 6.77616],
+};
+
+
+const createOffers = (cityName, count) => {
+  const offers = {
+    city: Object.keys(City).find((it) => it === cityName),
+    cityCoords: City[cityName],
+    localOffers: [],
+  };
 
   for (let i = 0; i < count; i++) {
-    offers.push({
+    offers.localOffers.push({
       isPremium: Math.random() > 0.5,
       pictures: getRandomArrayLength(PICTURES),
       price: getRandomIntegerNumber(1, 1000),

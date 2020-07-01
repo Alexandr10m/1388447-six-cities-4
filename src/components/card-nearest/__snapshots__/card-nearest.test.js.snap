@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Snapshot of Card Card should render correctly with FavouriteClass 1`] = `
+exports[`Snapshot of CardNearest Card should render correctly with FavouriteClass 1`] = `
 <article
   className="cities__place-card place-card"
   onMouseEnter={[Function]}
@@ -107,7 +107,7 @@ exports[`Snapshot of Card Card should render correctly with FavouriteClass 1`] =
 </article>
 `;
 
-exports[`Snapshot of Card Card should render correctly with Primium 1`] = `
+exports[`Snapshot of CardNearest Card should render correctly with Primium 1`] = `
 <article
   className="cities__place-card place-card"
   onMouseEnter={[Function]}
@@ -214,7 +214,7 @@ exports[`Snapshot of Card Card should render correctly with Primium 1`] = `
 </article>
 `;
 
-exports[`Snapshot of Card Card should render correctly without FavouriteClass 1`] = `
+exports[`Snapshot of CardNearest Card should render correctly without FavouriteClass 1`] = `
 <article
   className="cities__place-card place-card"
   onMouseEnter={[Function]}
@@ -321,7 +321,7 @@ exports[`Snapshot of Card Card should render correctly without FavouriteClass 1`
 </article>
 `;
 
-exports[`Snapshot of Card Card should render correctly without Primium 1`] = `
+exports[`Snapshot of CardNearest Card should render correctly without Primium 1`] = `
 <article
   className="cities__place-card place-card"
   onMouseEnter={[Function]}

@@ -17,12 +17,13 @@ exports[`Snapshot of Main MainComponent should render 1`] = `
     >
       <ul
         className="locations__list tabs__list"
+        onClick={[Function]}
       >
         <li
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item"
+            className="locations__item-link tabs__item "
             href="#"
           >
             <span>
@@ -34,7 +35,7 @@ exports[`Snapshot of Main MainComponent should render 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item"
+            className="locations__item-link tabs__item "
             href="#"
           >
             <span>
@@ -46,7 +47,7 @@ exports[`Snapshot of Main MainComponent should render 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item"
+            className="locations__item-link tabs__item "
             href="#"
           >
             <span>
@@ -59,6 +60,7 @@ exports[`Snapshot of Main MainComponent should render 1`] = `
         >
           <a
             className="locations__item-link tabs__item tabs__item--active"
+            href="#"
           >
             <span>
               Amsterdam
@@ -69,7 +71,7 @@ exports[`Snapshot of Main MainComponent should render 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item"
+            className="locations__item-link tabs__item "
             href="#"
           >
             <span>
@@ -81,7 +83,7 @@ exports[`Snapshot of Main MainComponent should render 1`] = `
           className="locations__item"
         >
           <a
-            className="locations__item-link tabs__item"
+            className="locations__item-link tabs__item "
             href="#"
           >
             <span>
@@ -110,7 +112,8 @@ exports[`Snapshot of Main MainComponent should render 1`] = `
           className="places__found"
         >
           4
-           places to stay in Amsterdam
+           places to stay in 
+          Amsterdam
         </b>
         <form
           action="#"
