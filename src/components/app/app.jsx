@@ -8,15 +8,6 @@ import {ActionCreator} from "../../reducer.js";
 
 
 class App extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.handlerCardTitleClick = this.handlerCardTitleClick.bind(this);
-  }
-
-  handlerCardTitleClick() {
-    return {};
-  }
 
   _renderMainPage() {
     const {
@@ -46,7 +37,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {offers} = this.props;
+    const {offers, onCardTitleClick} = this.props;
 
     return (
       <BrowserRouter>
@@ -58,7 +49,7 @@ class App extends PureComponent {
             <OfferPage
               offer={offers.localOffers[0]}
               offers={offers}
-              onCardTitleClick={this.handlerCardTitleClick}
+              onCardTitleClick={onCardTitleClick}
             />
           </Route>
         </Switch>

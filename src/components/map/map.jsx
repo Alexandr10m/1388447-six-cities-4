@@ -53,7 +53,12 @@ class Map extends PureComponent {
     this._initMap();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
+
+    if (prevProps.city === this.props.city) {
+      return;
+    }
+
     const {city} = this.props;
 
     this._markers.clearLayers();
