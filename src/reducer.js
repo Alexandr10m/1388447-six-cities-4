@@ -10,7 +10,7 @@ const initialState = {
   offers,
   showedOffer: null,
   sortType: `Popular`,
-  indicatedCard: offers[0],
+  indicatedCard: null,
 };
 
 const ActionType = {
@@ -82,8 +82,9 @@ const reducer = (state = initialState, action) => {
       });
 
     case ActionType.SHOW_POINTER:
+      // console.log(state.indicatedCard);
       return extend(state, {
-        indicatedCard: action.indicatedCard,
+        indicatedCard: action.payload,
       });
   }
   return state;
