@@ -1,6 +1,8 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import Card from "../card/card.jsx";
+import {connect} from "react-redux";
+import {sortByType} from "../../utils.js";
 
 
 class ListCards extends PureComponent {
@@ -43,4 +45,10 @@ ListCards.propTypes = {
 };
 
 
-export default ListCards;
+const mapStateToProps = (state) => ({
+  localOffers: sortByType(state.sortType, state.offers.localOffers),
+});
+
+
+export {ListCards};
+export default connect(mapStateToProps)(ListCards);
