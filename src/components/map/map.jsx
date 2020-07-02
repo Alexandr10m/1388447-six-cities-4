@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import LeafLet from "leaflet";
+import {connect} from "react-redux";
 
 
 class Map extends PureComponent {
@@ -9,17 +10,24 @@ class Map extends PureComponent {
 
     this._zoom = 12;
     this._icon = null;
+    this._activeIcon = null;
     this._map = null;
     this._markers = null;
+
   }
 
   _initMap() {
     const {city} = this.props;
 
-    this._icon = LeafLet.icon({
+    this._icon = {
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]
-    });
+    };
+
+    this._activeIcon = {
+      iconUrl: `img/pin-active.svg`,
+      iconSize: [30, 30]
+    };
 
     this._map = LeafLet.map(`map`, {
       center: city,
@@ -39,13 +47,23 @@ class Map extends PureComponent {
   }
 
   _addMarkers() {
-    const {localOffers} = this.props;
+    const {localOffers, indicatedCard = localOffers[0]} = this.props;
 
     this._markers = LeafLet.layerGroup().addTo(this._map);
+    this._markers.clearLayers();
+
+    console.log(indicatedCard);
 
     localOffers.map((offer) => {
-      LeafLet.marker(offer.coords, this._icon)
-      .addTo(this._map);
+
+      if (offer !== indicatedCard) {
+        LeafLet.marker(offer.coords, LeafLet.icon(this._icon))
+        .addTo(this._map);
+      } else {
+        LeafLet.marker(offer.coords, LeafLet.icon(this._activeIcon))
+        .addTo(this._map);
+      }
+
     });
   }
 
@@ -58,6 +76,7 @@ class Map extends PureComponent {
     if (prevProps.city === this.props.city) {
       return;
     }
+
 
     const {city} = this.props;
 
@@ -89,6 +108,21 @@ Map.propTypes = {
     coords: PropTypes.array.isRequired,
   })),
   city: PropTypes.array.isRequired,
+  indicatedCard: PropTypes.shape({
+    isPremium: PropTypes.bool.isRequired,
+    pictures: PropTypes.array.isRequired,
+    price: PropTypes.number.isRequired,
+    isFavourite: PropTypes.bool.isRequired,
+    grade: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    coords: PropTypes.array.isRequired,
+  }),
 };
 
-export default Map;
+const mapStateToProps = (state) => ({
+  indicatedCard: state.indicatedCard,
+});
+
+export {Map};
+export default connect(mapStateToProps, null)(Map);
