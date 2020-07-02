@@ -19,26 +19,29 @@ class Map extends PureComponent {
   _initMap() {
     const {city} = this.props;
 
-    this._icon = {
+    this._icon = LeafLet.icon({
       iconUrl: `img/pin.svg`,
       iconSize: [30, 30]
-    };
+    });
 
-    this._activeIcon = {
+    this._activeIcon = LeafLet.icon({
       iconUrl: `img/pin-active.svg`,
       iconSize: [30, 30]
-    };
+    });
 
     this._map = LeafLet.map(`map`, {
       center: city,
       zoom: this._zoom,
       zoomControl: false,
-      marker: true
+      marker: true,
+      layers: [],
     });
 
     this._map.setView(city, this._zoom);
 
-    LeafLet.tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+    this.layerGroup = LeafLet.layerGroup();
+
+    this._layer = LeafLet.tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
       attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
     })
     .addTo(this._map);
@@ -47,24 +50,30 @@ class Map extends PureComponent {
   }
 
   _addMarkers() {
-    const {localOffers, indicatedCard = localOffers[0]} = this.props;
+    const {localOffers, indicatedCard} = this.props;
 
-    this._markers = LeafLet.layerGroup().addTo(this._map);
-    this._markers.clearLayers();
-
-    console.log(indicatedCard);
+    this.layerGroup = LeafLet.layerGroup().addTo(this._map);
 
     localOffers.map((offer) => {
-
-      if (offer !== indicatedCard) {
-        LeafLet.marker(offer.coords, LeafLet.icon(this._icon))
-        .addTo(this._map);
+      if (indicatedCard) {
+        if (offer.id === indicatedCard.id) {
+          LeafLet.marker(offer.coords, {icon: this._activeIcon})
+            .addTo(this.layerGroup);
+        } else {
+          LeafLet.marker(offer.coords, {icon: this._icon})
+            .addTo(this.layerGroup);
+        }
       } else {
-        LeafLet.marker(offer.coords, LeafLet.icon(this._activeIcon))
-        .addTo(this._map);
+        LeafLet.marker(offer.coords, {icon: this._icon})
+            .addTo(this.layerGroup);
       }
 
     });
+  }
+
+  _updateMap() {
+    this.layerGroup.remove();
+    this._addMarkers();
   }
 
   componentDidMount() {
@@ -72,26 +81,23 @@ class Map extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-
-    if (prevProps.city === this.props.city) {
+    if (prevProps.city !== this.props.city) {
+      this._updateMap();
       return;
     }
 
-
-    const {city} = this.props;
-
-    this._markers.clearLayers();
-    this._map.setView(city, this._zoom);
-
-    this._addMarkers();
+    if (prevProps.indicatedCard !== this.props.indicatedCard) {
+      this._updateMap();
+      return;
+    }
   }
 
   render() {
-    return <div ref={this._mapRef} id="map" style={{width: `100%`, height: `100%`}}></div>;
+    return <div id="map" style={{width: `100%`, height: `100%`}}></div>;
   }
 
   componentWillUnmount() {
-    this._map.remove();
+    this._map = null;
   }
 }
 
@@ -117,12 +123,15 @@ Map.propTypes = {
     title: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     coords: PropTypes.array.isRequired,
+    id: PropTypes.string.isRequired,
   }),
 };
+
 
 const mapStateToProps = (state) => ({
   indicatedCard: state.indicatedCard,
 });
+
 
 export {Map};
 export default connect(mapStateToProps, null)(Map);
