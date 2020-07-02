@@ -10,6 +10,7 @@ const initialState = {
   offers,
   showedOffer: null,
   sortType: `Popular`,
+  indicatedCard: offers[0],
 };
 
 const ActionType = {
@@ -18,6 +19,7 @@ const ActionType = {
   SHOW_OFFER: `SHOW_OFFER`,
   RESET_SHOWED_OFFER: `RESET_SHOWED_OFFER`,
   CHANGE_SORT: `CHANGE_SORT`,
+  SHOW_POINTER: `SHOW_POINTER`,
 };
 
 const ActionCreator = {
@@ -44,6 +46,11 @@ const ActionCreator = {
   changeSort: (sortType) => ({
     type: ActionType.CHANGE_SORT,
     payload: sortType,
+  }),
+
+  showPoiner: (offer) => ({
+    type: ActionType.SHOW_POINTER,
+    payload: offer,
   }),
 };
 
@@ -72,6 +79,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_SORT:
       return extend(state, {
         sortType: action.payload,
+      });
+
+    case ActionType.SHOW_POINTER:
+      return extend(state, {
+        indicatedCard: action.indicatedCard,
       });
   }
   return state;
