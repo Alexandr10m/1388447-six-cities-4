@@ -114,6 +114,23 @@ describe(`Test of work functcion reducer with action`, () => {
 
     expect(reducer(state, action)).toEqual(newState);
   });
+
+  it(`reducer should change sort`, () => {
+    const state = {
+      sortType: `man`,
+    };
+
+    const action = {
+      type: ActionType.CHANGE_SORT,
+      payload: `woman`,
+    };
+
+    const newState = {
+      sortType: `woman`,
+    };
+
+    expect(reducer(state, action)).toEqual(newState);
+  });
 });
 
 describe(`Action creators work correctly`, () => {
@@ -142,5 +159,14 @@ describe(`Action creators work correctly`, () => {
     };
 
     expect(ActionCreator.resetShowedOffer()).toEqual(conrrectAction);
+  });
+
+  it(`Action creator for change sort return correct action`, () => {
+    const conrrectAction = {
+      type: ActionType.CHANGE_SORT,
+      payload: `children`,
+    };
+
+    expect(ActionCreator.changeSort(`children`)).toEqual(conrrectAction);
   });
 });
