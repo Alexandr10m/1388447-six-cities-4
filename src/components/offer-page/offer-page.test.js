@@ -1,7 +1,10 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import OfferPage from "./offer-page.jsx";
+import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
 
+const mockStore = configureStore([]);
 
 const offerWithPremium = {
   isPremium: true,
@@ -101,15 +104,18 @@ const props = {
   onCardTitleClick: ()=>{},
 };
 
+const store = mockStore({});
 
 describe(`Snapshot of OfferPage`, () => {
   it(`OfferPage should render whit Premium`, () => {
     const tree = renderer
       .create(
-          <OfferPage
-            {...props}
-            offer={offerWithPremium}
-          />)
+          <Provider store={store}>
+            <OfferPage
+              {...props}
+              offer={offerWithPremium}
+            />
+          </Provider>)
       .toJSON();
 
     expect(tree).toMatchSnapshot();
@@ -118,10 +124,12 @@ describe(`Snapshot of OfferPage`, () => {
   it(`OfferPage should render whitout Premium`, () => {
     const tree = renderer
       .create(
-          <OfferPage
-            {...props}
-            offer={offerWithoutPremium}
-          />)
+          <Provider store={store}>
+            <OfferPage
+              {...props}
+              offer={offerWithoutPremium}
+            />
+          </Provider>)
       .toJSON();
 
     expect(tree).toMatchSnapshot();
@@ -130,10 +138,12 @@ describe(`Snapshot of OfferPage`, () => {
   it(`OfferPage should render whit Favourite`, () => {
     const tree = renderer
       .create(
-          <OfferPage
-            {...props}
-            offer={offerWithFavourite}
-          />)
+          <Provider store={store}>
+            <OfferPage
+              {...props}
+              offer={offerWithFavourite}
+            />
+          </Provider>)
       .toJSON();
 
     expect(tree).toMatchSnapshot();
@@ -142,10 +152,12 @@ describe(`Snapshot of OfferPage`, () => {
   it(`OfferPage should render whitout Favourite`, () => {
     const tree = renderer
       .create(
-          <OfferPage
-            {...props}
-            offer={offerWithoutFavourite}
-          />)
+          <Provider store={store}>
+            <OfferPage
+              {...props}
+              offer={offerWithoutFavourite}
+            />
+          </Provider>)
       .toJSON();
 
     expect(tree).toMatchSnapshot();

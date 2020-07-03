@@ -116,6 +116,7 @@ describe(`Snapshot of ListCards`, () => {
             <ListCards
               localOffers={offers.localOffers}
               onCardTitleClick={() => {}}
+              onCardMouseEnter={() => {}}
             />
           </Provider>)
       .toJSON();
@@ -137,6 +138,7 @@ describe(`Snapshot of ListCards`, () => {
             <ListCards
               localOffers={offers.localOffers}
               onCardTitleClick={() => {}}
+              onCardMouseEnter={() => {}}
             />
           </Provider>)
       .toJSON();
@@ -158,6 +160,7 @@ describe(`Snapshot of ListCards`, () => {
             <ListCards
               localOffers={offers.localOffers}
               onCardTitleClick={() => {}}
+              onCardMouseEnter={() => {}}
             />
           </Provider>)
       .toJSON();
@@ -179,6 +182,7 @@ describe(`Snapshot of ListCards`, () => {
             <ListCards
               localOffers={offers.localOffers}
               onCardTitleClick={() => {}}
+              onCardMouseEnter={() => {}}
             />
           </Provider>)
       .toJSON();

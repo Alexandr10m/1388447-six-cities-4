@@ -43,7 +43,7 @@ const Sort = (props) => {
       <ul onClick={handlerSelectClick} className={`places__options places__options--custom ${openedClass}`}>
         {SORTS.map((it, i) => liOptionTmpl(it, sortType, i))}
       </ul>
-      <select className="places__sorting-type" id="places-sorting" defaultValue={sortType}>
+      <select className="places__sorting-type" id="places-sorting">
         {SORTS.map((it, i) => optionTmpl(it, i))}
       </select>
     </form>
@@ -52,7 +52,7 @@ const Sort = (props) => {
 
 Sort.propTypes = {
   onSelectClick: PropTypes.func.isRequired,
-  sortType: PropTypes.string.isRequired,
+  sortType: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({

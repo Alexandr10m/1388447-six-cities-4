@@ -105,7 +105,7 @@ const initialState = {
   city,
   offers,
   showedOffer: null,
-  sortType: `Price: low to high`,
+  sortType: `Popular`,
 };
 
 describe(`Snapshot of Sort`, () => {

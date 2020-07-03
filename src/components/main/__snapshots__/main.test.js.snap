@@ -142,6 +142,7 @@ exports[`Snapshot of Main MainComponent should render 1`] = `
           </span>
           <ul
             className="places__options places__options--custom places__options--opened"
+            onClick={[Function]}
           >
             <li
               className="places__option places__option--active"
@@ -150,19 +151,19 @@ exports[`Snapshot of Main MainComponent should render 1`] = `
               Popular
             </li>
             <li
-              className="places__option"
+              className="places__option "
               tabIndex="0"
             >
               Price: low to high
             </li>
             <li
-              className="places__option"
+              className="places__option "
               tabIndex="0"
             >
               Price: high to low
             </li>
             <li
-              className="places__option"
+              className="places__option "
               tabIndex="0"
             >
               Top rated first
@@ -170,7 +171,6 @@ exports[`Snapshot of Main MainComponent should render 1`] = `
           </ul>
           <select
             className="places__sorting-type"
-            defaultValue="popular"
             id="places-sorting"
           >
             <option

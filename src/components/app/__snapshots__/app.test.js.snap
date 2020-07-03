@@ -770,6 +770,7 @@ exports[`Snapshot of App AppComponent should render OfferPage with offerWithoutF
             className="places__sorting-type"
             tabIndex="0"
           >
+            Price: low to high
             <svg
               className="places__sorting-arrow"
               height="4"
@@ -791,7 +792,7 @@ exports[`Snapshot of App AppComponent should render OfferPage with offerWithoutF
               Popular
             </li>
             <li
-              className="places__option "
+              className="places__option places__option--active"
               tabIndex="0"
             >
               Price: low to high

@@ -28,7 +28,6 @@ const sortByType = (type, array) => {
   switch (type) {
     case `Popular`:
       break;
-
     case `Price: low to high`:
       copyArray.sort((prevOffer, nextOffer) => prevOffer.price - nextOffer.price);
       break;
