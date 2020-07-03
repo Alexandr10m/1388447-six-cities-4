@@ -113,6 +113,7 @@ describe(`Snapshot of App`, () => {
       showedOffer: offerWithoutFavourite,
       city: `Amsterdam`,
       offers,
+      sortType: `Price: low to high`,
     });
 
     const tree = renderer

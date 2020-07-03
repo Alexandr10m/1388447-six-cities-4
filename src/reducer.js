@@ -9,6 +9,8 @@ const initialState = {
   city: offers.city,
   offers,
   showedOffer: null,
+  sortType: `Popular`,
+  indicatedCard: null,
 };
 
 const ActionType = {
@@ -16,6 +18,8 @@ const ActionType = {
   CHANGE_LOCAL_OFFERS: `CHANGE_LOCAL_OFFERS`,
   SHOW_OFFER: `SHOW_OFFER`,
   RESET_SHOWED_OFFER: `RESET_SHOWED_OFFER`,
+  CHANGE_SORT: `CHANGE_SORT`,
+  SHOW_POINTER: `SHOW_POINTER`,
 };
 
 const ActionCreator = {
@@ -36,6 +40,16 @@ const ActionCreator = {
 
   showOffer: (offer) => ({
     type: ActionType.SHOW_OFFER,
+    payload: offer,
+  }),
+
+  changeSort: (sortType) => ({
+    type: ActionType.CHANGE_SORT,
+    payload: sortType,
+  }),
+
+  showPoiner: (offer) => ({
+    type: ActionType.SHOW_POINTER,
     payload: offer,
   }),
 };
@@ -60,6 +74,17 @@ const reducer = (state = initialState, action) => {
     case ActionType.RESET_SHOWED_OFFER:
       return extend(state, {
         showedOffer: action.payload
+      });
+
+    case ActionType.CHANGE_SORT:
+      return extend(state, {
+        sortType: action.payload,
+      });
+
+    case ActionType.SHOW_POINTER:
+      // console.log(state.indicatedCard);
+      return extend(state, {
+        indicatedCard: action.payload,
       });
   }
   return state;

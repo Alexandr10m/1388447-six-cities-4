@@ -129,7 +129,6 @@ exports[`Snapshot of App AppComponent should render Main page 1`] = `
             className="places__sorting-type"
             tabIndex="0"
           >
-            Popular
             <svg
               className="places__sorting-arrow"
               height="4"
@@ -142,27 +141,28 @@ exports[`Snapshot of App AppComponent should render Main page 1`] = `
           </span>
           <ul
             className="places__options places__options--custom places__options--opened"
+            onClick={[Function]}
           >
             <li
-              className="places__option places__option--active"
+              className="places__option "
               tabIndex="0"
             >
               Popular
             </li>
             <li
-              className="places__option"
+              className="places__option "
               tabIndex="0"
             >
               Price: low to high
             </li>
             <li
-              className="places__option"
+              className="places__option "
               tabIndex="0"
             >
               Price: high to low
             </li>
             <li
-              className="places__option"
+              className="places__option "
               tabIndex="0"
             >
               Top rated first
@@ -170,7 +170,6 @@ exports[`Snapshot of App AppComponent should render Main page 1`] = `
           </ul>
           <select
             className="places__sorting-type"
-            defaultValue="popular"
             id="places-sorting"
           >
             <option
@@ -771,7 +770,7 @@ exports[`Snapshot of App AppComponent should render OfferPage with offerWithoutF
             className="places__sorting-type"
             tabIndex="0"
           >
-            Popular
+            Price: low to high
             <svg
               className="places__sorting-arrow"
               height="4"
@@ -784,27 +783,28 @@ exports[`Snapshot of App AppComponent should render OfferPage with offerWithoutF
           </span>
           <ul
             className="places__options places__options--custom places__options--opened"
+            onClick={[Function]}
           >
             <li
-              className="places__option places__option--active"
+              className="places__option "
               tabIndex="0"
             >
               Popular
             </li>
             <li
-              className="places__option"
+              className="places__option places__option--active"
               tabIndex="0"
             >
               Price: low to high
             </li>
             <li
-              className="places__option"
+              className="places__option "
               tabIndex="0"
             >
               Price: high to low
             </li>
             <li
-              className="places__option"
+              className="places__option "
               tabIndex="0"
             >
               Top rated first
@@ -812,7 +812,6 @@ exports[`Snapshot of App AppComponent should render OfferPage with offerWithoutF
           </ul>
           <select
             className="places__sorting-type"
-            defaultValue="popular"
             id="places-sorting"
           >
             <option

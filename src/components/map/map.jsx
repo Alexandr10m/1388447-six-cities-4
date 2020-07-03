@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import LeafLet from "leaflet";
+import {connect} from "react-redux";
 
 
 class Map extends PureComponent {
@@ -9,8 +10,10 @@ class Map extends PureComponent {
 
     this._zoom = 12;
     this._icon = null;
+    this._activeIcon = null;
     this._map = null;
     this._markers = null;
+
   }
 
   _initMap() {
@@ -21,16 +24,24 @@ class Map extends PureComponent {
       iconSize: [30, 30]
     });
 
+    this._activeIcon = LeafLet.icon({
+      iconUrl: `img/pin-active.svg`,
+      iconSize: [30, 30]
+    });
+
     this._map = LeafLet.map(`map`, {
       center: city,
       zoom: this._zoom,
       zoomControl: false,
-      marker: true
+      marker: true,
+      layers: [],
     });
 
     this._map.setView(city, this._zoom);
 
-    LeafLet.tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+    this.layerGroup = LeafLet.layerGroup();
+
+    this._layer = LeafLet.tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
       attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
     })
     .addTo(this._map);
@@ -39,14 +50,30 @@ class Map extends PureComponent {
   }
 
   _addMarkers() {
-    const {localOffers} = this.props;
+    const {localOffers, indicatedCard} = this.props;
 
-    this._markers = LeafLet.layerGroup().addTo(this._map);
+    this.layerGroup = LeafLet.layerGroup().addTo(this._map);
 
     localOffers.map((offer) => {
-      LeafLet.marker(offer.coords, this._icon)
-      .addTo(this._map);
+      if (indicatedCard) {
+        if (offer.id === indicatedCard.id) {
+          LeafLet.marker(offer.coords, {icon: this._activeIcon})
+            .addTo(this.layerGroup);
+        } else {
+          LeafLet.marker(offer.coords, {icon: this._icon})
+            .addTo(this.layerGroup);
+        }
+      } else {
+        LeafLet.marker(offer.coords, {icon: this._icon})
+            .addTo(this.layerGroup);
+      }
+
     });
+  }
+
+  _updateMap() {
+    this.layerGroup.remove();
+    this._addMarkers();
   }
 
   componentDidMount() {
@@ -54,25 +81,23 @@ class Map extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-
-    if (prevProps.city === this.props.city) {
+    if (prevProps.city !== this.props.city) {
+      this._updateMap();
       return;
     }
 
-    const {city} = this.props;
-
-    this._markers.clearLayers();
-    this._map.setView(city, this._zoom);
-
-    this._addMarkers();
+    if (prevProps.indicatedCard !== this.props.indicatedCard) {
+      this._updateMap();
+      return;
+    }
   }
 
   render() {
-    return <div ref={this._mapRef} id="map" style={{width: `100%`, height: `100%`}}></div>;
+    return <div id="map" style={{width: `100%`, height: `100%`}}></div>;
   }
 
   componentWillUnmount() {
-    this._map.remove();
+    this._map = null;
   }
 }
 
@@ -89,6 +114,24 @@ Map.propTypes = {
     coords: PropTypes.array.isRequired,
   })),
   city: PropTypes.array.isRequired,
+  indicatedCard: PropTypes.shape({
+    isPremium: PropTypes.bool.isRequired,
+    pictures: PropTypes.array.isRequired,
+    price: PropTypes.number.isRequired,
+    isFavourite: PropTypes.bool.isRequired,
+    grade: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    coords: PropTypes.array.isRequired,
+    id: PropTypes.string.isRequired,
+  }),
 };
 
-export default Map;
+
+const mapStateToProps = (state) => ({
+  indicatedCard: state.indicatedCard,
+});
+
+
+export {Map};
+export default connect(mapStateToProps, null)(Map);

@@ -1,8 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import Main from "./main.jsx";
+import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
 
 
+const mockStore = configureStore([]);
 const offerWithPremium = {
   isPremium: true,
   pictures: [`picture`],
@@ -107,11 +110,17 @@ const props = {
 
 describe(`Snapshot of Main`, () => {
   it(`MainComponent should render`, () => {
+    const store = mockStore({
+      offers,
+      sortType: `Popular`,
+    });
     const tree = renderer
       .create(
-          <Main
-            {...props}
-          />)
+          <Provider store={store}>
+            <Main
+              {...props}
+            />
+          </Provider>)
       .toJSON();
 
     expect(tree).toMatchSnapshot();

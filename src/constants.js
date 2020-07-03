@@ -7,4 +7,11 @@ const CITIES = [
   `Dusseldorf`
 ];
 
-export {CITIES};
+const SORTS = [
+  `Popular`,
+  `Price: low to high`,
+  `Price: high to low`,
+  `Top rated first`,
+];
+
+export {CITIES, SORTS};

@@ -1,8 +1,9 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import OfferPage from "./offer-page.jsx";
-import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
+import {Sort} from "./sort.jsx";
+
 
 const mockStore = configureStore([]);
 
@@ -98,68 +99,29 @@ const offers = {
   ],
 };
 
+const city = `Amsterdam`;
 
-const props = {
+const initialState = {
+  city,
   offers,
-  onCardTitleClick: ()=>{},
+  showedOffer: null,
+  sortType: `Popular`,
 };
 
-const store = mockStore({});
+describe(`Snapshot of Sort`, () => {
+  it(`Should render correctly`, () => {
 
-describe(`Snapshot of OfferPage`, () => {
-  it(`OfferPage should render whit Premium`, () => {
+    const store = mockStore(initialState);
+
     const tree = renderer
-      .create(
-          <Provider store={store}>
-            <OfferPage
-              {...props}
-              offer={offerWithPremium}
-            />
-          </Provider>)
-      .toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-
-  it(`OfferPage should render whitout Premium`, () => {
-    const tree = renderer
-      .create(
-          <Provider store={store}>
-            <OfferPage
-              {...props}
-              offer={offerWithoutPremium}
-            />
-          </Provider>)
-      .toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-
-  it(`OfferPage should render whit Favourite`, () => {
-    const tree = renderer
-      .create(
-          <Provider store={store}>
-            <OfferPage
-              {...props}
-              offer={offerWithFavourite}
-            />
-          </Provider>)
-      .toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-
-  it(`OfferPage should render whitout Favourite`, () => {
-    const tree = renderer
-      .create(
-          <Provider store={store}>
-            <OfferPage
-              {...props}
-              offer={offerWithoutFavourite}
-            />
-          </Provider>)
-      .toJSON();
-
+    .create(
+        <Provider store={store}>
+          <Sort
+            sortType={`Price: low to high`}
+            onSelectClick={()=>{}}
+          />
+        </Provider>)
+    .toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

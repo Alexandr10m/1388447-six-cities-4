@@ -1,7 +1,10 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Map from "./map.jsx";
+import {Map} from "./map.jsx";
+import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
 
+const mockStore = configureStore([]);
 
 const offerWithPremium = {
   isPremium: true,
@@ -96,15 +99,22 @@ const props = {
   ],
 };
 
+const store = mockStore({
+  sortType: `Popular`,
+  indicatedCard: null,
+});
+
 describe(`Snapshot of Map`, () => {
   it(`Map should render correctly`, () => {
     jest.mock(`leaflet`);
 
     const tree = renderer
       .create(
-          <Map
-            {...props}
-          />, {
+          <Provider store={store}>
+            <Map
+              {...props}
+            />
+          </Provider>, {
             createNodeMock: () => {
               return {};
             }
