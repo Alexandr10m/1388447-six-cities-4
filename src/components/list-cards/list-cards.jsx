@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Card from "../card/card.jsx";
 import {connect} from "react-redux";
@@ -6,7 +6,16 @@ import {sortByType} from "../../utils.js";
 import {ActionCreator} from "../../reducer.js";
 
 
-class ListCards extends PureComponent {
+class ListCards extends React.Component {
+
+  shouldComponentUpdate(nextProps) {
+    const isNewOffers = this.props.localOffers.every((it, i) => nextProps.localOffers[i].id === it.id);
+    if (!isNewOffers) {
+      return true;
+    }
+
+    return false;
+  }
 
   render() {
     const {localOffers, onCardTitleClick, onCardMouseEnter} = this.props;

@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 import {firstWordInUpper, rating} from "../../utils.js";
 import ReviewList from "../review-list/review-list.jsx";
 import Map from "../map/map.jsx";
-import ListNearestCards from "../list-nearest-cards/list-nearest-cards.jsx";
+import NearestCards from "../list-nearest-cards/list-nearest-cards.jsx";
+import withActiveCard from "../../hoc/with-active-card/with-active-card.js";
+
+
+const ListNearestCards = withActiveCard(NearestCards);
 
 
 const propertyInsideItepTmpl = (item, index) => {

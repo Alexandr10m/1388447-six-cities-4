@@ -1,6 +1,6 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import ListNearestCards from "./list-nearest-cards.jsx";
+import {shallow} from "enzyme";
+import withActiveCard from "./with-active-card.js";
 
 
 const offerWithPremium = {
@@ -93,19 +93,19 @@ const offers = [
   offerWithFavourite,
   offerWithoutFavourite
 ];
+const MockComponent = () => <div/>;
 
+const MockComponentWrapped = withActiveCard(MockComponent);
 
-describe(`Snapshot of ListCards`, () => {
-  it(`Card should render correctly with Primium`, () => {
-    const tree = renderer
-      .create(
-          <ListNearestCards
-            offers={offers}
-            onCardTitleClick={() => {}}
-            onActiveCard={()=>{}}
-          />)
-      .toJSON();
+describe(`E2E of withActiveCards`, () => {
+  it(`withActiveCards should change activeCard`, () => {
 
-    expect(tree).toMatchSnapshot();
+    const wrapper = shallow(
+        <MockComponentWrapped
+          offers={offers}
+        />);
+
+    wrapper.props().onActiveCard(offerWithPremium);
+    expect(wrapper.state(`activeCard`)).toEqual(offerWithPremium);
   });
 });

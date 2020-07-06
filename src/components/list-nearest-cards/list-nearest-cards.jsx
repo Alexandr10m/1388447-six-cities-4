@@ -4,33 +4,20 @@ import CardNearest from "../card-nearest/card-nearest.jsx";
 
 
 class ListNearestCards extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeCard: null,
-    };
-    this._hanlerCardMouseEnter = this._hanlerCardMouseEnter.bind(this);
-  }
-
-  _hanlerCardMouseEnter(offer) {
-    this.setState({activeCard: offer});
-  }
-
   render() {
-    const {offers, onCardTitleClick} = this.props;
+    const {offers, onCardTitleClick, onActiveCard} = this.props;
+
     return (
       <div className="near-places__list places__list">
-
         {offers.map((offer, i) => {
           return (
             <CardNearest
               key={`${i}-${offer.title}`}
               offer={offer}
               onCardTitleClick={onCardTitleClick}
-              onActiveCard={this._hanlerCardMouseEnter}
+              onActiveCard={onActiveCard}
             />);
         })}
-
       </div>
     );
   }
@@ -53,6 +40,7 @@ ListNearestCards.propTypes = {
     id: PropTypes.string.isRequired,
   })),
   onCardTitleClick: PropTypes.func.isRequired,
+  onActiveCard: PropTypes.func.isRequired,
 };
 
 
