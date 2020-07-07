@@ -1,11 +1,10 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main.jsx";
+import MainOffers from "./main-offers.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 
 
-const mockStore = configureStore([]);
 const offerWithPremium = {
   isPremium: true,
   pictures: [`picture`],
@@ -86,7 +85,6 @@ const offerWithoutFavourite = {
     time: `April 2019`,
   }],
 };
-
 const offers = {
   city: `Amsterdam`,
   cityCoords: [52.38333, 4.9],
@@ -97,55 +95,25 @@ const offers = {
     offerWithoutFavourite
   ],
 };
+const mockStore = configureStore([]);
 
-const props = {
-  onCityClick: ()=>{},
-  onCardTitleClick: ()=>{},
-};
-
-const emptyLocalOffers = {
-  city: `Amsterdam`,
-  cityCoords: [52.38333, 4.9],
-  localOffers: null,
-};
-
-describe(`Snapshot of Main`, () => {
-  it(`MainComponent should render MainOffers component`, () => {
+describe(`Snapshot of MainOffers`, () => {
+  it(`Should render correctly`, () => {
     const store = mockStore({
       city: `Amsterdam`,
       offers,
-      sortType: `Popular`,
     });
-
     const tree = renderer
       .create(
           <Provider store={store}>
-            <Main
+            <MainOffers
               city={`Amsterdam`}
               offers={offers}
-              {...props}
+              onCardTitleClick={()=>{}}
+              onCityClick={()=>{}}
             />
-          </Provider>)
-      .toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-
-  it(`MainComponent should render MainEmpty compoment`, () => {
-    const store = mockStore({
-      offers: emptyLocalOffers,
-      sortType: `Popular`,
-    });
-
-    const tree = renderer
-      .create(
-          <Provider store={store}>
-            <Main
-              city={`Amsterdam`}
-              offers={emptyLocalOffers}
-              {...props}
-            />
-          </Provider>)
+          </Provider>
+      )
       .toJSON();
 
     expect(tree).toMatchSnapshot();
