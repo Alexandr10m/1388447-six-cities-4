@@ -7,12 +7,12 @@ import MainOffers from "../main-offers/main-offers.jsx";
 
 const Main = (props) => {
   const {city, offers, onCardTitleClick, onCityClick} = props;
-  const isEmptyOffers = !!offers.localOffers.length;
-  const EmptyMainClass = isEmptyOffers ? `page__main--index-empty` : ``;
+  const isEmptylocalOffers = offers.localOffers === null || offers.localOffers.length === 0;
+  const EmptyMainPageClass = isEmptylocalOffers ? `page__main--index-empty` : ``;
 
   return (
     <div className="page page--gray page--main">
-      <main className={`page__main page__main--index ${EmptyMainClass}`}>
+      <main className={`page__main page__main--index ${EmptyMainPageClass}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
@@ -24,7 +24,16 @@ const Main = (props) => {
 
           </section>
         </div>
-        {isEmptyOffers ? <MainOffers city={city} offers={offers} onCardTitleClick={onCardTitleClick} onCityClick={onCityClick}/> : <MainEmpty city={city}/>}
+
+        {isEmptylocalOffers ? <MainEmpty city={city}/>
+          : <MainOffers
+            city={city}
+            offers={offers}
+            onCardTitleClick={onCardTitleClick}
+            onCityClick={onCityClick}
+          />
+        }
+
       </main>
     </div>
   );
