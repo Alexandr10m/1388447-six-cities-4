@@ -5,6 +5,7 @@ import ReviewList from "../review-list/review-list.jsx";
 import Map from "../map/map.jsx";
 import NearestCards from "../list-nearest-cards/list-nearest-cards.jsx";
 import withActiveCard from "../../hoc/with-active-card/with-active-card.js";
+import Host from "../host/host.jsx";
 
 
 const ListNearestCards = withActiveCard(NearestCards);
@@ -39,6 +40,8 @@ const OfferPage = (props) => {
     maxAdults,
     facilities,
     reviews,
+    host,
+    description,
   } = offer;
 
   const {localOffers, cityCoords, cityZoom} = offers;
@@ -98,25 +101,10 @@ const OfferPage = (props) => {
                 {facilities.map((item, i) => propertyInsideItepTmpl(item, i))}
               </ul>
             </div>
-            <div className="property__host">
-              <h2 className="property__host-title">Meet the host</h2>
-              <div className="property__host-user user">
-                <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                  <img className="property__avatar user__avatar" src="img/avatar-angelina.jpg" width="74" height="74" alt="Host avatar"/>
-                </div>
-                <span className="property__user-name">
-                  Angelina
-                </span>
-              </div>
-              <div className="property__description">
-                <p className="property__text">
-                  A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-                </p>
-                <p className="property__text">
-                  An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
-                </p>
-              </div>
-            </div>
+            <Host
+              description={description}
+              host={host}
+            />
             <ReviewList
               reviews={reviews}
             />
@@ -160,6 +148,8 @@ OfferPage.propTypes = {
     facilities: PropTypes.array.isRequired,
     reviews: PropTypes.array.isRequired,
     id: PropTypes.number.isRequired,
+    host: PropTypes.object.isRequired,
+    description: PropTypes.string.isRequired,
   }),
   onCardTitleClick: PropTypes.func.isRequired,
 };
