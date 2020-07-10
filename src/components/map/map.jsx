@@ -8,12 +8,12 @@ class Map extends PureComponent {
   constructor(props) {
     super(props);
 
-    this._zoom = 12;
+    this._cityZoom = this.props.cityZoom;
+    this._offerZoom = this.props.locationZoom;
     this._icon = null;
     this._activeIcon = null;
     this._map = null;
     this._markers = null;
-
   }
 
   _initMap() {
@@ -21,23 +21,23 @@ class Map extends PureComponent {
 
     this._icon = LeafLet.icon({
       iconUrl: `img/pin.svg`,
-      iconSize: [30, 30]
+      iconSize: [this._offerZoom, this._offerZoom]
     });
 
     this._activeIcon = LeafLet.icon({
       iconUrl: `img/pin-active.svg`,
-      iconSize: [30, 30]
+      iconSize: [this._offerZoom, this._offerZoom]
     });
 
     this._map = LeafLet.map(`map`, {
       center: city,
-      zoom: this._zoom,
+      zoom: this._cityZoom,
       zoomControl: false,
       marker: true,
       layers: [],
     });
 
-    this._map.setView(city, this._zoom);
+    this._map.setView(city, this._cityZoom);
 
     this.layerGroup = LeafLet.layerGroup();
 
@@ -71,9 +71,15 @@ class Map extends PureComponent {
     });
   }
 
-  _updateMap() {
+  _updateMarkers() {
     this.layerGroup.remove();
     this._addMarkers();
+  }
+
+  _updateMap() {
+    this.layerGroup.remove();
+    this._map.remove();
+    this._initMap();
   }
 
   componentDidMount() {
@@ -87,7 +93,7 @@ class Map extends PureComponent {
     }
 
     if (prevProps.indicatedCard !== this.props.indicatedCard) {
-      this._updateMap();
+      this._updateMarkers();
       return;
     }
   }
@@ -114,6 +120,8 @@ Map.propTypes = {
     coords: PropTypes.array.isRequired,
   })),
   city: PropTypes.array.isRequired,
+  cityZoom: PropTypes.number.isRequired,
+  locationZoom: PropTypes.number.isRequired,
   indicatedCard: PropTypes.shape({
     isPremium: PropTypes.bool.isRequired,
     pictures: PropTypes.array.isRequired,
@@ -123,7 +131,7 @@ Map.propTypes = {
     title: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     coords: PropTypes.array.isRequired,
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
   }),
 };
 

@@ -41,8 +41,9 @@ const OfferPage = (props) => {
     reviews,
   } = offer;
 
+  const {localOffers, cityCoords, cityZoom} = offers;
+  const {locationZoom} = localOffers.find((it) => it.locationZoom);
   const favouriteClass = isFavourite ? `property__bookmark-button--active` : ``;
-  const cityCoords = offers.cityCoords;
   const nearestOffers = offers.localOffers.filter((it) => it !== offer);
 
   return (
@@ -125,6 +126,8 @@ const OfferPage = (props) => {
           <Map
             localOffers={nearestOffers}
             city={cityCoords}
+            cityZoom={cityZoom}
+            locationZoom={locationZoom}
           />
         </section>
       </section>
@@ -156,7 +159,7 @@ OfferPage.propTypes = {
     maxAdults: PropTypes.number.isRequired,
     facilities: PropTypes.array.isRequired,
     reviews: PropTypes.array.isRequired,
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
   }),
   onCardTitleClick: PropTypes.func.isRequired,
 };
