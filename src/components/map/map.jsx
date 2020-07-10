@@ -2,6 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import LeafLet from "leaflet";
 import {connect} from "react-redux";
+import {getIndicatedCard} from "../../reducer/state/selector.js";
 
 
 class Map extends PureComponent {
@@ -137,7 +138,7 @@ Map.propTypes = {
 
 
 const mapStateToProps = (state) => ({
-  indicatedCard: state.indicatedCard,
+  indicatedCard: getIndicatedCard(state),
 });
 
 

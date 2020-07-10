@@ -4,8 +4,9 @@ import OfferPage from "../offer-page/offer-page.jsx";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer.js";
-
+import {ActionCreator} from "../../reducer/state/state.js";
+import {getCity, getShowedOffer} from "../../reducer/state/selector.js";
+import {getOffers} from "../../reducer/data/selectors.js";
 
 class App extends PureComponent {
 
@@ -71,9 +72,9 @@ App.propTypes = {
 
 
 const mapStateToProps = (state) => ({
-  city: state.city,
-  offers: state.offers,
-  showedOffer: state.showedOffer,
+  city: getCity(state),
+  offers: getOffers(state),
+  showedOffer: getShowedOffer(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

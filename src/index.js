@@ -3,7 +3,8 @@ import ReactDOM from "react-dom";
 import {createStore, applyMiddleware, compose} from "redux";
 import {Provider} from "react-redux";
 import App from "./components/app/app.jsx";
-import {reducer, Operation} from "./reducer.js";
+import {Operation as DataOperation} from "./reducer/data/data.js";
+import reducer from "./reducer/reducer.js";
 import thunk from "redux-thunk";
 import createAPI from "./api.js";
 
@@ -20,7 +21,7 @@ const store = createStore(
     )
 );
 
-store.dispatch(Operation.loadOffers())
+store.dispatch(DataOperation.loadOffers())
   .then(() => {
     ReactDOM.render(
         <Provider store={store}>

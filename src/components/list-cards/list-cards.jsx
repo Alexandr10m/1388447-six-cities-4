@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import Card from "../card/card.jsx";
 import {connect} from "react-redux";
-import {sortByType} from "../../utils.js";
-import {ActionCreator} from "../../reducer.js";
+import {ActionCreator} from "../../reducer/state/state.js";
+import {getLocalOffers} from "../../reducer/state/selector.js";
 
 
 class ListCards extends React.Component {
@@ -48,7 +48,7 @@ ListCards.propTypes = {
 
 const mapStateToProps = (state) => ({
 
-  localOffers: sortByType(state.sortType, state.city, state.offers),
+  localOffers: getLocalOffers(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
