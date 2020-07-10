@@ -22,8 +22,10 @@ const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
 
-const sortByType = (type, array) => {
-  const copyArray = [...array];
+const sortByType = (type, city, array) => {
+  const showedOffers = array.find((it) => it.city === city);
+
+  const copyArray = [...showedOffers.localOffers];
 
   switch (type) {
     case `Popular`:
