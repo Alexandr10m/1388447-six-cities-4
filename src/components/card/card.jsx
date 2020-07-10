@@ -16,7 +16,6 @@ const Card = (props) => {
     previewImage,
   } = offer;
 
-  // const firstPicture = pictures[0];
   const tempPartClass = className || `cities__place-card`;
   const partClassName = (str) => str.split(`__`)[0];
   const favouriteClasse = isFavourite && `place-card__bookmark-button--active`;
