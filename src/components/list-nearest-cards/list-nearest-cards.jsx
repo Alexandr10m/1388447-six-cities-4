@@ -37,7 +37,7 @@ ListNearestCards.propTypes = {
     maxAdults: PropTypes.number.isRequired,
     facilities: PropTypes.array.isRequired,
     reviews: PropTypes.array.isRequired,
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
   })),
   onCardTitleClick: PropTypes.func.isRequired,
   onActiveCard: PropTypes.func.isRequired,
