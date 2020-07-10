@@ -1,4 +1,4 @@
-import NameSpace from "../../name-space.js";
+import NameSpace from "../name-space.js";
 import {createSelector} from "reselect";
 import {getOffers} from "../data/selectors.js";
 

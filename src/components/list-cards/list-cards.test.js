@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {ListCards} from "./list-cards.jsx";
-import NameSpace from "../../name-space.js";
+import NameSpace from "../../reducer/name-space.js";
 
 
 const mockStore = configureStore([]);
