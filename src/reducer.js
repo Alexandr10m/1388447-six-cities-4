@@ -1,13 +1,12 @@
 import {extend} from "./utils.js";
-import {createOffers} from "./mocks/offers.js";
+import {cityAdapter, localOffersAdapter} from "./adapter.js";
 
-const DEFAULT_CITY_NAME = `Amsterdam`;
-const COUNT_OF_OFFERS = 4;
-const offers = createOffers(DEFAULT_CITY_NAME, COUNT_OF_OFFERS);
+let offers = [];
 
 const initialState = {
-  city: offers.city,
   offers,
+  city: `Paris`,
+  localOffers: [],
   showedOffer: null,
   sortType: `Popular`,
   indicatedCard: null,
@@ -20,17 +19,13 @@ const ActionType = {
   RESET_SHOWED_OFFER: `RESET_SHOWED_OFFER`,
   CHANGE_SORT: `CHANGE_SORT`,
   SHOW_POINTER: `SHOW_POINTER`,
+  LOAD_OFFERS: `LOAD_OFFERS`,
 };
 
 const ActionCreator = {
   changeCity: (city) => ({
     type: ActionType.CHANGE_CITY,
     payload: city,
-  }),
-
-  changeOffers: (city) => ({
-    type: ActionType.CHANGE_LOCAL_OFFERS,
-    payload: createOffers(city, COUNT_OF_OFFERS),
   }),
 
   resetShowedOffer: () => ({
@@ -52,6 +47,39 @@ const ActionCreator = {
     type: ActionType.SHOW_POINTER,
     payload: offer,
   }),
+
+  loadOffers: (data) => ({
+    type: ActionType.LOAD_OFFERS,
+    payload: data,
+  }),
+};
+
+const convertCity = (item) => {
+  const isExist = offers.some((it) => it.city === item[`city`][`name`]);
+  if (!isExist) {
+    offers.push(cityAdapter(item));
+  }
+};
+
+const convertLocalOffers = (item) => {
+  offers.forEach((it) => {
+    if (it.city === item[`city`][`name`]) {
+      it.localOffers.push(localOffersAdapter(item));
+    }
+  });
+};
+
+const Operation = {
+  loadOffers: () => (dispatch, getState, api) => {
+    return api.get(`/hotels`)
+      .then((response) => {
+        response.data.forEach((it) => {
+          convertCity(it);
+          convertLocalOffers(it);
+        });
+        dispatch(ActionCreator.loadOffers(offers));
+      });
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -82,12 +110,15 @@ const reducer = (state = initialState, action) => {
       });
 
     case ActionType.SHOW_POINTER:
-      // console.log(state.indicatedCard);
       return extend(state, {
         indicatedCard: action.payload,
+      });
+    case ActionType.LOAD_OFFERS:
+      return extend(state, {
+        offers: action.payload,
       });
   }
   return state;
 };
 
-export {reducer, ActionType, ActionCreator};
+export {reducer, ActionType, ActionCreator, Operation};
