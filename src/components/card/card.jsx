@@ -9,12 +9,14 @@ const Card = (props) => {
     grade,
     title,
     isPremium: isShowingPremium,
-    pictures, price, isFavourite,
+    price,
+    isFavourite,
     type,
     className,
+    previewImage,
   } = offer;
 
-  const firstPicture = pictures[0];
+  // const firstPicture = pictures[0];
   const tempPartClass = className || `cities__place-card`;
   const partClassName = (str) => str.split(`__`)[0];
   const favouriteClasse = isFavourite && `place-card__bookmark-button--active`;
@@ -38,7 +40,7 @@ const Card = (props) => {
 
       <div className={`${partClassName(tempPartClass)}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
-          <img className="place-card__image" src={firstPicture} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
         </a>
       </div>
       <div className="place-card__info">
@@ -79,7 +81,7 @@ const Card = (props) => {
 Card.propTypes = {
   offer: PropTypes.shape({
     isPremium: PropTypes.bool.isRequired,
-    pictures: PropTypes.array.isRequired,
+    previewImage: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     isFavourite: PropTypes.bool.isRequired,
     grade: PropTypes.number.isRequired,
