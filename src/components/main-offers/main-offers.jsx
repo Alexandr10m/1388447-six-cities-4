@@ -6,7 +6,8 @@ import ListCards from "../list-cards/list-cards.jsx";
 
 const MainOffers = (props) => {
   const {city, offers, onCardTitleClick} = props;
-  const {localOffers, cityCoords} = offers;
+  const {localOffers, cityCoords, cityZoom} = offers;
+  const {locationZoom} = localOffers.find((it) => it.locationZoom);
 
 
   return (
@@ -27,6 +28,8 @@ const MainOffers = (props) => {
             <Map
               localOffers={localOffers}
               city={cityCoords}
+              cityZoom={cityZoom}
+              locationZoom={locationZoom}
             />
 
           </section>

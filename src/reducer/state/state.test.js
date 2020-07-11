@@ -1,40 +1,10 @@
-import {reducer, ActionType, ActionCreator} from "./reducer.js";
-
-const offerWithPremium = {
-  isPremium: true,
-  pictures: [`picture`],
-  price: 100,
-  isFavourite: false,
-  grade: 4,
-  title: `title`,
-  type: `Hotel`,
-  bedroom: 1,
-  maxAdults: 1,
-  facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
-  coords: [52.3909553943508, 4.85309666406198],
-  id: `1111`,
-  reviews: [{
-    image: `img/avatar-max.jpg`,
-    text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
-    name: `Max`,
-    time: `April 2019`,
-  }],
-};
-
-const offers = {
-  city: `Amsterdam`,
-  cityCoords: [52.38333, 4.9],
-  localOffers: [
-    offerWithPremium,
-  ],
-};
+import {reducer, ActionType, ActionCreator} from "./state.js";
 
 
-describe(`Test of work functcion reducer with action`, () => {
+describe(`Test of reducer state.js with action`, () => {
   it(`reducer should change the city`, () => {
     const state = {
       city: `Amsterdam`,
-      offers,
       showedOffer: null,
     };
 
@@ -45,28 +15,6 @@ describe(`Test of work functcion reducer with action`, () => {
 
     const newState = {
       city: `Paris`,
-      offers,
-      showedOffer: null,
-    };
-
-    expect(reducer(state, action)).toEqual(newState);
-  });
-
-  it(`reducer should change the offers`, () => {
-    const state = {
-      city: `Amsterdam`,
-      offers,
-      showedOffer: null,
-    };
-
-    const action = {
-      type: ActionType.CHANGE_LOCAL_OFFERS,
-      payload: `new Offers`,
-    };
-
-    const newState = {
-      city: `Amsterdam`,
-      offers: `new Offers`,
       showedOffer: null,
     };
 
@@ -76,7 +24,6 @@ describe(`Test of work functcion reducer with action`, () => {
   it(`reducer should show the one offer`, () => {
     const state = {
       city: `Amsterdam`,
-      offers,
       showedOffer: null,
     };
 
@@ -87,7 +34,6 @@ describe(`Test of work functcion reducer with action`, () => {
 
     const newState = {
       city: `Amsterdam`,
-      offers,
       showedOffer: `hotel at the river`,
     };
 
@@ -97,7 +43,6 @@ describe(`Test of work functcion reducer with action`, () => {
   it(`reducer should reset showedOffer`, () => {
     const state = {
       city: `Amsterdam`,
-      offers,
       showedOffer: `room at the moon`,
     };
 
@@ -108,7 +53,6 @@ describe(`Test of work functcion reducer with action`, () => {
 
     const newState = {
       city: `Amsterdam`,
-      offers,
       showedOffer: null,
     };
 

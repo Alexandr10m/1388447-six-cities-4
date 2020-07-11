@@ -2,8 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import {SORTS} from "../../constants.js";
 import {getOptionValue} from "../../utils.js";
-import {ActionCreator} from "../../reducer.js";
+import {ActionCreator} from "../../reducer/state/state.js";
 import {connect} from "react-redux";
+import {getSortType} from "../../reducer/state/selector.js";
 
 
 const optionTmpl = (type, index) => {
@@ -56,7 +57,7 @@ Sort.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  sortType: state.sortType,
+  sortType: getSortType(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

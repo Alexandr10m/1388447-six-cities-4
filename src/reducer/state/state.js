@@ -1,13 +1,9 @@
-import {extend} from "./utils.js";
-import {createOffers} from "./mocks/offers.js";
+import {extend} from "../../utils.js";
 
-const DEFAULT_CITY_NAME = `Amsterdam`;
-const COUNT_OF_OFFERS = 4;
-const offers = createOffers(DEFAULT_CITY_NAME, COUNT_OF_OFFERS);
 
 const initialState = {
-  city: offers.city,
-  offers,
+  city: `Paris`,
+  localOffers: [],
   showedOffer: null,
   sortType: `Popular`,
   indicatedCard: null,
@@ -26,11 +22,6 @@ const ActionCreator = {
   changeCity: (city) => ({
     type: ActionType.CHANGE_CITY,
     payload: city,
-  }),
-
-  changeOffers: (city) => ({
-    type: ActionType.CHANGE_LOCAL_OFFERS,
-    payload: createOffers(city, COUNT_OF_OFFERS),
   }),
 
   resetShowedOffer: () => ({
@@ -53,6 +44,7 @@ const ActionCreator = {
     payload: offer,
   }),
 };
+
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -82,7 +74,6 @@ const reducer = (state = initialState, action) => {
       });
 
     case ActionType.SHOW_POINTER:
-      // console.log(state.indicatedCard);
       return extend(state, {
         indicatedCard: action.payload,
       });

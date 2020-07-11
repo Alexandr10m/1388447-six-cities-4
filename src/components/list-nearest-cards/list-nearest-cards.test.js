@@ -4,94 +4,67 @@ import ListNearestCards from "./list-nearest-cards.jsx";
 
 
 const offerWithPremium = {
-  isPremium: true,
-  pictures: [`picture`],
-  price: 100,
+  bedroom: 2,
+  coords: [48.865610000000004, 2.350499],
+  description: `Discover daily local life in city center.`,
+  facilities: [`Air conditioning`, `Breakfast`],
+  grade: 3.6,
+  host: {
+    avatarUrl: `img/avatar-angelina.jpg`,
+    id: 25,
+    isPro: true,
+    name: `Angelina`,
+  },
+  id: 1,
   isFavourite: false,
-  grade: 4,
-  title: `title`,
-  type: `Hotel`,
-  bedroom: 1,
-  maxAdults: 1,
-  facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
-  coords: [52.3909553943508, 4.85309666406198],
-  id: `1111`,
+  isPremium: true,
+  locationZoom: 16,
+  maxAdults: 8,
+  pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`],
+  previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
+  price: 397,
   reviews: [{
     image: `img/avatar-max.jpg`,
-    text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+    text: `A quiet cozy and picturesque.`,
     name: `Max`,
-    time: `April 2019`,
+    time: `April 2019`
   }],
+  title: `Penthouse, 4-5 rooms + 5 balconies`,
+  type: `hotel`,
 };
-
-const offerWithoutPremium = {
-  isPremium: true,
-  pictures: [`picture`],
-  price: 100,
-  isFavourite: false,
-  grade: 4,
-  title: `title`,
-  type: `Hotel`,
-  bedroom: 1,
-  maxAdults: 1,
-  facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
-  coords: [52.3909553943508, 4.85309666406198],
-  id: `111`,
-  reviews: [{
-    image: `img/avatar-max.jpg`,
-    text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
-    name: `Max`,
-    time: `April 2019`,
-  }],
-};
-
 const offerWithFavourite = {
-  isPremium: true,
-  pictures: [`picture`],
-  price: 100,
+  bedroom: 2,
+  coords: [48.865610000000004, 2.350499],
+  description: `Discover daily local life in city center.`,
+  facilities: [`Air conditioning`, `Breakfast`],
+  grade: 3.6,
+  host: {
+    avatarUrl: `img/avatarangelina.jpg`,
+    id: 25,
+    isPro: false,
+    name: `Angela`,
+  },
+  id: 2,
   isFavourite: true,
-  grade: 4,
-  title: `title`,
-  type: `Hotel`,
-  bedroom: 1,
-  maxAdults: 1,
-  facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
-  coords: [52.3909553943508, 4.85309666406198],
-  id: `11`,
-  reviews: [{
-    image: `img/avatar-max.jpg`,
-    text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
-    name: `Max`,
-    time: `April 2019`,
-  }],
-};
-
-const offerWithoutFavourite = {
   isPremium: true,
-  pictures: [`picture`],
-  price: 100,
-  isFavourite: false,
-  grade: 4,
-  title: `title`,
-  type: `Hotel`,
-  bedroom: 1,
-  maxAdults: 1,
-  facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
-  coords: [52.3909553943508, 4.85309666406198],
-  id: `1`,
+  locationZoom: 16,
+  maxAdults: 8,
+  pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`],
+  previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
+  price: 397,
   reviews: [{
     image: `img/avatar-max.jpg`,
-    text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+    text: `A quiet cozy and picturesque.`,
     name: `Max`,
-    time: `April 2019`,
+    time: `April 2019`
   }],
+  title: `Penthouse, 4-5 rooms + 5 balconies`,
+  type: `hotel`,
 };
 
 const offers = [
   offerWithPremium,
-  offerWithoutPremium,
   offerWithFavourite,
-  offerWithoutFavourite
 ];
 
 

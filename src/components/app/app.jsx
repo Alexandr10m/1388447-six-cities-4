@@ -4,8 +4,9 @@ import OfferPage from "../offer-page/offer-page.jsx";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer.js";
-
+import {ActionCreator} from "../../reducer/state/state.js";
+import {getCity, getShowedOffer} from "../../reducer/state/selector.js";
+import {getOffers} from "../../reducer/data/selectors.js";
 
 class App extends PureComponent {
 
@@ -17,19 +18,20 @@ class App extends PureComponent {
       onCityClick,
       onCardTitleClick,
     } = this.props;
+    const showOffers = offers.find((it) => it.city === city);
 
     if (showedOffer) {
       return (
         <OfferPage
           offer={showedOffer}
-          offers={offers}
+          offers={showOffers}
           onCardTitleClick={onCardTitleClick}
         />);
     } else {
       return (
         <Main
           city={city}
-          offers={offers}
+          offers={showOffers}
           onCardTitleClick={onCardTitleClick}
           onCityClick={onCityClick}
         />);
@@ -37,7 +39,9 @@ class App extends PureComponent {
   }
 
   render() {
-    const {offers, onCardTitleClick} = this.props;
+    const {city, offers, onCardTitleClick, showedOffer} = this.props;
+    const showOffers = offers.find((it) => it.city === city);
+
 
     return (
       <BrowserRouter>
@@ -47,8 +51,8 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/offer">
             <OfferPage
-              offer={offers.localOffers[0]}
-              offers={offers}
+              offer={showedOffer}
+              offers={showOffers}
               onCardTitleClick={onCardTitleClick}
             />
           </Route>
@@ -60,7 +64,7 @@ class App extends PureComponent {
 
 App.propTypes = {
   city: PropTypes.string.isRequired,
-  offers: PropTypes.object.isRequired,
+  offers: PropTypes.array.isRequired,
   showedOffer: PropTypes.any,
   onCityClick: PropTypes.func.isRequired,
   onCardTitleClick: PropTypes.func.isRequired,
@@ -68,9 +72,9 @@ App.propTypes = {
 
 
 const mapStateToProps = (state) => ({
-  city: state.city,
-  offers: state.offers,
-  showedOffer: state.showedOffer,
+  city: getCity(state),
+  offers: getOffers(state),
+  showedOffer: getShowedOffer(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -80,7 +84,6 @@ const mapDispatchToProps = (dispatch) => ({
   onCityClick(city) {
     dispatch(ActionCreator.changeCity(city));
     dispatch(ActionCreator.resetShowedOffer());
-    dispatch(ActionCreator.changeOffers(city));
   },
 });
 

@@ -1,12 +1,5 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import {App} from "./app.jsx";
-import configureStore from "redux-mock-store";
-import {Provider} from "react-redux";
-import NameSpace from "../../reducer/name-space.js";
+import {reducer, ActionType} from "./data.js";
 
-
-const mockStore = configureStore([]);
 
 const offerWithPremium = {
   bedroom: 2,
@@ -19,8 +12,8 @@ const offerWithPremium = {
     id: 25,
     isPro: true,
     name: `Angelina`,
+    // id: 0,
   },
-  id: 1,
   isFavourite: false,
   isPremium: true,
   locationZoom: 16,
@@ -28,15 +21,16 @@ const offerWithPremium = {
   pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`],
   previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
   price: 397,
-  reviews: [{
+  reviews: {
     image: `img/avatar-max.jpg`,
     text: `A quiet cozy and picturesque.`,
     name: `Max`,
     time: `April 2019`
-  }],
+  },
   title: `Penthouse, 4-5 rooms + 5 balconies`,
   type: `hotel`,
 };
+
 const offerWithFavourite = {
   bedroom: 2,
   coords: [48.865610000000004, 2.350499],
@@ -48,8 +42,8 @@ const offerWithFavourite = {
     id: 25,
     isPro: false,
     name: `Angela`,
+    // id: 2,
   },
-  id: 2,
   isFavourite: true,
   isPremium: true,
   locationZoom: 16,
@@ -57,15 +51,16 @@ const offerWithFavourite = {
   pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`],
   previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
   price: 397,
-  reviews: [{
+  reviews: {
     image: `img/avatar-max.jpg`,
     text: `A quiet cozy and picturesque.`,
     name: `Max`,
     time: `April 2019`
-  }],
+  },
   title: `Penthouse, 4-5 rooms + 5 balconies`,
   type: `hotel`,
 };
+
 const offers = [
   {
     city: `Paris`,
@@ -76,72 +71,26 @@ const offers = [
   {
     city: `Amsterdam`,
     cityCoords: [52.38333, 4.9],
-    cityZoom: 13,
     localOffers: [
       offerWithPremium,
     ]
-  }
-];
+  }];
 
-const city = `Amsterdam`;
-
-const props = {
-  city,
-  offers,
-  onCityClick: ()=>{},
-  onCardTitleClick: ()=>{},
-};
-
-describe(`Snapshot of App`, () => {
-  it(`AppComponent should render OfferPage with offerWithoutFavourite`, () => {
-    const store = mockStore({
-      [NameSpace.STATE]: {
-        sortType: `Price: low to high`,
-        indicatedCard: offerWithPremium,
-        showedOffer: offerWithFavourite,
-        city: `Amsterdam`,
-      },
-      [NameSpace.DATA]: {
-        offers
-      },
+describe(`Test of reduser data.js`, () => {
+  it(`Reducer without additional parameters should return initial state`, () => {
+    expect(reducer(void 0, {})).toEqual({
+      offers: [],
     });
-
-    const tree = renderer
-      .create(
-          <Provider store={store}>
-            <App
-              {...props}
-            />
-          </Provider>
-      )
-      .toJSON();
-
-    expect(tree).toMatchSnapshot();
   });
 
-  it(`AppComponent should render Main page`, () => {
-    const store = mockStore({
-      [NameSpace.STATE]: {
-        sortType: `Price: low to high`,
-        indicatedCard: offerWithPremium,
-        showedOffer: offerWithFavourite,
-        city: `Amsterdam`,
-      },
-      [NameSpace.DATA]: {
-        offers
-      },
+  it(`Reducer should update offers by load offers`, () => {
+    expect(reducer({
+      offers: [],
+    }, {
+      type: ActionType.LOAD_OFFERS,
+      payload: offers,
+    })).toEqual({
+      offers,
     });
-
-    const tree = renderer
-      .create(
-          <Provider store={store}>
-            <App
-              {...props}
-            />
-          </Provider>
-      )
-      .toJSON();
-
-    expect(tree).toMatchSnapshot();
   });
 });
