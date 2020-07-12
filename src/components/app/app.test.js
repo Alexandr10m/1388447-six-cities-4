@@ -4,6 +4,7 @@ import {App} from "./app.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import NameSpace from "../../reducer/name-space.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 
 const mockStore = configureStore([]);
@@ -88,6 +89,11 @@ const city = `Amsterdam`;
 const props = {
   city,
   offers,
+  authorizationStatus: AuthorizationStatus.NO_AUTH,
+  authInfo: {
+    email: `iii`
+  },
+  login: ()=>{},
   onCityClick: ()=>{},
   onCardTitleClick: ()=>{},
 };
@@ -103,6 +109,12 @@ describe(`Snapshot of App`, () => {
       },
       [NameSpace.DATA]: {
         offers
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.AUTH,
+        authInfo: {
+          email: `iii`
+        },
       },
     });
 
@@ -124,11 +136,49 @@ describe(`Snapshot of App`, () => {
       [NameSpace.STATE]: {
         sortType: `Price: low to high`,
         indicatedCard: offerWithPremium,
-        showedOffer: offerWithFavourite,
+        showedOffer: null,
         city: `Amsterdam`,
       },
       [NameSpace.DATA]: {
         offers
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.AUTH,
+        authInfo: {
+          email: `iii`
+        },
+      },
+    });
+
+    const tree = renderer
+      .create(
+          <Provider store={store}>
+            <App
+              {...props}
+            />
+          </Provider>
+      )
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`AppComponent should render SignIn page`, () => {
+    const store = mockStore({
+      [NameSpace.STATE]: {
+        sortType: `Price: low to high`,
+        indicatedCard: offerWithPremium,
+        showedOffer: null,
+        city: `Amsterdam`,
+      },
+      [NameSpace.DATA]: {
+        offers
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.NO_AUTH,
+        authInfo: {
+          email: `iii`
+        },
       },
     });
 

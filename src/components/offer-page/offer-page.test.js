@@ -108,6 +108,11 @@ const store = mockStore({
   [NameSpace.DATA]: {
     offers: allOffers,
   },
+  [NameSpace.USER]: {
+    authInfo: {
+      email: `iii`
+    },
+  },
 });
 
 describe(`Snapshot of OfferPage`, () => {

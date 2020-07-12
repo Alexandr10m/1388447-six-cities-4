@@ -7,19 +7,21 @@ import {Operation as DataOperation} from "./reducer/data/data.js";
 import reducer from "./reducer/reducer.js";
 import thunk from "redux-thunk";
 import createAPI from "./api.js";
+import {Operation as UserOperation, ActionCreator, AuthorizationStatus} from "./reducer/user/user.js";
 
-
-const api = createAPI();
 
 const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f;
 
-const store = createStore(
-    reducer,
-    compose(
-        applyMiddleware(thunk.withExtraArgument(api)),
-        reduxDevTools
-    )
-);
+const onUnauthorized = () => {
+  store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
+};
+
+const api = createAPI(onUnauthorized);
+
+const store = createStore(reducer, compose(
+    applyMiddleware(thunk.withExtraArgument(api)),
+    reduxDevTools
+));
 
 store.dispatch(DataOperation.loadOffers())
   .then(() => {
@@ -29,4 +31,5 @@ store.dispatch(DataOperation.loadOffers())
         </Provider>,
         document.querySelector(`#root`)
     );
-  });
+  })
+  .then(() => store.dispatch(UserOperation.checkAuth()));

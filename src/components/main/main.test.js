@@ -4,6 +4,7 @@ import Main from "./main.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import NameSpace from "../../reducer/name-space.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 
 const mockStore = configureStore([]);
@@ -94,6 +95,10 @@ const allOffers = [
 
 
 const props = {
+  authInfo: {
+    email: `111`,
+  },
+  authorizationStatus: AuthorizationStatus.AUTH,
   onCityClick: ()=>{},
   onCardTitleClick: ()=>{},
 };
@@ -117,6 +122,12 @@ describe(`Snapshot of Main`, () => {
       [NameSpace.DATA]: {
         offers: allOffers,
       },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.AUTH,
+        authInfo: {
+          email: `iii`
+        },
+      }
     });
 
     const tree = renderer
@@ -134,20 +145,20 @@ describe(`Snapshot of Main`, () => {
   });
 
   it(`MainComponent should render MainEmpty compoment`, () => {
-    // const store = mockStore({
-    //   offers: emptyLocalOffers,
-    //   sortType: `Popular`,
-    // });
     const store = mockStore({
       [NameSpace.STATE]: {
         sortType: `Price: low to high`,
-        // indicatedCard: offerWithPremium,
-        // showedOffer: offerWithFavourite,
         city: `Amsterdam`,
       },
       [NameSpace.DATA]: {
         offers: emptyLocalOffers,
       },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.AUTH,
+        authInfo: {
+          email: `iii`
+        },
+      }
     });
 
     const tree = renderer
