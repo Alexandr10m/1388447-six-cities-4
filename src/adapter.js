@@ -39,4 +39,12 @@ const localOffersAdapter = (data) => {
   };
 };
 
-export {cityAdapter, localOffersAdapter};
+const authInfoAdapter = (authData) => ({
+  avatarUrl: authData[`avatar_url`],
+  email: authData[`email`],
+  id: authData[`id`],
+  isPro: authData[`is_pro`],
+  name: authData[`name`],
+});
+
+export {cityAdapter, localOffersAdapter, authInfoAdapter};
