@@ -21,8 +21,7 @@ const api = createAPI(onUnauthorized);
 const store = createStore(reducer, compose(
     applyMiddleware(thunk.withExtraArgument(api)),
     reduxDevTools
-)
-);
+));
 
 store.dispatch(DataOperation.loadOffers())
   .then(() => {
