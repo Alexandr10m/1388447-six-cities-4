@@ -333,6 +333,7 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
               action="#"
               className="reviews__form form"
               method="post"
+              onSubmit={[Function]}
             >
               <label
                 className="reviews__label form__label"
@@ -964,6 +965,7 @@ exports[`Snapshot of OfferPage OfferPage should render whitout Premium 1`] = `
               action="#"
               className="reviews__form form"
               method="post"
+              onSubmit={[Function]}
             >
               <label
                 className="reviews__label form__label"

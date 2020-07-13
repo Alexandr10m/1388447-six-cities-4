@@ -4,6 +4,7 @@ import OfferPage from "./offer-page.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import NameSpace from "../../reducer/name-space.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 
 const mockStore = configureStore([]);
@@ -112,6 +113,7 @@ const store = mockStore({
     authInfo: {
       email: `iii`
     },
+    authorizationStatus: AuthorizationStatus.AUTH
   },
 });
 

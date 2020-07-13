@@ -43,6 +43,7 @@ const OfferPage = (props) => {
     reviews,
     host,
     description,
+    id,
   } = offer;
 
   const {localOffers, cityCoords, cityZoom} = offers;
@@ -110,6 +111,7 @@ const OfferPage = (props) => {
               />
               <ReviewList
                 reviews={reviews}
+                offerId={id}
               />
             </div>
           </div>
