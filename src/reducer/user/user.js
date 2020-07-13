@@ -10,11 +10,13 @@ const AuthorizationStatus = {
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   authInfo: {},
+  comment: {},
 };
 
 const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   CHANGE_AUTH_INFO: `CHANGE_AUTH_INFO`,
+  СHANGE_COMMENT: `СHANGE_COMMENT`,
 };
 
 const ActionCreator = {
@@ -26,6 +28,11 @@ const ActionCreator = {
   changeAuthInfo: (authData) => ({
     type: ActionType.CHANGE_AUTH_INFO,
     payload: authData,
+  }),
+
+  changeComment: (dataComment) => ({
+    type: ActionType.СHANGE_COMMENT,
+    payload: dataComment,
   }),
 };
 
@@ -46,7 +53,20 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.changeAuthInfo(authInfoAdapter(response.data)));
+      });
+  },
+
+  sendComment: (commentData, hotelId) => (dispatch, getState, api) => {
+    return api.post(`/comments/${hotelId}`, {
+      comment: commentData.comment,
+      rating: commentData.rating,
+    })
+      .then((response) => {
+        dispatch(ActionCreator.changeComment(response.data));
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+      })
+      .catch((err) =>{
+        throw err;
       });
   },
 };

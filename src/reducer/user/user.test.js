@@ -5,7 +5,8 @@ describe(`Test of user.js action`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
     expect(reducer(void 0, {})).toEqual({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
-      authInfo: {}
+      authInfo: {},
+      comment: {},
     });
   });
 
