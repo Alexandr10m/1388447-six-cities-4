@@ -3,13 +3,16 @@ import {cityAdapter, localOffersAdapter} from "../../adapter.js";
 
 
 let offers = [];
+let favourite = [];
 
 const initialState = {
   offers,
+  favourite,
 };
 
 const ActionType = {
   LOAD_OFFERS: `LOAD_OFFERS`,
+  LOAD_FAVOURITE: `LOAD_FAVOURITE`,
 };
 
 const ActionCreator = {
@@ -17,6 +20,11 @@ const ActionCreator = {
     type: ActionType.LOAD_OFFERS,
     payload: data,
   }),
+
+  loadFavourite: (favouriteData) => ({
+    type: ActionType.LOAD_FAVOURITE,
+    payload: favouriteData,
+  })
 };
 
 const convertCity = (item) => {
@@ -45,6 +53,13 @@ const Operation = {
         dispatch(ActionCreator.loadOffers(offers));
       });
   },
+
+  loadFavourite: () => (dispatch, getState, api) => {
+    return api.get(`/favorite`)
+    .then((response) => {
+      dispatch(ActionCreator.loadFavourite(response.data));
+    });
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -52,6 +67,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_OFFERS:
       return extend(state, {
         offers: action.payload,
+      });
+    case ActionType.LOAD_FAVOURITE:
+      return extend(state, {
+        favourite: action.payload,
       });
   }
   return state;
