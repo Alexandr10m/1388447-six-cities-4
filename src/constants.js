@@ -14,4 +14,11 @@ const SORTS = [
   `Top rated first`,
 ];
 
-export {CITIES, SORTS};
+const AppRoute = {
+  LOGIN: `/login`,
+  OFFER: `offer`,
+  ROOT: `/`,
+  FAVOURITE: `/favourite`,
+};
+
+export {CITIES, SORTS, AppRoute};
