@@ -34,6 +34,7 @@ const ActionCreator = {
     type: ActionType.СHANGE_COMMENT,
     payload: dataComment,
   }),
+
 };
 
 const Operation = {
@@ -69,6 +70,7 @@ const Operation = {
         throw err;
       });
   },
+
 };
 
 const reducer = (state = initialState, action) => {

@@ -1,9 +1,11 @@
 import NameSpace from "../name-space.js";
 
 
-const getAuthorizationStatus = (state) => state[NameSpace.USER].authorizationStatus;
-const getAuthInfo = (state) => state[NameSpace.USER].authInfo;
-const getEmail = (state) => state[NameSpace.USER].authInfo.email || null;
+const USER = NameSpace.USER;
+
+const getAuthorizationStatus = (state) => state[USER].authorizationStatus;
+const getAuthInfo = (state) => state[USER].authInfo;
+const getEmail = (state) => state[USER].authInfo.email || null;
 
 
 export {getAuthorizationStatus, getAuthInfo, getEmail};
