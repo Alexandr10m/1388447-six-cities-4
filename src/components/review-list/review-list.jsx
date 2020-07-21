@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import ReviewForm from "../review-form/review-form.jsx";
 import {AuthorizationStatus, Operation} from "../../reducer/user/user.js";
 import {connect} from "react-redux";
-import {getAuthorizationStatus} from "../../reducer/user/selecors.js";
+import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 
 
 const ReviewList = (props) => {
