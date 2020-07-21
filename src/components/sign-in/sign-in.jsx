@@ -1,6 +1,9 @@
 import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 import Login from "../login/login.jsx";
+import {connect} from "react-redux";
+import {getCity} from "../../reducer/state/selector.js";
+import {Operation} from "../../reducer/user/user.js";
 
 
 class SignIn extends PureComponent {
@@ -13,10 +16,10 @@ class SignIn extends PureComponent {
   }
 
   handleSubmit(evt) {
-    const {onSubmit} = this.props;
+    const {login} = this.props;
     evt.preventDefault();
 
-    onSubmit({
+    login({
       login: this.loginRef.current.value,
       password: this.passwordRef.current.value,
     });
@@ -61,8 +64,19 @@ class SignIn extends PureComponent {
 
 SignIn.propTypes = {
   city: PropTypes.string.isRequired,
-  onSubmit: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
 };
 
 
-export default SignIn;
+const mapStateToProps = (state) => ({
+  city: getCity(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  login(authData) {
+    dispatch(Operation.login(authData));
+  },
+});
+
+export {SignIn};
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
