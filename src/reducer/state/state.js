@@ -4,7 +4,6 @@ import {extend} from "../../utils.js";
 const initialState = {
   city: `Paris`,
   localOffers: [],
-  showedOffer: null,
   sortType: `Popular`,
   indicatedCard: null,
 };
