@@ -20,7 +20,6 @@ class ListCards extends React.Component {
   render() {
     const {localOffers, onCardTitleClick, onCardMouseEnter} = this.props;
 
-
     return (
       <div className="cities__places-list places__list tabs__content">
 
