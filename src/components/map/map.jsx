@@ -21,12 +21,12 @@ class Map extends PureComponent {
     const {city} = this.props;
 
     this._icon = LeafLet.icon({
-      iconUrl: `img/pin.svg`,
+      iconUrl: `/img/pin.svg`,
       iconSize: [this._offerZoom, this._offerZoom]
     });
 
     this._activeIcon = LeafLet.icon({
-      iconUrl: `img/pin-active.svg`,
+      iconUrl: `/img/pin-active.svg`,
       iconSize: [this._offerZoom, this._offerZoom]
     });
 
