@@ -5,7 +5,7 @@ import CardNearest from "../card-nearest/card-nearest.jsx";
 
 class ListNearestCards extends PureComponent {
   render() {
-    const {offers, onCardTitleClick, onActiveCard} = this.props;
+    const {offers} = this.props;
 
     return (
       <div className="near-places__list places__list">
@@ -14,8 +14,7 @@ class ListNearestCards extends PureComponent {
             <CardNearest
               key={`${i}-${offer.title}`}
               offer={offer}
-              onCardTitleClick={onCardTitleClick}
-              onActiveCard={onActiveCard}
+
             />);
         })}
       </div>
@@ -39,8 +38,6 @@ ListNearestCards.propTypes = {
     reviews: PropTypes.array.isRequired,
     id: PropTypes.number.isRequired,
   })),
-  onCardTitleClick: PropTypes.func.isRequired,
-  onActiveCard: PropTypes.func.isRequired,
 };
 
 

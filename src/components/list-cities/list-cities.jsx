@@ -5,26 +5,18 @@ import {CITIES} from "../../constants.js";
 
 
 const ListCities = (props) => {
-  const {currentCity, onCityClick} = props;
-
-  const handlerCityClick = (evt) => {
-
-    if (evt.target.tagName !== `SPAN`) {
-      return;
-    }
-    const city = evt.target.textContent;
-    onCityClick(city);
-  };
+  const {currentCity} = props;
 
   return (
-    <ul onClick={handlerCityClick} className="locations__list tabs__list">
+    <ul
+      className="locations__list tabs__list">
       {CITIES.map((city, i) => <CityItem key={`${city}-${i}`} city={city} currentCity={currentCity}/>)}
     </ul>
   );
 };
 
+
 ListCities.propTypes = {
-  onCityClick: PropTypes.func.isRequired,
   currentCity: PropTypes.string.isRequired,
 };
 

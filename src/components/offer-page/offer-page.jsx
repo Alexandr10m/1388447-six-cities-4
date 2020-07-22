@@ -8,8 +8,7 @@ import withActiveCard from "../../hoc/with-active-card/with-active-card.js";
 import Host from "../host/host.jsx";
 import Login from "../login/login.jsx";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer/state/state.js";
-import {getCity, getShowedOffer} from "../../reducer/state/selector.js";
+import {getCity} from "../../reducer/state/selector.js";
 import {getOffers} from "../../reducer/data/selectors.js";
 
 
@@ -31,7 +30,7 @@ const propertyImageTmpl = (src, index) => {
 };
 
 const OfferPage = (props) => {
-  const {match, offers, onCardTitleClick} = props;
+  const {match, offers} = props;
   const offerId = +match.params.offerId;
   const currentCityOffers = offers.find((city) => {
     return city.localOffers.some((offer) => offer.id === offerId);
@@ -139,7 +138,6 @@ const OfferPage = (props) => {
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <ListNearestCards
               offers={nearestOffers}
-              onCardTitleClick={onCardTitleClick}
             />
           </section>
         </div>
@@ -150,39 +148,15 @@ const OfferPage = (props) => {
 
 OfferPage.propTypes = {
   match: PropTypes.object.isRequired,
-  // city: PropTypes.string.isRequired,
   offers: PropTypes.array.isRequired,
-  showedOffer: PropTypes.shape({
-    grade: PropTypes.number.isRequired,
-    isFavourite: PropTypes.bool.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    pictures: PropTypes.array.isRequired,
-    price: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    bedroom: PropTypes.number.isRequired,
-    maxAdults: PropTypes.number.isRequired,
-    facilities: PropTypes.array.isRequired,
-    reviews: PropTypes.array.isRequired,
-    id: PropTypes.number.isRequired,
-    host: PropTypes.object.isRequired,
-    description: PropTypes.string.isRequired,
-  }),
-  onCardTitleClick: PropTypes.func.isRequired,
 };
 
 
 const mapStateToProps = (state) => ({
   city: getCity(state),
   offers: getOffers(state),
-  showedOffer: getShowedOffer(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onCardTitleClick(offer) {
-    dispatch(ActionCreator.showOffer(offer));
-  },
-});
 
 export {OfferPage};
-export default connect(mapStateToProps, mapDispatchToProps)(OfferPage);
+export default connect(mapStateToProps)(OfferPage);

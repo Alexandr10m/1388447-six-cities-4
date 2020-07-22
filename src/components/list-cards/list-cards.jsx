@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import Card from "../card/card.jsx";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer/state/state.js";
 import {getLocalOffers} from "../../reducer/state/selector.js";
 
 
@@ -18,7 +17,7 @@ class ListCards extends React.Component {
   }
 
   render() {
-    const {localOffers, onCardTitleClick, onCardMouseEnter} = this.props;
+    const {localOffers} = this.props;
 
     return (
       <div className="cities__places-list places__list tabs__content">
@@ -27,8 +26,6 @@ class ListCards extends React.Component {
           return <Card
             key={`${i}-${offer.id}`}
             offer={offer}
-            onCardTitleClick={onCardTitleClick}
-            onActiveCard={onCardMouseEnter}
           />;
         })}
 
@@ -40,22 +37,13 @@ class ListCards extends React.Component {
 
 ListCards.propTypes = {
   localOffers: PropTypes.array.isRequired,
-  onCardTitleClick: PropTypes.func.isRequired,
-  onCardMouseEnter: PropTypes.func.isRequired,
 };
 
 
 const mapStateToProps = (state) => ({
-
   localOffers: getLocalOffers(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onCardMouseEnter(offer) {
-    dispatch(ActionCreator.showPoiner(offer));
-  }
 });
 
 
 export {ListCards};
-export default connect(mapStateToProps, mapDispatchToProps)(ListCards);
+export default connect(mapStateToProps)(ListCards);

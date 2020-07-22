@@ -27,7 +27,6 @@ const sortByType = (sortType, city, offers) => {
 
 const STATE = NameSpace.STATE;
 const getCity = (state) => state[STATE].city;
-const getShowedOffer = (state) => state[STATE].showedOffer;
 const getSortType = (state) => state[STATE].sortType;
 const getIndicatedCard = (state) => state[STATE].indicatedCard;
 const getLocalOffers = createSelector(
@@ -38,4 +37,4 @@ const getLocalOffers = createSelector(
 );
 
 
-export {getCity, getShowedOffer, getSortType, getIndicatedCard, getLocalOffers};
+export {getCity, getSortType, getIndicatedCard, getLocalOffers};

@@ -4,10 +4,12 @@ import {firstWordInUpper, rating} from "../../utils.js";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {getCity} from "../../reducer/state/selector.js";
+import {Operation} from "../../reducer/data/data.js";
+import {ActionCreator} from "../../reducer/state/state.js";
 
 
 const Card = (props) => {
-  const {city, offer, onCardTitleClick, onActiveCard} = props;
+  const {city, offer, onCardMouseEnter, sendFavouriteOption} = props;
   const {
     grade,
     title,
@@ -25,10 +27,14 @@ const Card = (props) => {
   const favouriteClasse = isFavourite && `place-card__bookmark-button--active`;
 
   const handlerCardMouseEnter = () => {
-    onActiveCard(offer);
+    onCardMouseEnter(offer);
   };
-  const handlerCartTitleClick = () => {
-    onCardTitleClick(offer);
+
+  const handlerButtonFavouriteClick = () => {
+    sendFavouriteOption({
+      id: offer.id,
+      status: +(!offer.isFavourite),
+    });
   };
 
   return (
@@ -53,6 +59,7 @@ const Card = (props) => {
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
           <button
+            onClick={handlerButtonFavouriteClick}
             className={`place-card__bookmark-button ${favouriteClasse} button`}
             type="button"
           >
@@ -69,7 +76,6 @@ const Card = (props) => {
           </div>
         </div>
         <h2
-          onClick={handlerCartTitleClick}
           className="place-card__name"
         >
           <Link to={`/${city}/${offerId}`}>
@@ -84,6 +90,7 @@ const Card = (props) => {
 
 
 Card.propTypes = {
+  sendFavouriteOption: PropTypes.func.isRequired,
   city: PropTypes.string.isRequired,
   offer: PropTypes.shape({
     isPremium: PropTypes.bool.isRequired,
@@ -96,17 +103,23 @@ Card.propTypes = {
     className: PropTypes.string,
     id: PropTypes.number.isRequired
   }),
-  onCardTitleClick: PropTypes.func.isRequired,
-  onActiveCard: PropTypes.func.isRequired,
+  onCardMouseEnter: PropTypes.func.isRequired,
 };
 
 
-// export default Card;
-
 const mapStateToProps = (state) => ({
   city: getCity(state),
+});
 
+const mapDispatchToProps = (dispatch) => ({
+  sendFavouriteOption(options) {
+    dispatch(Operation.sendFavouriteOption(options));
+  },
+
+  onCardMouseEnter(offer) {
+    dispatch(ActionCreator.showPoiner(offer));
+  }
 });
 
 export {Card};
-export default connect(mapStateToProps)(Card);
+export default connect(mapStateToProps, mapDispatchToProps)(Card);
