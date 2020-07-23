@@ -10,6 +10,7 @@ import Login from "../login/login.jsx";
 import {connect} from "react-redux";
 import {getCity} from "../../reducer/state/selector.js";
 import {getOffers} from "../../reducer/data/selectors.js";
+import {Operation} from "../../reducer/data/data.js";
 
 
 const ListNearestCards = withActiveCard(NearestCards);
@@ -30,7 +31,7 @@ const propertyImageTmpl = (src, index) => {
 };
 
 const OfferPage = (props) => {
-  const {match, offers} = props;
+  const {match, offers, sendFavouriteOption} = props;
   const offerId = +match.params.offerId;
   const currentCityOffers = offers.find((city) => {
     return city.localOffers.some((offer) => offer.id === offerId);
@@ -59,6 +60,13 @@ const OfferPage = (props) => {
   const nearestOffers = localOffers.filter((offer) => offer.id !== offerId);
   const favouriteClass = isFavourite ? `property__bookmark-button--active` : ``;
 
+  const handlerButtonFavouriteClick = () => {
+    sendFavouriteOption({
+      id,
+      status: +(!isFavourite),
+    });
+  };
+
   return (
     <div className="page">
       <Login/>
@@ -78,7 +86,7 @@ const OfferPage = (props) => {
                 <h1 className="property__name">
                   {title}
                 </h1>
-                <button className={`property__bookmark-button ${favouriteClass} button`} type="button">
+                <button onClick={handlerButtonFavouriteClick} className={`property__bookmark-button ${favouriteClass} button`} type="button">
                   <svg className="place-card__bookmark-icon" width="31" height="33">
                     <use xlinkHref="#icon-bookmark" />
                   </svg>
@@ -149,6 +157,7 @@ const OfferPage = (props) => {
 OfferPage.propTypes = {
   match: PropTypes.object.isRequired,
   offers: PropTypes.array.isRequired,
+  sendFavouriteOption: PropTypes.func.isRequired,
 };
 
 
@@ -157,6 +166,11 @@ const mapStateToProps = (state) => ({
   offers: getOffers(state),
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  sendFavouriteOption(options) {
+    dispatch(Operation.sendFavouriteOption(options));
+  },
+});
 
 export {OfferPage};
-export default connect(mapStateToProps)(OfferPage);
+export default connect(mapStateToProps, mapDispatchToProps)(OfferPage);

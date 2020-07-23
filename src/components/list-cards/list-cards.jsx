@@ -1,20 +1,11 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import Card from "../card/card.jsx";
 import {connect} from "react-redux";
 import {getLocalOffers} from "../../reducer/state/selector.js";
 
 
-class ListCards extends React.Component {
-
-  shouldComponentUpdate(nextProps) {
-    const isNewOffers = this.props.localOffers.every((it, i) => nextProps.localOffers[i].id === it.id);
-    if (!isNewOffers) {
-      return true;
-    }
-
-    return false;
-  }
+class ListCards extends PureComponent {
 
   render() {
     const {localOffers} = this.props;
