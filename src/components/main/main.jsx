@@ -8,10 +8,11 @@ import {connect} from "react-redux";
 import {getOffers} from "../../reducer/data/selectors.js";
 import {Route, Switch, useRouteMatch} from "react-router-dom";
 import {OfferPage} from "../offer-page/offer-page.jsx";
+import {ActionCreator} from "../../reducer/state/state.js";
 
 
 const Main = (props) => {
-  const {match, offers} = props;
+  const {match, offers, onCityClick} = props;
   let {path, url} = useRouteMatch();
   const city = match.params.city;
   const showOffers = offers.find((it) => it.city === city);
@@ -29,6 +30,7 @@ const Main = (props) => {
 
             <ListCities
               currentCity={city}
+              onCityClick={onCityClick}
             />
 
           </section>
@@ -54,12 +56,19 @@ const Main = (props) => {
 Main.propTypes = {
   match: PropTypes.object.isRequired,
   offers: PropTypes.array.isRequired,
+  onCityClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   offers: getOffers(state),
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onCityClick: (city) => {
+    dispatch(ActionCreator.changeCity(city));
+  }
+});
+
 export {Main};
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
 
