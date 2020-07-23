@@ -23,6 +23,7 @@ const store = createStore(reducer, compose(
     reduxDevTools
 ));
 
+store.dispatch(UserOperation.checkAuth());
 store.dispatch(DataOperation.loadOffers())
   .then(() => {
     ReactDOM.render(
@@ -31,5 +32,5 @@ store.dispatch(DataOperation.loadOffers())
         </Provider>,
         document.querySelector(`#root`)
     );
-  })
-  .then(() => store.dispatch(UserOperation.checkAuth()));
+  });
+
