@@ -13,6 +13,7 @@ const initialState = {
 const ActionType = {
   LOAD_OFFERS: `LOAD_OFFERS`,
   LOAD_FAVOURITE: `LOAD_FAVOURITE`,
+  CHANGE_FAVOURITE: `CHANGE_FAVOURITE`,
 };
 
 const ActionCreator = {
@@ -24,7 +25,12 @@ const ActionCreator = {
   loadFavourite: (favouriteData) => ({
     type: ActionType.LOAD_FAVOURITE,
     payload: favouriteData,
-  })
+  }),
+
+  changeFavourite: (offer) => ({
+    type: ActionType.CHANGE_FAVOURITE,
+    payload: offer,
+  }),
 };
 
 const convertCity = (item) => {
@@ -41,6 +47,33 @@ const convertLocalOffers = (item) => {
     }
   });
 };
+
+
+const extendFavouriteOffer = (state, offer) => {
+  let changedOfferIndex;
+
+  const changedCityIndex = state.offers.findIndex((city) => {
+    changedOfferIndex = city.localOffers.findIndex((localOffer) => localOffer.id === offer.id);
+    return changedOfferIndex !== -1;
+  });
+
+  const copyOffers = state.offers.map((city, i) => {
+
+    if (i === changedCityIndex) {
+      city.localOffers[changedOfferIndex] = extend(city.localOffers[changedOfferIndex], {
+        isFavourite: offer.isFavourite
+      });
+      return city;
+    }
+
+    return city;
+  });
+
+  return extend(state, {
+    offers: copyOffers
+  });
+};
+
 
 const Operation = {
   loadOffers: () => (dispatch, getState, api) => {
@@ -60,6 +93,14 @@ const Operation = {
       dispatch(ActionCreator.loadFavourite(response.data));
     });
   },
+
+  sendFavouriteOption: (options) => (dispatch, getState, api) => {
+    return api.post(`/favorite/${options.id}/${options.status}`)
+      .then((response) => {
+        const offer = localOffersAdapter(response.data);
+        dispatch(ActionCreator.changeFavourite(offer));
+      });
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -72,6 +113,8 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         favourite: action.payload,
       });
+    case ActionType.CHANGE_FAVOURITE:
+      return extendFavouriteOffer(state, action.payload);
   }
   return state;
 };
