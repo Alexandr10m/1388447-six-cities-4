@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getEmail} from "../../reducer/user/selectors.js";
 import {Link} from "react-router-dom";
+import {AppRoute} from "../../constants.js";
 
 
 const Login = (props) => {
@@ -17,7 +18,7 @@ const Login = (props) => {
         <div className="header__wrapper">
           <div className="header__left">
             <Link
-              to={`/`}
+              to={AppRoute.ROOT}
               className="header__logo-link"
             >
               <img className="header__logo" src={`/img/logo.svg`} alt="6 cities logo" width="81" height="41"/>
@@ -28,7 +29,7 @@ const Login = (props) => {
               <li className="header__nav-item user">
 
                 <Link
-                  to={`/favourite`}
+                  to={AppRoute.FAVOURITE}
                   className="header__nav-link header__nav-link--profile">
                   <div className="header__avatar-wrapper user__avatar-wrapper">
                   </div>

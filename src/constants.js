@@ -15,8 +15,10 @@ const SORTS = [
 ];
 
 const AppRoute = {
+  DEFAULT_CITY: `/Paris`,
+  CITY: `/:city`,
   LOGIN: `/login`,
-  OFFER: `offer`,
+  OFFER: `/:offerId`,
   ROOT: `/`,
   FAVOURITE: `/favourite`,
 };

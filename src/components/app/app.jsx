@@ -11,6 +11,7 @@ import SignIn from "../sign-in/sign-in.jsx";
 import FavouritePage from "../favourite-page/favourite-page.jsx";
 import PrivateRoute from "../private-route/private-route.jsx";
 import {getCity} from "../../reducer/state/selector.js";
+import {AppRoute} from "../../constants.js";
 
 
 class App extends PureComponent {
@@ -29,15 +30,15 @@ class App extends PureComponent {
       <BrowserRouter>
         <Switch>
           {authorizationStatus === AuthorizationStatus.AUTH && (
-            <Redirect exact from={`/login`} to={`/`}/>
+            <Redirect exact from={AppRoute.LOGIN} to={`/`}/>
           )}
-          <Route exact path={`/login`} component={SignIn}/>
-          <PrivateRoute exact path={`/favourite`}
+          <Route exact path={AppRoute.LOGIN} component={SignIn}/>
+          <PrivateRoute exact path={AppRoute.FAVOURITE}
             render={() => (<FavouritePage favouriteOffers={favourite}/>)}
           />
-          <Redirect exact from={`/`} to={`/Paris`}/>
-          <Route exact path={`/:city`} component={Main}/>
-          <Route exact path={`/${city}/:offerId`} component={OfferPage}/>
+          <Redirect exact from={`/`} to={AppRoute.DEFAULT_CITY}/>
+          <Route exact path={AppRoute.CITY} component={Main}/>
+          <Route exact path={`/${city}${AppRoute.OFFER}`} component={OfferPage}/>
         </Switch>
       </BrowserRouter>
     );
