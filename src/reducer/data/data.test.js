@@ -214,7 +214,7 @@ describe(`Test of reduser data.js`, () => {
       favourite: [],
       isLoadOffes: true,
     }, {
-      type: ActionType.CHANGE_FAVOURITE,
+      type: ActionType.PROGRESS_LOAD_OFFERS,
       payload: false,
     })).toEqual({
       offers,
