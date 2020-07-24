@@ -22,9 +22,9 @@ const ActionCreator = {
     payload: data,
   }),
 
-  loadFavourite: (favouriteData) => ({
+  loadFavourite: (favouriteOffers) => ({
     type: ActionType.LOAD_FAVOURITE,
-    payload: favouriteData,
+    payload: favouriteOffers,
   }),
 
   changeFavourite: (offer) => ({
