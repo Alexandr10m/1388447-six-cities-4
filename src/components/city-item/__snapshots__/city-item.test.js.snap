@@ -6,10 +6,11 @@ exports[`Snapshot of CityItem CityItem should render correctly with active-class
 >
   <a
     className="locations__item-link tabs__item tabs__item--active"
-    href="#"
+    href="/Paris"
+    onClick={[Function]}
   >
     <span>
-      Amsterdame
+      Paris
     </span>
   </a>
 </li>
@@ -21,7 +22,8 @@ exports[`Snapshot of CityItem CityItem should render correctly without active-cl
 >
   <a
     className="locations__item-link tabs__item "
-    href="#"
+    href="/Paris"
+    onClick={[Function]}
   >
     <span>
       Paris

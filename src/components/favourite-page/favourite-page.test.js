@@ -4,6 +4,7 @@ import FavouritePage from "./favourite-page.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import NameSpace from "../../reducer/name-space.js";
+import {BrowserRouter} from "react-router-dom";
 
 
 const mockStore = configureStore([]);
@@ -95,9 +96,11 @@ describe(`Snapshot of FavouritePage`, () => {
     const tree = renderer
       .create(
           <Provider store={store}>
-            <FavouritePage
-              favouriteOffers={offers}
-            />
+            <BrowserRouter>
+              <FavouritePage
+                favouriteOffers={offers}
+              />
+            </BrowserRouter>
           </Provider>
       )
       .toJSON();
@@ -123,9 +126,11 @@ describe(`Snapshot of FavouritePage`, () => {
     const tree = renderer
       .create(
           <Provider store={store}>
-            <FavouritePage
-              favouriteOffers={favouriteOffers}
-            />
+            <BrowserRouter>
+              <FavouritePage
+                favouriteOffers={favouriteOffers}
+              />
+            </BrowserRouter>
           </Provider>
       )
       .toJSON();

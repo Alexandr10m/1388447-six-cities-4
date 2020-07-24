@@ -4,6 +4,7 @@ import MainOffers from "./main-offers.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import NameSpace from "../../reducer/name-space.js";
+import {BrowserRouter} from "react-router-dom";
 
 
 const offerWithPremium = {
@@ -64,6 +65,7 @@ const offerWithFavourite = {
   title: `Penthouse, 4-5 rooms + 5 balconies`,
   type: `hotel`,
 };
+
 const allOffers = [
   {
     city: `Paris`,
@@ -74,9 +76,7 @@ const allOffers = [
   {
     city: `Amsterdam`,
     cityCoords: [52.38333, 4.9],
-    localOffers: [
-      offerWithPremium, offerWithFavourite
-    ]
+    localOffers: []
   }
 ];
 
@@ -87,9 +87,7 @@ describe(`Snapshot of MainOffers`, () => {
     const store = mockStore({
       [NameSpace.STATE]: {
         sortType: `Price: low to high`,
-        indicatedCard: offerWithPremium,
-        showedOffer: offerWithFavourite,
-        city: `Amsterdam`,
+        city: `Paris`,
       },
       [NameSpace.DATA]: {
         offers: allOffers,
@@ -98,12 +96,13 @@ describe(`Snapshot of MainOffers`, () => {
     const tree = renderer
       .create(
           <Provider store={store}>
-            <MainOffers
-              city={`Amsterdam`}
-              offers={allOffers[0]}
-              onCardTitleClick={()=>{}}
-              onCityClick={()=>{}}
-            />
+            <BrowserRouter>
+              <MainOffers
+                city={`Amsterdam`}
+                offers={allOffers[0]}
+                onCityClick={()=>{}}
+              />
+            </BrowserRouter>
           </Provider>
       )
       .toJSON();

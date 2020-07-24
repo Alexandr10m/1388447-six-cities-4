@@ -110,30 +110,11 @@ class Map extends PureComponent {
 
 
 Map.propTypes = {
-  localOffers: PropTypes.arrayOf(PropTypes.shape({
-    isPremium: PropTypes.bool.isRequired,
-    pictures: PropTypes.array.isRequired,
-    price: PropTypes.number.isRequired,
-    isFavourite: PropTypes.bool.isRequired,
-    grade: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    coords: PropTypes.array.isRequired,
-  })),
+  localOffers: PropTypes.array.isRequired,
   city: PropTypes.array.isRequired,
   cityZoom: PropTypes.number.isRequired,
   locationZoom: PropTypes.number.isRequired,
-  indicatedCard: PropTypes.shape({
-    isPremium: PropTypes.bool.isRequired,
-    pictures: PropTypes.array.isRequired,
-    price: PropTypes.number.isRequired,
-    isFavourite: PropTypes.bool.isRequired,
-    grade: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    coords: PropTypes.array.isRequired,
-    id: PropTypes.number.isRequired,
-  }),
+  indicatedCard: PropTypes.object.isRequired,
 };
 
 

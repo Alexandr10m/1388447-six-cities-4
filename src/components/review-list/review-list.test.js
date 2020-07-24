@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import ReviewList from "./review-list.jsx";
+import {ReviewList} from "./review-list.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import NameSpace from "../../reducer/name-space.js";
@@ -18,8 +18,6 @@ const reviews = [{
 describe(`Snapshot of ReviewList`, () => {
   it(`ReviewList should render correctly with Rewies form`, () => {
     const store = mockStore({
-      [NameSpace.STATE]: {},
-      [NameSpace.DATA]: {},
       [NameSpace.USER]: {
         authorizationStatus: AuthorizationStatus.AUTH
       },
@@ -41,8 +39,6 @@ describe(`Snapshot of ReviewList`, () => {
 
   it(`ReviewList should render correctly without Rewies form`, () => {
     const store = mockStore({
-      [NameSpace.STATE]: {},
-      [NameSpace.DATA]: {},
       [NameSpace.USER]: {
         authorizationStatus: AuthorizationStatus.NO_AUTH
       },

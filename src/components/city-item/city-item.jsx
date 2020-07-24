@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 
 
 const CityItem = (props) => {
-  const {city, currentCity = `Amsterdam`} = props;
+  const {city, currentCity = `Paris`} = props;
   const activeClass = city === currentCity ? `tabs__item--active` : ``;
 
   return (

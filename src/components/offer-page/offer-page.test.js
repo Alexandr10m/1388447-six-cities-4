@@ -5,6 +5,7 @@ import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import NameSpace from "../../reducer/name-space.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {BrowserRouter} from "react-router-dom";
 
 
 const mockStore = configureStore([]);
@@ -67,6 +68,7 @@ const offerWithFavourite = {
   title: `Penthouse, 4-5 rooms + 5 balconies`,
   type: `hotel`,
 };
+
 const allOffers = [
   {
     city: `Paris`,
@@ -77,34 +79,16 @@ const allOffers = [
   {
     city: `Amsterdam`,
     cityCoords: [52.38333, 4.9],
-    localOffers: [
-      offerWithPremium,
-    ]
+    cityZoom: 13,
+    localOffers: [offerWithPremium],
   }
 ];
-
-const offers = {
-  city: `Amsterdam`,
-  cityCoords: [52.38333, 4.9],
-  cityZoom: 13,
-  localOffers: [
-    offerWithPremium,
-    offerWithFavourite,
-  ],
-};
-
-
-const props = {
-  offers,
-  onCardTitleClick: ()=>{},
-};
 
 const store = mockStore({
   [NameSpace.STATE]: {
     sortType: `Price: low to high`,
-    indicatedCard: offerWithPremium,
-    showedOffer: offerWithFavourite,
     city: `Amsterdam`,
+    indicatedCard: offerWithFavourite,
   },
   [NameSpace.DATA]: {
     offers: allOffers,
@@ -119,27 +103,43 @@ const store = mockStore({
 
 describe(`Snapshot of OfferPage`, () => {
   it(`OfferPage should render whit Premium`, () => {
+    const match = {
+      params: {
+        offerId: 0
+      }
+    };
     const tree = renderer
       .create(
           <Provider store={store}>
-            <OfferPage
-              {...props}
-              offer={offerWithPremium}
-            />
+            <BrowserRouter>
+              <OfferPage
+                match={match}
+                offers={allOffers}
+                sendFavouriteOption={()=>{}}
+              />
+            </BrowserRouter>
           </Provider>)
       .toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 
-  it(`OfferPage should render whitout Premium`, () => {
+  it(`OfferPage should render whith Favourite`, () => {
+    const match = {
+      params: {
+        offerId: 2
+      }
+    };
     const tree = renderer
       .create(
           <Provider store={store}>
-            <OfferPage
-              {...props}
-              offer={offerWithFavourite}
-            />
+            <BrowserRouter>
+              <OfferPage
+                match={match}
+                offers={allOffers}
+                sendFavouriteOption={()=>{}}
+              />
+            </BrowserRouter>
           </Provider>)
       .toJSON();
 

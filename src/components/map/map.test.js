@@ -19,8 +19,8 @@ const offerWithPremium = {
     id: 25,
     isPro: true,
     name: `Angelina`,
-    // id: 0,
   },
+  id: 0,
   isFavourite: false,
   isPremium: true,
   locationZoom: 16,
@@ -48,8 +48,8 @@ const offerWithFavourite = {
     id: 25,
     isPro: false,
     name: `Angela`,
-    // id: 2,
   },
+  id: 2,
   isFavourite: true,
   isPremium: true,
   locationZoom: 16,
@@ -87,7 +87,6 @@ const store = mockStore({
   [NameSpace.STATE]: {
     sortType: `Popular`,
     indicatedCard: offerWithPremium,
-    showedOffer: offerWithFavourite,
     city: `Paris`,
   },
   [NameSpace.DATA]: {
@@ -103,6 +102,7 @@ const props = {
   city: [`Paris`],
   cityZoom: 13,
   locationZoom: 16,
+  indicatedCard: offerWithPremium,
 };
 
 describe(`Snapshot of Map`, () => {

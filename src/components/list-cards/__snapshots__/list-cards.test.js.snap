@@ -19,7 +19,8 @@ exports[`Snapshot of ListCards Card should render correctly - Top rated first so
       className="cities__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
+        href="/Amsterdam/0"
+        onClick={[Function]}
       >
         <img
           alt="Place image"
@@ -53,6 +54,7 @@ exports[`Snapshot of ListCards Card should render correctly - Top rated first so
         </div>
         <button
           className="place-card__bookmark-button false button"
+          onClick={[Function]}
           type="button"
         >
           <svg
@@ -93,10 +95,10 @@ exports[`Snapshot of ListCards Card should render correctly - Top rated first so
       </div>
       <h2
         className="place-card__name"
-        onClick={[Function]}
       >
         <a
-          href="#"
+          href="/Amsterdam/0"
+          onClick={[Function]}
         >
           Penthouse, 4-5 rooms + 5 balconies
         </a>
@@ -123,7 +125,8 @@ exports[`Snapshot of ListCards Card should render correctly - Top rated first so
       className="cities__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
+        href="/Amsterdam/2"
+        onClick={[Function]}
       >
         <img
           alt="Place image"
@@ -157,6 +160,7 @@ exports[`Snapshot of ListCards Card should render correctly - Top rated first so
         </div>
         <button
           className="place-card__bookmark-button place-card__bookmark-button--active button"
+          onClick={[Function]}
           type="button"
         >
           <svg
@@ -197,10 +201,10 @@ exports[`Snapshot of ListCards Card should render correctly - Top rated first so
       </div>
       <h2
         className="place-card__name"
-        onClick={[Function]}
       >
         <a
-          href="#"
+          href="/Amsterdam/2"
+          onClick={[Function]}
         >
           Penthouse, 4-5 rooms + 5 balconies
         </a>
@@ -234,7 +238,8 @@ exports[`Snapshot of ListCards Card should render correctly Popular sort 1`] = `
       className="cities__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
+        href="/Amsterdam/0"
+        onClick={[Function]}
       >
         <img
           alt="Place image"
@@ -268,6 +273,7 @@ exports[`Snapshot of ListCards Card should render correctly Popular sort 1`] = `
         </div>
         <button
           className="place-card__bookmark-button false button"
+          onClick={[Function]}
           type="button"
         >
           <svg
@@ -308,10 +314,10 @@ exports[`Snapshot of ListCards Card should render correctly Popular sort 1`] = `
       </div>
       <h2
         className="place-card__name"
-        onClick={[Function]}
       >
         <a
-          href="#"
+          href="/Amsterdam/0"
+          onClick={[Function]}
         >
           Penthouse, 4-5 rooms + 5 balconies
         </a>
@@ -338,7 +344,8 @@ exports[`Snapshot of ListCards Card should render correctly Popular sort 1`] = `
       className="cities__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
+        href="/Amsterdam/2"
+        onClick={[Function]}
       >
         <img
           alt="Place image"
@@ -372,6 +379,7 @@ exports[`Snapshot of ListCards Card should render correctly Popular sort 1`] = `
         </div>
         <button
           className="place-card__bookmark-button place-card__bookmark-button--active button"
+          onClick={[Function]}
           type="button"
         >
           <svg
@@ -412,10 +420,10 @@ exports[`Snapshot of ListCards Card should render correctly Popular sort 1`] = `
       </div>
       <h2
         className="place-card__name"
-        onClick={[Function]}
       >
         <a
-          href="#"
+          href="/Amsterdam/2"
+          onClick={[Function]}
         >
           Penthouse, 4-5 rooms + 5 balconies
         </a>
@@ -449,7 +457,8 @@ exports[`Snapshot of ListCards Card should render correctly Price: high to low s
       className="cities__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
+        href="/Amsterdam/0"
+        onClick={[Function]}
       >
         <img
           alt="Place image"
@@ -483,6 +492,7 @@ exports[`Snapshot of ListCards Card should render correctly Price: high to low s
         </div>
         <button
           className="place-card__bookmark-button false button"
+          onClick={[Function]}
           type="button"
         >
           <svg
@@ -523,10 +533,10 @@ exports[`Snapshot of ListCards Card should render correctly Price: high to low s
       </div>
       <h2
         className="place-card__name"
-        onClick={[Function]}
       >
         <a
-          href="#"
+          href="/Amsterdam/0"
+          onClick={[Function]}
         >
           Penthouse, 4-5 rooms + 5 balconies
         </a>
@@ -553,7 +563,8 @@ exports[`Snapshot of ListCards Card should render correctly Price: high to low s
       className="cities__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
+        href="/Amsterdam/2"
+        onClick={[Function]}
       >
         <img
           alt="Place image"
@@ -587,6 +598,7 @@ exports[`Snapshot of ListCards Card should render correctly Price: high to low s
         </div>
         <button
           className="place-card__bookmark-button place-card__bookmark-button--active button"
+          onClick={[Function]}
           type="button"
         >
           <svg
@@ -627,10 +639,10 @@ exports[`Snapshot of ListCards Card should render correctly Price: high to low s
       </div>
       <h2
         className="place-card__name"
-        onClick={[Function]}
       >
         <a
-          href="#"
+          href="/Amsterdam/2"
+          onClick={[Function]}
         >
           Penthouse, 4-5 rooms + 5 balconies
         </a>
@@ -664,7 +676,8 @@ exports[`Snapshot of ListCards Card should render correctly Price: low to high s
       className="cities__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
+        href="/Amsterdam/0"
+        onClick={[Function]}
       >
         <img
           alt="Place image"
@@ -698,6 +711,7 @@ exports[`Snapshot of ListCards Card should render correctly Price: low to high s
         </div>
         <button
           className="place-card__bookmark-button false button"
+          onClick={[Function]}
           type="button"
         >
           <svg
@@ -738,10 +752,10 @@ exports[`Snapshot of ListCards Card should render correctly Price: low to high s
       </div>
       <h2
         className="place-card__name"
-        onClick={[Function]}
       >
         <a
-          href="#"
+          href="/Amsterdam/0"
+          onClick={[Function]}
         >
           Penthouse, 4-5 rooms + 5 balconies
         </a>
@@ -768,7 +782,8 @@ exports[`Snapshot of ListCards Card should render correctly Price: low to high s
       className="cities__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
+        href="/Amsterdam/2"
+        onClick={[Function]}
       >
         <img
           alt="Place image"
@@ -802,6 +817,7 @@ exports[`Snapshot of ListCards Card should render correctly Price: low to high s
         </div>
         <button
           className="place-card__bookmark-button place-card__bookmark-button--active button"
+          onClick={[Function]}
           type="button"
         >
           <svg
@@ -842,10 +858,10 @@ exports[`Snapshot of ListCards Card should render correctly Price: low to high s
       </div>
       <h2
         className="place-card__name"
-        onClick={[Function]}
       >
         <a
-          href="#"
+          href="/Amsterdam/2"
+          onClick={[Function]}
         >
           Penthouse, 4-5 rooms + 5 balconies
         </a>

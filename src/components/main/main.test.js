@@ -1,10 +1,10 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main.jsx";
+import {Main} from "./main.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import NameSpace from "../../reducer/name-space.js";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {BrowserRouter} from "react-router-dom";
 
 
 const mockStore = configureStore([]);
@@ -67,16 +67,6 @@ const offerWithFavourite = {
   type: `hotel`,
 };
 
-const offers = {
-  city: `Amsterdam`,
-  cityCoords: [52.38333, 4.9],
-  cityZoom: 16,
-  localOffers: [
-    offerWithPremium,
-    offerWithFavourite,
-  ],
-};
-
 const allOffers = [
   {
     city: `Paris`,
@@ -87,57 +77,48 @@ const allOffers = [
   {
     city: `Amsterdam`,
     cityCoords: [52.38333, 4.9],
-    localOffers: [
-      offerWithPremium, offerWithFavourite
-    ]
+    localOffers: []
   }
 ];
 
-
-const props = {
-  authInfo: {
-    email: `111`,
-  },
-  authorizationStatus: AuthorizationStatus.AUTH,
-  onCityClick: ()=>{},
-  onCardTitleClick: ()=>{},
-};
-
 const emptyLocalOffers = {
-  city: `Amsterdam`,
+  city: `Paris`,
   cityCoords: [52.38333, 4.9],
   cityZoom: 16,
-  localOffers: null,
+  localOffers: [],
 };
 
 describe(`Snapshot of Main`, () => {
   it(`MainComponent should render MainOffers component`, () => {
     const store = mockStore({
       [NameSpace.STATE]: {
-        sortType: `Price: low to high`,
-        indicatedCard: offerWithPremium,
-        showedOffer: offerWithFavourite,
         city: `Amsterdam`,
+        sortType: `Price: low to high`,
       },
       [NameSpace.DATA]: {
         offers: allOffers,
       },
       [NameSpace.USER]: {
-        authorizationStatus: AuthorizationStatus.AUTH,
         authInfo: {
           email: `iii`
         },
       }
     });
-
+    const match = {
+      params: {
+        city: `Paris`
+      }
+    };
     const tree = renderer
       .create(
           <Provider store={store}>
-            <Main
-              city={`Amsterdam`}
-              offers={offers}
-              {...props}
-            />
+            <BrowserRouter>
+              <Main
+                offers={allOffers}
+                onCityClick={()=>{}}
+                match={match}
+              />
+            </BrowserRouter>
           </Provider>)
       .toJSON();
 
@@ -147,28 +128,32 @@ describe(`Snapshot of Main`, () => {
   it(`MainComponent should render MainEmpty compoment`, () => {
     const store = mockStore({
       [NameSpace.STATE]: {
-        sortType: `Price: low to high`,
         city: `Amsterdam`,
       },
       [NameSpace.DATA]: {
         offers: emptyLocalOffers,
       },
       [NameSpace.USER]: {
-        authorizationStatus: AuthorizationStatus.AUTH,
         authInfo: {
           email: `iii`
         },
       }
     });
-
+    const match = {
+      params: {
+        city: `Amsterdam`
+      }
+    };
     const tree = renderer
       .create(
           <Provider store={store}>
-            <Main
-              city={`Amsterdam`}
-              offers={emptyLocalOffers}
-              {...props}
-            />
+            <BrowserRouter>
+              <Main
+                offers={allOffers}
+                onCityClick={()=>{}}
+                match={match}
+              />
+            </BrowserRouter>
           </Provider>)
       .toJSON();
 
