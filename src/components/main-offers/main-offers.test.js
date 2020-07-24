@@ -88,6 +88,7 @@ describe(`Snapshot of MainOffers`, () => {
       [NameSpace.STATE]: {
         sortType: `Price: low to high`,
         city: `Paris`,
+        indicatedCard: {},
       },
       [NameSpace.DATA]: {
         offers: allOffers,

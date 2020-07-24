@@ -94,6 +94,7 @@ describe(`Snapshot of Main`, () => {
       [NameSpace.STATE]: {
         city: `Amsterdam`,
         sortType: `Price: low to high`,
+        indicatedCard: {},
       },
       [NameSpace.DATA]: {
         offers: allOffers,
@@ -129,6 +130,7 @@ describe(`Snapshot of Main`, () => {
     const store = mockStore({
       [NameSpace.STATE]: {
         city: `Amsterdam`,
+        indicatedCard: {},
       },
       [NameSpace.DATA]: {
         offers: emptyLocalOffers,
