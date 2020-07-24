@@ -4,7 +4,7 @@ import OfferPage from "../offer-page/offer-page.jsx";
 import {Switch, Route, BrowserRouter, Redirect} from "react-router-dom";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {getOffers, getFavourite} from "../../reducer/data/selectors.js";
+import {getFavourite, getProgressLoadOffers} from "../../reducer/data/selectors.js";
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import SignIn from "../sign-in/sign-in.jsx";
@@ -12,11 +12,20 @@ import FavouritePage from "../favourite-page/favourite-page.jsx";
 import PrivateRoute from "../private-route/private-route.jsx";
 import {getCity} from "../../reducer/state/selector.js";
 import {AppRoute} from "../../constants.js";
+import {Operation as UserOperation} from "../../reducer/user/user.js";
+import {Operation as DataOperation} from "../../reducer/data/data.js";
 
 
 class App extends PureComponent {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    const {checkAuth, loadOffers} = this.props;
+
+    checkAuth();
+    loadOffers();
   }
 
   showPreload() {
@@ -45,8 +54,8 @@ class App extends PureComponent {
   }
 
   render() {
-    const {offers} = this.props;
-    if (offers.length === 0) {
+    const {isLoadOffes} = this.props;
+    if (isLoadOffes) {
       return this.showPreload();
     }
     return this.showApp();
@@ -57,17 +66,28 @@ App.propTypes = {
   city: PropTypes.string.isRequired,
   favourite: PropTypes.array.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
-  offers: PropTypes.array.isRequired,
+  checkAuth: PropTypes.func.isRequired,
+  loadOffers: PropTypes.func.isRequired,
+  isLoadOffes: PropTypes.bool.isRequired,
 };
 
 
 const mapStateToProps = (state) => ({
   city: getCity(state),
-  offers: getOffers(state),
   authorizationStatus: getAuthorizationStatus(state),
   favourite: getFavourite(state),
+  isLoadOffes: getProgressLoadOffers(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  checkAuth() {
+    dispatch(UserOperation.checkAuth());
+  },
+  loadOffers() {
+    dispatch(DataOperation.loadOffers());
+  },
 });
 
 
 export {App};
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

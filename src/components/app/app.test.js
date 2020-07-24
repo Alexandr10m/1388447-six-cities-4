@@ -91,6 +91,9 @@ const props = {
   offers,
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   favourite: [],
+  isLoadOffes: false,
+  checkAuth: ()=>{},
+  loadOffers: ()=>{},
 };
 
 describe(`Snapshot of App`, () => {
@@ -104,6 +107,7 @@ describe(`Snapshot of App`, () => {
       [NameSpace.DATA]: {
         offers,
         favourite: [],
+        isLoadOffes: false,
       },
       [NameSpace.USER]: {
         authorizationStatus: AuthorizationStatus.AUTH,
@@ -136,6 +140,7 @@ describe(`Snapshot of App`, () => {
       [NameSpace.DATA]: {
         offers,
         favourite: [],
+        isLoadOffes: false,
       },
       [NameSpace.USER]: {
         authorizationStatus: AuthorizationStatus.AUTH,
@@ -168,6 +173,7 @@ describe(`Snapshot of App`, () => {
       [NameSpace.DATA]: {
         offers,
         favourite: [],
+        isLoadOffes: false,
       },
       [NameSpace.USER]: {
         authorizationStatus: AuthorizationStatus.NO_AUTH,
