@@ -2,18 +2,17 @@ import {extend} from "../../utils.js";
 import {cityAdapter, localOffersAdapter} from "../../adapter.js";
 
 
-let offers = [];
-let favourite = [];
-
 const initialState = {
-  offers,
-  favourite,
+  offers: [],
+  favourite: [],
+  isLoadOffes: true,
 };
 
 const ActionType = {
   LOAD_OFFERS: `LOAD_OFFERS`,
   LOAD_FAVOURITE: `LOAD_FAVOURITE`,
   CHANGE_FAVOURITE: `CHANGE_FAVOURITE`,
+  PROGRESS_LOAD_OFFERS: `PROGRESS_LOAD_OFFERS`,
 };
 
 const ActionCreator = {
@@ -31,23 +30,32 @@ const ActionCreator = {
     type: ActionType.CHANGE_FAVOURITE,
     payload: offer,
   }),
+
+  progressLoadOffers: () => ({
+    type: ActionType.PROGRESS_LOAD_OFFERS,
+    payload: false,
+  }),
 };
 
-const convertCity = (item) => {
-  const isExist = offers.some((it) => it.city === item[`city`][`name`]);
+const convertCity = (list, item) => {
+  const isExist = list.some((it) => it.city === item[`city`][`name`]);
   if (!isExist) {
-    offers.push(cityAdapter(item));
+    list.push(cityAdapter(item));
   }
 };
 
-const convertLocalOffers = (item) => {
-  offers.forEach((it) => {
+const convertLocalOffers = (list, item) => {
+  list.forEach((it) => {
     if (it.city === item[`city`][`name`]) {
       it.localOffers.push(localOffersAdapter(item));
     }
   });
 };
 
+const convertOffer = (list, offer) => {
+  convertCity(list, offer);
+  convertLocalOffers(list, offer);
+};
 
 const extendFavouriteOffer = (state, offer) => {
   let changedOfferIndex;
@@ -74,23 +82,23 @@ const extendFavouriteOffer = (state, offer) => {
   });
 };
 
-
 const Operation = {
   loadOffers: () => (dispatch, getState, api) => {
     return api.get(`/hotels`)
       .then((response) => {
-        response.data.forEach((it) => {
-          convertCity(it);
-          convertLocalOffers(it);
-        });
-        dispatch(ActionCreator.loadOffers(offers));
+        let offersByCity = [];
+        response.data.forEach((it) => convertOffer(offersByCity, it));
+        dispatch(ActionCreator.loadOffers(offersByCity));
+        dispatch(ActionCreator.progressLoadOffers());
       });
   },
 
   loadFavourite: () => (dispatch, getState, api) => {
     return api.get(`/favorite`)
     .then((response) => {
-      dispatch(ActionCreator.loadFavourite(response.data));
+      let favouriteOffers = [];
+      response.data.forEach((it) => convertOffer(favouriteOffers, it));
+      dispatch(ActionCreator.loadFavourite(favouriteOffers));
     });
   },
 
@@ -115,6 +123,11 @@ const reducer = (state = initialState, action) => {
       });
     case ActionType.CHANGE_FAVOURITE:
       return extendFavouriteOffer(state, action.payload);
+
+    case ActionType.PROGRESS_LOAD_OFFERS:
+      return extend(state, {
+        isLoadOffes: action.payload,
+      });
   }
   return state;
 };
