@@ -1,23 +1,17 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import SignIn from "./sign-in.jsx";
+import {SignIn} from "./sign-in.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import NameSpace from "../../reducer/name-space.js";
+import {BrowserRouter} from "react-router-dom";
 
 
 const mockStore = configureStore([]);
 
-const props = {
-  city: `Ocean`,
-  onSubmit: ()=>{},
-};
-
 describe(`Snapshot of SignIn`, () => {
   it(`Should render correctly`, () => {
     const store = mockStore({
-      [NameSpace.STATE]: {},
-      [NameSpace.DATA]: {},
       [NameSpace.USER]: {
         authInfo: {
           email: `iii`
@@ -28,9 +22,12 @@ describe(`Snapshot of SignIn`, () => {
     const tree = renderer
     .create(
         <Provider store={store}>
-          <SignIn
-            {...props}
-          />
+          <BrowserRouter>
+            <SignIn
+              city={`Ocean`}
+              login={()=>{}}
+            />
+          </BrowserRouter>
         </Provider>)
     .toJSON();
 

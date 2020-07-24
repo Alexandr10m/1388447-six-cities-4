@@ -15,7 +15,7 @@ const offerWithPremium = {
   maxAdults: 1,
   facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
   coords: [52.3909553943508, 4.85309666406198],
-  id: `1111`,
+  id: 0,
   reviews: [{
     image: `img/avatar-max.jpg`,
     text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
@@ -36,7 +36,7 @@ const offerWithoutPremium = {
   maxAdults: 1,
   facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
   coords: [52.3909553943508, 4.85309666406198],
-  id: `111`,
+  id: 1,
   reviews: [{
     image: `img/avatar-max.jpg`,
     text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
@@ -57,7 +57,7 @@ const offerWithFavourite = {
   maxAdults: 1,
   facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
   coords: [52.3909553943508, 4.85309666406198],
-  id: `11`,
+  id: 2,
   reviews: [{
     image: `img/avatar-max.jpg`,
     text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
@@ -78,7 +78,7 @@ const offerWithoutFavourite = {
   maxAdults: 1,
   facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
   coords: [52.3909553943508, 4.85309666406198],
-  id: `1`,
+  id: 3,
   reviews: [{
     image: `img/avatar-max.jpg`,
     text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,

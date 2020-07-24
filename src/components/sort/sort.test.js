@@ -3,6 +3,7 @@ import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {Sort} from "./sort.jsx";
+import NameSpace from "../../reducer/name-space.js";
 
 
 const mockStore = configureStore([]);
@@ -19,7 +20,7 @@ const offerWithPremium = {
   maxAdults: 1,
   facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
   coords: [52.3909553943508, 4.85309666406198],
-  id: `1111`,
+  id: 0,
   reviews: [{
     image: `img/avatar-max.jpg`,
     text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
@@ -39,7 +40,7 @@ const offerWithoutPremium = {
   maxAdults: 1,
   facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
   coords: [52.3909553943508, 4.85309666406198],
-  id: `111`,
+  id: 2,
   reviews: [{
     image: `img/avatar-max.jpg`,
     text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
@@ -59,7 +60,7 @@ const offerWithFavourite = {
   maxAdults: 1,
   facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
   coords: [52.3909553943508, 4.85309666406198],
-  id: `11`,
+  id: 1,
   reviews: [{
     image: `img/avatar-max.jpg`,
     text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
@@ -79,7 +80,7 @@ const offerWithoutFavourite = {
   maxAdults: 1,
   facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
   coords: [52.3909553943508, 4.85309666406198],
-  id: `1`,
+  id: 3,
   reviews: [{
     image: `img/avatar-max.jpg`,
     text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
@@ -91,6 +92,7 @@ const offerWithoutFavourite = {
 const offers = {
   city: `Amsterdam`,
   cityCoords: [52.38333, 4.9],
+  cityZoom: 13,
   localOffers: [
     offerWithPremium,
     offerWithoutPremium,
@@ -99,19 +101,17 @@ const offers = {
   ],
 };
 
-const city = `Amsterdam`;
-
-const initialState = {
-  city,
-  offers,
-  showedOffer: null,
-  sortType: `Popular`,
-};
-
 describe(`Snapshot of Sort`, () => {
   it(`Should render correctly`, () => {
 
-    const store = mockStore(initialState);
+    const store = mockStore({
+      [NameSpace.STATE]: {
+        sortType: `Popular`,
+      },
+      [NameSpace.DATA]: {
+        offers,
+      },
+    });
 
     const tree = renderer
     .create(

@@ -19,7 +19,7 @@ exports[`Snapshot of Host Host should render correctly 1`] = `
         alt="Host avatar"
         className="property__avatar user__avatar"
         height="74"
-        src="img/avatar-angelina.jpg"
+        src="/img/avatar-angelina.jpg"
         width="74"
       />
     </div>

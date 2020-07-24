@@ -10,7 +10,6 @@ const props = {
     id: 25,
     isPro: true,
     name: `Angelina`,
-    // id: 0,
   }
 };
 describe(`Snapshot of Host`, () => {

@@ -34,12 +34,15 @@ const ActionCreator = {
     type: ActionType.СHANGE_COMMENT,
     payload: dataComment,
   }),
+
 };
 
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
-      .then(() => dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH)))
+      .then(() => {
+        dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+      })
       .catch((err) => {
         throw err;
       });
@@ -69,6 +72,7 @@ const Operation = {
         throw err;
       });
   },
+
 };
 
 const reducer = (state = initialState, action) => {

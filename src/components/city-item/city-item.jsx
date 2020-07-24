@@ -1,15 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
+
 
 const CityItem = (props) => {
-  const {city, currentCity = `Amsterdam`} = props;
+  const {city, currentCity = `Paris`} = props;
   const activeClass = city === currentCity ? `tabs__item--active` : ``;
 
   return (
     <li className="locations__item">
-      <a className={`locations__item-link tabs__item ${activeClass}`} href="#">
+      <Link
+        to={`/${city}`}
+        className={`locations__item-link tabs__item ${activeClass}`}>
         <span>{city}</span>
-      </a>
+      </Link>
     </li>
   );
 };

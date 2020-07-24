@@ -18,13 +18,14 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
         >
           <a
             className="header__logo-link"
-            href="main.html"
+            href="/"
+            onClick={[Function]}
           >
             <img
               alt="6 cities logo"
               className="header__logo"
               height="41"
-              src="img/logo.svg"
+              src="/img/logo.svg"
               width="81"
             />
           </a>
@@ -40,7 +41,8 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="#"
+                href="/favourite"
+                onClick={[Function]}
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"
@@ -112,6 +114,7 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
             </h1>
             <button
               className="property__bookmark-button  button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -233,7 +236,7 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
                   alt="Host avatar"
                   className="property__avatar user__avatar"
                   height="74"
-                  src="img/avatar-angelina.jpg"
+                  src="/img/avatar-angelina.jpg"
                   width="74"
                 />
               </div>
@@ -282,7 +285,7 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
                       alt="Reviews avatar"
                       className="reviews__avatar user__avatar"
                       height="54"
-                      src="img/avatar-max.jpg"
+                      src="/img/avatar-max.jpg"
                       width="54"
                     />
                   </div>
@@ -520,119 +523,14 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
         </h2>
         <div
           className="near-places__list places__list"
-        >
-          <article
-            className="cities__place-card place-card"
-            onMouseEnter={[Function]}
-          >
-            <div
-              className="place-card__mark"
-            >
-              <span>
-                Premium
-              </span>
-            </div>
-            <div
-              className="cities__image-wrapper place-card__image-wrapper"
-            >
-              <a
-                href="#"
-              >
-                <img
-                  alt="Place image"
-                  className="place-card__image"
-                  height="200"
-                  src="https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg"
-                  width="260"
-                />
-              </a>
-            </div>
-            <div
-              className="place-card__info"
-            >
-              <div
-                className="place-card__price-wrapper"
-              >
-                <div
-                  className="place-card__price"
-                >
-                  <b
-                    className="place-card__price-value"
-                  >
-                    €
-                    397
-                  </b>
-                  <span
-                    className="place-card__price-text"
-                  >
-                    / night
-                  </span>
-                </div>
-                <button
-                  className="place-card__bookmark-button place-card__bookmark-button--active button"
-                  type="button"
-                >
-                  <svg
-                    className="place-card__bookmark-icon"
-                    height="19"
-                    width="18"
-                  >
-                    <use
-                      xlinkHref="#icon-bookmark"
-                    />
-                  </svg>
-                  <span
-                    className="visually-hidden"
-                  >
-                    To bookmarks
-                  </span>
-                </button>
-              </div>
-              <div
-                className="place-card__rating rating"
-              >
-                <div
-                  className="place-card__stars rating__stars"
-                >
-                  <span
-                    style={
-                      Object {
-                        "width": "72%",
-                      }
-                    }
-                  />
-                  <span
-                    className="visually-hidden"
-                  >
-                    Rating
-                  </span>
-                </div>
-              </div>
-              <h2
-                className="place-card__name"
-                onClick={[Function]}
-              >
-                <a
-                  href="#"
-                >
-                  Penthouse, 4-5 rooms + 5 balconies
-                </a>
-              </h2>
-              <p
-                className="place-card__type"
-              >
-                Hotel
-              </p>
-            </div>
-          </article>
-        </div>
+        />
       </section>
     </div>
   </main>
 </div>
 `;
 
-exports[`Snapshot of OfferPage OfferPage should render whitout Premium 1`] = `
+exports[`Snapshot of OfferPage OfferPage should render whith Favourite 1`] = `
 <div
   className="page"
 >
@@ -650,13 +548,14 @@ exports[`Snapshot of OfferPage OfferPage should render whitout Premium 1`] = `
         >
           <a
             className="header__logo-link"
-            href="main.html"
+            href="/"
+            onClick={[Function]}
           >
             <img
               alt="6 cities logo"
               className="header__logo"
               height="41"
-              src="img/logo.svg"
+              src="/img/logo.svg"
               width="81"
             />
           </a>
@@ -672,7 +571,8 @@ exports[`Snapshot of OfferPage OfferPage should render whitout Premium 1`] = `
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="#"
+                href="/favourite"
+                onClick={[Function]}
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"
@@ -744,6 +644,7 @@ exports[`Snapshot of OfferPage OfferPage should render whitout Premium 1`] = `
             </h1>
             <button
               className="property__bookmark-button property__bookmark-button--active button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -865,7 +766,7 @@ exports[`Snapshot of OfferPage OfferPage should render whitout Premium 1`] = `
                   alt="Host avatar"
                   className="property__avatar user__avatar"
                   height="74"
-                  src="img/avatarangelina.jpg"
+                  src="/img/avatarangelina.jpg"
                   width="74"
                 />
               </div>
@@ -914,7 +815,7 @@ exports[`Snapshot of OfferPage OfferPage should render whitout Premium 1`] = `
                       alt="Reviews avatar"
                       className="reviews__avatar user__avatar"
                       height="54"
-                      src="img/avatar-max.jpg"
+                      src="/img/avatar-max.jpg"
                       width="54"
                     />
                   </div>
@@ -1152,112 +1053,7 @@ exports[`Snapshot of OfferPage OfferPage should render whitout Premium 1`] = `
         </h2>
         <div
           className="near-places__list places__list"
-        >
-          <article
-            className="cities__place-card place-card"
-            onMouseEnter={[Function]}
-          >
-            <div
-              className="place-card__mark"
-            >
-              <span>
-                Premium
-              </span>
-            </div>
-            <div
-              className="cities__image-wrapper place-card__image-wrapper"
-            >
-              <a
-                href="#"
-              >
-                <img
-                  alt="Place image"
-                  className="place-card__image"
-                  height="200"
-                  src="https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg"
-                  width="260"
-                />
-              </a>
-            </div>
-            <div
-              className="place-card__info"
-            >
-              <div
-                className="place-card__price-wrapper"
-              >
-                <div
-                  className="place-card__price"
-                >
-                  <b
-                    className="place-card__price-value"
-                  >
-                    €
-                    397
-                  </b>
-                  <span
-                    className="place-card__price-text"
-                  >
-                    / night
-                  </span>
-                </div>
-                <button
-                  className="place-card__bookmark-button false button"
-                  type="button"
-                >
-                  <svg
-                    className="place-card__bookmark-icon"
-                    height="19"
-                    width="18"
-                  >
-                    <use
-                      xlinkHref="#icon-bookmark"
-                    />
-                  </svg>
-                  <span
-                    className="visually-hidden"
-                  >
-                    To bookmarks
-                  </span>
-                </button>
-              </div>
-              <div
-                className="place-card__rating rating"
-              >
-                <div
-                  className="place-card__stars rating__stars"
-                >
-                  <span
-                    style={
-                      Object {
-                        "width": "72%",
-                      }
-                    }
-                  />
-                  <span
-                    className="visually-hidden"
-                  >
-                    Rating
-                  </span>
-                </div>
-              </div>
-              <h2
-                className="place-card__name"
-                onClick={[Function]}
-              >
-                <a
-                  href="#"
-                >
-                  Penthouse, 4-5 rooms + 5 balconies
-                </a>
-              </h2>
-              <p
-                className="place-card__type"
-              >
-                Hotel
-              </p>
-            </div>
-          </article>
-        </div>
+        />
       </section>
     </div>
   </main>

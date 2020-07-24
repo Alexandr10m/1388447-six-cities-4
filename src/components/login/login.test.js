@@ -4,6 +4,7 @@ import {Login} from "./login.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import NameSpace from "../../reducer/name-space.js";
+import {BrowserRouter} from "react-router-dom";
 
 
 const mockStore = configureStore([]);
@@ -11,10 +12,6 @@ const mockStore = configureStore([]);
 describe(`Snapshot of Login`, () => {
   it(`Should render without email - Sign in`, () => {
     const store = mockStore({
-      [NameSpace.STATE]: {
-      },
-      [NameSpace.DATA]: {
-      },
       [NameSpace.USER]: {
         authInfo: {
           email: null,
@@ -25,9 +22,10 @@ describe(`Snapshot of Login`, () => {
     const tree = renderer
       .create(
           <Provider store={store}>
-            <Login/>
-          </Provider>
-      )
+            <BrowserRouter>
+              <Login/>
+            </BrowserRouter>
+          </Provider>)
       .toJSON();
 
     expect(tree).toMatchSnapshot();
@@ -35,10 +33,6 @@ describe(`Snapshot of Login`, () => {
 
   it(`Should render with email`, () => {
     const store = mockStore({
-      [NameSpace.STATE]: {
-      },
-      [NameSpace.DATA]: {
-      },
       [NameSpace.USER]: {
         authInfo: {
           email: `email`,
@@ -49,9 +43,10 @@ describe(`Snapshot of Login`, () => {
     const tree = renderer
       .create(
           <Provider store={store}>
-            <Login/>
-          </Provider>
-      )
+            <BrowserRouter>
+              <Login/>
+            </BrowserRouter>
+          </Provider>)
       .toJSON();
 
     expect(tree).toMatchSnapshot();

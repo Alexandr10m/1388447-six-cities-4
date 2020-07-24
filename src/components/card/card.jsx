@@ -1,10 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {firstWordInUpper, rating} from "../../utils.js";
+import {Link} from "react-router-dom";
+import {connect} from "react-redux";
+import {getCity} from "../../reducer/state/selector.js";
+import {Operation} from "../../reducer/data/data.js";
+import {ActionCreator} from "../../reducer/state/state.js";
 
 
 const Card = (props) => {
-  const {offer, onCardTitleClick, onActiveCard} = props;
+  const {city, offer, onCardMouseEnter, sendFavouriteOption} = props;
   const {
     grade,
     title,
@@ -14,6 +19,7 @@ const Card = (props) => {
     type,
     className,
     previewImage,
+    id: offerId
   } = offer;
 
   const tempPartClass = className || `cities__place-card`;
@@ -21,10 +27,14 @@ const Card = (props) => {
   const favouriteClasse = isFavourite && `place-card__bookmark-button--active`;
 
   const handlerCardMouseEnter = () => {
-    onActiveCard(offer);
+    onCardMouseEnter(offer);
   };
-  const handlerCartTitleClick = () => {
-    onCardTitleClick(offer);
+
+  const handlerButtonFavouriteClick = () => {
+    sendFavouriteOption({
+      id: offer.id,
+      status: +(!offer.isFavourite),
+    });
   };
 
   return (
@@ -38,9 +48,9 @@ const Card = (props) => {
       </div>}
 
       <div className={`${partClassName(tempPartClass)}__image-wrapper place-card__image-wrapper`}>
-        <a href="#">
+        <Link to={`/${city}/${offerId}`}>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -49,6 +59,7 @@ const Card = (props) => {
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
           <button
+            onClick={handlerButtonFavouriteClick}
             className={`place-card__bookmark-button ${favouriteClasse} button`}
             type="button"
           >
@@ -65,10 +76,11 @@ const Card = (props) => {
           </div>
         </div>
         <h2
-          onClick={handlerCartTitleClick}
           className="place-card__name"
         >
-          <a href="#">{title}</a>
+          <Link to={`/${city}/${offerId}`}>
+            {title}
+          </Link>
         </h2>
         <p className="place-card__type">{firstWordInUpper(type)}</p>
       </div>
@@ -78,6 +90,8 @@ const Card = (props) => {
 
 
 Card.propTypes = {
+  sendFavouriteOption: PropTypes.func.isRequired,
+  city: PropTypes.string.isRequired,
   offer: PropTypes.shape({
     isPremium: PropTypes.bool.isRequired,
     previewImage: PropTypes.string.isRequired,
@@ -87,10 +101,25 @@ Card.propTypes = {
     title: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     className: PropTypes.string,
+    id: PropTypes.number.isRequired
   }),
-  onCardTitleClick: PropTypes.func.isRequired,
-  onActiveCard: PropTypes.func.isRequired,
+  onCardMouseEnter: PropTypes.func.isRequired,
 };
 
 
-export default Card;
+const mapStateToProps = (state) => ({
+  city: getCity(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  sendFavouriteOption(options) {
+    dispatch(Operation.sendFavouriteOption(options));
+  },
+
+  onCardMouseEnter(offer) {
+    dispatch(ActionCreator.showPoiner(offer));
+  }
+});
+
+export {Card};
+export default connect(mapStateToProps, mapDispatchToProps)(Card);

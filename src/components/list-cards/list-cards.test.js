@@ -4,6 +4,7 @@ import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {ListCards} from "./list-cards.jsx";
 import NameSpace from "../../reducer/name-space.js";
+import {BrowserRouter} from "react-router-dom";
 
 
 const mockStore = configureStore([]);
@@ -19,8 +20,8 @@ const offerWithPremium = {
     id: 25,
     isPro: true,
     name: `Angelina`,
-    // id: 0,
   },
+  id: 0,
   isFavourite: false,
   isPremium: true,
   locationZoom: 16,
@@ -48,8 +49,8 @@ const offerWithFavourite = {
     id: 25,
     isPro: false,
     name: `Angela`,
-    // id: 2,
   },
+  id: 2,
   isFavourite: true,
   isPremium: true,
   locationZoom: 16,
@@ -82,8 +83,6 @@ describe(`Snapshot of ListCards`, () => {
     const store = mockStore({
       [NameSpace.STATE]: {
         sortType: `Price: low to high`,
-        indicatedCard: offerWithPremium,
-        showedOffer: offerWithFavourite,
         city: `Amsterdam`,
       },
       [NameSpace.DATA]: {
@@ -94,11 +93,11 @@ describe(`Snapshot of ListCards`, () => {
     const tree = renderer
       .create(
           <Provider store={store}>
-            <ListCards
-              localOffers={offers.localOffers}
-              onCardTitleClick={() => {}}
-              onCardMouseEnter={() => {}}
-            />
+            <BrowserRouter>
+              <ListCards
+                localOffers={offers.localOffers}
+              />
+            </BrowserRouter>
           </Provider>)
       .toJSON();
 
@@ -109,8 +108,6 @@ describe(`Snapshot of ListCards`, () => {
     const store = mockStore({
       [NameSpace.STATE]: {
         sortType: `Price: low to high`,
-        indicatedCard: offerWithPremium,
-        showedOffer: offerWithFavourite,
         city: `Amsterdam`,
       },
       [NameSpace.DATA]: {
@@ -121,11 +118,11 @@ describe(`Snapshot of ListCards`, () => {
     const tree = renderer
       .create(
           <Provider store={store}>
-            <ListCards
-              localOffers={offers.localOffers}
-              onCardTitleClick={() => {}}
-              onCardMouseEnter={() => {}}
-            />
+            <BrowserRouter>
+              <ListCards
+                localOffers={offers.localOffers}
+              />
+            </BrowserRouter>
           </Provider>)
       .toJSON();
 
@@ -136,8 +133,6 @@ describe(`Snapshot of ListCards`, () => {
     const store = mockStore({
       [NameSpace.STATE]: {
         sortType: `Price: low to high`,
-        indicatedCard: offerWithPremium,
-        showedOffer: offerWithFavourite,
         city: `Amsterdam`,
       },
       [NameSpace.DATA]: {
@@ -148,11 +143,11 @@ describe(`Snapshot of ListCards`, () => {
     const tree = renderer
       .create(
           <Provider store={store}>
-            <ListCards
-              localOffers={offers.localOffers}
-              onCardTitleClick={() => {}}
-              onCardMouseEnter={() => {}}
-            />
+            <BrowserRouter>
+              <ListCards
+                localOffers={offers.localOffers}
+              />
+            </BrowserRouter>
           </Provider>)
       .toJSON();
 
@@ -163,8 +158,6 @@ describe(`Snapshot of ListCards`, () => {
     const store = mockStore({
       [NameSpace.STATE]: {
         sortType: `Price: low to high`,
-        indicatedCard: offerWithPremium,
-        showedOffer: offerWithFavourite,
         city: `Amsterdam`,
       },
       [NameSpace.DATA]: {
@@ -175,11 +168,11 @@ describe(`Snapshot of ListCards`, () => {
     const tree = renderer
       .create(
           <Provider store={store}>
-            <ListCards
-              localOffers={offers.localOffers}
-              onCardTitleClick={() => {}}
-              onCardMouseEnter={() => {}}
-            />
+            <BrowserRouter>
+              <ListCards
+                localOffers={offers.localOffers}
+              />
+            </BrowserRouter>
           </Provider>)
       .toJSON();
 

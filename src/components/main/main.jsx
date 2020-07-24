@@ -4,11 +4,20 @@ import ListCities from "../list-cities/list-cities.jsx";
 import MainEmpty from "../main-empty/main-empty.jsx";
 import MainOffers from "../main-offers/main-offers.jsx";
 import Login from "../login/login.jsx";
+import {connect} from "react-redux";
+import {getOffers} from "../../reducer/data/selectors.js";
+import {Route, Switch, useRouteMatch} from "react-router-dom";
+import {OfferPage} from "../offer-page/offer-page.jsx";
+import {ActionCreator} from "../../reducer/state/state.js";
 
 
 const Main = (props) => {
-  const {city, offers, onCardTitleClick, onCityClick} = props;
-  const isEmptylocalOffers = offers.localOffers === null || offers.localOffers.length === 0;
+  const {match, offers, onCityClick} = props;
+  let {path, url} = useRouteMatch();
+  const city = match.params.city;
+  const showOffers = offers.find((it) => it.city === city);
+
+  const isEmptylocalOffers = showOffers.localOffers === null || showOffers.localOffers.length === 0;
   const EmptyMainPageClass = isEmptylocalOffers ? `page__main--index-empty` : ``;
 
   return (
@@ -20,8 +29,8 @@ const Main = (props) => {
           <section className="locations container">
 
             <ListCities
-              onCityClick={onCityClick}
               currentCity={city}
+              onCityClick={onCityClick}
             />
 
           </section>
@@ -29,25 +38,37 @@ const Main = (props) => {
 
         {isEmptylocalOffers ? <MainEmpty city={city}/>
           : <MainOffers
+            url={url}
             city={city}
-            offers={offers}
-            onCardTitleClick={onCardTitleClick}
-            onCityClick={onCityClick}
+            offers={showOffers}
           />
         }
 
       </main>
+      <Switch>
+        <Route exact path={`${path}/:offerId`} component={OfferPage}/>
+      </Switch>
     </div>
   );
 };
 
 
 Main.propTypes = {
-  city: PropTypes.string.isRequired,
-  offers: PropTypes.object.isRequired,
-  onCardTitleClick: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
+  offers: PropTypes.array.isRequired,
   onCityClick: PropTypes.func.isRequired,
 };
 
+const mapStateToProps = (state) => ({
+  offers: getOffers(state),
+});
 
-export default Main;
+const mapDispatchToProps = (dispatch) => ({
+  onCityClick: (city) => {
+    dispatch(ActionCreator.changeCity(city));
+  }
+});
+
+export {Main};
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
+

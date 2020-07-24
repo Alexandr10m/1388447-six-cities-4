@@ -21,12 +21,12 @@ class Map extends PureComponent {
     const {city} = this.props;
 
     this._icon = LeafLet.icon({
-      iconUrl: `img/pin.svg`,
+      iconUrl: `/img/pin.svg`,
       iconSize: [this._offerZoom, this._offerZoom]
     });
 
     this._activeIcon = LeafLet.icon({
-      iconUrl: `img/pin-active.svg`,
+      iconUrl: `/img/pin-active.svg`,
       iconSize: [this._offerZoom, this._offerZoom]
     });
 
@@ -110,30 +110,11 @@ class Map extends PureComponent {
 
 
 Map.propTypes = {
-  localOffers: PropTypes.arrayOf(PropTypes.shape({
-    isPremium: PropTypes.bool.isRequired,
-    pictures: PropTypes.array.isRequired,
-    price: PropTypes.number.isRequired,
-    isFavourite: PropTypes.bool.isRequired,
-    grade: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    coords: PropTypes.array.isRequired,
-  })),
+  localOffers: PropTypes.array.isRequired,
   city: PropTypes.array.isRequired,
   cityZoom: PropTypes.number.isRequired,
   locationZoom: PropTypes.number.isRequired,
-  indicatedCard: PropTypes.shape({
-    isPremium: PropTypes.bool.isRequired,
-    pictures: PropTypes.array.isRequired,
-    price: PropTypes.number.isRequired,
-    isFavourite: PropTypes.bool.isRequired,
-    grade: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    coords: PropTypes.array.isRequired,
-    id: PropTypes.number.isRequired,
-  }),
+  indicatedCard: PropTypes.object.isRequired,
 };
 
 

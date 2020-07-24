@@ -30,7 +30,7 @@ exports[`Snapshot of ReviewList ReviewList should render correctly with Rewies f
             alt="Reviews avatar"
             className="reviews__avatar user__avatar"
             height="54"
-            src="img/avatar-max.jpg"
+            src="/img/avatar-max.jpg"
             width="54"
           />
         </div>
@@ -271,7 +271,7 @@ exports[`Snapshot of ReviewList ReviewList should render correctly without Rewie
             alt="Reviews avatar"
             className="reviews__avatar user__avatar"
             height="54"
-            src="img/avatar-max.jpg"
+            src="/img/avatar-max.jpg"
             width="54"
           />
         </div>

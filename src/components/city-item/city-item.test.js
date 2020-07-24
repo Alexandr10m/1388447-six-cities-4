@@ -1,15 +1,19 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import CityItem from "./city-item.jsx";
+import {BrowserRouter} from "react-router-dom";
+
 
 describe(`Snapshot of CityItem`, () => {
   it(`CityItem should render correctly with active-class`, () => {
     const tree = renderer
       .create(
-          <CityItem
-            city={`Amsterdame`}
-            currentCity={`Amsterdame`}
-          />)
+          <BrowserRouter>
+            <CityItem
+              city={`Paris`}
+              currentCity={`Paris`}
+            />
+          </BrowserRouter>)
       .toJSON();
 
     expect(tree).toMatchSnapshot();
@@ -18,10 +22,12 @@ describe(`Snapshot of CityItem`, () => {
   it(`CityItem should render correctly without active-class`, () => {
     const tree = renderer
       .create(
-          <CityItem
-            city={`Paris`}
-            currentCity={`Amsterdame`}
-          />)
+          <BrowserRouter>
+            <CityItem
+              city={`Paris`}
+              currentCity={`Amsterdame`}
+            />
+          </BrowserRouter>)
       .toJSON();
 
     expect(tree).toMatchSnapshot();

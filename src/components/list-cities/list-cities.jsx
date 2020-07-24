@@ -17,15 +17,17 @@ const ListCities = (props) => {
   };
 
   return (
-    <ul onClick={handlerCityClick} className="locations__list tabs__list">
+    <ul onClick={handlerCityClick}
+      className="locations__list tabs__list">
       {CITIES.map((city, i) => <CityItem key={`${city}-${i}`} city={city} currentCity={currentCity}/>)}
     </ul>
   );
 };
 
+
 ListCities.propTypes = {
-  onCityClick: PropTypes.func.isRequired,
   currentCity: PropTypes.string.isRequired,
+  onCityClick: PropTypes.func.isRequired,
 };
 
 export default ListCities;

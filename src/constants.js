@@ -14,4 +14,13 @@ const SORTS = [
   `Top rated first`,
 ];
 
-export {CITIES, SORTS};
+const AppRoute = {
+  DEFAULT_CITY: `/Paris`,
+  CITY: `/:city`,
+  LOGIN: `/login`,
+  OFFER: `/:offerId`,
+  ROOT: `/`,
+  FAVOURITE: `/favourite`,
+};
+
+export {CITIES, SORTS, AppRoute};

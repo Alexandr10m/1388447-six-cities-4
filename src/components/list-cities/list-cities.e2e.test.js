@@ -1,6 +1,7 @@
 import React from "react";
 import {mount} from "enzyme";
 import ListCities from "./list-cities.jsx";
+import {BrowserRouter} from "react-router-dom";
 
 const mockEvt = {
   target: {
@@ -14,10 +15,12 @@ describe(`E2E test of ListCities`, () => {
     const onCityClick = jest.fn();
 
     const listCitiesComponent = mount(
-        < ListCities
-          currentCity={`Amsterdam`}
-          onCityClick={onCityClick}
-        />
+        <BrowserRouter>
+          < ListCities
+            currentCity={`Amsterdam`}
+            onCityClick={onCityClick}
+          />
+        </BrowserRouter>
     );
 
     const cityList = listCitiesComponent.find(`span`);
@@ -31,10 +34,12 @@ describe(`E2E test of ListCities`, () => {
     const onCityClick = jest.fn((arg) => arg);
 
     const listCitiesComponent = mount(
-        < ListCities
-          currentCity={`Amsterdam`}
-          onCityClick={onCityClick}
-        />
+        <BrowserRouter>
+          < ListCities
+            currentCity={`Amsterdam`}
+            onCityClick={onCityClick}
+          />
+        </BrowserRouter>
     );
 
     const cityList = listCitiesComponent.find(`span`);

@@ -16,7 +16,8 @@ exports[`Snapshot of CardNearest Card should render correctly with FavouriteClas
     className="cities__image-wrapper place-card__image-wrapper"
   >
     <a
-      href="#"
+      href="/Amsterdam/2"
+      onClick={[Function]}
     >
       <img
         alt="Place image"
@@ -50,6 +51,7 @@ exports[`Snapshot of CardNearest Card should render correctly with FavouriteClas
       </div>
       <button
         className="place-card__bookmark-button place-card__bookmark-button--active button"
+        onClick={[Function]}
         type="button"
       >
         <svg
@@ -90,10 +92,10 @@ exports[`Snapshot of CardNearest Card should render correctly with FavouriteClas
     </div>
     <h2
       className="place-card__name"
-      onClick={[Function]}
     >
       <a
-        href="#"
+        href="/Amsterdam/2"
+        onClick={[Function]}
       >
         Penthouse, 4-5 rooms + 5 balconies
       </a>
@@ -123,7 +125,8 @@ exports[`Snapshot of CardNearest Card should render correctly with Primium 1`] =
     className="cities__image-wrapper place-card__image-wrapper"
   >
     <a
-      href="#"
+      href="/Amsterdam/0"
+      onClick={[Function]}
     >
       <img
         alt="Place image"
@@ -157,6 +160,7 @@ exports[`Snapshot of CardNearest Card should render correctly with Primium 1`] =
       </div>
       <button
         className="place-card__bookmark-button false button"
+        onClick={[Function]}
         type="button"
       >
         <svg
@@ -197,10 +201,10 @@ exports[`Snapshot of CardNearest Card should render correctly with Primium 1`] =
     </div>
     <h2
       className="place-card__name"
-      onClick={[Function]}
     >
       <a
-        href="#"
+        href="/Amsterdam/0"
+        onClick={[Function]}
       >
         Penthouse, 4-5 rooms + 5 balconies
       </a>

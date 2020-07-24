@@ -7,10 +7,13 @@ import NearestCards from "../list-nearest-cards/list-nearest-cards.jsx";
 import withActiveCard from "../../hoc/with-active-card/with-active-card.js";
 import Host from "../host/host.jsx";
 import Login from "../login/login.jsx";
+import {connect} from "react-redux";
+import {getCity} from "../../reducer/state/selector.js";
+import {getOffers} from "../../reducer/data/selectors.js";
+import {Operation} from "../../reducer/data/data.js";
 
 
 const ListNearestCards = withActiveCard(NearestCards);
-
 
 const propertyInsideItepTmpl = (item, index) => {
   return (
@@ -28,8 +31,16 @@ const propertyImageTmpl = (src, index) => {
 };
 
 const OfferPage = (props) => {
-  const {offers, offer, onCardTitleClick} = props;
+  const {match, offers, sendFavouriteOption} = props;
+  const offerId = +match.params.offerId;
+  const currentCityOffers = offers.find((city) => {
+    return city.localOffers.some((offer) => offer.id === offerId);
+  });
+
+  const {localOffers, cityCoords, cityZoom} = currentCityOffers;
+  const currentOffer = localOffers.find((offer) => offer.id === offerId);
   const {
+    locationZoom,
     grade,
     isFavourite,
     isPremium: isShowingPrimium,
@@ -44,12 +55,17 @@ const OfferPage = (props) => {
     host,
     description,
     id,
-  } = offer;
+  } = currentOffer;
 
-  const {localOffers, cityCoords, cityZoom} = offers;
-  const {locationZoom} = localOffers.find((it) => it.locationZoom);
+  const nearestOffers = localOffers.filter((offer) => offer.id !== offerId);
   const favouriteClass = isFavourite ? `property__bookmark-button--active` : ``;
-  const nearestOffers = offers.localOffers.filter((it) => it !== offer);
+
+  const handlerButtonFavouriteClick = () => {
+    sendFavouriteOption({
+      id,
+      status: +(!isFavourite),
+    });
+  };
 
   return (
     <div className="page">
@@ -70,7 +86,7 @@ const OfferPage = (props) => {
                 <h1 className="property__name">
                   {title}
                 </h1>
-                <button className={`property__bookmark-button ${favouriteClass} button`} type="button">
+                <button onClick={handlerButtonFavouriteClick} className={`property__bookmark-button ${favouriteClass} button`} type="button">
                   <svg className="place-card__bookmark-icon" width="31" height="33">
                     <use xlinkHref="#icon-bookmark" />
                   </svg>
@@ -130,7 +146,6 @@ const OfferPage = (props) => {
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <ListNearestCards
               offers={nearestOffers}
-              onCardTitleClick={onCardTitleClick}
             />
           </section>
         </div>
@@ -140,24 +155,22 @@ const OfferPage = (props) => {
 };
 
 OfferPage.propTypes = {
-  offers: PropTypes.object.isRequired,
-  offer: PropTypes.shape({
-    grade: PropTypes.number.isRequired,
-    isFavourite: PropTypes.bool.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    pictures: PropTypes.array.isRequired,
-    price: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    bedroom: PropTypes.number.isRequired,
-    maxAdults: PropTypes.number.isRequired,
-    facilities: PropTypes.array.isRequired,
-    reviews: PropTypes.array.isRequired,
-    id: PropTypes.number.isRequired,
-    host: PropTypes.object.isRequired,
-    description: PropTypes.string.isRequired,
-  }),
-  onCardTitleClick: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
+  offers: PropTypes.array.isRequired,
+  sendFavouriteOption: PropTypes.func.isRequired,
 };
 
-export default OfferPage;
+
+const mapStateToProps = (state) => ({
+  city: getCity(state),
+  offers: getOffers(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  sendFavouriteOption(options) {
+    dispatch(Operation.sendFavouriteOption(options));
+  },
+});
+
+export {OfferPage};
+export default connect(mapStateToProps, mapDispatchToProps)(OfferPage);

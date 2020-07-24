@@ -1,6 +1,10 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import CardNearest from "./card-nearest.jsx";
+import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
+import NameSpace from "../../reducer/name-space.js";
+import {BrowserRouter} from "react-router-dom";
 
 
 const offerWithPremium = {
@@ -14,8 +18,8 @@ const offerWithPremium = {
     id: 25,
     isPro: true,
     name: `Angelina`,
-    // id: 0,
   },
+  id: 0,
   isFavourite: false,
   isPremium: true,
   locationZoom: 16,
@@ -43,8 +47,8 @@ const offerWithFavourite = {
     id: 25,
     isPro: false,
     name: `Angela`,
-    // id: 2,
   },
+  id: 2,
   isFavourite: true,
   isPremium: true,
   locationZoom: 16,
@@ -62,15 +66,30 @@ const offerWithFavourite = {
   type: `hotel`,
 };
 
+const mockStore = configureStore([]);
+
+const store = mockStore({
+  [NameSpace.STATE]: {
+    city: `Amsterdam`,
+  },
+  [NameSpace.DATA]: {},
+  [NameSpace.USER]: {},
+});
+
 describe(`Snapshot of CardNearest`, () => {
   it(`Card should render correctly with Primium`, () => {
     const tree = renderer
       .create(
-          <CardNearest
-            offer={offerWithPremium}
-            onCardTitleClick={() => {}}
-            onActiveCard={() => {}}
-          />)
+          <Provider store={store}>
+            <BrowserRouter>
+              <CardNearest
+                city={`Amsterdam`}
+                offer={offerWithPremium}
+                onCardMouseEnter={() => {}}
+                sendFavouriteOption={() => {}}
+              />
+            </BrowserRouter>
+          </Provider>)
       .toJSON();
 
     expect(tree).toMatchSnapshot();
@@ -79,11 +98,16 @@ describe(`Snapshot of CardNearest`, () => {
   it(`Card should render correctly with FavouriteClass`, () => {
     const tree = renderer
       .create(
-          <CardNearest
-            offer={offerWithFavourite}
-            onCardTitleClick={() => {}}
-            onActiveCard={() => {}}
-          />)
+          <Provider store={store}>
+            <BrowserRouter>
+              <CardNearest
+                city={`Amsterdam`}
+                offer={offerWithFavourite}
+                onCardMouseEnter={() => {}}
+                sendFavouriteOption={() => {}}
+              />
+            </BrowserRouter>
+          </Provider>)
       .toJSON();
 
     expect(tree).toMatchSnapshot();

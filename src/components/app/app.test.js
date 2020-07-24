@@ -90,12 +90,10 @@ const props = {
   city,
   offers,
   authorizationStatus: AuthorizationStatus.NO_AUTH,
-  authInfo: {
-    email: `iii`
-  },
-  login: ()=>{},
-  onCityClick: ()=>{},
-  onCardTitleClick: ()=>{},
+  favourite: [],
+  isLoadOffes: false,
+  checkAuth: ()=>{},
+  loadOffers: ()=>{},
 };
 
 describe(`Snapshot of App`, () => {
@@ -104,11 +102,12 @@ describe(`Snapshot of App`, () => {
       [NameSpace.STATE]: {
         sortType: `Price: low to high`,
         indicatedCard: offerWithPremium,
-        showedOffer: offerWithFavourite,
         city: `Amsterdam`,
       },
       [NameSpace.DATA]: {
-        offers
+        offers,
+        favourite: [],
+        isLoadOffes: false,
       },
       [NameSpace.USER]: {
         authorizationStatus: AuthorizationStatus.AUTH,
@@ -136,11 +135,12 @@ describe(`Snapshot of App`, () => {
       [NameSpace.STATE]: {
         sortType: `Price: low to high`,
         indicatedCard: offerWithPremium,
-        showedOffer: null,
         city: `Amsterdam`,
       },
       [NameSpace.DATA]: {
-        offers
+        offers,
+        favourite: [],
+        isLoadOffes: false,
       },
       [NameSpace.USER]: {
         authorizationStatus: AuthorizationStatus.AUTH,
@@ -168,11 +168,12 @@ describe(`Snapshot of App`, () => {
       [NameSpace.STATE]: {
         sortType: `Price: low to high`,
         indicatedCard: offerWithPremium,
-        showedOffer: null,
         city: `Amsterdam`,
       },
       [NameSpace.DATA]: {
-        offers
+        offers,
+        favourite: [],
+        isLoadOffes: false,
       },
       [NameSpace.USER]: {
         authorizationStatus: AuthorizationStatus.NO_AUTH,

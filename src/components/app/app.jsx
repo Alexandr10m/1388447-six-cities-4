@@ -1,116 +1,93 @@
 import React, {PureComponent} from "react";
 import Main from "../main/main.jsx";
 import OfferPage from "../offer-page/offer-page.jsx";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {Switch, Route, BrowserRouter, Redirect} from "react-router-dom";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer/state/state.js";
-import {getCity, getShowedOffer} from "../../reducer/state/selector.js";
-import {getOffers} from "../../reducer/data/selectors.js";
-import {getAuthorizationStatus} from "../../reducer/user/selecors.js";
-import {Operation, AuthorizationStatus} from "../../reducer/user/user.js";
+import {getFavourite, getProgressLoadOffers} from "../../reducer/data/selectors.js";
+import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 import SignIn from "../sign-in/sign-in.jsx";
+import FavouritePage from "../favourite-page/favourite-page.jsx";
+import PrivateRoute from "../private-route/private-route.jsx";
+import {getCity} from "../../reducer/state/selector.js";
+import {AppRoute} from "../../constants.js";
+import {Operation as UserOperation} from "../../reducer/user/user.js";
+import {Operation as DataOperation} from "../../reducer/data/data.js";
+
 
 class App extends PureComponent {
-
-  _renderMainPage() {
-    const {
-      login,
-      authorizationStatus,
-      city,
-      offers,
-      showedOffer,
-      onCityClick,
-      onCardTitleClick,
-    } = this.props;
-    const showOffers = offers.find((it) => it.city === city);
-
-    if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
-      return (
-        <SignIn
-          city={city}
-          onSubmit={login}
-        />
-      );
-    }
-    if (showedOffer) {
-      return (
-        <OfferPage
-          offer={showedOffer}
-          offers={showOffers}
-          onCardTitleClick={onCardTitleClick}
-        />
-      );
-    }
-
-    return (
-      <Main
-        city={city}
-        offers={showOffers}
-        onCardTitleClick={onCardTitleClick}
-        onCityClick={onCityClick}
-      />);
+  constructor(props) {
+    super(props);
   }
 
-  render() {
-    const {city, offers, onCardTitleClick, showedOffer, login} = this.props;
-    const showOffers = offers.find((it) => it.city === city);
+  componentDidMount() {
+    const {checkAuth, loadOffers} = this.props;
+
+    checkAuth();
+    loadOffers();
+  }
+
+  showPreload() {
+    return (<div>... in progress</div>);
+  }
+
+  showApp() {
+    const {city, favourite, authorizationStatus} = this.props;
 
     return (
       <BrowserRouter>
         <Switch>
-          <Route exact path="/">
-            {this._renderMainPage()}
-          </Route>
-          <Route exact path="/offer">
-            <OfferPage
-              offer={showedOffer}
-              offers={showOffers}
-              onCardTitleClick={onCardTitleClick}
-            />
-          </Route>
-          <Route exact path="/auth">
-            <SignIn
-              city={city}
-              onSubmit={login}
-            />
-          </Route>
+          {authorizationStatus === AuthorizationStatus.AUTH && (
+            <Redirect exact from={AppRoute.LOGIN} to={`/`}/>
+          )}
+          <Route exact path={AppRoute.LOGIN} component={SignIn}/>
+          <PrivateRoute exact path={AppRoute.FAVOURITE}
+            render={() => (<FavouritePage favouriteOffers={favourite}/>)}
+          />
+          <Redirect exact from={`/`} to={AppRoute.DEFAULT_CITY}/>
+          <Route exact path={AppRoute.CITY} component={Main}/>
+          <Route exact path={`/${city}${AppRoute.OFFER}`} component={OfferPage}/>
         </Switch>
       </BrowserRouter>
     );
   }
+
+  render() {
+    const {isLoadOffes} = this.props;
+    if (isLoadOffes) {
+      return this.showPreload();
+    }
+    return this.showApp();
+  }
 }
 
 App.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  login: PropTypes.func.isRequired,
   city: PropTypes.string.isRequired,
-  offers: PropTypes.array.isRequired,
-  showedOffer: PropTypes.any,
-  onCityClick: PropTypes.func.isRequired,
-  onCardTitleClick: PropTypes.func.isRequired,
+  favourite: PropTypes.array.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
+  checkAuth: PropTypes.func.isRequired,
+  loadOffers: PropTypes.func.isRequired,
+  isLoadOffes: PropTypes.bool.isRequired,
 };
 
 
 const mapStateToProps = (state) => ({
   city: getCity(state),
-  offers: getOffers(state),
-  showedOffer: getShowedOffer(state),
   authorizationStatus: getAuthorizationStatus(state),
+  favourite: getFavourite(state),
+  isLoadOffes: getProgressLoadOffers(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  login(authData) {
-    dispatch(Operation.login(authData));
+  checkAuth() {
+    dispatch(UserOperation.checkAuth());
   },
-  onCardTitleClick(offer) {
-    dispatch(ActionCreator.showOffer(offer));
-  },
-  onCityClick(city) {
-    dispatch(ActionCreator.changeCity(city));
-    dispatch(ActionCreator.resetShowedOffer());
+  loadOffers() {
+    dispatch(DataOperation.loadOffers());
   },
 });
+
 
 export {App};
 export default connect(mapStateToProps, mapDispatchToProps)(App);
