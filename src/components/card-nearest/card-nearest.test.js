@@ -69,9 +69,7 @@ const offerWithFavourite = {
 const mockStore = configureStore([]);
 
 const store = mockStore({
-  [NameSpace.STATE]: {
-    city: `Amsterdam`,
-  },
+  [NameSpace.STATE]: {},
   [NameSpace.DATA]: {},
   [NameSpace.USER]: {},
 });

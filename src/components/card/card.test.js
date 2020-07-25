@@ -69,9 +69,7 @@ const offerWithFavourite = {
 };
 
 const store = mockStore({
-  [NameSpace.STATE]: {
-    city: `Amsterdam`,
-  },
+  [NameSpace.STATE]: {},
   [NameSpace.DATA]: {},
   [NameSpace.USER]: {},
 });
@@ -82,7 +80,6 @@ describe(`Snapshot of Card`, () => {
           <Provider store={store}>
             <BrowserRouter>
               <Card
-                city={`Amsterdam`}
                 offer={offerWithPremium}
                 onCardMouseEnter={() => {}}
                 sendFavouriteOption={() => {}}
@@ -100,7 +97,6 @@ describe(`Snapshot of Card`, () => {
           <Provider store={store}>
             <BrowserRouter>
               <Card
-                city={`Amsterdam`}
                 offer={offerWithFavourite}
                 onCardMouseEnter={() => {}}
                 sendFavouriteOption={() => {}}

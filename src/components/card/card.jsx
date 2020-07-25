@@ -3,13 +3,12 @@ import PropTypes from "prop-types";
 import {firstWordInUpper, rating} from "../../utils.js";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {getCity} from "../../reducer/state/selector.js";
 import {Operation} from "../../reducer/data/data.js";
 import {ActionCreator} from "../../reducer/state/state.js";
 
 
 const Card = (props) => {
-  const {city, offer, onCardMouseEnter, sendFavouriteOption} = props;
+  const {offer, onCardMouseEnter, sendFavouriteOption} = props;
   const {
     grade,
     title,
@@ -48,7 +47,7 @@ const Card = (props) => {
       </div>}
 
       <div className={`${partClassName(tempPartClass)}__image-wrapper place-card__image-wrapper`}>
-        <Link to={`/${city}/${offerId}`}>
+        <Link to={`/offer/${offerId}`}>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
         </Link>
       </div>
@@ -78,7 +77,7 @@ const Card = (props) => {
         <h2
           className="place-card__name"
         >
-          <Link to={`/${city}/${offerId}`}>
+          <Link to={`/offer/${offerId}`}>
             {title}
           </Link>
         </h2>
@@ -91,7 +90,6 @@ const Card = (props) => {
 
 Card.propTypes = {
   sendFavouriteOption: PropTypes.func.isRequired,
-  city: PropTypes.string.isRequired,
   offer: PropTypes.shape({
     isPremium: PropTypes.bool.isRequired,
     previewImage: PropTypes.string.isRequired,
@@ -107,10 +105,6 @@ Card.propTypes = {
 };
 
 
-const mapStateToProps = (state) => ({
-  city: getCity(state),
-});
-
 const mapDispatchToProps = (dispatch) => ({
   sendFavouriteOption(options) {
     dispatch(Operation.sendFavouriteOption(options));
@@ -122,4 +116,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {Card};
-export default connect(mapStateToProps, mapDispatchToProps)(Card);
+export default connect(null, mapDispatchToProps)(Card);

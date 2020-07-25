@@ -281,7 +281,7 @@ exports[`Snapshot of App AppComponent should render Main page 1`] = `
                 className="cities__image-wrapper place-card__image-wrapper"
               >
                 <a
-                  href="/Amsterdam/1"
+                  href="/offer/1"
                   onClick={[Function]}
                 >
                   <img
@@ -359,7 +359,7 @@ exports[`Snapshot of App AppComponent should render Main page 1`] = `
                   className="place-card__name"
                 >
                   <a
-                    href="/Amsterdam/1"
+                    href="/offer/1"
                     onClick={[Function]}
                   >
                     Penthouse, 4-5 rooms + 5 balconies
@@ -678,7 +678,7 @@ exports[`Snapshot of App AppComponent should render OfferPage with offerWithoutF
                 className="cities__image-wrapper place-card__image-wrapper"
               >
                 <a
-                  href="/Amsterdam/1"
+                  href="/offer/1"
                   onClick={[Function]}
                 >
                   <img
@@ -756,7 +756,7 @@ exports[`Snapshot of App AppComponent should render OfferPage with offerWithoutF
                   className="place-card__name"
                 >
                   <a
-                    href="/Amsterdam/1"
+                    href="/offer/1"
                     onClick={[Function]}
                   >
                     Penthouse, 4-5 rooms + 5 balconies
@@ -1075,7 +1075,7 @@ exports[`Snapshot of App AppComponent should render SignIn page 1`] = `
                 className="cities__image-wrapper place-card__image-wrapper"
               >
                 <a
-                  href="/Amsterdam/1"
+                  href="/offer/1"
                   onClick={[Function]}
                 >
                   <img
@@ -1153,7 +1153,7 @@ exports[`Snapshot of App AppComponent should render SignIn page 1`] = `
                   className="place-card__name"
                 >
                   <a
-                    href="/Amsterdam/1"
+                    href="/offer/1"
                     onClick={[Function]}
                   >
                     Penthouse, 4-5 rooms + 5 balconies

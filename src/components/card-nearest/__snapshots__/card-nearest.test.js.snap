@@ -16,7 +16,7 @@ exports[`Snapshot of CardNearest Card should render correctly with FavouriteClas
     className="cities__image-wrapper place-card__image-wrapper"
   >
     <a
-      href="/Amsterdam/2"
+      href="/offer/2"
       onClick={[Function]}
     >
       <img
@@ -94,7 +94,7 @@ exports[`Snapshot of CardNearest Card should render correctly with FavouriteClas
       className="place-card__name"
     >
       <a
-        href="/Amsterdam/2"
+        href="/offer/2"
         onClick={[Function]}
       >
         Penthouse, 4-5 rooms + 5 balconies
@@ -125,7 +125,7 @@ exports[`Snapshot of CardNearest Card should render correctly with Primium 1`] =
     className="cities__image-wrapper place-card__image-wrapper"
   >
     <a
-      href="/Amsterdam/0"
+      href="/offer/0"
       onClick={[Function]}
     >
       <img
@@ -203,7 +203,7 @@ exports[`Snapshot of CardNearest Card should render correctly with Primium 1`] =
       className="place-card__name"
     >
       <a
-        href="/Amsterdam/0"
+        href="/offer/0"
         onClick={[Function]}
       >
         Penthouse, 4-5 rooms + 5 balconies

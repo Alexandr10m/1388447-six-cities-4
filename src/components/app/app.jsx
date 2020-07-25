@@ -10,7 +10,6 @@ import {AuthorizationStatus} from "../../reducer/user/user.js";
 import SignIn from "../sign-in/sign-in.jsx";
 import FavouritePage from "../favourite-page/favourite-page.jsx";
 import PrivateRoute from "../private-route/private-route.jsx";
-import {getCity} from "../../reducer/state/selector.js";
 import {AppRoute} from "../../constants.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
@@ -33,7 +32,7 @@ class App extends PureComponent {
   }
 
   showApp() {
-    const {city, favourite, authorizationStatus} = this.props;
+    const {favourite, authorizationStatus} = this.props;
 
     return (
       <BrowserRouter>
@@ -47,7 +46,7 @@ class App extends PureComponent {
           />
           <Redirect exact from={`/`} to={AppRoute.DEFAULT_CITY}/>
           <Route exact path={AppRoute.CITY} component={Main}/>
-          <Route exact path={`/${city}${AppRoute.OFFER}`} component={OfferPage}/>
+          <Route exact path={AppRoute.OFFER} component={OfferPage}/>
         </Switch>
       </BrowserRouter>
     );
@@ -63,7 +62,6 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  city: PropTypes.string.isRequired,
   favourite: PropTypes.array.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   checkAuth: PropTypes.func.isRequired,
@@ -73,7 +71,6 @@ App.propTypes = {
 
 
 const mapStateToProps = (state) => ({
-  city: getCity(state),
   authorizationStatus: getAuthorizationStatus(state),
   favourite: getFavourite(state),
   isLoadOffes: getProgressLoadOffers(state),

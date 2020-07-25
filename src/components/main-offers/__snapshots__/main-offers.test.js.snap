@@ -124,7 +124,7 @@ exports[`Snapshot of MainOffers Should render correctly 1`] = `
             className="cities__image-wrapper place-card__image-wrapper"
           >
             <a
-              href="/Paris/2"
+              href="/offer/2"
               onClick={[Function]}
             >
               <img
@@ -202,7 +202,7 @@ exports[`Snapshot of MainOffers Should render correctly 1`] = `
               className="place-card__name"
             >
               <a
-                href="/Paris/2"
+                href="/offer/2"
                 onClick={[Function]}
               >
                 Penthouse, 4-5 rooms + 5 balconies
@@ -230,7 +230,7 @@ exports[`Snapshot of MainOffers Should render correctly 1`] = `
             className="cities__image-wrapper place-card__image-wrapper"
           >
             <a
-              href="/Paris/0"
+              href="/offer/0"
               onClick={[Function]}
             >
               <img
@@ -308,7 +308,7 @@ exports[`Snapshot of MainOffers Should render correctly 1`] = `
               className="place-card__name"
             >
               <a
-                href="/Paris/0"
+                href="/offer/0"
                 onClick={[Function]}
               >
                 Penthouse, 4-5 rooms + 5 balconies

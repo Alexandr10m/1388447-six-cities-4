@@ -18,7 +18,7 @@ const AppRoute = {
   DEFAULT_CITY: `/Paris`,
   CITY: `/:city`,
   LOGIN: `/login`,
-  OFFER: `/:offerId`,
+  OFFER: `/offer/:offerId`,
   ROOT: `/`,
   FAVOURITE: `/favourite`,
 };
