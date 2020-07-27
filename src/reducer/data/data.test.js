@@ -129,6 +129,7 @@ describe(`Test of reduser data.js`, () => {
       offers: [],
       favourite: [],
       isLoadOffes: true,
+      isLoadFavourite: true,
     });
   });
 
@@ -207,18 +208,26 @@ describe(`Test of reduser data.js`, () => {
     });
   });
 
+  it(`Reducer should update isLoadFavourite`, () => {
+
+    expect(reducer({
+      isLoadFavourite: true,
+    }, {
+      type: ActionType.PROGRESS_LOAD_FAVOURITE,
+      payload: false,
+    })).toEqual({
+      isLoadFavourite: false,
+    });
+  });
+
   it(`Reducer should update isLoadOffes`, () => {
 
     expect(reducer({
-      offers,
-      favourite: [],
       isLoadOffes: true,
     }, {
       type: ActionType.PROGRESS_LOAD_OFFERS,
       payload: false,
     })).toEqual({
-      offers,
-      favourite: [],
       isLoadOffes: false,
     });
   });
@@ -448,10 +457,14 @@ describe(`Operation work correctly`, () => {
       .reply(200, [serverResponse]);
     return favouriteLoader(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenCalledTimes(2);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_FAVOURITE,
           payload: [convertedServerResponse],
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.PROGRESS_LOAD_FAVOURITE,
+          payload: false,
         });
       });
   });
