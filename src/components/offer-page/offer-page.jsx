@@ -15,14 +15,14 @@ import {Operation} from "../../reducer/data/data.js";
 
 const ListNearestCards = withActiveCard(NearestCards);
 
-const propertyInsideItepTmpl = (item, index) => {
+const createFacilitiesItem = (item, index) => {
   return (
     <li key={item + index} className="property__inside-item">
       {item}
     </li>);
 };
 
-const propertyImageTmpl = (src, index) => {
+const createImgMarkup = (src, index) => {
   return (
     <div className="property__image-wrapper" key={src + index}>
       <img className="property__image" src={src} alt="Photo studio"/>
@@ -32,6 +32,7 @@ const propertyImageTmpl = (src, index) => {
 
 const OfferPage = (props) => {
   const {match, offers, sendFavouriteOption} = props;
+
   const offerId = +match.params.offerId;
   const currentCityOffers = offers.find((city) => {
     return city.localOffers.some((offer) => offer.id === offerId);
@@ -74,7 +75,12 @@ const OfferPage = (props) => {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {pictures.map((picture, i) => propertyImageTmpl(picture, i))}
+              {pictures.map((picture, i) => {
+                if (i <= 5) {
+                  return createImgMarkup(picture, i);
+                }
+                return false;
+              })}
             </div>
           </div>
           <div className="property__container container">
@@ -118,7 +124,7 @@ const OfferPage = (props) => {
               <div className="property__inside">
                 <h2 className="property__inside-title">What&apos;s inside</h2>
                 <ul className="property__inside-list">
-                  {facilities.map((item, i) => propertyInsideItepTmpl(item, i))}
+                  {facilities.map((item, i) => createFacilitiesItem(item, i))}
                 </ul>
               </div>
               <Host
