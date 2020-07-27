@@ -49,7 +49,7 @@ const convertCity = (list, item) => {
 
 const convertLocalOffers = (list, item) => {
   list.forEach((it) => {
-    if (it.city === item[`city`][`name`]) {
+    if (it.city === item[`city`][`name`] && item[`id`]) {
       it.localOffers.push(localOffersAdapter(item));
     }
   });
