@@ -1,20 +1,34 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {rating} from "../../utils.js";
+import {Link} from "react-router-dom";
+import {connect} from "react-redux";
+import {Operation} from "../../reducer/data/data.js";
 
 
 const FavouriteLocationItem = (props) => {
+  const {offer} = props;
   const {
     isPremium: isShowingPremium,
     previewImage,
     price,
-    isFavourite: isShowingFavourite,
+    isFavourite,
     grade,
     title,
     type,
-  } = props;
+    id: offerId,
+  } = offer;
 
+  const isShowingFavourite = isFavourite;
   const favouruteClassActive = isShowingFavourite ? `place-card__bookmark-button--active` : ``;
+
+  const handlerButtonFavouriteClick = () => {
+    const {sendFavouriteOption} = props;
+    sendFavouriteOption({
+      id: offerId,
+      status: +(!isFavourite),
+    });
+  };
 
   return (
     <article className="favorites__card place-card">
@@ -24,9 +38,10 @@ const FavouriteLocationItem = (props) => {
       </div>}
 
       <div className="favorites__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <Link
+          to={`/offer/${offerId}`}>
           <img className="place-card__image" src={previewImage} width="150" height="110" alt="Place image"/>
-        </a>
+        </Link>
       </div>
       <div className="favorites__card-info place-card__info">
         <div className="place-card__price-wrapper">
@@ -34,7 +49,8 @@ const FavouriteLocationItem = (props) => {
             <b className="place-card__price-value">{price}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button ${favouruteClassActive} button`} type="button">
+          <button onClick={handlerButtonFavouriteClick}
+            className={`place-card__bookmark-button ${favouruteClassActive} button`} type="button">
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
@@ -48,7 +64,10 @@ const FavouriteLocationItem = (props) => {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{title}</a>
+          <Link
+            to={`/offer/${offerId}`}>
+            {title}
+          </Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
@@ -57,14 +76,27 @@ const FavouriteLocationItem = (props) => {
 };
 
 FavouriteLocationItem.propTypes = {
-  isPremium: PropTypes.bool.isRequired,
-  previewImage: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  isFavourite: PropTypes.bool.isRequired,
-  grade: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  sendFavouriteOption: PropTypes.func.isRequired,
+  offer: PropTypes.shape({
+    isPremium: PropTypes.bool.isRequired,
+    previewImage: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    isFavourite: PropTypes.bool.isRequired,
+    grade: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+  }),
+
 };
 
 
-export default FavouriteLocationItem;
+const mapDispatchToProps = (dispatch) => ({
+  sendFavouriteOption(options) {
+    dispatch(Operation.sendFavouriteOption(options));
+  }
+});
+
+export {FavouriteLocationItem};
+export default connect(null, mapDispatchToProps)(FavouriteLocationItem);
+

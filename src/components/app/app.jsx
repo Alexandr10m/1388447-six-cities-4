@@ -4,7 +4,7 @@ import OfferPage from "../offer-page/offer-page.jsx";
 import {Switch, Route, BrowserRouter, Redirect} from "react-router-dom";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {getFavourite, getProgressLoadOffers} from "../../reducer/data/selectors.js";
+import {getFavourite, getLoadOffersProgress} from "../../reducer/data/selectors.js";
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import SignIn from "../sign-in/sign-in.jsx";
@@ -73,7 +73,7 @@ App.propTypes = {
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
   favourite: getFavourite(state),
-  isLoadOffes: getProgressLoadOffers(state),
+  isLoadOffes: getLoadOffersProgress(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

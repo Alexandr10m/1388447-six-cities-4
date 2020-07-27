@@ -6,6 +6,7 @@ const initialState = {
   offers: [],
   favourite: [],
   isLoadOffes: true,
+  isLoadFavourite: true,
 };
 
 const ActionType = {
@@ -13,6 +14,7 @@ const ActionType = {
   LOAD_FAVOURITE: `LOAD_FAVOURITE`,
   CHANGE_FAVOURITE: `CHANGE_FAVOURITE`,
   PROGRESS_LOAD_OFFERS: `PROGRESS_LOAD_OFFERS`,
+  PROGRESS_LOAD_FAVOURITE: `PROGRESS_LOAD_FAVOURITE`,
 };
 
 const ActionCreator = {
@@ -20,19 +22,20 @@ const ActionCreator = {
     type: ActionType.LOAD_OFFERS,
     payload: data,
   }),
-
   loadFavourite: (favouriteOffers) => ({
     type: ActionType.LOAD_FAVOURITE,
     payload: favouriteOffers,
   }),
-
   changeFavourite: (offer) => ({
     type: ActionType.CHANGE_FAVOURITE,
     payload: offer,
   }),
-
   progressLoadOffers: () => ({
     type: ActionType.PROGRESS_LOAD_OFFERS,
+    payload: false,
+  }),
+  progressLoadFavoutite: () => ({
+    type: ActionType.PROGRESS_LOAD_FAVOURITE,
     payload: false,
   }),
 };
@@ -57,19 +60,28 @@ const convertOffer = (list, offer) => {
   convertLocalOffers(list, offer);
 };
 
-const extendFavouriteOffer = (state, offer) => {
+const extendFavourite = (state, favouriteOffer) => {
+  let copyState = {};
+
+  copyState = extendFavouriteByProperty(state, `offers`, favouriteOffer);
+  copyState = extendFavouriteByProperty(copyState, `favourite`, favouriteOffer);
+
+  return copyState;
+};
+
+const extendFavouriteByProperty = (state, property, favourite) => {
   let changedOfferIndex;
 
-  const changedCityIndex = state.offers.findIndex((city) => {
-    changedOfferIndex = city.localOffers.findIndex((localOffer) => localOffer.id === offer.id);
+  const changedCityIndex = state[property].findIndex((city) => {
+    changedOfferIndex = city.localOffers.findIndex((localOffer) => localOffer.id === favourite.id);
     return changedOfferIndex !== -1;
   });
 
-  const copyOffers = state.offers.map((city, i) => {
+  const copyOffers = state[property].map((city, i) => {
 
     if (i === changedCityIndex) {
       city.localOffers[changedOfferIndex] = extend(city.localOffers[changedOfferIndex], {
-        isFavourite: offer.isFavourite
+        isFavourite: favourite.isFavourite
       });
       return city;
     }
@@ -78,7 +90,7 @@ const extendFavouriteOffer = (state, offer) => {
   });
 
   return extend(state, {
-    offers: copyOffers
+    [property]: copyOffers
   });
 };
 
@@ -99,6 +111,7 @@ const Operation = {
       let favouriteOffers = [];
       response.data.forEach((it) => convertOffer(favouriteOffers, it));
       dispatch(ActionCreator.loadFavourite(favouriteOffers));
+      dispatch(ActionCreator.progressLoadFavoutite());
     });
   },
 
@@ -122,11 +135,15 @@ const reducer = (state = initialState, action) => {
         favourite: action.payload,
       });
     case ActionType.CHANGE_FAVOURITE:
-      return extendFavouriteOffer(state, action.payload);
+      return extendFavourite(state, action.payload);
 
     case ActionType.PROGRESS_LOAD_OFFERS:
       return extend(state, {
         isLoadOffes: action.payload,
+      });
+    case ActionType.PROGRESS_LOAD_FAVOURITE:
+      return extend(state, {
+        isLoadFavourite: action.payload,
       });
   }
   return state;
