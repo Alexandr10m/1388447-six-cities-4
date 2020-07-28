@@ -1,30 +1,38 @@
 import {extend} from "../../utils.js";
-import {cityAdapter, localOffersAdapter} from "../../adapter.js";
+import {cityAdapter, localOffersAdapter, reviewAdapter} from "../../adapter.js";
 
 
 const initialState = {
   offers: [],
   favourite: [],
+  reviews: [],
   isLoadOffes: true,
   isLoadFavourite: true,
+  isLoadingReviews: true,
 };
 
 const ActionType = {
   LOAD_OFFERS: `LOAD_OFFERS`,
   LOAD_FAVOURITE: `LOAD_FAVOURITE`,
+  LOAD_REVIEWS: `LOAD_REVIEWS`,
   CHANGE_FAVOURITE: `CHANGE_FAVOURITE`,
   PROGRESS_LOAD_OFFERS: `PROGRESS_LOAD_OFFERS`,
   PROGRESS_LOAD_FAVOURITE: `PROGRESS_LOAD_FAVOURITE`,
+  LOADING_REVIEWS_IN_PROGRESS: `LOADING_REVIEWS_IN_PROGRESS`,
 };
 
 const ActionCreator = {
-  loadOffers: (data) => ({
+  loadOffers: (offers) => ({
     type: ActionType.LOAD_OFFERS,
-    payload: data,
+    payload: offers,
   }),
   loadFavourite: (favouriteOffers) => ({
     type: ActionType.LOAD_FAVOURITE,
     payload: favouriteOffers,
+  }),
+  loadReviews: (reviews) => ({
+    type: ActionType.LOAD_REVIEWS,
+    payload: reviews,
   }),
   changeFavourite: (offer) => ({
     type: ActionType.CHANGE_FAVOURITE,
@@ -36,6 +44,10 @@ const ActionCreator = {
   }),
   progressLoadFavoutite: () => ({
     type: ActionType.PROGRESS_LOAD_FAVOURITE,
+    payload: false,
+  }),
+  loadingReviewsInProgress: () => ({
+    type: ActionType.LOADING_REVIEWS_IN_PROGRESS,
     payload: false,
   }),
 };
@@ -115,6 +127,15 @@ const Operation = {
     });
   },
 
+  loadReviews: (offerId) => (dispatch, getState, api) => {
+    return api.get(`comments/${offerId}`)
+      .then((response) => {
+        const reviews = response.data.map((review) => reviewAdapter(review));
+        dispatch(ActionCreator.loadReviews(reviews));
+        dispatch(ActionCreator.loadingReviewsInProgress());
+      });
+  },
+
   sendFavouriteOption: (options) => (dispatch, getState, api) => {
     return api.post(`/favorite/${options.id}/${options.status}`)
       .then((response) => {
@@ -134,6 +155,11 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         favourite: action.payload,
       });
+    case ActionType.LOAD_REVIEWS:
+      const copyState = extend(state, {
+        reviews: action.payload,
+      });
+      return copyState;
     case ActionType.CHANGE_FAVOURITE:
       return extendFavourite(state, action.payload);
 
@@ -144,6 +170,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.PROGRESS_LOAD_FAVOURITE:
       return extend(state, {
         isLoadFavourite: action.payload,
+      });
+    case ActionType.LOADING_REVIEWS_IN_PROGRESS:
+      return extend(state, {
+        isLoadingReviews: action.payload,
       });
   }
   return state;
