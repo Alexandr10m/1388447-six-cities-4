@@ -11,6 +11,10 @@ import {connect} from "react-redux";
 import {getCity} from "../../reducer/state/selector.js";
 import {getOffers} from "../../reducer/data/selectors.js";
 import {Operation} from "../../reducer/data/data.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
+import history from "../../history.js";
+import {AppRoute} from "../../constants.js";
+import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 
 
 const ListNearestCards = withActiveCard(NearestCards);
@@ -31,7 +35,7 @@ const createImgMarkup = (src, index) => {
 };
 
 const OfferPage = (props) => {
-  const {match, offers, sendFavouriteOption} = props;
+  const {match, offers, sendFavouriteOption, authorizationStatus} = props;
 
   const offerId = +match.params.offerId;
   const currentCityOffers = offers.find((city) => {
@@ -62,6 +66,11 @@ const OfferPage = (props) => {
   const favouriteClass = isFavourite ? `property__bookmark-button--active` : ``;
 
   const handlerButtonFavouriteClick = () => {
+
+    if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
+      history.push(AppRoute.LOGIN);
+      return;
+    }
     sendFavouriteOption({
       id,
       status: +(!isFavourite),
@@ -164,12 +173,14 @@ OfferPage.propTypes = {
   match: PropTypes.object.isRequired,
   offers: PropTypes.array.isRequired,
   sendFavouriteOption: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
 };
 
 
 const mapStateToProps = (state) => ({
   city: getCity(state),
   offers: getOffers(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

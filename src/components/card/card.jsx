@@ -5,10 +5,14 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {Operation} from "../../reducer/data/data.js";
 import {ActionCreator} from "../../reducer/state/state.js";
+import history from "../../history.js";
+import {AppRoute} from "../../constants.js";
+import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 
 const Card = (props) => {
-  const {offer, onCardMouseEnter, sendFavouriteOption} = props;
+  const {offer, onCardMouseEnter, sendFavouriteOption, authorizationStatus} = props;
   const {
     grade,
     title,
@@ -18,9 +22,10 @@ const Card = (props) => {
     type,
     className,
     previewImage,
-    id: offerId
+    id,
   } = offer;
 
+  const offerId = id;
   const tempPartClass = className || `cities__place-card`;
   const partClassName = (str) => str.split(`__`)[0];
   const favouriteClasse = isFavourite && `place-card__bookmark-button--active`;
@@ -30,9 +35,13 @@ const Card = (props) => {
   };
 
   const handlerButtonFavouriteClick = () => {
+    if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
+      history.push(AppRoute.LOGIN);
+      return;
+    }
     sendFavouriteOption({
-      id: offer.id,
-      status: +(!offer.isFavourite),
+      id,
+      status: +(!isFavourite),
     });
   };
 
@@ -102,8 +111,12 @@ Card.propTypes = {
     id: PropTypes.number.isRequired
   }),
   onCardMouseEnter: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
 };
 
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   sendFavouriteOption(options) {
@@ -116,4 +129,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {Card};
-export default connect(null, mapDispatchToProps)(Card);
+export default connect(mapStateToProps, mapDispatchToProps)(Card);

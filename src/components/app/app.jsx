@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import Main from "../main/main.jsx";
 import OfferPage from "../offer-page/offer-page.jsx";
-import {Switch, Route, BrowserRouter, Redirect} from "react-router-dom";
+import {Switch, Route, Router, Redirect} from "react-router-dom";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getFavourite, getLoadOffersProgress} from "../../reducer/data/selectors.js";
@@ -13,6 +13,7 @@ import PrivateRoute from "../private-route/private-route.jsx";
 import {AppRoute} from "../../constants.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
+import history from "../../history.js";
 
 
 class App extends PureComponent {
@@ -35,7 +36,7 @@ class App extends PureComponent {
     const {favourite, authorizationStatus} = this.props;
 
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <Switch>
           {authorizationStatus === AuthorizationStatus.AUTH && (
             <Redirect exact from={AppRoute.LOGIN} to={`/`}/>
@@ -48,7 +49,7 @@ class App extends PureComponent {
           <Route exact path={AppRoute.CITY} component={Main}/>
           <Route exact path={AppRoute.OFFER} component={OfferPage}/>
         </Switch>
-      </BrowserRouter>
+      </Router>
     );
   }
 
