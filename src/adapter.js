@@ -47,4 +47,12 @@ const authInfoAdapter = (authData) => ({
   name: authData[`name`],
 });
 
-export {cityAdapter, localOffersAdapter, authInfoAdapter};
+const reviewAdapter = (review) => ({
+  text: review[`comment`],
+  date: new Date(review[`date`]),
+  id: review[`id`],
+  grade: review[`rating`],
+  user: authInfoAdapter(review[`user`]),
+});
+
+export {cityAdapter, localOffersAdapter, authInfoAdapter, reviewAdapter};
