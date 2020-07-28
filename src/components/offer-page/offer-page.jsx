@@ -35,8 +35,8 @@ const createImgMarkup = (src, index) => {
 };
 
 const OfferPage = (props) => {
-  const {match, offers, sendFavouriteOption, authorizationStatus} = props;
 
+  const {match, offers, sendFavouriteOption, authorizationStatus} = props;
   const offerId = +match.params.offerId;
   const currentCityOffers = offers.find((city) => {
     return city.localOffers.some((offer) => offer.id === offerId);
@@ -56,7 +56,6 @@ const OfferPage = (props) => {
     bedroom,
     maxAdults,
     facilities,
-    reviews,
     host,
     description,
     id,
@@ -141,7 +140,6 @@ const OfferPage = (props) => {
                 host={host}
               />
               <ReviewList
-                reviews={reviews}
                 offerId={id}
               />
             </div>
