@@ -8,6 +8,7 @@ import {Operation} from "../../reducer/data/data.js";
 import {getFavourite, getLoadFavouriteProgress} from "../../reducer/data/selectors.js";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../constants.js";
+import Preload from "../preload/preload.jsx";
 
 
 class FavouritePage extends PureComponent {
@@ -21,7 +22,7 @@ class FavouritePage extends PureComponent {
   }
 
   _showPreload() {
-    return <div>in progress...</div>;
+    return <Preload/>;
   }
 
   _showFavourite() {

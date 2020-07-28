@@ -14,6 +14,7 @@ import {AppRoute} from "../../constants.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
 import history from "../../history.js";
+import Preload from "../preload/preload.jsx";
 
 
 class App extends PureComponent {
@@ -29,7 +30,7 @@ class App extends PureComponent {
   }
 
   showPreload() {
-    return (<div>... in progress</div>);
+    return <Preload/>;
   }
 
   showApp() {
