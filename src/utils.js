@@ -22,5 +22,37 @@ const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
 
+const getCorrectDate = (number) => {
+  const correctDate = number < 10 ? `0${number}` : number;
 
-export {firstWordInUpper, rating, extend, getOptionValue};
+  return correctDate;
+};
+
+const getDate = (date) => {
+  const month = getCorrectDate(date.getMonth() + 1);
+  const day = getCorrectDate(date.getDate());
+
+  return `${date.getFullYear()}-${month}-${day}`;
+};
+
+const MONTHS = [
+  `January`,
+  `February`,
+  `March`,
+  `April`,
+  `May`,
+  `June`,
+  `July`,
+  `August`,
+  `September`,
+  `October`,
+  `November`,
+  `December`
+];
+
+const getMonthAndYear = (date) => {
+  return `${MONTHS[date.getMonth()]} ${date.getFullYear()}`;
+};
+
+
+export {firstWordInUpper, rating, extend, getOptionValue, getDate, getMonthAndYear};
