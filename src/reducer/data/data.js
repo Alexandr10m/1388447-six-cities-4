@@ -109,12 +109,35 @@ const extendFavouriteByProperty = (state, property, favourite) => {
   });
 };
 
+const extendFavouriteInNearbyOffers = (state, property, favourite) => {
+
+  const changedOfferIndex = state[property].findIndex((offer) => offer.id === favourite.id);
+
+  if (changedOfferIndex === -1) {
+    return state;
+  }
+
+  const changedOffer = extend(state[property][changedOfferIndex], {
+    isFavourite: favourite.isFavourite,
+  });
+
+  const copyNearbyOffers = [
+    ...state[property].slice(0, changedOfferIndex),
+    changedOffer,
+    ...state[property].slice(changedOfferIndex + 1),
+  ];
+
+  return extend(state, {
+    [property]: copyNearbyOffers
+  });
+};
+
 const extendFavourite = (state, favouriteOffer) => {
   let copyState = {};
 
   copyState = extendFavouriteByProperty(state, `offers`, favouriteOffer);
   copyState = extendFavouriteByProperty(copyState, `favourite`, favouriteOffer);
-  // copyState = extendFavouriteByProperty(copyState, `nearbyOffers`, favouriteOffer);
+  copyState = extendFavouriteInNearbyOffers(copyState, `nearbyOffers`, favouriteOffer);
 
   return copyState;
 };
