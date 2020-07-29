@@ -6,19 +6,23 @@ const initialState = {
   offers: [],
   favourite: [],
   reviews: [],
+  nearbyOffers: [],
   isLoadOffes: true,
   isLoadFavourite: true,
   isLoadingReviews: true,
+  isLoadingNearbyOffers: true,
 };
 
 const ActionType = {
   LOAD_OFFERS: `LOAD_OFFERS`,
   LOAD_FAVOURITE: `LOAD_FAVOURITE`,
   LOAD_REVIEWS: `LOAD_REVIEWS`,
+  LOAD_NESRBY_OFFERS: `LOAD_NESRBY_OFFERS`,
   CHANGE_FAVOURITE: `CHANGE_FAVOURITE`,
   PROGRESS_LOAD_OFFERS: `PROGRESS_LOAD_OFFERS`,
   PROGRESS_LOAD_FAVOURITE: `PROGRESS_LOAD_FAVOURITE`,
   LOADING_REVIEWS_IN_PROGRESS: `LOADING_REVIEWS_IN_PROGRESS`,
+  LOADING_NEARBY_OFFERS_IN_PROGRESS: `LOADING_NEARBY_OFFERS_IN_PROGRESS`,
 };
 
 const ActionCreator = {
@@ -34,6 +38,10 @@ const ActionCreator = {
     type: ActionType.LOAD_REVIEWS,
     payload: reviews,
   }),
+  loadNearbyOffers: (nearbyOffers) => ({
+    type: ActionType.LOAD_NESRBY_OFFERS,
+    payload: nearbyOffers,
+  }),
   changeFavourite: (offer) => ({
     type: ActionType.CHANGE_FAVOURITE,
     payload: offer,
@@ -48,6 +56,10 @@ const ActionCreator = {
   }),
   loadingReviewsInProgress: () => ({
     type: ActionType.LOADING_REVIEWS_IN_PROGRESS,
+    payload: false,
+  }),
+  loadingNearbyOffersInProgress: () => ({
+    type: ActionType.LOADING_NEARBY_OFFERS_IN_PROGRESS,
     payload: false,
   }),
 };
@@ -70,15 +82,6 @@ const convertLocalOffers = (list, item) => {
 const convertOffer = (list, offer) => {
   convertCity(list, offer);
   convertLocalOffers(list, offer);
-};
-
-const extendFavourite = (state, favouriteOffer) => {
-  let copyState = {};
-
-  copyState = extendFavouriteByProperty(state, `offers`, favouriteOffer);
-  copyState = extendFavouriteByProperty(copyState, `favourite`, favouriteOffer);
-
-  return copyState;
 };
 
 const extendFavouriteByProperty = (state, property, favourite) => {
@@ -104,6 +107,15 @@ const extendFavouriteByProperty = (state, property, favourite) => {
   return extend(state, {
     [property]: copyOffers
   });
+};
+
+const extendFavourite = (state, favouriteOffer) => {
+  let copyState = {};
+
+  copyState = extendFavouriteByProperty(state, `offers`, favouriteOffer);
+  copyState = extendFavouriteByProperty(copyState, `favourite`, favouriteOffer);
+
+  return copyState;
 };
 
 const Operation = {
@@ -136,6 +148,16 @@ const Operation = {
       });
   },
 
+  loadNearbyOffers: (offerId) => (dispatch, getState, api) => {
+    return api.get(`hotels/${offerId}/nearby`)
+      .then((response) => {
+        const nearbyOffers = response.data.map((offer) => localOffersAdapter(offer));
+
+        dispatch(ActionCreator.loadNearbyOffers(nearbyOffers));
+        dispatch(ActionCreator.loadingNearbyOffersInProgress());
+      });
+  },
+
   sendFavouriteOption: (options) => (dispatch, getState, api) => {
     return api.post(`/favorite/${options.id}/${options.status}`)
       .then((response) => {
@@ -156,10 +178,13 @@ const reducer = (state = initialState, action) => {
         favourite: action.payload,
       });
     case ActionType.LOAD_REVIEWS:
-      const copyState = extend(state, {
+      return extend(state, {
         reviews: action.payload,
       });
-      return copyState;
+    case ActionType.LOAD_NESRBY_OFFERS:
+      return extend(state, {
+        nearbyOffers: action.payload,
+      });
     case ActionType.CHANGE_FAVOURITE:
       return extendFavourite(state, action.payload);
 
@@ -174,6 +199,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOADING_REVIEWS_IN_PROGRESS:
       return extend(state, {
         isLoadingReviews: action.payload,
+      });
+    case ActionType.LOADING_NEARBY_OFFERS_IN_PROGRESS:
+      return extend(state, {
+        isLoadingNearbyOffers: action.payload,
       });
   }
   return state;
