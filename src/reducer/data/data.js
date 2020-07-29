@@ -114,6 +114,7 @@ const extendFavourite = (state, favouriteOffer) => {
 
   copyState = extendFavouriteByProperty(state, `offers`, favouriteOffer);
   copyState = extendFavouriteByProperty(copyState, `favourite`, favouriteOffer);
+  // copyState = extendFavouriteByProperty(copyState, `nearbyOffers`, favouriteOffer);
 
   return copyState;
 };
