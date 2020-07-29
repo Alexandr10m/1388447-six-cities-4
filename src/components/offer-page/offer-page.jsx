@@ -3,8 +3,7 @@ import PropTypes from "prop-types";
 import {firstWordInUpper, rating} from "../../utils.js";
 import ReviewList from "../review-list/review-list.jsx";
 import Map from "../map/map.jsx";
-import NearestCards from "../list-nearest-cards/list-nearest-cards.jsx";
-import withActiveCard from "../../hoc/with-active-card/with-active-card.js";
+import ListNearestCards from "../list-nearest-cards/list-nearest-cards.jsx";
 import Host from "../host/host.jsx";
 import Login from "../login/login.jsx";
 import {connect} from "react-redux";
@@ -18,8 +17,6 @@ import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 import Preload from "../preload/preload.jsx";
 import {getReviews, getLoadingReviewsInProgress} from "../../reducer/data/selectors.js";
 
-
-const ListNearestCards = withActiveCard(NearestCards);
 
 class OfferPage extends PureComponent {
   constructor(props) {
@@ -84,6 +81,8 @@ class OfferPage extends PureComponent {
       description,
     } = currentOffer;
     this._isFavourite = isFavourite;
+
+    const offersForMap = [...nearbyOffers, currentOffer];
 
     const favouriteClass = isFavourite ? `property__bookmark-button--active` : ``;
 
@@ -175,10 +174,11 @@ class OfferPage extends PureComponent {
             </div>
             <section className="property__map map">
               <Map
-                localOffers={nearbyOffers}
+                localOffers={offersForMap}
                 city={cityCoords}
                 cityZoom={cityZoom}
                 locationZoom={locationZoom}
+                activeCard={currentOffer}
               />
             </section>
           </section>

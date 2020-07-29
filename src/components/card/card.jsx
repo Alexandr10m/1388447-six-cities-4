@@ -4,7 +4,6 @@ import {firstWordInUpper, rating} from "../../utils.js";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {Operation} from "../../reducer/data/data.js";
-import {ActionCreator} from "../../reducer/state/state.js";
 import history from "../../history.js";
 import {AppRoute} from "../../constants.js";
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
@@ -12,7 +11,7 @@ import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 
 const Card = (props) => {
-  const {offer, onCardMouseEnter, sendFavouriteOption, authorizationStatus} = props;
+  const {offer, onActiveCard, sendFavouriteOption, authorizationStatus} = props;
   const {
     grade,
     title,
@@ -31,7 +30,9 @@ const Card = (props) => {
   const favouriteClasse = isFavourite && `place-card__bookmark-button--active`;
 
   const handlerCardMouseEnter = () => {
-    onCardMouseEnter(offer);
+    if (onActiveCard) {
+      onActiveCard(offer);
+    }
   };
 
   const handlerButtonFavouriteClick = () => {
@@ -110,7 +111,7 @@ Card.propTypes = {
     className: PropTypes.string,
     id: PropTypes.number.isRequired
   }),
-  onCardMouseEnter: PropTypes.func.isRequired,
+  onActiveCard: PropTypes.func,
   authorizationStatus: PropTypes.string.isRequired,
 };
 
@@ -122,10 +123,6 @@ const mapDispatchToProps = (dispatch) => ({
   sendFavouriteOption(options) {
     dispatch(Operation.sendFavouriteOption(options));
   },
-
-  onCardMouseEnter(offer) {
-    dispatch(ActionCreator.showPoiner(offer));
-  }
 });
 
 export {Card};

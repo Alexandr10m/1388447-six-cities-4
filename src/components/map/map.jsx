@@ -1,8 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import LeafLet from "leaflet";
-import {connect} from "react-redux";
-import {getIndicatedCard} from "../../reducer/state/selector.js";
 
 
 class Map extends PureComponent {
@@ -51,13 +49,13 @@ class Map extends PureComponent {
   }
 
   _addMarkers() {
-    const {localOffers, indicatedCard} = this.props;
+    const {localOffers, activeCard} = this.props;
 
     this.layerGroup = LeafLet.layerGroup().addTo(this._map);
 
     localOffers.map((offer) => {
-      if (indicatedCard) {
-        if (offer.id === indicatedCard.id) {
+      if (activeCard) {
+        if (offer.id === activeCard.id) {
           LeafLet.marker(offer.coords, {icon: this._activeIcon})
             .addTo(this.layerGroup);
         } else {
@@ -93,7 +91,7 @@ class Map extends PureComponent {
       return;
     }
 
-    if (prevProps.indicatedCard !== this.props.indicatedCard) {
+    if (prevProps.activeCard !== this.props.activeCard) {
       this._updateMarkers();
       return;
     }
@@ -114,14 +112,7 @@ Map.propTypes = {
   city: PropTypes.array.isRequired,
   cityZoom: PropTypes.number.isRequired,
   locationZoom: PropTypes.number.isRequired,
-  indicatedCard: PropTypes.object.isRequired,
+  activeCard: PropTypes.object,
 };
 
-
-const mapStateToProps = (state) => ({
-  indicatedCard: getIndicatedCard(state),
-});
-
-
-export {Map};
-export default connect(mapStateToProps, null)(Map);
+export default Map;

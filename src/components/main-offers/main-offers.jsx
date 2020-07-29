@@ -5,7 +5,7 @@ import Sort from "../sort/sort.jsx";
 import ListCards from "../list-cards/list-cards.jsx";
 
 const MainOffers = (props) => {
-  const {city, offers} = props;
+  const {city, offers, onActiveCard, activeCard} = props;
   const {localOffers, cityCoords, cityZoom} = offers;
   const {locationZoom} = localOffers.find((it) => it.locationZoom);
 
@@ -17,7 +17,9 @@ const MainOffers = (props) => {
           <h2 className="visually-hidden">Places</h2>
           <b className="places__found">{offers.localOffers.length} places to stay in {city}</b>
           <Sort/>
-          <ListCards/>
+          <ListCards
+            onActiveCard={onActiveCard}
+          />
 
         </section>
         <div className="cities__right-section">
@@ -28,6 +30,7 @@ const MainOffers = (props) => {
               city={cityCoords}
               cityZoom={cityZoom}
               locationZoom={locationZoom}
+              activeCard={activeCard}
             />
 
           </section>
@@ -40,6 +43,8 @@ const MainOffers = (props) => {
 MainOffers.propTypes = {
   city: PropTypes.string.isRequired,
   offers: PropTypes.object.isRequired,
+  activeCard: PropTypes.object,
+  onActiveCard: PropTypes.func.isRequired,
 };
 
 export default MainOffers;
