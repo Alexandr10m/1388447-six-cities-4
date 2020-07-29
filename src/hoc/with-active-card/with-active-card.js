@@ -20,6 +20,7 @@ const withActiveCard = (Component) => {
         <Component
           {...this.props}
           onActiveCard={this._hanlerCardMouseEnter}
+          activeCard={this.state.activeCard}
         />
       );
     }

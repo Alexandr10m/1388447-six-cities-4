@@ -2,14 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import ListCities from "../list-cities/list-cities.jsx";
 import MainEmpty from "../main-empty/main-empty.jsx";
-import MainOffers from "../main-offers/main-offers.jsx";
+import MainOffersScreen from "../main-offers/main-offers.jsx";
 import Login from "../login/login.jsx";
 import {connect} from "react-redux";
 import {getOffers} from "../../reducer/data/selectors.js";
 import {Route, Switch, useRouteMatch} from "react-router-dom";
 import {OfferPage} from "../offer-page/offer-page.jsx";
 import {ActionCreator} from "../../reducer/state/state.js";
+import withActiveCard from "../../hoc/with-active-card/with-active-card.js";
 
+const MainOffers = withActiveCard(MainOffersScreen);
 
 const Main = (props) => {
   const {match, offers, onCityClick} = props;
