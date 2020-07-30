@@ -54,13 +54,13 @@ const ActionCreator = {
     type: ActionType.PROGRESS_LOAD_FAVOURITE,
     payload: false,
   }),
-  loadingReviewsInProgress: () => ({
+  loadingReviewsInProgress: (bool) => ({
     type: ActionType.LOADING_REVIEWS_IN_PROGRESS,
-    payload: false,
+    payload: bool,
   }),
-  loadingNearbyOffersInProgress: () => ({
+  loadingNearbyOffersInProgress: (bool) => ({
     type: ActionType.LOADING_NEARBY_OFFERS_IN_PROGRESS,
-    payload: false,
+    payload: bool,
   }),
 };
 
@@ -168,7 +168,7 @@ const Operation = {
       .then((response) => {
         const reviews = response.data.map((review) => reviewAdapter(review));
         dispatch(ActionCreator.loadReviews(reviews));
-        dispatch(ActionCreator.loadingReviewsInProgress());
+        dispatch(ActionCreator.loadingReviewsInProgress(false));
       });
   },
 
@@ -178,7 +178,7 @@ const Operation = {
         const nearbyOffers = response.data.map((offer) => localOffersAdapter(offer));
 
         dispatch(ActionCreator.loadNearbyOffers(nearbyOffers));
-        dispatch(ActionCreator.loadingNearbyOffersInProgress());
+        dispatch(ActionCreator.loadingNearbyOffersInProgress(false));
       });
   },
 

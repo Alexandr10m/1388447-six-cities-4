@@ -9,7 +9,7 @@ import Login from "../login/login.jsx";
 import {connect} from "react-redux";
 import {getCity} from "../../reducer/state/selector.js";
 import {getOffers, getNearbyOffers, getLoadingNearbyOffersInProgress} from "../../reducer/data/selectors.js";
-import {Operation} from "../../reducer/data/data.js";
+import {Operation, ActionCreator} from "../../reducer/data/data.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import history from "../../history.js";
 import {AppRoute} from "../../constants.js";
@@ -34,6 +34,23 @@ class OfferPage extends PureComponent {
 
     loadReviews(offerId);
     loadNearbyOffers(offerId);
+  }
+
+  componentDidUpdate(prevProps) {
+    const prevOfferId = +prevProps.match.params.offerId;
+    const currentOfferId = +this.props.match.params.offerId;
+
+    if (prevOfferId !== currentOfferId) {
+      const {changeLoadingRequestsProgress} = this.props;
+      changeLoadingRequestsProgress();
+      this.componentDidMount();
+      return;
+    }
+  }
+
+  componentWillUnmount() {
+    const {changeLoadingRequestsProgress} = this.props;
+    changeLoadingRequestsProgress();
   }
 
   _handlerButtonFavouriteClick() {
@@ -215,6 +232,7 @@ OfferPage.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   sendFavouriteOption: PropTypes.func.isRequired,
   loadReviews: PropTypes.func.isRequired,
+  changeLoadingRequestsProgress: PropTypes.func.isRequired,
   loadNearbyOffers: PropTypes.func.isRequired,
   isLoadingNearbyOffers: PropTypes.bool.isRequired,
   isLoadingReviews: PropTypes.bool.isRequired,
@@ -240,7 +258,11 @@ const mapDispatchToProps = (dispatch) => ({
   },
   loadNearbyOffers(offerId) {
     dispatch(Operation.loadNearbyOffers(offerId));
-  }
+  },
+  changeLoadingRequestsProgress() {
+    dispatch(ActionCreator.loadingReviewsInProgress(true));
+    dispatch(ActionCreator.loadingNearbyOffersInProgress(true));
+  },
 });
 
 export {OfferPage};

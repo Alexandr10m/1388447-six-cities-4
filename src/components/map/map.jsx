@@ -50,6 +50,9 @@ class Map extends PureComponent {
 
   _addMarkers() {
     const {localOffers, activeCard} = this.props;
+    console.log(`localOffers:`, localOffers);
+    console.log(`activeCard`, activeCard);
+
 
     this.layerGroup = LeafLet.layerGroup().addTo(this._map);
 
@@ -58,6 +61,7 @@ class Map extends PureComponent {
         if (offer.id === activeCard.id) {
           LeafLet.marker(offer.coords, {icon: this._activeIcon})
             .addTo(this.layerGroup);
+          console.log(activeCard, `active`);
         } else {
           LeafLet.marker(offer.coords, {icon: this._icon})
             .addTo(this.layerGroup);
