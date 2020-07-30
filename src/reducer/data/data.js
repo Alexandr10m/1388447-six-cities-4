@@ -172,6 +172,20 @@ const Operation = {
       });
   },
 
+  sendReview: (commentData, hotelId) => (dispatch, getState, api) => {
+    return api.post(`/comments/${hotelId}`, {
+      comment: commentData.comment,
+      rating: commentData.rating,
+    })
+      .then((response) =>{
+        const reviews = response.data.map((review) => reviewAdapter(review));
+        dispatch(ActionCreator.loadReviews(reviews));
+      })
+      .catch((err) => {
+        throw err;
+      });
+  },
+
   loadNearbyOffers: (offerId) => (dispatch, getState, api) => {
     return api.get(`hotels/${offerId}/nearby`)
       .then((response) => {

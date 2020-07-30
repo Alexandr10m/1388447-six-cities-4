@@ -2,9 +2,10 @@ import React from "react";
 import Review from "../review/review.jsx";
 import PropTypes from "prop-types";
 import ReviewForm from "../review-form/review-form.jsx";
-import {AuthorizationStatus, Operation as UserOperation} from "../../reducer/user/user.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {connect} from "react-redux";
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
+import {Operation} from "../../reducer/data/data.js";
 
 
 const MAX_COUNT_REVIEWS = 10;
@@ -51,7 +52,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onSendComment(dataComment, offerId) {
-    dispatch(UserOperation.sendComment(dataComment, offerId));
+    dispatch(Operation.sendReview(dataComment, offerId));
   },
 });
 
