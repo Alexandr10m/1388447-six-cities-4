@@ -127,7 +127,8 @@ exports[`Snapshot of SignIn Should render correctly 1`] = `
         >
           <a
             className="locations__item-link"
-            href="#"
+            href="/Ocean"
+            onClick={[Function]}
           >
             <span>
               Ocean

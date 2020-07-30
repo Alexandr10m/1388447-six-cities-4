@@ -301,14 +301,14 @@ describe(`Test of ActionCreator reducer data.js`, () => {
 
   it(`Should return correct action`, () => {
     expect(ActionCreator.progressLoadFavoutite()).toEqual({
-      type: ActionType.LOADING_NEARBY_OFFERS_IN_PROGRESS,
+      type: ActionType.PROGRESS_LOAD_FAVOURITE,
       payload: false,
     });
   });
 
   it(`Should return correct action`, () => {
     expect(ActionCreator.loadingNearbyOffersInProgress(true)).toEqual({
-      type: ActionType.PROGRESS_LOAD_FAVOURITE,
+      type: ActionType.LOADING_NEARBY_OFFERS_IN_PROGRESS,
       payload: true,
     });
   });

@@ -3,10 +3,17 @@ import renderer from "react-test-renderer";
 import Review from "./review.jsx";
 
 const review = {
-  image: `img/avatar-max.jpg`,
-  text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
-  name: `Max`,
-  time: `April 2019`,
+  date: new Date(1),
+  grade: 4,
+  id: 1,
+  text: `We loved it`,
+  user: {
+    avatarUrl: `https`,
+    email: undefined,
+    id: 18,
+    isPro: true,
+    name: `Sophie`,
+  },
 };
 
 
@@ -15,7 +22,7 @@ describe(`Snapshot of Review`, () => {
     const tree = renderer
       .create(
           <Review
-            review={review}
+            {...review}
           />)
       .toJSON();
 

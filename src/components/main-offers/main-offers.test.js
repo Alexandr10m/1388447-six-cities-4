@@ -5,6 +5,7 @@ import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import NameSpace from "../../reducer/name-space.js";
 import {BrowserRouter} from "react-router-dom";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 
 const offerWithPremium = {
@@ -27,12 +28,6 @@ const offerWithPremium = {
   pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`],
   previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
   price: 397,
-  reviews: [{
-    image: `img/avatar-max.jpg`,
-    text: `A quiet cozy and picturesque.`,
-    name: `Max`,
-    time: `April 2019`
-  }],
   title: `Penthouse, 4-5 rooms + 5 balconies`,
   type: `hotel`,
 };
@@ -56,12 +51,6 @@ const offerWithFavourite = {
   pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`],
   previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
   price: 397,
-  reviews: [{
-    image: `img/avatar-max.jpg`,
-    text: `A quiet cozy and picturesque.`,
-    name: `Max`,
-    time: `April 2019`
-  }],
   title: `Penthouse, 4-5 rooms + 5 balconies`,
   type: `hotel`,
 };
@@ -88,20 +77,23 @@ describe(`Snapshot of MainOffers`, () => {
       [NameSpace.STATE]: {
         sortType: `Price: low to high`,
         city: `Paris`,
-        indicatedCard: {},
       },
       [NameSpace.DATA]: {
         offers: allOffers,
       },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.AUTH,
+      }
     });
     const tree = renderer
       .create(
           <Provider store={store}>
             <BrowserRouter>
               <MainOffers
-                city={`Amsterdam`}
+                city={`Paris`}
                 offers={allOffers[0]}
-                onCityClick={()=>{}}
+                onActiveCard={()=>{}}
+                activeCard={offerWithFavourite}
               />
             </BrowserRouter>
           </Provider>

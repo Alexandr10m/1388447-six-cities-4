@@ -27,7 +27,7 @@ const ReviewList = (props) => {
             return false;
           }
           return <Review
-            key={(review.id).toString()}
+            key={review.id}
             {...review}
           />;
         })}
