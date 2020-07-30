@@ -35,22 +35,6 @@ describe(`Test of reducer state.js with action`, () => {
 
     expect(reducer(state, action)).toEqual(newState);
   });
-  it(`reducer should change indicatedCard`, () => {
-    const state = {
-      indicatedCard: `man`,
-    };
-
-    const action = {
-      type: ActionType.SHOW_POINTER,
-      payload: `woman`,
-    };
-
-    const newState = {
-      indicatedCard: `woman`,
-    };
-
-    expect(reducer(state, action)).toEqual(newState);
-  });
 });
 
 describe(`Action creators work correctly`, () => {
@@ -61,15 +45,6 @@ describe(`Action creators work correctly`, () => {
     };
 
     expect(ActionCreator.changeCity(`Paris`)).toEqual(conrrectAction);
-  });
-
-  it(`Action creator for show pointer return correct action`, () => {
-    const conrrectAction = {
-      type: ActionType.SHOW_POINTER,
-      payload: `new pointer`,
-    };
-
-    expect(ActionCreator.showPoiner(`new pointer`)).toEqual(conrrectAction);
   });
 
   it(`Action creator for change sort return correct action`, () => {
