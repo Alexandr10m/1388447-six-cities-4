@@ -8,7 +8,7 @@ const sortReviewsByDate = (reviews) => {
   }
 
   const copyReviews = [...reviews];
-  copyReviews.sort((prev, next) => prev.date.getTime() - next.date.getTime());
+  copyReviews.sort((prev, next) => next.date.getTime() - prev.date.getTime());
 
   return copyReviews;
 };
