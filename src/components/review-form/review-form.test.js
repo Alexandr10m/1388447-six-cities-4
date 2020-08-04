@@ -8,9 +8,18 @@ describe(`Snapshot of ReviewForm`, () => {
     const tree = renderer
       .create(
           <ReviewForm
+            commentText={`hello`}
+            buttonDisable={false}
+            isValidText={false}
+            isValidRate={false}
+            disabledForm={false}
+            onSubmit={()=>{}}
+            onRatingChange={()=>{}}
             offerId={1}
-            onSendComment={()=>{}}
-          />
+            onUserCommentEnter={()=>{}}
+          >
+            <div/>
+          </ReviewForm>
       )
       .toJSON();
 

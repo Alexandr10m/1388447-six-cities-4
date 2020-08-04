@@ -1,14 +1,17 @@
 import React from "react";
 import Review from "../review/review.jsx";
 import PropTypes from "prop-types";
-import ReviewForm from "../review-form/review-form.jsx";
+import Form from "../review-form/review-form.jsx";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {connect} from "react-redux";
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 import {Operation} from "../../reducer/data/data.js";
+import withComment from "../../hoc/with-comment/with-comment.js";
 
 
 const MAX_COUNT_REVIEWS = 10;
+
+const ReviewForm = withComment(Form);
 
 const ReviewList = (props) => {
   const {reviews, authorizationStatus, onSendComment, offerId} = props;

@@ -346,9 +346,11 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
               </label>
               <div
                 className="reviews__rating-form form__rating"
+                onChange={[Function]}
               >
                 <input
                   className="form__rating-input visually-hidden"
+                  disabled={false}
                   id="5-stars"
                   name="rating"
                   type="radio"
@@ -371,6 +373,7 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
                 </label>
                 <input
                   className="form__rating-input visually-hidden"
+                  disabled={false}
                   id="4-stars"
                   name="rating"
                   type="radio"
@@ -393,6 +396,7 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
                 </label>
                 <input
                   className="form__rating-input visually-hidden"
+                  disabled={false}
                   id="3-stars"
                   name="rating"
                   type="radio"
@@ -415,6 +419,7 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
                 </label>
                 <input
                   className="form__rating-input visually-hidden"
+                  disabled={false}
                   id="2-stars"
                   name="rating"
                   type="radio"
@@ -437,6 +442,7 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
                 </label>
                 <input
                   className="form__rating-input visually-hidden"
+                  disabled={false}
                   id="1-stars"
                   name="rating"
                   type="radio"
@@ -460,9 +466,12 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
               </div>
               <textarea
                 className="reviews__textarea form__textarea"
+                disabled={false}
                 id="review"
                 name="review"
+                onChange={[Function]}
                 placeholder="Tell how was your stay, what you like and what can be improved"
+                value=""
               />
               <div
                 className="reviews__button-wrapper"
@@ -486,7 +495,7 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
                 </p>
                 <button
                   className="reviews__submit form__submit button"
-                  disabled=""
+                  disabled={false}
                   type="submit"
                 >
                   Submit
@@ -983,9 +992,11 @@ exports[`Snapshot of OfferPage OfferPage should render whith Favourite 1`] = `
               </label>
               <div
                 className="reviews__rating-form form__rating"
+                onChange={[Function]}
               >
                 <input
                   className="form__rating-input visually-hidden"
+                  disabled={false}
                   id="5-stars"
                   name="rating"
                   type="radio"
@@ -1008,6 +1019,7 @@ exports[`Snapshot of OfferPage OfferPage should render whith Favourite 1`] = `
                 </label>
                 <input
                   className="form__rating-input visually-hidden"
+                  disabled={false}
                   id="4-stars"
                   name="rating"
                   type="radio"
@@ -1030,6 +1042,7 @@ exports[`Snapshot of OfferPage OfferPage should render whith Favourite 1`] = `
                 </label>
                 <input
                   className="form__rating-input visually-hidden"
+                  disabled={false}
                   id="3-stars"
                   name="rating"
                   type="radio"
@@ -1052,6 +1065,7 @@ exports[`Snapshot of OfferPage OfferPage should render whith Favourite 1`] = `
                 </label>
                 <input
                   className="form__rating-input visually-hidden"
+                  disabled={false}
                   id="2-stars"
                   name="rating"
                   type="radio"
@@ -1074,6 +1088,7 @@ exports[`Snapshot of OfferPage OfferPage should render whith Favourite 1`] = `
                 </label>
                 <input
                   className="form__rating-input visually-hidden"
+                  disabled={false}
                   id="1-stars"
                   name="rating"
                   type="radio"
@@ -1097,9 +1112,12 @@ exports[`Snapshot of OfferPage OfferPage should render whith Favourite 1`] = `
               </div>
               <textarea
                 className="reviews__textarea form__textarea"
+                disabled={false}
                 id="review"
                 name="review"
+                onChange={[Function]}
                 placeholder="Tell how was your stay, what you like and what can be improved"
+                value=""
               />
               <div
                 className="reviews__button-wrapper"
@@ -1123,7 +1141,7 @@ exports[`Snapshot of OfferPage OfferPage should render whith Favourite 1`] = `
                 </p>
                 <button
                   className="reviews__submit form__submit button"
-                  disabled=""
+                  disabled={false}
                   type="submit"
                 >
                   Submit
