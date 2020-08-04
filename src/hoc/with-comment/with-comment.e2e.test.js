@@ -1,17 +1,17 @@
 import React from "react";
 import {shallow} from "enzyme";
 import withComment from "./with-comment.js";
-import ReviewForm from "../../components/review-form/review-form.jsx";
-// import PropTypes from "prop-types";
+// import ReviewForm from "../../components/review-form/review-form.jsx";
+import PropTypes from "prop-types";
 
 
-// const MockComponent = (props) => <div>{props.children}</div>;
+const MockComponent = (props) => <form>{props.children}</form>;
 
-// MockComponent.propTypes = {
-//   children: PropTypes.node.isRequired,
-// };
+MockComponent.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
-const MockComponentWrapped = withComment(ReviewForm);
+const MockComponentWrapped = withComment(MockComponent);
 
 describe(`E2E of withComment`, () => {
   it(`withComment should change text of comment`, () => {
