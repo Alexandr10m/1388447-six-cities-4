@@ -1,9 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Map from "../map/map.jsx";
-import Sort from "../sort/sort.jsx";
+import SortComponent from "../sort/sort.jsx";
+import withSelect from "../../hoc/with-select/with-select.js";
 import ListCards from "../list-cards/list-cards.jsx";
 
+
+const Sort = withSelect(SortComponent);
 const MainOffers = (props) => {
   const {city, offers, onActiveCard, activeCard} = props;
   const {localOffers, cityCoords, cityZoom} = offers;

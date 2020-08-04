@@ -10,6 +10,9 @@ describe(`E2E of Sort`, () => {
         < Sort
           sortType={`Popular`}
           onSelectClick={onSelectClick}
+          isShowOptions={false}
+          onHideOptions={()=>{}}
+          onToggleViewOptions={()=>{}}
         />
     );
 
@@ -25,6 +28,9 @@ describe(`E2E of Sort`, () => {
         < Sort
           sortType={`Popular`}
           onSelectClick={onSelectClick}
+          isShowOptions={false}
+          onHideOptions={()=>{}}
+          onToggleViewOptions={()=>{}}
         />
     );
 

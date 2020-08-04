@@ -118,7 +118,10 @@ describe(`Snapshot of Sort`, () => {
         <Provider store={store}>
           <Sort
             sortType={`Price: low to high`}
+            isShowOptions={false}
+            onHideOptions={()=>{}}
             onSelectClick={()=>{}}
+            onToggleViewOptions={()=>{}}
           />
         </Provider>)
     .toJSON();
