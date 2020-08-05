@@ -5,6 +5,7 @@ import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import NameSpace from "../../reducer/name-space.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {StatusOfReviewLoad} from "../../reducer/data/data.js";
 
 
 const mockStore = configureStore([]);
@@ -37,6 +38,8 @@ describe(`Snapshot of ReviewList`, () => {
               authorizationStatus={AuthorizationStatus.AUTH}
               onSendComment={()=>{}}
               offerId={1}
+              statusOfReviewLoad={StatusOfReviewLoad.NOT_IN_PROCESS}
+              changeStatusOfReviewLoad={()=>{}}
             />
           </Provider>)
       .toJSON();
@@ -58,6 +61,8 @@ describe(`Snapshot of ReviewList`, () => {
               authorizationStatus={AuthorizationStatus.NO_AUTH}
               onSendComment={()=>{}}
               offerId={1}
+              statusOfReviewLoad={StatusOfReviewLoad.NOT_IN_PROCESS}
+              changeStatusOfReviewLoad={()=>{}}
             />
           </Provider>)
       .toJSON();

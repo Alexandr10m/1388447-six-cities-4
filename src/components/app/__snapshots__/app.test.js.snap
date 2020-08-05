@@ -82,45 +82,6 @@ exports[`Snapshot of App AppComponent should render Main page 1`] = `
           >
             <a
               className="locations__item-link tabs__item tabs__item--active"
-              href="/Paris"
-              onClick={[Function]}
-            >
-              <span>
-                Paris
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
-              href="/Cologne"
-              onClick={[Function]}
-            >
-              <span>
-                Cologne
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
-              href="/Brussels"
-              onClick={[Function]}
-            >
-              <span>
-                Brussels
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
               href="/Amsterdam"
               onClick={[Function]}
             >
@@ -134,11 +95,11 @@ exports[`Snapshot of App AppComponent should render Main page 1`] = `
           >
             <a
               className="locations__item-link tabs__item "
-              href="/Hamburg"
+              href="/Humburg"
               onClick={[Function]}
             >
               <span>
-                Hamburg
+                Humburg
               </span>
             </a>
           </li>
@@ -147,11 +108,11 @@ exports[`Snapshot of App AppComponent should render Main page 1`] = `
           >
             <a
               className="locations__item-link tabs__item "
-              href="/Dusseldorf"
+              href="/Paris"
               onClick={[Function]}
             >
               <span>
-                Dusseldorf
+                Paris
               </span>
             </a>
           </li>
@@ -177,7 +138,7 @@ exports[`Snapshot of App AppComponent should render Main page 1`] = `
           >
             1
              places to stay in 
-            Paris
+            Amsterdam
           </b>
           <form
             action="#"
@@ -480,45 +441,6 @@ exports[`Snapshot of App AppComponent should render OfferPage with offerWithoutF
           >
             <a
               className="locations__item-link tabs__item tabs__item--active"
-              href="/Paris"
-              onClick={[Function]}
-            >
-              <span>
-                Paris
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
-              href="/Cologne"
-              onClick={[Function]}
-            >
-              <span>
-                Cologne
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
-              href="/Brussels"
-              onClick={[Function]}
-            >
-              <span>
-                Brussels
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
               href="/Amsterdam"
               onClick={[Function]}
             >
@@ -532,11 +454,11 @@ exports[`Snapshot of App AppComponent should render OfferPage with offerWithoutF
           >
             <a
               className="locations__item-link tabs__item "
-              href="/Hamburg"
+              href="/Humburg"
               onClick={[Function]}
             >
               <span>
-                Hamburg
+                Humburg
               </span>
             </a>
           </li>
@@ -545,11 +467,11 @@ exports[`Snapshot of App AppComponent should render OfferPage with offerWithoutF
           >
             <a
               className="locations__item-link tabs__item "
-              href="/Dusseldorf"
+              href="/Paris"
               onClick={[Function]}
             >
               <span>
-                Dusseldorf
+                Paris
               </span>
             </a>
           </li>
@@ -575,7 +497,7 @@ exports[`Snapshot of App AppComponent should render OfferPage with offerWithoutF
           >
             1
              places to stay in 
-            Paris
+            Amsterdam
           </b>
           <form
             action="#"
@@ -878,45 +800,6 @@ exports[`Snapshot of App AppComponent should render SignIn page 1`] = `
           >
             <a
               className="locations__item-link tabs__item tabs__item--active"
-              href="/Paris"
-              onClick={[Function]}
-            >
-              <span>
-                Paris
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
-              href="/Cologne"
-              onClick={[Function]}
-            >
-              <span>
-                Cologne
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
-              href="/Brussels"
-              onClick={[Function]}
-            >
-              <span>
-                Brussels
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
               href="/Amsterdam"
               onClick={[Function]}
             >
@@ -930,11 +813,11 @@ exports[`Snapshot of App AppComponent should render SignIn page 1`] = `
           >
             <a
               className="locations__item-link tabs__item "
-              href="/Hamburg"
+              href="/Humburg"
               onClick={[Function]}
             >
               <span>
-                Hamburg
+                Humburg
               </span>
             </a>
           </li>
@@ -943,11 +826,11 @@ exports[`Snapshot of App AppComponent should render SignIn page 1`] = `
           >
             <a
               className="locations__item-link tabs__item "
-              href="/Dusseldorf"
+              href="/Paris"
               onClick={[Function]}
             >
               <span>
-                Dusseldorf
+                Paris
               </span>
             </a>
           </li>
@@ -973,7 +856,7 @@ exports[`Snapshot of App AppComponent should render SignIn page 1`] = `
           >
             1
              places to stay in 
-            Paris
+            Amsterdam
           </b>
           <form
             action="#"

@@ -1,6 +1,7 @@
 import {reducer, ActionType, ActionCreator, Operation} from "./data.js";
 import MockAdapter from "axios-mock-adapter";
 import createAPI from "../../api.js";
+import {StatusOfReviewLoad} from "./data.js";
 
 
 const offerWithPremium = {
@@ -113,9 +114,11 @@ describe(`Test of reducer data.js`, () => {
       favourite: [],
       reviews: [],
       nearbyOffers: [],
+      cities: [],
       isLoadOffes: true,
       isLoadFavourite: true,
       isLoadingReviews: true,
+      statusOfReviewLoad: StatusOfReviewLoad.NOT_IN_PROCESS,
       isLoadingNearbyOffers: true,
     });
   });
@@ -429,12 +432,16 @@ describe(`Operation work correctly`, () => {
       .reply(200, [serverResponse]);
     return offersLoader(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenCalledTimes(3);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_CITIES,
+          payload: [convertedServerResponse.city],
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
           type: ActionType.LOAD_OFFERS,
           payload: [convertedServerResponse],
         });
-        expect(dispatch).toHaveBeenNthCalledWith(2, {
+        expect(dispatch).toHaveBeenNthCalledWith(3, {
           type: ActionType.PROGRESS_LOAD_OFFERS,
           payload: false,
         });
@@ -734,10 +741,14 @@ describe(`Operation work correctly`, () => {
       .reply(200, [servRespons]);
     return senderReview(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenCalledTimes(2);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_REVIEWS,
           payload: [convertedServerResponse],
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.STATUS_OF_REVIEW_LOAD,
+          payload: StatusOfReviewLoad.LOADED,
         });
       });
   });

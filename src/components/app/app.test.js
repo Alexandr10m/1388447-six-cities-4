@@ -29,12 +29,6 @@ const offerWithPremium = {
   pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`],
   previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
   price: 397,
-  reviews: [{
-    image: `img/avatar-max.jpg`,
-    text: `A quiet cozy and picturesque.`,
-    name: `Max`,
-    time: `April 2019`
-  }],
   title: `Penthouse, 4-5 rooms + 5 balconies`,
   type: `hotel`,
 };
@@ -58,12 +52,6 @@ const offerWithFavourite = {
   pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`],
   previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
   price: 397,
-  reviews: [{
-    image: `img/avatar-max.jpg`,
-    text: `A quiet cozy and picturesque.`,
-    name: `Max`,
-    time: `April 2019`
-  }],
   title: `Penthouse, 4-5 rooms + 5 balconies`,
   type: `hotel`,
 };
@@ -89,6 +77,7 @@ const city = `Amsterdam`;
 const props = {
   city,
   offers,
+  cities: [`Amsterdam`, `Humburg`, `Paris`],
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   favourite: [],
   isLoadOffes: false,
@@ -106,6 +95,7 @@ describe(`Snapshot of App`, () => {
       },
       [NameSpace.DATA]: {
         offers,
+        cities: [`Amsterdam`, `Humburg`, `Paris`],
         favourite: [],
         isLoadOffes: false,
       },
@@ -139,6 +129,7 @@ describe(`Snapshot of App`, () => {
       },
       [NameSpace.DATA]: {
         offers,
+        cities: [`Amsterdam`, `Humburg`, `Paris`],
         favourite: [],
         isLoadOffes: false,
       },
@@ -172,6 +163,7 @@ describe(`Snapshot of App`, () => {
       },
       [NameSpace.DATA]: {
         offers,
+        cities: [`Amsterdam`, `Humburg`, `Paris`],
         favourite: [],
         isLoadOffes: false,
       },

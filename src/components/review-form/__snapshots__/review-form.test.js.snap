@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Snapshot of ReviewForm Should render correctly 1`] = `
+exports[`Snapshot of ReviewForm Should render correctly with errors 1`] = `
 <form
   action="#"
   className="reviews__form form"
@@ -17,17 +17,9 @@ exports[`Snapshot of ReviewForm Should render correctly 1`] = `
     className="reviews__rating-form form__rating"
     onChange={[Function]}
   >
-    <div />
+    <input />
   </div>
-  <textarea
-    className="reviews__textarea form__textarea"
-    disabled={false}
-    id="review"
-    name="review"
-    onChange={[Function]}
-    placeholder="Tell how was your stay, what you like and what can be improved"
-    value="hello"
-  />
+  <textarea />
   <div
     className="reviews__button-wrapper"
   >
@@ -56,24 +48,59 @@ exports[`Snapshot of ReviewForm Should render correctly 1`] = `
       Submit
     </button>
   </div>
-  <div
-    style={
-      Object {
-        "color": "red",
-      }
-    }
+  <div />
+  <div />
+  <div />
+</form>
+`;
+
+exports[`Snapshot of ReviewForm Should render correctly without errors 1`] = `
+<form
+  action="#"
+  className="reviews__form form"
+  method="post"
+  onSubmit={[Function]}
+>
+  <label
+    className="reviews__label form__label"
+    htmlFor="review"
   >
-     You need to rate
+    Your review
+  </label>
+  <div
+    className="reviews__rating-form form__rating"
+    onChange={[Function]}
+  >
+    <input />
   </div>
+  <textarea />
   <div
-    style={
-      Object {
-        "color": "red",
-      }
-    }
+    className="reviews__button-wrapper"
   >
-     You need to enter 50 - 300 characters, but entered 
-    5
+    <p
+      className="reviews__help"
+    >
+      To submit review please make sure to set 
+      <span
+        className="reviews__star"
+      >
+        rating
+      </span>
+       and describe your stay with at least 
+      <b
+        className="reviews__text-amount"
+      >
+        50 characters
+      </b>
+      .
+    </p>
+    <button
+      className="reviews__submit form__submit button"
+      disabled={false}
+      type="submit"
+    >
+      Submit
+    </button>
   </div>
 </form>
 `;

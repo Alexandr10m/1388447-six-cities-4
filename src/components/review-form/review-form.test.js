@@ -4,19 +4,38 @@ import ReviewForm from "./review-form.jsx";
 
 
 describe(`Snapshot of ReviewForm`, () => {
-  it(`Should render correctly`, () => {
+  it(`Should render correctly without errors`, () => {
     const tree = renderer
       .create(
           <ReviewForm
-            commentText={`hello`}
+            stars={<input/>}
+            textArea={<textarea/>}
+            startsError={false}
+            textAreaError={false}
             buttonDisable={false}
-            isValidText={false}
-            isValidRate={false}
-            disabledForm={false}
             onSubmit={()=>{}}
             onRatingChange={()=>{}}
-            offerId={1}
-            onUserCommentEnter={()=>{}}
+            loadError={false}
+          >
+            <div/>
+          </ReviewForm>
+      )
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+  it(`Should render correctly with errors`, () => {
+    const tree = renderer
+      .create(
+          <ReviewForm
+            stars={<input/>}
+            textArea={<textarea/>}
+            startsError={<div/>}
+            textAreaError={<div/>}
+            buttonDisable={false}
+            onSubmit={()=>{}}
+            onRatingChange={()=>{}}
+            loadError={<div/>}
           >
             <div/>
           </ReviewForm>

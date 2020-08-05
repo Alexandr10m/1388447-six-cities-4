@@ -94,64 +94,12 @@ exports[`Snapshot of Main MainComponent should render MainEmpty compoment 1`] = 
             className="locations__item"
           >
             <a
-              className="locations__item-link tabs__item "
-              href="/Cologne"
-              onClick={[Function]}
-            >
-              <span>
-                Cologne
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
-              href="/Brussels"
-              onClick={[Function]}
-            >
-              <span>
-                Brussels
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
               className="locations__item-link tabs__item tabs__item--active"
               href="/Amsterdam"
               onClick={[Function]}
             >
               <span>
                 Amsterdam
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
-              href="/Hamburg"
-              onClick={[Function]}
-            >
-              <span>
-                Hamburg
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
-              href="/Dusseldorf"
-              onClick={[Function]}
-            >
-              <span>
-                Dusseldorf
               </span>
             </a>
           </li>
@@ -287,63 +235,11 @@ exports[`Snapshot of Main MainComponent should render MainOffers component 1`] =
           >
             <a
               className="locations__item-link tabs__item "
-              href="/Cologne"
-              onClick={[Function]}
-            >
-              <span>
-                Cologne
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
-              href="/Brussels"
-              onClick={[Function]}
-            >
-              <span>
-                Brussels
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
               href="/Amsterdam"
               onClick={[Function]}
             >
               <span>
                 Amsterdam
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
-              href="/Hamburg"
-              onClick={[Function]}
-            >
-              <span>
-                Hamburg
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
-              href="/Dusseldorf"
-              onClick={[Function]}
-            >
-              <span>
-                Dusseldorf
               </span>
             </a>
           </li>

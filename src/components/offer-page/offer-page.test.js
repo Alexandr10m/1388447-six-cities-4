@@ -6,6 +6,7 @@ import {Provider} from "react-redux";
 import NameSpace from "../../reducer/name-space.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {BrowserRouter} from "react-router-dom";
+import {StatusOfReviewLoad} from "../../reducer/data/data.js";
 
 
 const mockStore = configureStore([]);
@@ -100,6 +101,7 @@ const store = mockStore({
     nearbyOffers,
     isLoadingReviews: false,
     isLoadingNearbyOffers: false,
+    statusOfReviewLoad: StatusOfReviewLoad.NOT_IN_PROCESS,
   },
   [NameSpace.USER]: {
     authInfo: {
@@ -132,6 +134,7 @@ describe(`Snapshot of OfferPage`, () => {
                 loadNearbyOffers={()=>{}}
                 isLoadingNearbyOffers={false}
                 isLoadingReviews={false}
+                statusOfReviewLoad={StatusOfReviewLoad.NOT_IN_PROCESS}
               />
             </BrowserRouter>
           </Provider>)
@@ -162,6 +165,7 @@ describe(`Snapshot of OfferPage`, () => {
                 loadNearbyOffers={()=>{}}
                 isLoadingNearbyOffers={false}
                 isLoadingReviews={false}
+                statusOfReviewLoad={StatusOfReviewLoad.NOT_IN_PROCESS}
               />
             </BrowserRouter>
           </Provider>)

@@ -40,7 +40,6 @@ ReviewForm.propTypes = {
   buttonDisable: PropTypes.bool.isRequired,
   onSubmit: PropTypes.func.isRequired,
   onRatingChange: PropTypes.func.isRequired,
-  offerId: PropTypes.number.isRequired,
 };
 
 

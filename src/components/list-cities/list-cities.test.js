@@ -4,18 +4,15 @@ import ListCities from "./list-cities.jsx";
 import {BrowserRouter} from "react-router-dom";
 
 
-const props = {
-  currentCity: `Amsterdam`,
-  onCityClick: ()=>{},
-};
-
 describe(`Snapshot of ListCities`, () => {
   it(`ListCities should render correctly`, () => {
     const tree = renderer
       .create(
           <BrowserRouter>
             <ListCities
-              {...props}
+              cities={[`Amsterdam`, `Dusseldorf`, `Hamburg`]}
+              currentCity={`Amsterdam`}
+              onCityClick={()=>{}}
             />
           </BrowserRouter>)
       .toJSON();

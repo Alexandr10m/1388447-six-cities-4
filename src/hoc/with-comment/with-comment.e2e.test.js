@@ -1,35 +1,14 @@
 import React from "react";
 import {shallow} from "enzyme";
 import withComment from "./with-comment.js";
-// import ReviewForm from "../../components/review-form/review-form.jsx";
-import PropTypes from "prop-types";
+import {StatusOfReviewLoad} from "../../reducer/data/data.js";
 
 
-const MockComponent = (props) => <form>{props.children}</form>;
-
-MockComponent.propTypes = {
-  children: PropTypes.node.isRequired,
-};
+const MockComponent = () => <form></form>;
 
 const MockComponentWrapped = withComment(MockComponent);
 
 describe(`E2E of withComment`, () => {
-  it(`withComment should change text of comment`, () => {
-    const evtMock = {
-      target: {
-        value: `hello`
-      }
-    };
-
-    const wrapper = shallow(
-        <MockComponentWrapped
-          onSendComment={()=>{}}
-          offerId={1}
-        />);
-    wrapper.props().onUserCommentEnter(evtMock);
-    expect(wrapper.state(`commentText`)).toEqual(`hello`);
-  });
-
   it(`withComment should change rate of comment`, () => {
     const evtMock = {
       target: {
@@ -39,6 +18,8 @@ describe(`E2E of withComment`, () => {
 
     const wrapper = shallow(
         <MockComponentWrapped
+          statusOfReviewLoad={StatusOfReviewLoad.NOT_IN_PROCESS}
+          changeStatusOfReviewLoad={()=>{}}
           onSendComment={()=>{}}
           offerId={1}
         />);
