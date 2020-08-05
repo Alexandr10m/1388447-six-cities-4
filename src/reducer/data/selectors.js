@@ -16,22 +16,26 @@ const sortReviewsByDate = (reviews) => {
 const NAME_SPACE = NameSpace.DATA;
 
 const getOffers = (state) => state[NAME_SPACE].offers;
+const getCities = (state) => state[NAME_SPACE].cities;
 const getFavourite = (state) => state[NAME_SPACE].favourite;
 const getReviews = (state) => sortReviewsByDate(state[NAME_SPACE].reviews);
 const getNearbyOffers = (state) => state[NAME_SPACE].nearbyOffers;
 const getLoadOffersProgress = (state) => state[NAME_SPACE].isLoadOffes;
 const getLoadFavouriteProgress = (state) => state[NAME_SPACE].isLoadFavourite;
 const getLoadingReviewsInProgress = (state) => state[NAME_SPACE].isLoadingReviews;
+const getStatusOfReviewLoad = (state) => state[NAME_SPACE].statusOfReviewLoad;
 const getLoadingNearbyOffersInProgress = (state) => state[NAME_SPACE].isLoadingNearbyOffers;
 
 
 export {
   getOffers,
+  getCities,
   getFavourite,
   getReviews,
   getNearbyOffers,
   getLoadOffersProgress,
   getLoadFavouriteProgress,
   getLoadingReviewsInProgress,
+  getStatusOfReviewLoad,
   getLoadingNearbyOffersInProgress,
 };

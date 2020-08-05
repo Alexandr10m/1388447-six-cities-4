@@ -1,11 +1,11 @@
 import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
+import {StatusOfReviewLoad} from "../../reducer/data/data.js";
 
 const RATING_TEXT = [`perfect`, `good`, `not bad`, `badly`, `terribly`];
 const MIN_LENGTH_TEXT = 50;
 const MAX_LENGTH_TEXT = 300;
 const checkCorrectLengthText = (text) => text >= MIN_LENGTH_TEXT && text <= MAX_LENGTH_TEXT;
-
 
 const withComment = (Component) => {
   class WithComment extends PureComponent {
@@ -22,9 +22,41 @@ const withComment = (Component) => {
 
       this._starRefs = RATING_TEXT.map(() => createRef());
 
-      this._handleFormSubmit = this._handleFormSubmit.bind(this);
-      this._handleRateChange = this._handleRateChange.bind(this);
-      this._handleUserCommentEnter = this._handleUserCommentEnter.bind(this);
+      this.handleFormSubmit = this.handleFormSubmit.bind(this);
+      this.handleRateChange = this.handleRateChange.bind(this);
+      this.handleUserCommentEnter = this.handleUserCommentEnter.bind(this);
+    }
+
+    handleUserCommentEnter(evt) {
+      const {value} = evt.target;
+      this.setState({commentText: value}, this._validateForm);
+    }
+
+    handleRateChange(evt) {
+      const {value} = evt.target;
+      this.setState({rate: +value}, this._validateForm);
+    }
+
+    handleFormSubmit(evt) {
+
+      evt.preventDefault();
+      const {onSendComment, offerId} = this.props;
+
+      if (!this._validateForm()) {
+        return;
+      }
+
+      this._disableForm(true);
+
+      const dataComment = {
+        comment: this.state.commentText,
+        rating: this.state.rate,
+      };
+      onSendComment(dataComment, offerId);
+    }
+
+    _disableButton(bool) {
+      this.setState({buttonDisable: bool});
     }
 
     _validateForm() {
@@ -45,38 +77,6 @@ const withComment = (Component) => {
       return isCorrectText && isSelectedRating;
     }
 
-    _handleUserCommentEnter(evt) {
-      const {value} = evt.target;
-      this.setState({commentText: value}, this._validateForm);
-    }
-
-    _handleRateChange(evt) {
-      const {value} = evt.target;
-      this.setState({rate: +value}, this._validateForm);
-    }
-
-    _disableButton(bool) {
-      this.setState({buttonDisable: bool});
-    }
-
-    _handleFormSubmit(offerId) {
-      const {onSendComment} = this.props;
-
-      if (!this._validateForm()) {
-        return;
-      }
-
-      this._disableForm(true);
-
-      const dataComment = {
-        comment: this.state.commentText,
-        rating: this.state.rate,
-      };
-
-      onSendComment(dataComment, offerId);
-      this._resetForm();
-    }
-
     _disableForm(bool) {
       this._disableButton(bool);
       this.setState({disabledForm: bool});
@@ -93,6 +93,11 @@ const withComment = (Component) => {
       });
 
       this._disableForm(false);
+    }
+
+    _resetStatusOfReviewLoad() {
+      const {changeStatusOfReviewLoad} = this.props;
+      changeStatusOfReviewLoad(StatusOfReviewLoad.NOT_IN_PROCESS);
     }
 
     _createStarsMarkup() {
@@ -115,27 +120,70 @@ const withComment = (Component) => {
       return starsMarkup;
     }
 
+    _createTextAreaMarkup() {
+      return (
+        <textarea
+          onChange={this.handleUserCommentEnter}
+          value={this.state.commentText}
+          disabled={this.state.disabledForm}
+          className="reviews__textarea form__textarea"
+          id="review"
+          name="review"
+          placeholder="Tell how was your stay, what you like and what can be improved"
+        >
+        </textarea>
+      );
+    }
+
+    _createTextErrorMarkup() {
+      return !this.state.isValidRate && <div style={{color: `red`}}> You need to rate</div>;
+    }
+
+    _createRatingErrorMarkup() {
+      return !this.state.isValidText && <div style={{color: `red`}}> You need to enter 50 - 300 characters, but entered {this.state.commentText.length}</div>;
+    }
+
+    _createLoadErrorMarkup() {
+      const {statusOfReviewLoad} = this.props;
+      return statusOfReviewLoad === StatusOfReviewLoad.ERROR && <div style={{color: `red`}}> Somthing went wrong</div>;
+    }
+
+    componentDidUpdate(prevProps) {
+      if (prevProps.statusOfReviewLoad !== this.props.statusOfReviewLoad) {
+        const {statusOfReviewLoad} = this.props;
+        if (statusOfReviewLoad === StatusOfReviewLoad.LOADED) {
+          this._disableForm(false);
+          this._resetForm();
+        }
+        if (statusOfReviewLoad === StatusOfReviewLoad.ERROR) {
+          this._disableForm(false);
+        }
+        this._resetStatusOfReviewLoad();
+      }
+    }
+
     render() {
       return (
         <Component
           {...this.props}
-          commentText={this.state.commentText}
+          stars={this._createStarsMarkup()}
+          textArea={this._createTextAreaMarkup()}
+          startsError={this._createRatingErrorMarkup()}
+          textAreaError={this._createTextErrorMarkup()}
+          loadError={this._createLoadErrorMarkup()}
           buttonDisable={this.state.buttonDisable}
-          isValidText={this.state.isValidText}
-          isValidRate={this.state.isValidRate}
-          disabledForm={this.state.disabledForm}
-          onSubmit={this._handleFormSubmit}
-          onRatingChange={this._handleRateChange}
-          onUserCommentEnter={this._handleUserCommentEnter}
-        >
-          {this._createStarsMarkup()}
-        </Component>
+          onSubmit={this.handleFormSubmit}
+          onRatingChange={this.handleRateChange}
+        />
       );
     }
   }
 
   WithComment.propTypes = {
     onSendComment: PropTypes.func.isRequired,
+    offerId: PropTypes.number.isRequired,
+    statusOfReviewLoad: PropTypes.string.isRequired,
+    changeStatusOfReviewLoad: PropTypes.func.isRequired,
   };
 
   return WithComment;

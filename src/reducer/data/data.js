@@ -1,15 +1,22 @@
 import {extend} from "../../utils.js";
 import {cityAdapter, localOffersAdapter, reviewAdapter} from "../../adapter.js";
 
+const StatusOfReviewLoad = {
+  LOADED: `LOADED`,
+  ERROR: `ERROR`,
+  NOT_IN_PROCESS: `NOT_IN_PROCESS`,
+};
 
 const initialState = {
   offers: [],
   favourite: [],
   reviews: [],
   nearbyOffers: [],
+  cities: [],
   isLoadOffes: true,
   isLoadFavourite: true,
   isLoadingReviews: true,
+  statusOfReviewLoad: StatusOfReviewLoad.NOT_IN_PROCESS,
   isLoadingNearbyOffers: true,
 };
 
@@ -18,10 +25,12 @@ const ActionType = {
   LOAD_FAVOURITE: `LOAD_FAVOURITE`,
   LOAD_REVIEWS: `LOAD_REVIEWS`,
   LOAD_NESRBY_OFFERS: `LOAD_NESRBY_OFFERS`,
+  LOAD_CITIES: `LOAD_CITIES`,
   CHANGE_FAVOURITE: `CHANGE_FAVOURITE`,
   PROGRESS_LOAD_OFFERS: `PROGRESS_LOAD_OFFERS`,
   PROGRESS_LOAD_FAVOURITE: `PROGRESS_LOAD_FAVOURITE`,
   LOADING_REVIEWS_IN_PROGRESS: `LOADING_REVIEWS_IN_PROGRESS`,
+  STATUS_OF_REVIEW_LOAD: `STATUS_OF_REVIEW_LOAD`,
   LOADING_NEARBY_OFFERS_IN_PROGRESS: `LOADING_NEARBY_OFFERS_IN_PROGRESS`,
 };
 
@@ -42,6 +51,10 @@ const ActionCreator = {
     type: ActionType.LOAD_NESRBY_OFFERS,
     payload: nearbyOffers,
   }),
+  loadCities: (cities) => ({
+    type: ActionType.LOAD_CITIES,
+    payload: cities,
+  }),
   changeFavourite: (offer) => ({
     type: ActionType.CHANGE_FAVOURITE,
     payload: offer,
@@ -57,6 +70,10 @@ const ActionCreator = {
   loadingReviewsInProgress: (bool) => ({
     type: ActionType.LOADING_REVIEWS_IN_PROGRESS,
     payload: bool,
+  }),
+  changeStatusOfReviewLoad: (status) => ({
+    type: ActionType.STATUS_OF_REVIEW_LOAD,
+    payload: status,
   }),
   loadingNearbyOffersInProgress: (bool) => ({
     type: ActionType.LOADING_NEARBY_OFFERS_IN_PROGRESS,
@@ -148,6 +165,10 @@ const Operation = {
       .then((response) => {
         let offersByCity = [];
         response.data.forEach((it) => convertOffer(offersByCity, it));
+
+        const cities = offersByCity.map((it) => it.city);
+
+        dispatch(ActionCreator.loadCities(cities));
         dispatch(ActionCreator.loadOffers(offersByCity));
         dispatch(ActionCreator.progressLoadOffers());
       });
@@ -180,8 +201,10 @@ const Operation = {
       .then((response) =>{
         const reviews = response.data.map((review) => reviewAdapter(review));
         dispatch(ActionCreator.loadReviews(reviews));
+        dispatch(ActionCreator.changeStatusOfReviewLoad(StatusOfReviewLoad.LOADED));
       })
       .catch((err) => {
+        dispatch(ActionCreator.changeStatusOfReviewLoad(StatusOfReviewLoad.ERROR));
         throw err;
       });
   },
@@ -223,6 +246,10 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         nearbyOffers: action.payload,
       });
+    case ActionType.LOAD_CITIES:
+      return extend(state, {
+        cities: action.payload,
+      });
     case ActionType.CHANGE_FAVOURITE:
       return extendFavourite(state, action.payload);
 
@@ -238,6 +265,10 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         isLoadingReviews: action.payload,
       });
+    case ActionType.STATUS_OF_REVIEW_LOAD:
+      return extend(state, {
+        statusOfReviewLoad: action.payload,
+      });
     case ActionType.LOADING_NEARBY_OFFERS_IN_PROGRESS:
       return extend(state, {
         isLoadingNearbyOffers: action.payload,
@@ -247,4 +278,4 @@ const reducer = (state = initialState, action) => {
 };
 
 
-export {reducer, ActionType, ActionCreator, Operation};
+export {reducer, ActionType, ActionCreator, Operation, StatusOfReviewLoad};
