@@ -5,16 +5,18 @@ import MainEmpty from "../main-empty/main-empty.jsx";
 import MainOffersScreen from "../main-offers/main-offers.jsx";
 import Login from "../login/login.jsx";
 import {connect} from "react-redux";
-import {getOffers} from "../../reducer/data/selectors.js";
+import {getOffers, getCities} from "../../reducer/data/selectors.js";
 import {Route, Switch, useRouteMatch} from "react-router-dom";
 import {OfferPage} from "../offer-page/offer-page.jsx";
 import {ActionCreator} from "../../reducer/state/state.js";
 import withActiveCard from "../../hoc/with-active-card/with-active-card.js";
 
+
 const MainOffers = withActiveCard(MainOffersScreen);
 
 const Main = (props) => {
-  const {match, offers, onCityClick} = props;
+  const {match, offers, onCityClick, cities} = props;
+
   let {path, url} = useRouteMatch();
   const city = match.params.city;
   const showOffers = offers.find((it) => it.city === city);
@@ -31,6 +33,7 @@ const Main = (props) => {
           <section className="locations container">
 
             <ListCities
+              cities={cities}
               currentCity={city}
               onCityClick={onCityClick}
             />
@@ -58,11 +61,13 @@ const Main = (props) => {
 Main.propTypes = {
   match: PropTypes.object.isRequired,
   offers: PropTypes.array.isRequired,
+  cities: PropTypes.array.isRequired,
   onCityClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   offers: getOffers(state),
+  cities: getCities(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

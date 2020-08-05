@@ -2,7 +2,7 @@ import {extend} from "../../utils.js";
 
 
 const initialState = {
-  city: `Paris`,
+  city: `Amsterdam`,
   sortType: `Popular`,
 };
 

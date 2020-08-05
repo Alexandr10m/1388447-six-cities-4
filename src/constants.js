@@ -1,12 +1,3 @@
-const CITIES = [
-  `Paris`,
-  `Cologne`,
-  `Brussels`,
-  `Amsterdam`,
-  `Hamburg`,
-  `Dusseldorf`
-];
-
 const SORTS = [
   `Popular`,
   `Price: low to high`,
@@ -15,7 +6,7 @@ const SORTS = [
 ];
 
 const AppRoute = {
-  DEFAULT_CITY: `/Paris`,
+  DEFAULT_CITY: `/Amsterdam`,
   CITY: `/:city`,
   LOGIN: `/login`,
   OFFER: `/offer/:offerId`,
@@ -23,4 +14,4 @@ const AppRoute = {
   FAVOURITE: `/favourite`,
 };
 
-export {CITIES, SORTS, AppRoute};
+export {SORTS, AppRoute};
