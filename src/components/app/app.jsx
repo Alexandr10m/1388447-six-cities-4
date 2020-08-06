@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 import {getFavourite, getLoadOffersProgress} from "../../reducer/data/selectors.js";
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
-import SignIn from "../sign-in/sign-in.jsx";
+import SignInPage from "../sign-in/sign-in.jsx";
 import FavouritePage from "../favourite-page/favourite-page.jsx";
 import PrivateRoute from "../private-route/private-route.jsx";
 import {AppRoute} from "../../constants.js";
@@ -15,7 +15,10 @@ import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
 import history from "../../history.js";
 import Preload from "../preload/preload.jsx";
+import withSignIn from "../../hoc/with-sign-in/with-sign-in.js";
 
+
+const SignIn = withSignIn(SignInPage);
 
 class App extends PureComponent {
   constructor(props) {

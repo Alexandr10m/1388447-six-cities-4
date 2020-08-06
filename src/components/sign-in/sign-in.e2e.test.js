@@ -22,14 +22,22 @@ describe(`E2E of SingIn`, () => {
         },
       },
     });
-    const login = jest.fn();
+
+    const onLogin = jest.fn();
+    const onSubmit = jest.fn((fn)=> fn());
 
     const signInComponent = mount(
         <Provider store={store}>
           <BrowserRouter>
             <SignIn
-              login={login}
               city={`Paris`}
+              onLogin={onLogin}
+              login={<input/>}
+              password={<input/>}
+              loginError={<div/>}
+              passwordError={<div/>}
+              disableButton={false}
+              onSubmit={onSubmit}
             />
           </BrowserRouter>
         </Provider>);
@@ -37,33 +45,8 @@ describe(`E2E of SingIn`, () => {
     const form = signInComponent.find(`form`);
     form.simulate(`submit`, mockEvent);
 
-    expect(login.mock.calls.length).toBe(1);
-  });
+    expect(onSubmit.mock.calls.length).toBe(1);
+    expect(onLogin.mock.calls.length).toBe(1);
 
-  it(`SignIn should return object with properties login, passowrd`, () => {
-    const store = mockStore({
-      [NameSpace.USER]: {
-        authInfo: {
-          email: `iii`
-        },
-      },
-    });
-
-    const login = jest.fn((...arg)=> arg);
-
-    const signInComponent = mount(
-        <Provider store={store}>
-          <BrowserRouter>
-            <SignIn
-              login={login}
-              city={`Paris`}
-            />
-          </BrowserRouter>
-        </Provider>);
-
-    const form = signInComponent.find(`form`);
-    form.simulate(`submit`, mockEvent);
-
-    expect(login.mock.calls[0][0]).toEqual({login: ``, password: ``});
   });
 });
