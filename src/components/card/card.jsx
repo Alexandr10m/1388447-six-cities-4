@@ -97,7 +97,6 @@ const Card = (props) => {
   );
 };
 
-
 Card.propTypes = {
   sendFavouriteOption: PropTypes.func.isRequired,
   offer: PropTypes.shape({
