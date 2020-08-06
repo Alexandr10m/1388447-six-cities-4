@@ -4,7 +4,7 @@ import OfferPage from "../offer-page/offer-page.jsx";
 import {Switch, Route, Router, Redirect} from "react-router-dom";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {getFavourite, getLoadOffersProgress} from "../../reducer/data/selectors.js";
+import {getFavourite, getLoadOffersProgress, getErrorOfNetwork} from "../../reducer/data/selectors.js";
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import SignInPage from "../sign-in/sign-in.jsx";
@@ -16,6 +16,7 @@ import {Operation as DataOperation} from "../../reducer/data/data.js";
 import history from "../../history.js";
 import Preload from "../preload/preload.jsx";
 import withSignIn from "../../hoc/with-sign-in/with-sign-in.js";
+import NetworkError from "../network-error/network-error.jsx";
 
 
 const SignIn = withSignIn(SignInPage);
@@ -58,7 +59,11 @@ class App extends PureComponent {
   }
 
   render() {
-    const {isLoadOffes} = this.props;
+    const {isLoadOffes, isErrorOfNetwork} = this.props;
+
+    if (isErrorOfNetwork) {
+      return <NetworkError/>;
+    }
     if (isLoadOffes) {
       return this.showPreload();
     }
@@ -72,6 +77,7 @@ App.propTypes = {
   checkAuth: PropTypes.func.isRequired,
   loadOffers: PropTypes.func.isRequired,
   isLoadOffes: PropTypes.bool.isRequired,
+  isErrorOfNetwork: PropTypes.bool.isRequired,
 };
 
 
@@ -79,6 +85,7 @@ const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
   favourite: getFavourite(state),
   isLoadOffes: getLoadOffersProgress(state),
+  isErrorOfNetwork: getErrorOfNetwork(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

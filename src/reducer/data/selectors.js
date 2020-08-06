@@ -25,6 +25,8 @@ const getLoadFavouriteProgress = (state) => state[NAME_SPACE].isLoadFavourite;
 const getLoadingReviewsInProgress = (state) => state[NAME_SPACE].isLoadingReviews;
 const getStatusOfReviewLoad = (state) => state[NAME_SPACE].statusOfReviewLoad;
 const getLoadingNearbyOffersInProgress = (state) => state[NAME_SPACE].isLoadingNearbyOffers;
+const getErrorOfNetwork = (state) => state[NAME_SPACE].isErrorOfNetwork;
+const getTextError = (state) => state[NAME_SPACE].textError;
 
 
 export {
@@ -38,4 +40,6 @@ export {
   getLoadingReviewsInProgress,
   getStatusOfReviewLoad,
   getLoadingNearbyOffersInProgress,
+  getErrorOfNetwork,
+  getTextError,
 };

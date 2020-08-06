@@ -98,6 +98,8 @@ describe(`Snapshot of App`, () => {
         cities: [`Amsterdam`, `Humburg`, `Paris`],
         favourite: [],
         isLoadOffes: false,
+        isErrorOfNetwork: false,
+        textError: ``,
       },
       [NameSpace.USER]: {
         authorizationStatus: AuthorizationStatus.AUTH,
@@ -112,6 +114,7 @@ describe(`Snapshot of App`, () => {
           <Provider store={store}>
             <App
               {...props}
+              isErrorOfNetwork={false}
             />
           </Provider>
       )
@@ -132,6 +135,8 @@ describe(`Snapshot of App`, () => {
         cities: [`Amsterdam`, `Humburg`, `Paris`],
         favourite: [],
         isLoadOffes: false,
+        isErrorOfNetwork: false,
+        textError: ``,
       },
       [NameSpace.USER]: {
         authorizationStatus: AuthorizationStatus.AUTH,
@@ -146,6 +151,7 @@ describe(`Snapshot of App`, () => {
           <Provider store={store}>
             <App
               {...props}
+              isErrorOfNetwork={false}
             />
           </Provider>
       )
@@ -166,6 +172,8 @@ describe(`Snapshot of App`, () => {
         cities: [`Amsterdam`, `Humburg`, `Paris`],
         favourite: [],
         isLoadOffes: false,
+        isErrorOfNetwork: false,
+        textError: ``,
       },
       [NameSpace.USER]: {
         authorizationStatus: AuthorizationStatus.NO_AUTH,
@@ -180,6 +188,44 @@ describe(`Snapshot of App`, () => {
           <Provider store={store}>
             <App
               {...props}
+              isErrorOfNetwork={false}
+            />
+          </Provider>
+      )
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`AppComponent should render NetworkError`, () => {
+    const store = mockStore({
+      [NameSpace.STATE]: {
+        sortType: `Price: low to high`,
+        indicatedCard: offerWithPremium,
+        city: `Amsterdam`,
+      },
+      [NameSpace.DATA]: {
+        offers,
+        cities: [`Amsterdam`, `Humburg`, `Paris`],
+        favourite: [],
+        isLoadOffes: false,
+        isErrorOfNetwork: true,
+        textError: `Error`,
+      },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.NO_AUTH,
+        authInfo: {
+          email: `iii`
+        },
+      },
+    });
+
+    const tree = renderer
+      .create(
+          <Provider store={store}>
+            <App
+              {...props}
+              isErrorOfNetwork={true}
             />
           </Provider>
       )

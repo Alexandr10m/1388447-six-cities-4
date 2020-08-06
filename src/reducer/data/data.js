@@ -1,6 +1,7 @@
 import {extend} from "../../utils.js";
 import {cityAdapter, localOffersAdapter, reviewAdapter} from "../../adapter.js";
 
+
 const StatusOfReviewLoad = {
   LOADED: `LOADED`,
   ERROR: `ERROR`,
@@ -18,6 +19,8 @@ const initialState = {
   isLoadingReviews: true,
   statusOfReviewLoad: StatusOfReviewLoad.NOT_IN_PROCESS,
   isLoadingNearbyOffers: true,
+  isErrorOfNetwork: false,
+  textError: ``,
 };
 
 const ActionType = {
@@ -32,6 +35,8 @@ const ActionType = {
   LOADING_REVIEWS_IN_PROGRESS: `LOADING_REVIEWS_IN_PROGRESS`,
   STATUS_OF_REVIEW_LOAD: `STATUS_OF_REVIEW_LOAD`,
   LOADING_NEARBY_OFFERS_IN_PROGRESS: `LOADING_NEARBY_OFFERS_IN_PROGRESS`,
+  ERROR: `ERROR`,
+  CHANGE_TEXT_ERROR: `CHANGE_TEXT_ERROR`,
 };
 
 const ActionCreator = {
@@ -78,6 +83,14 @@ const ActionCreator = {
   loadingNearbyOffersInProgress: (bool) => ({
     type: ActionType.LOADING_NEARBY_OFFERS_IN_PROGRESS,
     payload: bool,
+  }),
+  showError: (bool) => ({
+    type: ActionType.ERROR,
+    payload: bool,
+  }),
+  changeErrorText: (err) => ({
+    type: ActionType.CHANGE_TEXT_ERROR,
+    payload: err,
   }),
 };
 
@@ -171,6 +184,9 @@ const Operation = {
         dispatch(ActionCreator.loadCities(cities));
         dispatch(ActionCreator.loadOffers(offersByCity));
         dispatch(ActionCreator.progressLoadOffers());
+      })
+      .catch((err) => {
+        throw err;
       });
   },
 
@@ -181,6 +197,9 @@ const Operation = {
       response.data.forEach((it) => convertOffer(favouriteOffers, it));
       dispatch(ActionCreator.loadFavourite(favouriteOffers));
       dispatch(ActionCreator.progressLoadFavoutite());
+    })
+    .catch((err) => {
+      throw err;
     });
   },
 
@@ -190,6 +209,9 @@ const Operation = {
         const reviews = response.data.map((review) => reviewAdapter(review));
         dispatch(ActionCreator.loadReviews(reviews));
         dispatch(ActionCreator.loadingReviewsInProgress(false));
+      })
+      .catch((err) => {
+        throw err;
       });
   },
 
@@ -216,6 +238,9 @@ const Operation = {
 
         dispatch(ActionCreator.loadNearbyOffers(nearbyOffers));
         dispatch(ActionCreator.loadingNearbyOffersInProgress(false));
+      })
+      .catch((err) => {
+        throw err;
       });
   },
 
@@ -224,6 +249,9 @@ const Operation = {
       .then((response) => {
         const offer = localOffersAdapter(response.data);
         dispatch(ActionCreator.changeFavourite(offer));
+      })
+      .catch((err) => {
+        throw err;
       });
   }
 };
@@ -272,6 +300,14 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOADING_NEARBY_OFFERS_IN_PROGRESS:
       return extend(state, {
         isLoadingNearbyOffers: action.payload,
+      });
+    case ActionType.CHANGE_TEXT_ERROR:
+      return extend(state, {
+        textError: action.payload,
+      });
+    case ActionType.ERROR:
+      return extend(state, {
+        isErrorOfNetwork: action.payload
       });
   }
   return state;

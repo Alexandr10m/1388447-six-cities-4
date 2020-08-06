@@ -359,6 +359,41 @@ exports[`Snapshot of App AppComponent should render Main page 1`] = `
 </div>
 `;
 
+exports[`Snapshot of App AppComponent should render NetworkError 1`] = `
+<div
+  className="page page--gray page--main"
+>
+  <main
+    className="page__main page__main--index page__main--index-empty"
+  >
+    <div
+      className="cities"
+    >
+      <div
+        className="cities__places-container cities__places-container--empty container"
+      >
+        <section
+          className="cities__no-places"
+        >
+          <div
+            className="cities__status-wrapper tabs__content"
+          >
+            <b
+              className="cities__status"
+            >
+              Error
+            </b>
+          </div>
+        </section>
+        <div
+          className="cities__right-section"
+        />
+      </div>
+    </div>
+  </main>
+</div>
+`;
+
 exports[`Snapshot of App AppComponent should render OfferPage with offerWithoutFavourite 1`] = `
 <div
   className="page page--gray page--main"

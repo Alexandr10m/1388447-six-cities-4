@@ -120,6 +120,8 @@ describe(`Test of reducer data.js`, () => {
       isLoadingReviews: true,
       statusOfReviewLoad: StatusOfReviewLoad.NOT_IN_PROCESS,
       isLoadingNearbyOffers: true,
+      isErrorOfNetwork: false,
+      textError: ``,
     });
   });
 
