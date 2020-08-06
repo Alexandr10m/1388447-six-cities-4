@@ -115,8 +115,8 @@ describe(`Test of reducer data.js`, () => {
       reviews: [],
       nearbyOffers: [],
       cities: [],
-      isLoadOffes: true,
-      isLoadFavourite: true,
+      isLoadingOffes: true,
+      isLoadingFavourite: true,
       isLoadingReviews: true,
       statusOfReviewLoad: StatusOfReviewLoad.NOT_IN_PROCESS,
       isLoadingNearbyOffers: true,
@@ -128,26 +128,26 @@ describe(`Test of reducer data.js`, () => {
   it(`Reducer should update offers by load offers`, () => {
     expect(reducer({
       offers: [],
-      isLoadOffes: true,
+      isLoadingOffes: true,
     }, {
       type: ActionType.LOAD_OFFERS,
       payload: offers,
     })).toEqual({
       offers,
-      isLoadOffes: true,
+      isLoadingOffes: true,
     });
   });
 
   it(`Reducer should update favourite-offers by load favourite`, () => {
     expect(reducer({
       favourite: [],
-      isLoadFavourite: true,
+      isLoadingFavourite: true,
     }, {
       type: ActionType.LOAD_FAVOURITE,
       payload: favouriteOffers,
     })).toEqual({
       favourite: favouriteOffers,
-      isLoadFavourite: true,
+      isLoadingFavourite: true,
     });
   });
 
@@ -212,27 +212,27 @@ describe(`Test of reducer data.js`, () => {
     });
   });
 
-  it(`Reducer should update isLoadFavourite`, () => {
+  it(`Reducer should update isLoadingFavourite`, () => {
 
     expect(reducer({
-      isLoadFavourite: true,
+      isLoadingFavourite: true,
     }, {
-      type: ActionType.PROGRESS_LOAD_FAVOURITE,
+      type: ActionType.LOADING_FAVOURITE_PROGRESS,
       payload: false,
     })).toEqual({
-      isLoadFavourite: false,
+      isLoadingFavourite: false,
     });
   });
 
-  it(`Reducer should update isLoadOffes`, () => {
+  it(`Reducer should update isLoadingOffes`, () => {
 
     expect(reducer({
-      isLoadOffes: true,
+      isLoadingOffes: true,
     }, {
-      type: ActionType.PROGRESS_LOAD_OFFERS,
+      type: ActionType.LOADING_OFFERS_PROGRESS,
       payload: false,
     })).toEqual({
-      isLoadOffes: false,
+      isLoadingOffes: false,
     });
   });
 
@@ -241,7 +241,7 @@ describe(`Test of reducer data.js`, () => {
     expect(reducer({
       isLoadingReviews: true,
     }, {
-      type: ActionType.LOADING_REVIEWS_IN_PROGRESS,
+      type: ActionType.LOADING_REVIEWS_PROGRESS,
       payload: false,
     })).toEqual({
       isLoadingReviews: false,
@@ -253,7 +253,7 @@ describe(`Test of reducer data.js`, () => {
     expect(reducer({
       isLoadingNearbyOffers: true,
     }, {
-      type: ActionType.LOADING_NEARBY_OFFERS_IN_PROGRESS,
+      type: ActionType.LOADING_NEAREST_OFFERS_PROGRESS,
       payload: false,
     })).toEqual({
       isLoadingNearbyOffers: false,
@@ -298,22 +298,22 @@ describe(`Test of ActionCreator reducer data.js`, () => {
   });
 
   it(`Should return correct action`, () => {
-    expect(ActionCreator.loadingReviewsInProgress(true)).toEqual({
-      type: ActionType.LOADING_REVIEWS_IN_PROGRESS,
+    expect(ActionCreator.loadingReviewsProgress(true)).toEqual({
+      type: ActionType.LOADING_REVIEWS_PROGRESS,
       payload: true,
     });
   });
 
   it(`Should return correct action`, () => {
-    expect(ActionCreator.progressLoadFavoutite()).toEqual({
-      type: ActionType.PROGRESS_LOAD_FAVOURITE,
+    expect(ActionCreator.loadingFavouriteProgress()).toEqual({
+      type: ActionType.LOADING_FAVOURITE_PROGRESS,
       payload: false,
     });
   });
 
   it(`Should return correct action`, () => {
-    expect(ActionCreator.loadingNearbyOffersInProgress(true)).toEqual({
-      type: ActionType.LOADING_NEARBY_OFFERS_IN_PROGRESS,
+    expect(ActionCreator.loadingNearbestOffersProgress(true)).toEqual({
+      type: ActionType.LOADING_NEAREST_OFFERS_PROGRESS,
       payload: true,
     });
   });
@@ -444,7 +444,7 @@ describe(`Operation work correctly`, () => {
           payload: [convertedServerResponse],
         });
         expect(dispatch).toHaveBeenNthCalledWith(3, {
-          type: ActionType.PROGRESS_LOAD_OFFERS,
+          type: ActionType.LOADING_OFFERS_PROGRESS,
           payload: false,
         });
       });
@@ -515,7 +515,7 @@ describe(`Operation work correctly`, () => {
           payload: [convertedServerResponse],
         });
         expect(dispatch).toHaveBeenNthCalledWith(2, {
-          type: ActionType.PROGRESS_LOAD_FAVOURITE,
+          type: ActionType.LOADING_FAVOURITE_PROGRESS,
           payload: false,
         });
       });
@@ -643,7 +643,7 @@ describe(`Operation work correctly`, () => {
           payload: [convertedServerResponse],
         });
         expect(dispatch).toHaveBeenNthCalledWith(2, {
-          type: ActionType.LOADING_NEARBY_OFFERS_IN_PROGRESS,
+          type: ActionType.LOADING_NEAREST_OFFERS_PROGRESS,
           payload: false,
         });
       });
@@ -693,7 +693,7 @@ describe(`Operation work correctly`, () => {
           payload: [convertedServerResponse],
         });
         expect(dispatch).toHaveBeenNthCalledWith(2, {
-          type: ActionType.LOADING_REVIEWS_IN_PROGRESS,
+          type: ActionType.LOADING_REVIEWS_PROGRESS,
           payload: false,
         });
       });
