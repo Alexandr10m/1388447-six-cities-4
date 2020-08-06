@@ -14,8 +14,8 @@ const initialState = {
   reviews: [],
   nearbyOffers: [],
   cities: [],
-  isLoadOffes: true,
-  isLoadFavourite: true,
+  isLoadingOffes: true,
+  isLoadingFavourite: true,
   isLoadingReviews: true,
   statusOfReviewLoad: StatusOfReviewLoad.NOT_IN_PROCESS,
   isLoadingNearbyOffers: true,
@@ -30,11 +30,11 @@ const ActionType = {
   LOAD_NESRBY_OFFERS: `LOAD_NESRBY_OFFERS`,
   LOAD_CITIES: `LOAD_CITIES`,
   CHANGE_FAVOURITE: `CHANGE_FAVOURITE`,
-  PROGRESS_LOAD_OFFERS: `PROGRESS_LOAD_OFFERS`,
-  PROGRESS_LOAD_FAVOURITE: `PROGRESS_LOAD_FAVOURITE`,
-  LOADING_REVIEWS_IN_PROGRESS: `LOADING_REVIEWS_IN_PROGRESS`,
+  LOADING_OFFERS_PROGRESS: `LOADING_OFFERS_PROGRESS`,
+  LOADING_FAVOURITE_PROGRESS: `LOADING_FAVOURITE_PROGRESS`,
+  LOADING_REVIEWS_PROGRESS: `LOADING_REVIEWS_PROGRESS`,
   STATUS_OF_REVIEW_LOAD: `STATUS_OF_REVIEW_LOAD`,
-  LOADING_NEARBY_OFFERS_IN_PROGRESS: `LOADING_NEARBY_OFFERS_IN_PROGRESS`,
+  LOADING_NEAREST_OFFERS_PROGRESS: `LOADING_NEAREST_OFFERS_PROGRESS`,
   ERROR: `ERROR`,
   CHANGE_TEXT_ERROR: `CHANGE_TEXT_ERROR`,
 };
@@ -64,24 +64,24 @@ const ActionCreator = {
     type: ActionType.CHANGE_FAVOURITE,
     payload: offer,
   }),
-  progressLoadOffers: () => ({
-    type: ActionType.PROGRESS_LOAD_OFFERS,
+  loadingOffersProgress: () => ({
+    type: ActionType.LOADING_OFFERS_PROGRESS,
     payload: false,
   }),
-  progressLoadFavoutite: () => ({
-    type: ActionType.PROGRESS_LOAD_FAVOURITE,
+  loadingFavouriteProgress: () => ({
+    type: ActionType.LOADING_FAVOURITE_PROGRESS,
     payload: false,
   }),
-  loadingReviewsInProgress: (bool) => ({
-    type: ActionType.LOADING_REVIEWS_IN_PROGRESS,
+  loadingReviewsProgress: (bool) => ({
+    type: ActionType.LOADING_REVIEWS_PROGRESS,
     payload: bool,
   }),
   changeStatusOfReviewLoad: (status) => ({
     type: ActionType.STATUS_OF_REVIEW_LOAD,
     payload: status,
   }),
-  loadingNearbyOffersInProgress: (bool) => ({
-    type: ActionType.LOADING_NEARBY_OFFERS_IN_PROGRESS,
+  loadingNearbestOffersProgress: (bool) => ({
+    type: ActionType.LOADING_NEAREST_OFFERS_PROGRESS,
     payload: bool,
   }),
   showError: (bool) => ({
@@ -183,7 +183,7 @@ const Operation = {
 
         dispatch(ActionCreator.loadCities(cities));
         dispatch(ActionCreator.loadOffers(offersByCity));
-        dispatch(ActionCreator.progressLoadOffers());
+        dispatch(ActionCreator.loadingOffersProgress());
       })
       .catch((err) => {
         throw err;
@@ -196,7 +196,7 @@ const Operation = {
       let favouriteOffers = [];
       response.data.forEach((it) => convertOffer(favouriteOffers, it));
       dispatch(ActionCreator.loadFavourite(favouriteOffers));
-      dispatch(ActionCreator.progressLoadFavoutite());
+      dispatch(ActionCreator.loadingFavouriteProgress());
     })
     .catch((err) => {
       throw err;
@@ -208,7 +208,7 @@ const Operation = {
       .then((response) => {
         const reviews = response.data.map((review) => reviewAdapter(review));
         dispatch(ActionCreator.loadReviews(reviews));
-        dispatch(ActionCreator.loadingReviewsInProgress(false));
+        dispatch(ActionCreator.loadingReviewsProgress(false));
       })
       .catch((err) => {
         throw err;
@@ -237,7 +237,7 @@ const Operation = {
         const nearbyOffers = response.data.map((offer) => localOffersAdapter(offer));
 
         dispatch(ActionCreator.loadNearbyOffers(nearbyOffers));
-        dispatch(ActionCreator.loadingNearbyOffersInProgress(false));
+        dispatch(ActionCreator.loadingNearbestOffersProgress(false));
       })
       .catch((err) => {
         throw err;
@@ -281,15 +281,15 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_FAVOURITE:
       return extendFavourite(state, action.payload);
 
-    case ActionType.PROGRESS_LOAD_OFFERS:
+    case ActionType.LOADING_OFFERS_PROGRESS:
       return extend(state, {
-        isLoadOffes: action.payload,
+        isLoadingOffes: action.payload,
       });
-    case ActionType.PROGRESS_LOAD_FAVOURITE:
+    case ActionType.LOADING_FAVOURITE_PROGRESS:
       return extend(state, {
-        isLoadFavourite: action.payload,
+        isLoadingFavourite: action.payload,
       });
-    case ActionType.LOADING_REVIEWS_IN_PROGRESS:
+    case ActionType.LOADING_REVIEWS_PROGRESS:
       return extend(state, {
         isLoadingReviews: action.payload,
       });
@@ -297,7 +297,7 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         statusOfReviewLoad: action.payload,
       });
-    case ActionType.LOADING_NEARBY_OFFERS_IN_PROGRESS:
+    case ActionType.LOADING_NEAREST_OFFERS_PROGRESS:
       return extend(state, {
         isLoadingNearbyOffers: action.payload,
       });

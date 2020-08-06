@@ -260,8 +260,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(Operation.loadNearbyOffers(offerId));
   },
   changeLoadingRequestsProgress() {
-    dispatch(ActionCreator.loadingReviewsInProgress(true));
-    dispatch(ActionCreator.loadingNearbyOffersInProgress(true));
+    dispatch(ActionCreator.loadingReviewsProgress(true));
+    dispatch(ActionCreator.loadingNearbestOffersProgress(true));
   },
 });
 
