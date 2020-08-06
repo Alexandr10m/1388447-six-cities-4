@@ -28,12 +28,6 @@ const offerWithPremium = {
   pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`],
   previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
   price: 397,
-  reviews: [{
-    image: `img/avatar-max.jpg`,
-    text: `A quiet cozy and picturesque.`,
-    name: `Max`,
-    time: `April 2019`
-  }],
   title: `Penthouse, 4-5 rooms + 5 balconies`,
   type: `hotel`,
 };
@@ -57,12 +51,6 @@ const offerWithFavourite = {
   pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`],
   previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
   price: 397,
-  reviews: [{
-    image: `img/avatar-max.jpg`,
-    text: `A quiet cozy and picturesque.`,
-    name: `Max`,
-    time: `April 2019`
-  }],
   title: `Penthouse, 4-5 rooms + 5 balconies`,
   type: `hotel`,
 };
@@ -83,6 +71,7 @@ const allOffers = [
 
 const emptyLocalOffers = {
   city: `Paris`,
+  cities: [`Paris`, `Amsterdam`],
   cityCoords: [52.38333, 4.9],
   cityZoom: 16,
   localOffers: [],
@@ -98,6 +87,7 @@ describe(`Snapshot of Main`, () => {
       },
       [NameSpace.DATA]: {
         offers: allOffers,
+        cities: [`Paris`, `Amsterdam`],
       },
       [NameSpace.USER]: {
         authInfo: {
@@ -116,6 +106,7 @@ describe(`Snapshot of Main`, () => {
             <BrowserRouter>
               <Main
                 offers={allOffers}
+                cities={[`Paris`, `Amsterdam`]}
                 onCityClick={()=>{}}
                 match={match}
               />
@@ -134,6 +125,7 @@ describe(`Snapshot of Main`, () => {
       },
       [NameSpace.DATA]: {
         offers: emptyLocalOffers,
+        cities: [`Paris`, `Amsterdam`],
       },
       [NameSpace.USER]: {
         authInfo: {
@@ -152,6 +144,7 @@ describe(`Snapshot of Main`, () => {
             <BrowserRouter>
               <Main
                 offers={allOffers}
+                cities={[`Paris`, `Amsterdam`]}
                 onCityClick={()=>{}}
                 match={match}
               />

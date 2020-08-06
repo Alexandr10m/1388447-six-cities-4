@@ -3,13 +3,15 @@ import PropTypes from "prop-types";
 import {firstWordInUpper, rating} from "../../utils.js";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {getCity} from "../../reducer/state/selector.js";
 import {Operation} from "../../reducer/data/data.js";
-import {ActionCreator} from "../../reducer/state/state.js";
+import history from "../../history.js";
+import {AppRoute} from "../../constants.js";
+import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 
 const Card = (props) => {
-  const {city, offer, onCardMouseEnter, sendFavouriteOption} = props;
+  const {offer, onActiveCard, sendFavouriteOption, authorizationStatus} = props;
   const {
     grade,
     title,
@@ -19,21 +21,28 @@ const Card = (props) => {
     type,
     className,
     previewImage,
-    id: offerId
+    id,
   } = offer;
 
+  const offerId = id;
   const tempPartClass = className || `cities__place-card`;
   const partClassName = (str) => str.split(`__`)[0];
   const favouriteClasse = isFavourite && `place-card__bookmark-button--active`;
 
   const handlerCardMouseEnter = () => {
-    onCardMouseEnter(offer);
+    if (onActiveCard) {
+      onActiveCard(offer);
+    }
   };
 
   const handlerButtonFavouriteClick = () => {
+    if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
+      history.push(AppRoute.LOGIN);
+      return;
+    }
     sendFavouriteOption({
-      id: offer.id,
-      status: +(!offer.isFavourite),
+      id,
+      status: +(!isFavourite),
     });
   };
 
@@ -48,7 +57,7 @@ const Card = (props) => {
       </div>}
 
       <div className={`${partClassName(tempPartClass)}__image-wrapper place-card__image-wrapper`}>
-        <Link to={`/${city}/${offerId}`}>
+        <Link to={`/offer/${offerId}`}>
           <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place image" />
         </Link>
       </div>
@@ -78,7 +87,7 @@ const Card = (props) => {
         <h2
           className="place-card__name"
         >
-          <Link to={`/${city}/${offerId}`}>
+          <Link to={`/offer/${offerId}`}>
             {title}
           </Link>
         </h2>
@@ -91,7 +100,6 @@ const Card = (props) => {
 
 Card.propTypes = {
   sendFavouriteOption: PropTypes.func.isRequired,
-  city: PropTypes.string.isRequired,
   offer: PropTypes.shape({
     isPremium: PropTypes.bool.isRequired,
     previewImage: PropTypes.string.isRequired,
@@ -103,22 +111,18 @@ Card.propTypes = {
     className: PropTypes.string,
     id: PropTypes.number.isRequired
   }),
-  onCardMouseEnter: PropTypes.func.isRequired,
+  onActiveCard: PropTypes.func,
+  authorizationStatus: PropTypes.string.isRequired,
 };
 
-
 const mapStateToProps = (state) => ({
-  city: getCity(state),
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   sendFavouriteOption(options) {
     dispatch(Operation.sendFavouriteOption(options));
   },
-
-  onCardMouseEnter(offer) {
-    dispatch(ActionCreator.showPoiner(offer));
-  }
 });
 
 export {Card};

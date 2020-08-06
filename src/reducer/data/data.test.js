@@ -1,6 +1,7 @@
 import {reducer, ActionType, ActionCreator, Operation} from "./data.js";
 import MockAdapter from "axios-mock-adapter";
 import createAPI from "../../api.js";
+import {StatusOfReviewLoad} from "./data.js";
 
 
 const offerWithPremium = {
@@ -23,12 +24,6 @@ const offerWithPremium = {
   pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`],
   previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
   price: 397,
-  reviews: {
-    image: `img/avatar-max.jpg`,
-    text: `A quiet cozy and picturesque.`,
-    name: `Max`,
-    time: `April 2019`
-  },
   title: `Penthouse, 4-5 rooms + 5 balconies`,
   type: `hotel`,
 };
@@ -53,12 +48,6 @@ const offerWithPremiumAndFavourite = {
   pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`],
   previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
   price: 397,
-  reviews: {
-    image: `img/avatar-max.jpg`,
-    text: `A quiet cozy and picturesque.`,
-    name: `Max`,
-    time: `April 2019`
-  },
   title: `Penthouse, 4-5 rooms + 5 balconies`,
   type: `hotel`,
 };
@@ -83,12 +72,6 @@ const offerWithFavourite = {
   pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`],
   previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
   price: 397,
-  reviews: {
-    image: `img/avatar-max.jpg`,
-    text: `A quiet cozy and picturesque.`,
-    name: `Max`,
-    time: `April 2019`
-  },
   title: `Penthouse, 4-5 rooms + 5 balconies`,
   type: `hotel`,
 };
@@ -105,11 +88,12 @@ const offers = [
     cityCoords: [52.38333, 4.9],
     cityZoom: 13,
     localOffers: [offerWithPremium],
-  }];
+  }
+];
 
 const favouriteOffers = offers;
 
-const offerWithChanedFavouriteOffer = [
+const offersWithChangedFavouriteOffer = [
   {
     city: `Paris`,
     cityCoords: [48.85661, 2.351499],
@@ -123,42 +107,47 @@ const offerWithChanedFavouriteOffer = [
     localOffers: [offerWithPremiumAndFavourite],
   }];
 
-describe(`Test of reduser data.js`, () => {
+describe(`Test of reducer data.js`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {
     expect(reducer(void 0, {})).toEqual({
       offers: [],
       favourite: [],
-      isLoadOffes: true,
+      reviews: [],
+      nearbyOffers: [],
+      cities: [],
+      isLoadingOffes: true,
+      isLoadingFavourite: true,
+      isLoadingReviews: true,
+      statusOfReviewLoad: StatusOfReviewLoad.NOT_IN_PROCESS,
+      isLoadingNearbyOffers: true,
+      isErrorOfNetwork: false,
+      textError: ``,
     });
   });
 
   it(`Reducer should update offers by load offers`, () => {
     expect(reducer({
       offers: [],
-      favourite: [],
-      isLoadOffes: true,
+      isLoadingOffes: true,
     }, {
       type: ActionType.LOAD_OFFERS,
       payload: offers,
     })).toEqual({
       offers,
-      favourite: [],
-      isLoadOffes: true,
+      isLoadingOffes: true,
     });
   });
 
   it(`Reducer should update favourite-offers by load favourite`, () => {
     expect(reducer({
-      offers: [],
       favourite: [],
-      isLoadOffes: true,
+      isLoadingFavourite: true,
     }, {
       type: ActionType.LOAD_FAVOURITE,
       payload: favouriteOffers,
     })).toEqual({
-      offers: [],
       favourite: favouriteOffers,
-      isLoadOffes: true,
+      isLoadingFavourite: true,
     });
   });
 
@@ -183,12 +172,6 @@ describe(`Test of reduser data.js`, () => {
       pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`],
       previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
       price: 397,
-      reviews: {
-        image: `img/avatar-max.jpg`,
-        text: `A quiet cozy and picturesque.`,
-        name: `Max`,
-        time: `April 2019`
-      },
       title: `Penthouse, 4-5 rooms + 5 balconies`,
       type: `hotel`,
     };
@@ -196,30 +179,84 @@ describe(`Test of reduser data.js`, () => {
     expect(reducer({
       offers,
       favourite: [],
-      isLoadOffes: false,
+      nearbyOffers: [],
     }, {
       type: ActionType.CHANGE_FAVOURITE,
       payload: offer,
     })).toEqual({
-      offers: offerWithChanedFavouriteOffer,
+      offers: offersWithChangedFavouriteOffer,
       favourite: [],
-      isLoadOffes: false,
+      nearbyOffers: [],
     });
   });
 
-  it(`Reducer should update isLoadOffes`, () => {
+  it(`Reducer should update reviews by load reviews`, () => {
+    expect(reducer({
+      reviews: [],
+    }, {
+      type: ActionType.LOAD_REVIEWS,
+      payload: offers,
+    })).toEqual({
+      reviews: offers,
+    });
+  });
+
+  it(`Reducer should update reviews by load reviews`, () => {
+    expect(reducer({
+      nearbyOffers: [],
+    }, {
+      type: ActionType.LOAD_NESRBY_OFFERS,
+      payload: offers,
+    })).toEqual({
+      nearbyOffers: offers,
+    });
+  });
+
+  it(`Reducer should update isLoadingFavourite`, () => {
 
     expect(reducer({
-      offers,
-      favourite: [],
-      isLoadOffes: true,
+      isLoadingFavourite: true,
     }, {
-      type: ActionType.PROGRESS_LOAD_OFFERS,
+      type: ActionType.LOADING_FAVOURITE_PROGRESS,
       payload: false,
     })).toEqual({
-      offers,
-      favourite: [],
-      isLoadOffes: false,
+      isLoadingFavourite: false,
+    });
+  });
+
+  it(`Reducer should update isLoadingOffes`, () => {
+
+    expect(reducer({
+      isLoadingOffes: true,
+    }, {
+      type: ActionType.LOADING_OFFERS_PROGRESS,
+      payload: false,
+    })).toEqual({
+      isLoadingOffes: false,
+    });
+  });
+
+  it(`Reducer should update isLoadingReviews`, () => {
+
+    expect(reducer({
+      isLoadingReviews: true,
+    }, {
+      type: ActionType.LOADING_REVIEWS_PROGRESS,
+      payload: false,
+    })).toEqual({
+      isLoadingReviews: false,
+    });
+  });
+
+  it(`Reducer should update isLoadingNearbyOffers`, () => {
+
+    expect(reducer({
+      isLoadingNearbyOffers: true,
+    }, {
+      type: ActionType.LOADING_NEAREST_OFFERS_PROGRESS,
+      payload: false,
+    })).toEqual({
+      isLoadingNearbyOffers: false,
     });
   });
 });
@@ -243,6 +280,41 @@ describe(`Test of ActionCreator reducer data.js`, () => {
     expect(ActionCreator.changeFavourite(offerWithFavourite)).toEqual({
       type: ActionType.CHANGE_FAVOURITE,
       payload: offerWithFavourite,
+    });
+  });
+
+  it(`Should return correct action`, () => {
+    expect(ActionCreator.loadReviews(offerWithFavourite)).toEqual({
+      type: ActionType.LOAD_REVIEWS,
+      payload: offerWithFavourite,
+    });
+  });
+
+  it(`Should return correct action`, () => {
+    expect(ActionCreator.loadNearbyOffers(offerWithFavourite)).toEqual({
+      type: ActionType.LOAD_NESRBY_OFFERS,
+      payload: offerWithFavourite,
+    });
+  });
+
+  it(`Should return correct action`, () => {
+    expect(ActionCreator.loadingReviewsProgress(true)).toEqual({
+      type: ActionType.LOADING_REVIEWS_PROGRESS,
+      payload: true,
+    });
+  });
+
+  it(`Should return correct action`, () => {
+    expect(ActionCreator.loadingFavouriteProgress()).toEqual({
+      type: ActionType.LOADING_FAVOURITE_PROGRESS,
+      payload: false,
+    });
+  });
+
+  it(`Should return correct action`, () => {
+    expect(ActionCreator.loadingNearbestOffersProgress(true)).toEqual({
+      type: ActionType.LOADING_NEAREST_OFFERS_PROGRESS,
+      payload: true,
     });
   });
 });
@@ -301,6 +373,7 @@ const serverResponse = {
   title: `Wood and stone place`,
   type: `house`,
 };
+
 describe(`Operation work correctly`, () => {
   it(`Should make a correct API call to /hotels`, () => {
     const apiMock = new MockAdapter(api);
@@ -351,14 +424,6 @@ describe(`Operation work correctly`, () => {
         ],
         previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/15.jpg`,
         price: 813,
-        reviews: [
-          {
-            image: `img/avatar-max.jpg`,
-            text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
-            name: `Max`,
-            time: `April 2019`,
-          },
-        ],
         title: `Wood and stone place`,
         type: `house`,
       }],
@@ -369,13 +434,17 @@ describe(`Operation work correctly`, () => {
       .reply(200, [serverResponse]);
     return offersLoader(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenCalledTimes(3);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_CITIES,
+          payload: [convertedServerResponse.city],
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
           type: ActionType.LOAD_OFFERS,
           payload: [convertedServerResponse],
         });
-        expect(dispatch).toHaveBeenNthCalledWith(2, {
-          type: ActionType.PROGRESS_LOAD_OFFERS,
+        expect(dispatch).toHaveBeenNthCalledWith(3, {
+          type: ActionType.LOADING_OFFERS_PROGRESS,
           payload: false,
         });
       });
@@ -430,14 +499,6 @@ describe(`Operation work correctly`, () => {
         ],
         previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/15.jpg`,
         price: 813,
-        reviews: [
-          {
-            image: `img/avatar-max.jpg`,
-            text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
-            name: `Max`,
-            time: `April 2019`,
-          },
-        ],
         title: `Wood and stone place`,
         type: `house`,
       }],
@@ -448,10 +509,14 @@ describe(`Operation work correctly`, () => {
       .reply(200, [serverResponse]);
     return favouriteLoader(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenCalledTimes(2);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_FAVOURITE,
           payload: [convertedServerResponse],
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.LOADING_FAVOURITE_PROGRESS,
+          payload: false,
         });
       });
   });
@@ -497,14 +562,6 @@ describe(`Operation work correctly`, () => {
       ],
       previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/15.jpg`,
       price: 813,
-      reviews: [
-        {
-          image: `img/avatar-max.jpg`,
-          text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
-          name: `Max`,
-          time: `April 2019`,
-        },
-      ],
       title: `Wood and stone place`,
       type: `house`,
     };
@@ -524,6 +581,176 @@ describe(`Operation work correctly`, () => {
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.CHANGE_FAVOURITE,
           payload: convertedServerResponse,
+        });
+      });
+  });
+
+  it(`Should make a correct API call GET to /hotels/:hotel_id/nearby`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const hotelId = 1;
+    const nearbyOffersLoader = Operation.loadNearbyOffers(hotelId);
+    const convertedServerResponse = {
+      bedroom: 5,
+      coords: [
+        52.385540000000006,
+        4.886976,
+      ],
+      description: `I rent out a very sunny and bright apartment only 7 minutes walking distance to the metro station. The apartment has a spacious living room with a kitchen, one bedroom and a bathroom with mit bath. A terrace can be used in summer.`,
+      facilities: [`Laptop friendly workspace`],
+      grade: 2.4,
+      host: {
+        avatarUrl: `img/avatar-angelina.jpg`,
+        id: 25,
+        isPro: true,
+        name: `Angelina`,
+      },
+      id: 1,
+      isFavourite: true,
+      isPremium: false,
+      locationZoom: 16,
+      maxAdults: 6,
+      pictures: [
+        `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/20.jpg`,
+        `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/16.jpg`,
+        `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`,
+        `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/2.jpg`,
+        `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
+        `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/8.jpg`,
+        `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/10.jpg`,
+        `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/6.jpg`,
+        `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/9.jpg`,
+        `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/4.jpg`,
+        `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/15.jpg`,
+        `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/17.jpg`,
+        `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/7.jpg`,
+        `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/11.jpg`,
+      ],
+      previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/15.jpg`,
+      price: 813,
+      title: `Wood and stone place`,
+      type: `house`,
+    };
+
+    apiMock
+      .onGet()
+      .reply(200, [serverResponse]);
+    return nearbyOffersLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_NESRBY_OFFERS,
+          payload: [convertedServerResponse],
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.LOADING_NEAREST_OFFERS_PROGRESS,
+          payload: false,
+        });
+      });
+  });
+
+  it(`Should make a correct API call GET to /comments/:hotel_id`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const hotelId = 1;
+    const reviewsLoader = Operation.loadReviews(hotelId);
+    const constDate = new Date(`2000-12-31T22:00:00.000Z`);
+    const convertedServerResponse = {
+      date: constDate,
+      grade: 4,
+      id: 1,
+      text: `We loved it`,
+      user: {
+        avatarUrl: `https`,
+        email: undefined,
+        id: 18,
+        isPro: true,
+        name: `Sophie`,
+      },
+    };
+
+    const servRespons = {
+      comment: `We loved it`,
+      date: `2000-12-31T22:00:00.000Z`,
+      id: 1,
+      rating: 4,
+      user: {
+        [`avatar_url`]: `https`,
+        id: 18,
+        [`is_pro`]: true,
+        name: `Sophie`,
+      }
+    };
+
+    apiMock
+      .onGet()
+      .reply(200, [servRespons]);
+    return reviewsLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_REVIEWS,
+          payload: [convertedServerResponse],
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.LOADING_REVIEWS_PROGRESS,
+          payload: false,
+        });
+      });
+  });
+
+
+  it(`Should make a correct API call POST to /comments/:hotel_id`, () => {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const constDate = new Date(`2000-12-31T22:00:00.000Z`);
+    const convertedServerResponse = {
+      date: constDate,
+      grade: 4,
+      id: 1,
+      text: `We loved it`,
+      user: {
+        avatarUrl: `https`,
+        email: undefined,
+        id: 18,
+        isPro: true,
+        name: `Sophie`,
+      },
+    };
+    const servRespons = {
+      comment: `We loved it`,
+      date: `2000-12-31T22:00:00.000Z`,
+      id: 1,
+      rating: 4,
+      user: {
+        [`avatar_url`]: `https`,
+        id: 18,
+        [`is_pro`]: true,
+        name: `Sophie`,
+      }
+    };
+
+    const commentData = {
+      comment: `We loved it`,
+      rating: 4,
+    };
+
+    const senderReview = Operation.sendReview(commentData);
+
+
+    apiMock
+      .onPost()
+      .reply(200, [servRespons]);
+    return senderReview(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.LOAD_REVIEWS,
+          payload: [convertedServerResponse],
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.STATUS_OF_REVIEW_LOAD,
+          payload: StatusOfReviewLoad.LOADED,
         });
       });
   });

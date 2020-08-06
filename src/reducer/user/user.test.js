@@ -6,7 +6,6 @@ describe(`Test of user.js action`, () => {
     expect(reducer(void 0, {})).toEqual({
       authorizationStatus: AuthorizationStatus.NO_AUTH,
       authInfo: {},
-      comment: {},
     });
   });
 

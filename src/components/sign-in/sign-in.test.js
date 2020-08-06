@@ -25,7 +25,13 @@ describe(`Snapshot of SignIn`, () => {
           <BrowserRouter>
             <SignIn
               city={`Ocean`}
-              login={()=>{}}
+              onLogin={()=>{}}
+              login={<input/>}
+              password={<input/>}
+              loginError={<div/>}
+              passwordError={<div/>}
+              disableButton={false}
+              onSubmit={()=>{}}
             />
           </BrowserRouter>
         </Provider>)

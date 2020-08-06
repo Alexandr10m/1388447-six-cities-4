@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import FavouritePage from "./favourite-page.jsx";
+import {FavouritePage} from "./favourite-page.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import NameSpace from "../../reducer/name-space.js";
@@ -85,6 +85,7 @@ describe(`Snapshot of FavouritePage`, () => {
       [NameSpace.STATE]: {},
       [NameSpace.DATA]: {
         favourite: offers,
+        isLoadFavourite: false,
       },
       [NameSpace.USER]: {
         authInfo: {
@@ -99,6 +100,8 @@ describe(`Snapshot of FavouritePage`, () => {
             <BrowserRouter>
               <FavouritePage
                 favouriteOffers={offers}
+                isLoadFavourite={false}
+                loadFavouriteOffers={() => {}}
               />
             </BrowserRouter>
           </Provider>
@@ -115,6 +118,7 @@ describe(`Snapshot of FavouritePage`, () => {
       [NameSpace.STATE]: {},
       [NameSpace.DATA]: {
         favourite: favouriteOffers,
+        isLoadFavourite: false,
       },
       [NameSpace.USER]: {
         authInfo: {
@@ -129,6 +133,8 @@ describe(`Snapshot of FavouritePage`, () => {
             <BrowserRouter>
               <FavouritePage
                 favouriteOffers={favouriteOffers}
+                isLoadFavourite={false}
+                loadFavouriteOffers={() => {}}
               />
             </BrowserRouter>
           </Provider>

@@ -1,11 +1,12 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import OfferPage from "./offer-page.jsx";
+import {OfferPage} from "./offer-page.jsx";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import NameSpace from "../../reducer/name-space.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {BrowserRouter} from "react-router-dom";
+import {StatusOfReviewLoad} from "../../reducer/data/data.js";
 
 
 const mockStore = configureStore([]);
@@ -30,12 +31,6 @@ const offerWithPremium = {
   pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`],
   previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
   price: 397,
-  reviews: [{
-    image: `img/avatar-max.jpg`,
-    text: `A quiet cozy and picturesque.`,
-    name: `Max`,
-    time: `April 2019`
-  }],
   title: `Penthouse, 4-5 rooms + 5 balconies`,
   type: `hotel`,
 };
@@ -59,15 +54,25 @@ const offerWithFavourite = {
   pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`],
   previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
   price: 397,
-  reviews: [{
-    image: `img/avatar-max.jpg`,
-    text: `A quiet cozy and picturesque.`,
-    name: `Max`,
-    time: `April 2019`
-  }],
   title: `Penthouse, 4-5 rooms + 5 balconies`,
   type: `hotel`,
 };
+
+const reviews = [{
+  date: new Date(1),
+  grade: 4,
+  id: 1,
+  text: `We loved it`,
+  user: {
+    avatarUrl: `https`,
+    email: undefined,
+    id: 18,
+    isPro: true,
+    name: `Sophie`,
+  },
+}];
+
+const nearbyOffers = [offerWithFavourite];
 
 const allOffers = [
   {
@@ -88,10 +93,15 @@ const store = mockStore({
   [NameSpace.STATE]: {
     sortType: `Price: low to high`,
     city: `Amsterdam`,
-    indicatedCard: offerWithFavourite,
+    activeCard: offerWithFavourite,
   },
   [NameSpace.DATA]: {
     offers: allOffers,
+    reviews,
+    nearbyOffers,
+    isLoadingReviews: false,
+    isLoadingNearbyOffers: false,
+    statusOfReviewLoad: StatusOfReviewLoad.NOT_IN_PROCESS,
   },
   [NameSpace.USER]: {
     authInfo: {
@@ -116,6 +126,15 @@ describe(`Snapshot of OfferPage`, () => {
                 match={match}
                 offers={allOffers}
                 sendFavouriteOption={()=>{}}
+                reviews={reviews}
+                nearbyOffers={nearbyOffers}
+                authorizationStatus={AuthorizationStatus.AUTH}
+                loadReviews={()=>{}}
+                changeLoadingRequestsProgress={()=>{}}
+                loadNearbyOffers={()=>{}}
+                isLoadingNearbyOffers={false}
+                isLoadingReviews={false}
+                statusOfReviewLoad={StatusOfReviewLoad.NOT_IN_PROCESS}
               />
             </BrowserRouter>
           </Provider>)
@@ -138,6 +157,15 @@ describe(`Snapshot of OfferPage`, () => {
                 match={match}
                 offers={allOffers}
                 sendFavouriteOption={()=>{}}
+                reviews={reviews}
+                nearbyOffers={nearbyOffers}
+                authorizationStatus={AuthorizationStatus.AUTH}
+                loadReviews={()=>{}}
+                changeLoadingRequestsProgress={()=>{}}
+                loadNearbyOffers={()=>{}}
+                isLoadingNearbyOffers={false}
+                isLoadingReviews={false}
+                statusOfReviewLoad={StatusOfReviewLoad.NOT_IN_PROCESS}
               />
             </BrowserRouter>
           </Provider>)

@@ -8,7 +8,7 @@ import {getLocalOffers} from "../../reducer/state/selector.js";
 class ListCards extends PureComponent {
 
   render() {
-    const {localOffers} = this.props;
+    const {localOffers, onActiveCard} = this.props;
 
     return (
       <div className="cities__places-list places__list tabs__content">
@@ -17,6 +17,7 @@ class ListCards extends PureComponent {
           return <Card
             key={`${i}-${offer.id}`}
             offer={offer}
+            onActiveCard={onActiveCard}
           />;
         })}
 
@@ -28,6 +29,7 @@ class ListCards extends PureComponent {
 
 ListCards.propTypes = {
   localOffers: PropTypes.array.isRequired,
+  onActiveCard: PropTypes.func.isRequired,
 };
 
 

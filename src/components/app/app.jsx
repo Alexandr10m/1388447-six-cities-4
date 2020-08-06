@@ -1,20 +1,25 @@
 import React, {PureComponent} from "react";
 import Main from "../main/main.jsx";
 import OfferPage from "../offer-page/offer-page.jsx";
-import {Switch, Route, BrowserRouter, Redirect} from "react-router-dom";
+import {Switch, Route, Router, Redirect} from "react-router-dom";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {getFavourite, getProgressLoadOffers} from "../../reducer/data/selectors.js";
+import {getFavourite, getLoadOffersProgress, getErrorOfNetwork} from "../../reducer/data/selectors.js";
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
-import SignIn from "../sign-in/sign-in.jsx";
+import SignInPage from "../sign-in/sign-in.jsx";
 import FavouritePage from "../favourite-page/favourite-page.jsx";
 import PrivateRoute from "../private-route/private-route.jsx";
-import {getCity} from "../../reducer/state/selector.js";
 import {AppRoute} from "../../constants.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
+import history from "../../history.js";
+import Preload from "../preload/preload.jsx";
+import withSignIn from "../../hoc/with-sign-in/with-sign-in.js";
+import NetworkError from "../network-error/network-error.jsx";
 
+
+const SignIn = withSignIn(SignInPage);
 
 class App extends PureComponent {
   constructor(props) {
@@ -29,14 +34,14 @@ class App extends PureComponent {
   }
 
   showPreload() {
-    return (<div>... in progress</div>);
+    return <Preload/>;
   }
 
   showApp() {
-    const {city, favourite, authorizationStatus} = this.props;
+    const {favourite, authorizationStatus} = this.props;
 
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <Switch>
           {authorizationStatus === AuthorizationStatus.AUTH && (
             <Redirect exact from={AppRoute.LOGIN} to={`/`}/>
@@ -47,14 +52,18 @@ class App extends PureComponent {
           />
           <Redirect exact from={`/`} to={AppRoute.DEFAULT_CITY}/>
           <Route exact path={AppRoute.CITY} component={Main}/>
-          <Route exact path={`/${city}${AppRoute.OFFER}`} component={OfferPage}/>
+          <Route exact path={AppRoute.OFFER} component={OfferPage}/>
         </Switch>
-      </BrowserRouter>
+      </Router>
     );
   }
 
   render() {
-    const {isLoadOffes} = this.props;
+    const {isLoadOffes, isErrorOfNetwork} = this.props;
+
+    if (isErrorOfNetwork) {
+      return <NetworkError/>;
+    }
     if (isLoadOffes) {
       return this.showPreload();
     }
@@ -63,20 +72,20 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  city: PropTypes.string.isRequired,
   favourite: PropTypes.array.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   checkAuth: PropTypes.func.isRequired,
   loadOffers: PropTypes.func.isRequired,
   isLoadOffes: PropTypes.bool.isRequired,
+  isErrorOfNetwork: PropTypes.bool.isRequired,
 };
 
 
 const mapStateToProps = (state) => ({
-  city: getCity(state),
   authorizationStatus: getAuthorizationStatus(state),
   favourite: getFavourite(state),
-  isLoadOffes: getProgressLoadOffers(state),
+  isLoadOffes: getLoadOffersProgress(state),
+  isErrorOfNetwork: getErrorOfNetwork(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

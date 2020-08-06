@@ -1,7 +1,13 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import FavouriteOffers from "./favourite-offers.jsx";
+import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
+import NameSpace from "../../reducer/name-space.js";
+import {BrowserRouter} from "react-router-dom";
 
+
+const mockStore = configureStore([]);
 
 const offerWithPremium = {
   bedroom: 2,
@@ -76,12 +82,20 @@ const favouriteOffers = [
 
 describe(`Snapshot of FavouriteOffers`, () => {
   it(`Should render correctly`, () => {
-
+    const store = mockStore({
+      [NameSpace.STATE]: {},
+      [NameSpace.DATA]: {},
+      [NameSpace.USER]: {},
+    });
     const tree = renderer
       .create(
-          <FavouriteOffers
-            favouriteOffers={favouriteOffers}
-          />)
+          <Provider store={store}>
+            <BrowserRouter>
+              <FavouriteOffers
+                favouriteOffers={favouriteOffers}
+              />
+            </BrowserRouter>
+          </Provider>)
       .toJSON();
 
     expect(tree).toMatchSnapshot();

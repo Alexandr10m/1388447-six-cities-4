@@ -1,70 +1,73 @@
-import React, {PureComponent, createRef} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Login from "../login/login.jsx";
 import {connect} from "react-redux";
 import {getCity} from "../../reducer/state/selector.js";
 import {Operation} from "../../reducer/user/user.js";
+import {Link} from "react-router-dom";
 
 
-class SignIn extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.loginRef = createRef();
-    this.passwordRef = createRef();
+const SignIn = (props) => {
+  const {city, onLogin, login, password, loginError, passwordError, disableButton, onSubmit} = props;
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleSubmit(evt) {
-    const {login} = this.props;
+  const _handleSubmit = (evt) => {
     evt.preventDefault();
+    onSubmit(onLogin);
+  };
 
-    login({
-      login: this.loginRef.current.value,
-      password: this.passwordRef.current.value,
-    });
-  }
+  return (
+    <div className="page page--gray page--login">
+      <Login/>
 
-  render() {
-    const {city} = this.props;
-    return (
-      <div className="page page--gray page--login">
-        <Login/>
-
-        <main className="page__main page__main--login">
-          <div className="page__login-container container">
-            <section className="login">
-              <h1 className="login__title">Sign in</h1>
-              <form onSubmit={this.handleSubmit} className="login__form form" action="#" method="post">
-                <div className="login__input-wrapper form__input-wrapper">
-                  <label className="visually-hidden">E-mail</label>
-                  <input ref={this.loginRef} className="login__input form__input" type="email" name="email" placeholder="Email" required=""/>
-                </div>
-                <div className="login__input-wrapper form__input-wrapper">
-                  <label className="visually-hidden">Password</label>
-                  <input ref={this.passwordRef} className="login__input form__input" type="password" name="password" placeholder="Password" required=""/>
-                </div>
-                <button className="login__submit form__submit button" type="submit">Sign in</button>
-              </form>
-            </section>
-            <section className="locations locations--login locations--current">
-              <div className="locations__item">
-                <a className="locations__item-link" href="#">
-                  <span>{city}</span>
-                </a>
+      <main className="page__main page__main--login">
+        <div className="page__login-container container">
+          <section className="login">
+            <h1 className="login__title">Sign in</h1>
+            <form onSubmit={_handleSubmit} className="login__form form" action="#" method="post">
+              <div className="login__input-wrapper form__input-wrapper">
+                <label className="visually-hidden">E-mail</label>
+                {login}
               </div>
-            </section>
-          </div>
-        </main>
-      </div>
-    );
-  }
-}
+              <div className="login__input-wrapper form__input-wrapper">
+                <label className="visually-hidden">Password</label>
+                {password}
+              </div>
+              <button
+                className="login__submit form__submit button"
+                type="submit"
+                disabled={disableButton}
+              >
+                    Sign in
+              </button>
+              {loginError}
+              {passwordError}
+            </form>
+          </section>
+          <section className="locations locations--login locations--current">
+            <div className="locations__item">
+              <Link
+                to={`/${city}`}
+                className="locations__item-link">
+                <span>{city}</span>
+              </Link>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  );
+};
 
 
 SignIn.propTypes = {
   city: PropTypes.string.isRequired,
-  login: PropTypes.func.isRequired,
+  onLogin: PropTypes.func.isRequired,
+  login: PropTypes.node.isRequired,
+  password: PropTypes.node.isRequired,
+  loginError: PropTypes.node.isRequired,
+  passwordError: PropTypes.node.isRequired,
+  disableButton: PropTypes.bool.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 
@@ -73,7 +76,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  login(authData) {
+  onLogin(authData) {
     dispatch(Operation.login(authData));
   },
 });

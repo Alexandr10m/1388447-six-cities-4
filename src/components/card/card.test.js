@@ -5,6 +5,7 @@ import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import NameSpace from "../../reducer/name-space.js";
 import {BrowserRouter} from "react-router-dom";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 
 const mockStore = configureStore([]);
@@ -29,12 +30,6 @@ const offerWithPremium = {
   pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`],
   previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
   price: 397,
-  reviews: {
-    image: `img/avatar-max.jpg`,
-    text: `A quiet cozy and picturesque.`,
-    name: `Max`,
-    time: `April 2019`
-  },
   title: `Penthouse, 4-5 rooms + 5 balconies`,
   type: `hotel`,
 };
@@ -58,22 +53,16 @@ const offerWithFavourite = {
   pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`],
   previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
   price: 397,
-  reviews: {
-    image: `img/avatar-max.jpg`,
-    text: `A quiet cozy and picturesque.`,
-    name: `Max`,
-    time: `April 2019`
-  },
   title: `Penthouse, 4-5 rooms + 5 balconies`,
   type: `hotel`,
 };
 
 const store = mockStore({
-  [NameSpace.STATE]: {
-    city: `Amsterdam`,
-  },
+  [NameSpace.STATE]: {},
   [NameSpace.DATA]: {},
-  [NameSpace.USER]: {},
+  [NameSpace.USER]: {
+    authorizationStatus: AuthorizationStatus.AUTH,
+  },
 });
 describe(`Snapshot of Card`, () => {
   it(`Card should render correctly with Primium`, () => {
@@ -82,10 +71,10 @@ describe(`Snapshot of Card`, () => {
           <Provider store={store}>
             <BrowserRouter>
               <Card
-                city={`Amsterdam`}
                 offer={offerWithPremium}
-                onCardMouseEnter={() => {}}
+                authorizationStatus={AuthorizationStatus.AUTH}
                 sendFavouriteOption={() => {}}
+                onActiveCard={() => {}}
               />
             </BrowserRouter>
           </Provider>)
@@ -100,10 +89,10 @@ describe(`Snapshot of Card`, () => {
           <Provider store={store}>
             <BrowserRouter>
               <Card
-                city={`Amsterdam`}
                 offer={offerWithFavourite}
-                onCardMouseEnter={() => {}}
+                authorizationStatus={AuthorizationStatus.AUTH}
                 sendFavouriteOption={() => {}}
+                onActiveCard={() => {}}
               />
             </BrowserRouter>
           </Provider>)

@@ -30,14 +30,14 @@ exports[`Snapshot of ReviewList ReviewList should render correctly with Rewies f
             alt="Reviews avatar"
             className="reviews__avatar user__avatar"
             height="54"
-            src="/img/avatar-max.jpg"
+            src="https"
             width="54"
           />
         </div>
         <span
           className="reviews__user-name"
         >
-          Max
+          Sophie
         </span>
       </div>
       <div
@@ -66,13 +66,13 @@ exports[`Snapshot of ReviewList ReviewList should render correctly with Rewies f
         <p
           className="reviews__text"
         >
-          A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
+          We loved it
         </p>
         <time
           className="reviews__time"
-          dateTime="2019-04-24"
+          dateTime="1970-01-01"
         >
-          April 2019
+          January 1970
         </time>
       </div>
     </li>
@@ -91,9 +91,11 @@ exports[`Snapshot of ReviewList ReviewList should render correctly with Rewies f
     </label>
     <div
       className="reviews__rating-form form__rating"
+      onChange={[Function]}
     >
       <input
         className="form__rating-input visually-hidden"
+        disabled={false}
         id="5-stars"
         name="rating"
         type="radio"
@@ -116,6 +118,7 @@ exports[`Snapshot of ReviewList ReviewList should render correctly with Rewies f
       </label>
       <input
         className="form__rating-input visually-hidden"
+        disabled={false}
         id="4-stars"
         name="rating"
         type="radio"
@@ -138,6 +141,7 @@ exports[`Snapshot of ReviewList ReviewList should render correctly with Rewies f
       </label>
       <input
         className="form__rating-input visually-hidden"
+        disabled={false}
         id="3-stars"
         name="rating"
         type="radio"
@@ -160,6 +164,7 @@ exports[`Snapshot of ReviewList ReviewList should render correctly with Rewies f
       </label>
       <input
         className="form__rating-input visually-hidden"
+        disabled={false}
         id="2-stars"
         name="rating"
         type="radio"
@@ -182,6 +187,7 @@ exports[`Snapshot of ReviewList ReviewList should render correctly with Rewies f
       </label>
       <input
         className="form__rating-input visually-hidden"
+        disabled={false}
         id="1-stars"
         name="rating"
         type="radio"
@@ -205,9 +211,12 @@ exports[`Snapshot of ReviewList ReviewList should render correctly with Rewies f
     </div>
     <textarea
       className="reviews__textarea form__textarea"
+      disabled={false}
       id="review"
       name="review"
+      onChange={[Function]}
       placeholder="Tell how was your stay, what you like and what can be improved"
+      value=""
     />
     <div
       className="reviews__button-wrapper"
@@ -231,7 +240,7 @@ exports[`Snapshot of ReviewList ReviewList should render correctly with Rewies f
       </p>
       <button
         className="reviews__submit form__submit button"
-        disabled=""
+        disabled={false}
         type="submit"
       >
         Submit
@@ -271,14 +280,14 @@ exports[`Snapshot of ReviewList ReviewList should render correctly without Rewie
             alt="Reviews avatar"
             className="reviews__avatar user__avatar"
             height="54"
-            src="/img/avatar-max.jpg"
+            src="https"
             width="54"
           />
         </div>
         <span
           className="reviews__user-name"
         >
-          Max
+          Sophie
         </span>
       </div>
       <div
@@ -307,13 +316,13 @@ exports[`Snapshot of ReviewList ReviewList should render correctly without Rewie
         <p
           className="reviews__text"
         >
-          A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
+          We loved it
         </p>
         <time
           className="reviews__time"
-          dateTime="2019-04-24"
+          dateTime="1970-01-01"
         >
-          April 2019
+          January 1970
         </time>
       </div>
     </li>

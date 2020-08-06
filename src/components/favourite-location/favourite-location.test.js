@@ -1,6 +1,13 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import FavouriteLocation from "./favourite-location.jsx";
+import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
+import NameSpace from "../../reducer/name-space.js";
+import {BrowserRouter} from "react-router-dom";
+
+
+const mockStore = configureStore([]);
 
 const offerWithPremium = {
   bedroom: 2,
@@ -61,18 +68,25 @@ const offerWithFavourite = {
   type: `hotel`,
 };
 
-const props = {
-  city: `Paris`,
-  localOffers: [offerWithFavourite, offerWithPremium],
-};
+const localOffers = [offerWithFavourite, offerWithPremium];
 
 describe(`Snapshot of FavouriteLocation`, () => {
+  const store = mockStore({
+    [NameSpace.STATE]: {},
+    [NameSpace.DATA]: {},
+    [NameSpace.USER]: {},
+  });
   it(`Should render correctly`, () => {
     const tree = renderer
     .create(
-        <FavouriteLocation
-          {...props}
-        />
+        <Provider store={store}>
+          <BrowserRouter>
+            <FavouriteLocation
+              city={`Paris`}
+              localOffers={localOffers}
+            />
+          </BrowserRouter>
+        </Provider>
     )
     .toJSON();
 

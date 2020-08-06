@@ -95,7 +95,8 @@ exports[`Snapshot of FavouritePage FavouritePage should render favourite-empty c
   >
     <a
       className="footer__logo-link"
-      href="main.html"
+      href="/"
+      onClick={[Function]}
     >
       <img
         alt="6 cities logo"
@@ -196,7 +197,8 @@ exports[`Snapshot of FavouritePage FavouritePage should render favourite-offers 
               >
                 <a
                   className="locations__item-link"
-                  href="#"
+                  href="/Paris"
+                  onClick={[Function]}
                 >
                   <span>
                     Paris
@@ -221,7 +223,8 @@ exports[`Snapshot of FavouritePage FavouritePage should render favourite-offers 
                   className="favorites__image-wrapper place-card__image-wrapper"
                 >
                   <a
-                    href="#"
+                    href="/offer/2"
+                    onClick={[Function]}
                   >
                     <img
                       alt="Place image"
@@ -254,6 +257,7 @@ exports[`Snapshot of FavouritePage FavouritePage should render favourite-offers 
                     </div>
                     <button
                       className="place-card__bookmark-button place-card__bookmark-button--active button"
+                      onClick={[Function]}
                       type="button"
                     >
                       <svg
@@ -296,7 +300,8 @@ exports[`Snapshot of FavouritePage FavouritePage should render favourite-offers 
                     className="place-card__name"
                   >
                     <a
-                      href="#"
+                      href="/offer/2"
+                      onClick={[Function]}
                     >
                       Penthouse, 4-5 rooms + 5 balconies
                     </a>
@@ -321,7 +326,8 @@ exports[`Snapshot of FavouritePage FavouritePage should render favourite-offers 
               >
                 <a
                   className="locations__item-link"
-                  href="#"
+                  href="/Amsterdam"
+                  onClick={[Function]}
                 >
                   <span>
                     Amsterdam
@@ -346,7 +352,8 @@ exports[`Snapshot of FavouritePage FavouritePage should render favourite-offers 
                   className="favorites__image-wrapper place-card__image-wrapper"
                 >
                   <a
-                    href="#"
+                    href="/offer/1"
+                    onClick={[Function]}
                   >
                     <img
                       alt="Place image"
@@ -379,6 +386,7 @@ exports[`Snapshot of FavouritePage FavouritePage should render favourite-offers 
                     </div>
                     <button
                       className="place-card__bookmark-button  button"
+                      onClick={[Function]}
                       type="button"
                     >
                       <svg
@@ -421,7 +429,8 @@ exports[`Snapshot of FavouritePage FavouritePage should render favourite-offers 
                     className="place-card__name"
                   >
                     <a
-                      href="#"
+                      href="/offer/1"
+                      onClick={[Function]}
                     >
                       Penthouse, 4-5 rooms + 5 balconies
                     </a>
@@ -444,7 +453,8 @@ exports[`Snapshot of FavouritePage FavouritePage should render favourite-offers 
   >
     <a
       className="footer__logo-link"
-      href="main.html"
+      href="/"
+      onClick={[Function]}
     >
       <img
         alt="6 cities logo"

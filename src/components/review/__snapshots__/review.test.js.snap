@@ -14,14 +14,14 @@ exports[`Snapshot of Review Review should render correctly 1`] = `
         alt="Reviews avatar"
         className="reviews__avatar user__avatar"
         height="54"
-        src="/img/avatar-max.jpg"
+        src="https"
         width="54"
       />
     </div>
     <span
       className="reviews__user-name"
     >
-      Max
+      Sophie
     </span>
   </div>
   <div
@@ -50,13 +50,13 @@ exports[`Snapshot of Review Review should render correctly 1`] = `
     <p
       className="reviews__text"
     >
-      A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
+      We loved it
     </p>
     <time
       className="reviews__time"
-      dateTime="2019-04-24"
+      dateTime="1970-01-01"
     >
-      April 2019
+      January 1970
     </time>
   </div>
 </li>

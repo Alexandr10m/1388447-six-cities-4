@@ -2,15 +2,13 @@ import {extend} from "../../utils.js";
 
 
 const initialState = {
-  city: `Paris`,
+  city: `Amsterdam`,
   sortType: `Popular`,
-  indicatedCard: {},
 };
 
 const ActionType = {
   CHANGE_CITY: `CHANGE_CITY`,
   CHANGE_SORT: `CHANGE_SORT`,
-  SHOW_POINTER: `SHOW_POINTER`,
 };
 
 const ActionCreator = {
@@ -22,11 +20,6 @@ const ActionCreator = {
   changeSort: (sortType) => ({
     type: ActionType.CHANGE_SORT,
     payload: sortType,
-  }),
-
-  showPoiner: (offer) => ({
-    type: ActionType.SHOW_POINTER,
-    payload: offer,
   }),
 };
 
@@ -41,11 +34,6 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_SORT:
       return extend(state, {
         sortType: action.payload,
-      });
-
-    case ActionType.SHOW_POINTER:
-      return extend(state, {
-        indicatedCard: action.payload,
       });
   }
   return state;

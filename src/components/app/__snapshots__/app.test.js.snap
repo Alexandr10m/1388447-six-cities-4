@@ -82,45 +82,6 @@ exports[`Snapshot of App AppComponent should render Main page 1`] = `
           >
             <a
               className="locations__item-link tabs__item tabs__item--active"
-              href="/Paris"
-              onClick={[Function]}
-            >
-              <span>
-                Paris
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
-              href="/Cologne"
-              onClick={[Function]}
-            >
-              <span>
-                Cologne
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
-              href="/Brussels"
-              onClick={[Function]}
-            >
-              <span>
-                Brussels
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
               href="/Amsterdam"
               onClick={[Function]}
             >
@@ -134,11 +95,11 @@ exports[`Snapshot of App AppComponent should render Main page 1`] = `
           >
             <a
               className="locations__item-link tabs__item "
-              href="/Hamburg"
+              href="/Humburg"
               onClick={[Function]}
             >
               <span>
-                Hamburg
+                Humburg
               </span>
             </a>
           </li>
@@ -147,11 +108,11 @@ exports[`Snapshot of App AppComponent should render Main page 1`] = `
           >
             <a
               className="locations__item-link tabs__item "
-              href="/Dusseldorf"
+              href="/Paris"
               onClick={[Function]}
             >
               <span>
-                Dusseldorf
+                Paris
               </span>
             </a>
           </li>
@@ -177,7 +138,7 @@ exports[`Snapshot of App AppComponent should render Main page 1`] = `
           >
             1
              places to stay in 
-            Paris
+            Amsterdam
           </b>
           <form
             action="#"
@@ -187,10 +148,11 @@ exports[`Snapshot of App AppComponent should render Main page 1`] = `
             <span
               className="places__sorting-caption"
             >
-              Sort by
+              Sort by 
             </span>
             <span
               className="places__sorting-type"
+              onClick={[Function]}
               tabIndex="0"
             >
               Price: low to high
@@ -205,7 +167,7 @@ exports[`Snapshot of App AppComponent should render Main page 1`] = `
               </svg>
             </span>
             <ul
-              className="places__options places__options--custom places__options--opened"
+              className="places__options places__options--custom "
               onClick={[Function]}
             >
               <li
@@ -234,7 +196,7 @@ exports[`Snapshot of App AppComponent should render Main page 1`] = `
               </li>
             </ul>
             <select
-              className="places__sorting-type"
+              className="places__sorting-type visually-hidden"
               id="places-sorting"
             >
               <option
@@ -281,7 +243,7 @@ exports[`Snapshot of App AppComponent should render Main page 1`] = `
                 className="cities__image-wrapper place-card__image-wrapper"
               >
                 <a
-                  href="/Amsterdam/1"
+                  href="/offer/1"
                   onClick={[Function]}
                 >
                   <img
@@ -359,7 +321,7 @@ exports[`Snapshot of App AppComponent should render Main page 1`] = `
                   className="place-card__name"
                 >
                   <a
-                    href="/Amsterdam/1"
+                    href="/offer/1"
                     onClick={[Function]}
                   >
                     Penthouse, 4-5 rooms + 5 balconies
@@ -391,6 +353,41 @@ exports[`Snapshot of App AppComponent should render Main page 1`] = `
             />
           </section>
         </div>
+      </div>
+    </div>
+  </main>
+</div>
+`;
+
+exports[`Snapshot of App AppComponent should render NetworkError 1`] = `
+<div
+  className="page page--gray page--main"
+>
+  <main
+    className="page__main page__main--index page__main--index-empty"
+  >
+    <div
+      className="cities"
+    >
+      <div
+        className="cities__places-container cities__places-container--empty container"
+      >
+        <section
+          className="cities__no-places"
+        >
+          <div
+            className="cities__status-wrapper tabs__content"
+          >
+            <b
+              className="cities__status"
+            >
+              Error
+            </b>
+          </div>
+        </section>
+        <div
+          className="cities__right-section"
+        />
       </div>
     </div>
   </main>
@@ -479,45 +476,6 @@ exports[`Snapshot of App AppComponent should render OfferPage with offerWithoutF
           >
             <a
               className="locations__item-link tabs__item tabs__item--active"
-              href="/Paris"
-              onClick={[Function]}
-            >
-              <span>
-                Paris
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
-              href="/Cologne"
-              onClick={[Function]}
-            >
-              <span>
-                Cologne
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
-              href="/Brussels"
-              onClick={[Function]}
-            >
-              <span>
-                Brussels
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
               href="/Amsterdam"
               onClick={[Function]}
             >
@@ -531,11 +489,11 @@ exports[`Snapshot of App AppComponent should render OfferPage with offerWithoutF
           >
             <a
               className="locations__item-link tabs__item "
-              href="/Hamburg"
+              href="/Humburg"
               onClick={[Function]}
             >
               <span>
-                Hamburg
+                Humburg
               </span>
             </a>
           </li>
@@ -544,11 +502,11 @@ exports[`Snapshot of App AppComponent should render OfferPage with offerWithoutF
           >
             <a
               className="locations__item-link tabs__item "
-              href="/Dusseldorf"
+              href="/Paris"
               onClick={[Function]}
             >
               <span>
-                Dusseldorf
+                Paris
               </span>
             </a>
           </li>
@@ -574,7 +532,7 @@ exports[`Snapshot of App AppComponent should render OfferPage with offerWithoutF
           >
             1
              places to stay in 
-            Paris
+            Amsterdam
           </b>
           <form
             action="#"
@@ -584,10 +542,11 @@ exports[`Snapshot of App AppComponent should render OfferPage with offerWithoutF
             <span
               className="places__sorting-caption"
             >
-              Sort by
+              Sort by 
             </span>
             <span
               className="places__sorting-type"
+              onClick={[Function]}
               tabIndex="0"
             >
               Price: low to high
@@ -602,7 +561,7 @@ exports[`Snapshot of App AppComponent should render OfferPage with offerWithoutF
               </svg>
             </span>
             <ul
-              className="places__options places__options--custom places__options--opened"
+              className="places__options places__options--custom "
               onClick={[Function]}
             >
               <li
@@ -631,7 +590,7 @@ exports[`Snapshot of App AppComponent should render OfferPage with offerWithoutF
               </li>
             </ul>
             <select
-              className="places__sorting-type"
+              className="places__sorting-type visually-hidden"
               id="places-sorting"
             >
               <option
@@ -678,7 +637,7 @@ exports[`Snapshot of App AppComponent should render OfferPage with offerWithoutF
                 className="cities__image-wrapper place-card__image-wrapper"
               >
                 <a
-                  href="/Amsterdam/1"
+                  href="/offer/1"
                   onClick={[Function]}
                 >
                   <img
@@ -756,7 +715,7 @@ exports[`Snapshot of App AppComponent should render OfferPage with offerWithoutF
                   className="place-card__name"
                 >
                   <a
-                    href="/Amsterdam/1"
+                    href="/offer/1"
                     onClick={[Function]}
                   >
                     Penthouse, 4-5 rooms + 5 balconies
@@ -876,45 +835,6 @@ exports[`Snapshot of App AppComponent should render SignIn page 1`] = `
           >
             <a
               className="locations__item-link tabs__item tabs__item--active"
-              href="/Paris"
-              onClick={[Function]}
-            >
-              <span>
-                Paris
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
-              href="/Cologne"
-              onClick={[Function]}
-            >
-              <span>
-                Cologne
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
-              href="/Brussels"
-              onClick={[Function]}
-            >
-              <span>
-                Brussels
-              </span>
-            </a>
-          </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item "
               href="/Amsterdam"
               onClick={[Function]}
             >
@@ -928,11 +848,11 @@ exports[`Snapshot of App AppComponent should render SignIn page 1`] = `
           >
             <a
               className="locations__item-link tabs__item "
-              href="/Hamburg"
+              href="/Humburg"
               onClick={[Function]}
             >
               <span>
-                Hamburg
+                Humburg
               </span>
             </a>
           </li>
@@ -941,11 +861,11 @@ exports[`Snapshot of App AppComponent should render SignIn page 1`] = `
           >
             <a
               className="locations__item-link tabs__item "
-              href="/Dusseldorf"
+              href="/Paris"
               onClick={[Function]}
             >
               <span>
-                Dusseldorf
+                Paris
               </span>
             </a>
           </li>
@@ -971,7 +891,7 @@ exports[`Snapshot of App AppComponent should render SignIn page 1`] = `
           >
             1
              places to stay in 
-            Paris
+            Amsterdam
           </b>
           <form
             action="#"
@@ -981,10 +901,11 @@ exports[`Snapshot of App AppComponent should render SignIn page 1`] = `
             <span
               className="places__sorting-caption"
             >
-              Sort by
+              Sort by 
             </span>
             <span
               className="places__sorting-type"
+              onClick={[Function]}
               tabIndex="0"
             >
               Price: low to high
@@ -999,7 +920,7 @@ exports[`Snapshot of App AppComponent should render SignIn page 1`] = `
               </svg>
             </span>
             <ul
-              className="places__options places__options--custom places__options--opened"
+              className="places__options places__options--custom "
               onClick={[Function]}
             >
               <li
@@ -1028,7 +949,7 @@ exports[`Snapshot of App AppComponent should render SignIn page 1`] = `
               </li>
             </ul>
             <select
-              className="places__sorting-type"
+              className="places__sorting-type visually-hidden"
               id="places-sorting"
             >
               <option
@@ -1075,7 +996,7 @@ exports[`Snapshot of App AppComponent should render SignIn page 1`] = `
                 className="cities__image-wrapper place-card__image-wrapper"
               >
                 <a
-                  href="/Amsterdam/1"
+                  href="/offer/1"
                   onClick={[Function]}
                 >
                   <img
@@ -1153,7 +1074,7 @@ exports[`Snapshot of App AppComponent should render SignIn page 1`] = `
                   className="place-card__name"
                 >
                   <a
-                    href="/Amsterdam/1"
+                    href="/offer/1"
                     onClick={[Function]}
                   >
                     Penthouse, 4-5 rooms + 5 balconies

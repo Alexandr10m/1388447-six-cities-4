@@ -17,6 +17,7 @@ describe(`E2E test of ListCities`, () => {
     const listCitiesComponent = mount(
         <BrowserRouter>
           < ListCities
+            cities={[`Amsterdam`, `Paris`]}
             currentCity={`Amsterdam`}
             onCityClick={onCityClick}
           />
@@ -36,6 +37,7 @@ describe(`E2E test of ListCities`, () => {
     const listCitiesComponent = mount(
         <BrowserRouter>
           < ListCities
+            cities={[`Amsterdam`, `Paris`]}
             currentCity={`Amsterdam`}
             onCityClick={onCityClick}
           />

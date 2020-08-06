@@ -12,7 +12,8 @@ exports[`Snapshot of FavouriteLocation Should render correctly 1`] = `
     >
       <a
         className="locations__item-link"
-        href="#"
+        href="/Paris"
+        onClick={[Function]}
       >
         <span>
           Paris
@@ -37,7 +38,8 @@ exports[`Snapshot of FavouriteLocation Should render correctly 1`] = `
         className="favorites__image-wrapper place-card__image-wrapper"
       >
         <a
-          href="#"
+          href="/offer/2"
+          onClick={[Function]}
         >
           <img
             alt="Place image"
@@ -70,6 +72,7 @@ exports[`Snapshot of FavouriteLocation Should render correctly 1`] = `
           </div>
           <button
             className="place-card__bookmark-button place-card__bookmark-button--active button"
+            onClick={[Function]}
             type="button"
           >
             <svg
@@ -112,7 +115,8 @@ exports[`Snapshot of FavouriteLocation Should render correctly 1`] = `
           className="place-card__name"
         >
           <a
-            href="#"
+            href="/offer/2"
+            onClick={[Function]}
           >
             Penthouse, 4-5 rooms + 5 balconies
           </a>
@@ -138,7 +142,8 @@ exports[`Snapshot of FavouriteLocation Should render correctly 1`] = `
         className="favorites__image-wrapper place-card__image-wrapper"
       >
         <a
-          href="#"
+          href="/offer/1"
+          onClick={[Function]}
         >
           <img
             alt="Place image"
@@ -171,6 +176,7 @@ exports[`Snapshot of FavouriteLocation Should render correctly 1`] = `
           </div>
           <button
             className="place-card__bookmark-button  button"
+            onClick={[Function]}
             type="button"
           >
             <svg
@@ -213,7 +219,8 @@ exports[`Snapshot of FavouriteLocation Should render correctly 1`] = `
           className="place-card__name"
         >
           <a
-            href="#"
+            href="/offer/1"
+            onClick={[Function]}
           >
             Penthouse, 4-5 rooms + 5 balconies
           </a>

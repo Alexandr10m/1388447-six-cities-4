@@ -1,6 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import FavoutiteLocationItem from "./favourite-location-item.jsx";
+import {FavouriteLocationItem} from "./favourite-location-item.jsx";
+import configureStore from "redux-mock-store";
+import {Provider} from "react-redux";
+import NameSpace from "../../reducer/name-space.js";
+import {BrowserRouter} from "react-router-dom";
+
 
 const offerWithPremium = {
   bedroom: 2,
@@ -31,16 +36,25 @@ const offerWithPremium = {
   title: `Penthouse, 4-5 rooms + 5 balconies`,
   type: `hotel`,
 };
+const mockStore = configureStore([]);
 
-const props = offerWithPremium;
-
-describe(`Snapshot of FavoutiteLocationItem`, () => {
+describe(`Snapshot of FavouriteLocationItem`, () => {
   it(`Shoul render correctly`, () => {
+    const store = mockStore({
+      [NameSpace.STATE]: {},
+      [NameSpace.DATA]: {},
+      [NameSpace.USER]: {},
+    });
     const tree = renderer
       .create(
-          <FavoutiteLocationItem
-            {...props}
-          />)
+          <Provider store={store}>
+            <BrowserRouter>
+              <FavouriteLocationItem
+                offer={offerWithPremium}
+                sendFavouriteOption={()=>{}}
+              />
+            </BrowserRouter>
+          </Provider>)
       .toJSON();
 
     expect(tree).toMatchSnapshot();

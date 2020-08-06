@@ -5,6 +5,7 @@ import configureStore from "redux-mock-store";
 import {ListCards} from "./list-cards.jsx";
 import NameSpace from "../../reducer/name-space.js";
 import {BrowserRouter} from "react-router-dom";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 
 const mockStore = configureStore([]);
@@ -29,12 +30,6 @@ const offerWithPremium = {
   pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`],
   previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
   price: 397,
-  reviews: {
-    image: `img/avatar-max.jpg`,
-    text: `A quiet cozy and picturesque.`,
-    name: `Max`,
-    time: `April 2019`
-  },
   title: `Penthouse, 4-5 rooms + 5 balconies`,
   type: `hotel`,
 };
@@ -58,12 +53,6 @@ const offerWithFavourite = {
   pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`],
   previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
   price: 397,
-  reviews: {
-    image: `img/avatar-max.jpg`,
-    text: `A quiet cozy and picturesque.`,
-    name: `Max`,
-    time: `April 2019`
-  },
   title: `Penthouse, 4-5 rooms + 5 balconies`,
   type: `hotel`,
 };
@@ -88,6 +77,9 @@ describe(`Snapshot of ListCards`, () => {
       [NameSpace.DATA]: {
         offers
       },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.AUTH
+      }
     });
 
     const tree = renderer
@@ -96,6 +88,7 @@ describe(`Snapshot of ListCards`, () => {
             <BrowserRouter>
               <ListCards
                 localOffers={offers.localOffers}
+                onActiveCard={()=>{}}
               />
             </BrowserRouter>
           </Provider>)
@@ -113,6 +106,9 @@ describe(`Snapshot of ListCards`, () => {
       [NameSpace.DATA]: {
         offers
       },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.AUTH
+      }
     });
 
     const tree = renderer
@@ -121,6 +117,7 @@ describe(`Snapshot of ListCards`, () => {
             <BrowserRouter>
               <ListCards
                 localOffers={offers.localOffers}
+                onActiveCard={()=>{}}
               />
             </BrowserRouter>
           </Provider>)
@@ -138,6 +135,9 @@ describe(`Snapshot of ListCards`, () => {
       [NameSpace.DATA]: {
         offers
       },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.AUTH
+      }
     });
 
     const tree = renderer
@@ -146,6 +146,7 @@ describe(`Snapshot of ListCards`, () => {
             <BrowserRouter>
               <ListCards
                 localOffers={offers.localOffers}
+                onActiveCard={()=>{}}
               />
             </BrowserRouter>
           </Provider>)
@@ -163,6 +164,9 @@ describe(`Snapshot of ListCards`, () => {
       [NameSpace.DATA]: {
         offers
       },
+      [NameSpace.USER]: {
+        authorizationStatus: AuthorizationStatus.AUTH
+      }
     });
 
     const tree = renderer
@@ -171,6 +175,7 @@ describe(`Snapshot of ListCards`, () => {
             <BrowserRouter>
               <ListCards
                 localOffers={offers.localOffers}
+                onActiveCard={()=>{}}
               />
             </BrowserRouter>
           </Provider>)

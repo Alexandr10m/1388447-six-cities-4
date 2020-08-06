@@ -19,7 +19,7 @@ exports[`Snapshot of ListCards Card should render correctly - Top rated first so
       className="cities__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="/Amsterdam/0"
+        href="/offer/0"
         onClick={[Function]}
       >
         <img
@@ -97,7 +97,7 @@ exports[`Snapshot of ListCards Card should render correctly - Top rated first so
         className="place-card__name"
       >
         <a
-          href="/Amsterdam/0"
+          href="/offer/0"
           onClick={[Function]}
         >
           Penthouse, 4-5 rooms + 5 balconies
@@ -125,7 +125,7 @@ exports[`Snapshot of ListCards Card should render correctly - Top rated first so
       className="cities__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="/Amsterdam/2"
+        href="/offer/2"
         onClick={[Function]}
       >
         <img
@@ -203,7 +203,7 @@ exports[`Snapshot of ListCards Card should render correctly - Top rated first so
         className="place-card__name"
       >
         <a
-          href="/Amsterdam/2"
+          href="/offer/2"
           onClick={[Function]}
         >
           Penthouse, 4-5 rooms + 5 balconies
@@ -238,7 +238,7 @@ exports[`Snapshot of ListCards Card should render correctly Popular sort 1`] = `
       className="cities__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="/Amsterdam/0"
+        href="/offer/0"
         onClick={[Function]}
       >
         <img
@@ -316,7 +316,7 @@ exports[`Snapshot of ListCards Card should render correctly Popular sort 1`] = `
         className="place-card__name"
       >
         <a
-          href="/Amsterdam/0"
+          href="/offer/0"
           onClick={[Function]}
         >
           Penthouse, 4-5 rooms + 5 balconies
@@ -344,7 +344,7 @@ exports[`Snapshot of ListCards Card should render correctly Popular sort 1`] = `
       className="cities__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="/Amsterdam/2"
+        href="/offer/2"
         onClick={[Function]}
       >
         <img
@@ -422,7 +422,7 @@ exports[`Snapshot of ListCards Card should render correctly Popular sort 1`] = `
         className="place-card__name"
       >
         <a
-          href="/Amsterdam/2"
+          href="/offer/2"
           onClick={[Function]}
         >
           Penthouse, 4-5 rooms + 5 balconies
@@ -457,7 +457,7 @@ exports[`Snapshot of ListCards Card should render correctly Price: high to low s
       className="cities__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="/Amsterdam/0"
+        href="/offer/0"
         onClick={[Function]}
       >
         <img
@@ -535,7 +535,7 @@ exports[`Snapshot of ListCards Card should render correctly Price: high to low s
         className="place-card__name"
       >
         <a
-          href="/Amsterdam/0"
+          href="/offer/0"
           onClick={[Function]}
         >
           Penthouse, 4-5 rooms + 5 balconies
@@ -563,7 +563,7 @@ exports[`Snapshot of ListCards Card should render correctly Price: high to low s
       className="cities__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="/Amsterdam/2"
+        href="/offer/2"
         onClick={[Function]}
       >
         <img
@@ -641,7 +641,7 @@ exports[`Snapshot of ListCards Card should render correctly Price: high to low s
         className="place-card__name"
       >
         <a
-          href="/Amsterdam/2"
+          href="/offer/2"
           onClick={[Function]}
         >
           Penthouse, 4-5 rooms + 5 balconies
@@ -676,7 +676,7 @@ exports[`Snapshot of ListCards Card should render correctly Price: low to high s
       className="cities__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="/Amsterdam/0"
+        href="/offer/0"
         onClick={[Function]}
       >
         <img
@@ -754,7 +754,7 @@ exports[`Snapshot of ListCards Card should render correctly Price: low to high s
         className="place-card__name"
       >
         <a
-          href="/Amsterdam/0"
+          href="/offer/0"
           onClick={[Function]}
         >
           Penthouse, 4-5 rooms + 5 balconies
@@ -782,7 +782,7 @@ exports[`Snapshot of ListCards Card should render correctly Price: low to high s
       className="cities__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="/Amsterdam/2"
+        href="/offer/2"
         onClick={[Function]}
       >
         <img
@@ -860,7 +860,7 @@ exports[`Snapshot of ListCards Card should render correctly Price: low to high s
         className="place-card__name"
       >
         <a
-          href="/Amsterdam/2"
+          href="/offer/2"
           onClick={[Function]}
         >
           Penthouse, 4-5 rooms + 5 balconies

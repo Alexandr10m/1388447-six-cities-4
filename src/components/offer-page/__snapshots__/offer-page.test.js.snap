@@ -285,14 +285,14 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
                       alt="Reviews avatar"
                       className="reviews__avatar user__avatar"
                       height="54"
-                      src="/img/avatar-max.jpg"
+                      src="https"
                       width="54"
                     />
                   </div>
                   <span
                     className="reviews__user-name"
                   >
-                    Max
+                    Sophie
                   </span>
                 </div>
                 <div
@@ -321,13 +321,13 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
                   <p
                     className="reviews__text"
                   >
-                    A quiet cozy and picturesque.
+                    We loved it
                   </p>
                   <time
                     className="reviews__time"
-                    dateTime="2019-04-24"
+                    dateTime="1970-01-01"
                   >
-                    April 2019
+                    January 1970
                   </time>
                 </div>
               </li>
@@ -346,9 +346,11 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
               </label>
               <div
                 className="reviews__rating-form form__rating"
+                onChange={[Function]}
               >
                 <input
                   className="form__rating-input visually-hidden"
+                  disabled={false}
                   id="5-stars"
                   name="rating"
                   type="radio"
@@ -371,6 +373,7 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
                 </label>
                 <input
                   className="form__rating-input visually-hidden"
+                  disabled={false}
                   id="4-stars"
                   name="rating"
                   type="radio"
@@ -393,6 +396,7 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
                 </label>
                 <input
                   className="form__rating-input visually-hidden"
+                  disabled={false}
                   id="3-stars"
                   name="rating"
                   type="radio"
@@ -415,6 +419,7 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
                 </label>
                 <input
                   className="form__rating-input visually-hidden"
+                  disabled={false}
                   id="2-stars"
                   name="rating"
                   type="radio"
@@ -437,6 +442,7 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
                 </label>
                 <input
                   className="form__rating-input visually-hidden"
+                  disabled={false}
                   id="1-stars"
                   name="rating"
                   type="radio"
@@ -460,9 +466,12 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
               </div>
               <textarea
                 className="reviews__textarea form__textarea"
+                disabled={false}
                 id="review"
                 name="review"
+                onChange={[Function]}
                 placeholder="Tell how was your stay, what you like and what can be improved"
+                value=""
               />
               <div
                 className="reviews__button-wrapper"
@@ -486,7 +495,7 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
                 </p>
                 <button
                   className="reviews__submit form__submit button"
-                  disabled=""
+                  disabled={false}
                   type="submit"
                 >
                   Submit
@@ -523,7 +532,114 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
         </h2>
         <div
           className="near-places__list places__list"
-        />
+        >
+          <article
+            className="cities__place-card place-card"
+            onMouseEnter={[Function]}
+          >
+            <div
+              className="place-card__mark"
+            >
+              <span>
+                Premium
+              </span>
+            </div>
+            <div
+              className="cities__image-wrapper place-card__image-wrapper"
+            >
+              <a
+                href="/offer/2"
+                onClick={[Function]}
+              >
+                <img
+                  alt="Place image"
+                  className="place-card__image"
+                  height="200"
+                  src="https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg"
+                  width="260"
+                />
+              </a>
+            </div>
+            <div
+              className="place-card__info"
+            >
+              <div
+                className="place-card__price-wrapper"
+              >
+                <div
+                  className="place-card__price"
+                >
+                  <b
+                    className="place-card__price-value"
+                  >
+                    €
+                    397
+                  </b>
+                  <span
+                    className="place-card__price-text"
+                  >
+                    / night
+                  </span>
+                </div>
+                <button
+                  className="place-card__bookmark-button place-card__bookmark-button--active button"
+                  onClick={[Function]}
+                  type="button"
+                >
+                  <svg
+                    className="place-card__bookmark-icon"
+                    height="19"
+                    width="18"
+                  >
+                    <use
+                      xlinkHref="#icon-bookmark"
+                    />
+                  </svg>
+                  <span
+                    className="visually-hidden"
+                  >
+                    To bookmarks
+                  </span>
+                </button>
+              </div>
+              <div
+                className="place-card__rating rating"
+              >
+                <div
+                  className="place-card__stars rating__stars"
+                >
+                  <span
+                    style={
+                      Object {
+                        "width": "72%",
+                      }
+                    }
+                  />
+                  <span
+                    className="visually-hidden"
+                  >
+                    Rating
+                  </span>
+                </div>
+              </div>
+              <h2
+                className="place-card__name"
+              >
+                <a
+                  href="/offer/2"
+                  onClick={[Function]}
+                >
+                  Penthouse, 4-5 rooms + 5 balconies
+                </a>
+              </h2>
+              <p
+                className="place-card__type"
+              >
+                Hotel
+              </p>
+            </div>
+          </article>
+        </div>
       </section>
     </div>
   </main>
@@ -815,14 +931,14 @@ exports[`Snapshot of OfferPage OfferPage should render whith Favourite 1`] = `
                       alt="Reviews avatar"
                       className="reviews__avatar user__avatar"
                       height="54"
-                      src="/img/avatar-max.jpg"
+                      src="https"
                       width="54"
                     />
                   </div>
                   <span
                     className="reviews__user-name"
                   >
-                    Max
+                    Sophie
                   </span>
                 </div>
                 <div
@@ -851,13 +967,13 @@ exports[`Snapshot of OfferPage OfferPage should render whith Favourite 1`] = `
                   <p
                     className="reviews__text"
                   >
-                    A quiet cozy and picturesque.
+                    We loved it
                   </p>
                   <time
                     className="reviews__time"
-                    dateTime="2019-04-24"
+                    dateTime="1970-01-01"
                   >
-                    April 2019
+                    January 1970
                   </time>
                 </div>
               </li>
@@ -876,9 +992,11 @@ exports[`Snapshot of OfferPage OfferPage should render whith Favourite 1`] = `
               </label>
               <div
                 className="reviews__rating-form form__rating"
+                onChange={[Function]}
               >
                 <input
                   className="form__rating-input visually-hidden"
+                  disabled={false}
                   id="5-stars"
                   name="rating"
                   type="radio"
@@ -901,6 +1019,7 @@ exports[`Snapshot of OfferPage OfferPage should render whith Favourite 1`] = `
                 </label>
                 <input
                   className="form__rating-input visually-hidden"
+                  disabled={false}
                   id="4-stars"
                   name="rating"
                   type="radio"
@@ -923,6 +1042,7 @@ exports[`Snapshot of OfferPage OfferPage should render whith Favourite 1`] = `
                 </label>
                 <input
                   className="form__rating-input visually-hidden"
+                  disabled={false}
                   id="3-stars"
                   name="rating"
                   type="radio"
@@ -945,6 +1065,7 @@ exports[`Snapshot of OfferPage OfferPage should render whith Favourite 1`] = `
                 </label>
                 <input
                   className="form__rating-input visually-hidden"
+                  disabled={false}
                   id="2-stars"
                   name="rating"
                   type="radio"
@@ -967,6 +1088,7 @@ exports[`Snapshot of OfferPage OfferPage should render whith Favourite 1`] = `
                 </label>
                 <input
                   className="form__rating-input visually-hidden"
+                  disabled={false}
                   id="1-stars"
                   name="rating"
                   type="radio"
@@ -990,9 +1112,12 @@ exports[`Snapshot of OfferPage OfferPage should render whith Favourite 1`] = `
               </div>
               <textarea
                 className="reviews__textarea form__textarea"
+                disabled={false}
                 id="review"
                 name="review"
+                onChange={[Function]}
                 placeholder="Tell how was your stay, what you like and what can be improved"
+                value=""
               />
               <div
                 className="reviews__button-wrapper"
@@ -1016,7 +1141,7 @@ exports[`Snapshot of OfferPage OfferPage should render whith Favourite 1`] = `
                 </p>
                 <button
                   className="reviews__submit form__submit button"
-                  disabled=""
+                  disabled={false}
                   type="submit"
                 >
                   Submit
@@ -1053,7 +1178,114 @@ exports[`Snapshot of OfferPage OfferPage should render whith Favourite 1`] = `
         </h2>
         <div
           className="near-places__list places__list"
-        />
+        >
+          <article
+            className="cities__place-card place-card"
+            onMouseEnter={[Function]}
+          >
+            <div
+              className="place-card__mark"
+            >
+              <span>
+                Premium
+              </span>
+            </div>
+            <div
+              className="cities__image-wrapper place-card__image-wrapper"
+            >
+              <a
+                href="/offer/2"
+                onClick={[Function]}
+              >
+                <img
+                  alt="Place image"
+                  className="place-card__image"
+                  height="200"
+                  src="https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg"
+                  width="260"
+                />
+              </a>
+            </div>
+            <div
+              className="place-card__info"
+            >
+              <div
+                className="place-card__price-wrapper"
+              >
+                <div
+                  className="place-card__price"
+                >
+                  <b
+                    className="place-card__price-value"
+                  >
+                    €
+                    397
+                  </b>
+                  <span
+                    className="place-card__price-text"
+                  >
+                    / night
+                  </span>
+                </div>
+                <button
+                  className="place-card__bookmark-button place-card__bookmark-button--active button"
+                  onClick={[Function]}
+                  type="button"
+                >
+                  <svg
+                    className="place-card__bookmark-icon"
+                    height="19"
+                    width="18"
+                  >
+                    <use
+                      xlinkHref="#icon-bookmark"
+                    />
+                  </svg>
+                  <span
+                    className="visually-hidden"
+                  >
+                    To bookmarks
+                  </span>
+                </button>
+              </div>
+              <div
+                className="place-card__rating rating"
+              >
+                <div
+                  className="place-card__stars rating__stars"
+                >
+                  <span
+                    style={
+                      Object {
+                        "width": "72%",
+                      }
+                    }
+                  />
+                  <span
+                    className="visually-hidden"
+                  >
+                    Rating
+                  </span>
+                </div>
+              </div>
+              <h2
+                className="place-card__name"
+              >
+                <a
+                  href="/offer/2"
+                  onClick={[Function]}
+                >
+                  Penthouse, 4-5 rooms + 5 balconies
+                </a>
+              </h2>
+              <p
+                className="place-card__type"
+              >
+                Hotel
+              </p>
+            </div>
+          </article>
+        </div>
       </section>
     </div>
   </main>
