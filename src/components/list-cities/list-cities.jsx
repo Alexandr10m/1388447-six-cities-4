@@ -8,9 +8,6 @@ const ListCities = (props) => {
 
   const handlerCityClick = (evt) => {
 
-    if (evt.target.tagName !== `SPAN`) {
-      return;
-    }
     const city = evt.target.textContent;
     onCityClick(city);
   };
@@ -25,7 +22,7 @@ const ListCities = (props) => {
 
 
 ListCities.propTypes = {
-  cities: PropTypes.array.isRequired,
+  cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   currentCity: PropTypes.string.isRequired,
   onCityClick: PropTypes.func.isRequired,
 };

@@ -20,12 +20,11 @@ const ReviewList = (props) => {
 
   const isShowingReviewForm = authorizationStatus === AuthorizationStatus.AUTH;
   const isReviews = reviews.length !== 0;
-  const reviewCount = reviews.length > MAX_COUNT_REVIEWS ? MAX_COUNT_REVIEWS : reviews.length;
 
   return (
     <section className="property__reviews reviews">
       <h2 className="reviews__title">
-          Reviews &middot; <span className="reviews__amount">{reviewCount}</span>
+          Reviews &middot; <span className="reviews__amount">{reviews.length}</span>
       </h2>
       <ul className="reviews__list">
         {isReviews && reviews.map((review, i) => {
@@ -52,7 +51,19 @@ ReviewList.propTypes = {
   offerId: PropTypes.number.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   onSendComment: PropTypes.func.isRequired,
-  reviews: PropTypes.array.isRequired,
+  reviews: PropTypes.arrayOf(PropTypes.shape({
+    text: PropTypes.string.isRequired,
+    date: PropTypes.instanceOf(Date),
+    id: PropTypes.number.isRequired,
+    grade: PropTypes.number.isRequired,
+    user: PropTypes.shape({
+      avatarUrl: PropTypes.string.isRequired,
+      email: PropTypes.string,
+      id: PropTypes.number.isRequired,
+      isPro: PropTypes.bool.isRequired,
+      name: PropTypes.string.isRequired,
+    }).isRequired
+  })).isRequired,
   statusOfReviewLoad: PropTypes.string.isRequired,
   changeStatusOfReviewLoad: PropTypes.func.isRequired,
 };

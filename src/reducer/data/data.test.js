@@ -259,6 +259,30 @@ describe(`Test of reducer data.js`, () => {
       isLoadingNearbyOffers: false,
     });
   });
+
+  it(`Reducer should update textError`, () => {
+
+    expect(reducer({
+      textError: ``,
+    }, {
+      type: ActionType.CHANGE_TEXT_ERROR,
+      payload: `Oops, error`,
+    })).toEqual({
+      textError: `Oops, error`,
+    });
+  });
+
+  it(`Reducer should update isErrorOfNetwork`, () => {
+
+    expect(reducer({
+      isErrorOfNetwork: false,
+    }, {
+      type: ActionType.ERROR,
+      payload: true,
+    })).toEqual({
+      isErrorOfNetwork: true,
+    });
+  });
 });
 
 describe(`Test of ActionCreator reducer data.js`, () => {
@@ -314,6 +338,20 @@ describe(`Test of ActionCreator reducer data.js`, () => {
   it(`Should return correct action`, () => {
     expect(ActionCreator.loadingNearbestOffersProgress(true)).toEqual({
       type: ActionType.LOADING_NEAREST_OFFERS_PROGRESS,
+      payload: true,
+    });
+  });
+
+  it(`Should return correct action`, () => {
+    expect(ActionCreator.changeErrorText(`Oops, error`)).toEqual({
+      type: ActionType.CHANGE_TEXT_ERROR,
+      payload: `Oops, error`,
+    });
+  });
+
+  it(`Should return correct action`, () => {
+    expect(ActionCreator.showError(true)).toEqual({
+      type: ActionType.ERROR,
       payload: true,
     });
   });

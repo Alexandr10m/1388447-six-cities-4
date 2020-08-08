@@ -193,7 +193,7 @@ class OfferPage extends PureComponent {
             <section className="property__map map">
               <Map
                 localOffers={offersForMap}
-                city={cityCoords}
+                cityCoords={cityCoords}
                 cityZoom={cityZoom}
                 locationZoom={locationZoom}
                 activeCard={currentOffer}
@@ -227,9 +227,70 @@ class OfferPage extends PureComponent {
 
 OfferPage.propTypes = {
   match: PropTypes.object.isRequired,
-  offers: PropTypes.array.isRequired,
-  reviews: PropTypes.array.isRequired,
-  nearbyOffers: PropTypes.array.isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape({
+    city: PropTypes.string.isRequired,
+    cityCoords: PropTypes.arrayOf(PropTypes.number).isRequired,
+    cityZoom: PropTypes.number.isRequired,
+    localOffers: PropTypes.arrayOf(PropTypes.shape({
+      isPremium: PropTypes.bool.isRequired,
+      pictures: PropTypes.arrayOf(PropTypes.string).isRequired,
+      price: PropTypes.number.isRequired,
+      isFavourite: PropTypes.bool.isRequired,
+      grade: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      bedroom: PropTypes.number.isRequired,
+      maxAdults: PropTypes.number.isRequired,
+      facilities: PropTypes.arrayOf(PropTypes.string).isRequired,
+      coords: PropTypes.arrayOf(PropTypes.number).isRequired,
+      locationZoom: PropTypes.number.isRequired,
+      id: PropTypes.number.isRequired,
+      description: PropTypes.string.isRequired,
+      previewImage: PropTypes.string.isRequired,
+      host: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        isPro: PropTypes.bool.isRequired,
+        avatarUrl: PropTypes.string.isRequired,
+      }).isRequired,
+    })),
+  })).isRequired,
+  reviews: PropTypes.arrayOf(PropTypes.shape({
+    text: PropTypes.string.isRequired,
+    date: PropTypes.instanceOf(Date),
+    id: PropTypes.number.isRequired,
+    grade: PropTypes.number.isRequired,
+    user: PropTypes.shape({
+      avatarUrl: PropTypes.string.isRequired,
+      email: PropTypes.string,
+      id: PropTypes.number.isRequired,
+      isPro: PropTypes.bool.isRequired,
+      name: PropTypes.string.isRequired,
+    }).isRequired
+  })).isRequired,
+  nearbyOffers: PropTypes.arrayOf(PropTypes.shape({
+    isPremium: PropTypes.bool.isRequired,
+    pictures: PropTypes.arrayOf(PropTypes.string).isRequired,
+    price: PropTypes.number.isRequired,
+    isFavourite: PropTypes.bool.isRequired,
+    grade: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    bedroom: PropTypes.number.isRequired,
+    maxAdults: PropTypes.number.isRequired,
+    facilities: PropTypes.arrayOf(PropTypes.string).isRequired,
+    coords: PropTypes.arrayOf(PropTypes.number).isRequired,
+    locationZoom: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+    previewImage: PropTypes.string.isRequired,
+    host: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      isPro: PropTypes.bool.isRequired,
+      avatarUrl: PropTypes.string.isRequired,
+    }).isRequired,
+  })),
   authorizationStatus: PropTypes.string.isRequired,
   sendFavouriteOption: PropTypes.func.isRequired,
   loadReviews: PropTypes.func.isRequired,

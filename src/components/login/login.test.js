@@ -23,7 +23,9 @@ describe(`Snapshot of Login`, () => {
       .create(
           <Provider store={store}>
             <BrowserRouter>
-              <Login/>
+              <Login
+                onCityClick={()=>{}}
+              />
             </BrowserRouter>
           </Provider>)
       .toJSON();
@@ -44,7 +46,9 @@ describe(`Snapshot of Login`, () => {
       .create(
           <Provider store={store}>
             <BrowserRouter>
-              <Login/>
+              <Login
+                onCityClick={()=>{}}
+              />
             </BrowserRouter>
           </Provider>)
       .toJSON();

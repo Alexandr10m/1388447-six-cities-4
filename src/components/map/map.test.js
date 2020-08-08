@@ -87,7 +87,7 @@ const props = {
     offerWithPremium,
     offerWithFavourite,
   ],
-  city: [`Paris`],
+  cityCoords: [48.85661, 2.351499],
   cityZoom: 13,
   locationZoom: 16,
   indicatedCard: offerWithPremium,

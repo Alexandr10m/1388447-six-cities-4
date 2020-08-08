@@ -4,12 +4,18 @@ import {connect} from "react-redux";
 import {getEmail} from "../../reducer/user/selectors.js";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../constants.js";
+import {ActionCreator} from "../../reducer/state/state.js";
 
 
 const Login = (props) => {
-  const {email} = props;
+  const {email, onCityClick} = props;
   const defaultText = `Sign in`;
   const showText = email || defaultText;
+
+  const handlerCityClick = () => {
+    const city = `Amsterdam`;
+    onCityClick(city);
+  };
 
 
   return (
@@ -18,6 +24,7 @@ const Login = (props) => {
         <div className="header__wrapper">
           <div className="header__left">
             <Link
+              onClick={handlerCityClick}
               to={AppRoute.ROOT}
               className="header__logo-link"
             >
@@ -48,12 +55,19 @@ const Login = (props) => {
 
 Login.propTypes = {
   email: PropTypes.string,
+  onCityClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   email: getEmail(state),
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onCityClick: (city) => {
+    dispatch(ActionCreator.changeCity(city));
+  }
+});
+
 
 export {Login};
-export default connect(mapStateToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

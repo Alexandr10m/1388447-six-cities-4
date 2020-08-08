@@ -37,7 +37,7 @@ Review.propTypes = {
     name: PropTypes.string.isRequired,
   }).isRequired,
   text: PropTypes.string.isRequired,
-  date: PropTypes.object.isRequired,
+  date: PropTypes.instanceOf(Date).isRequired,
   grade: PropTypes.number.isRequired,
 };
 

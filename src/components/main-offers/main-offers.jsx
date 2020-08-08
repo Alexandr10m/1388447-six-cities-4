@@ -30,7 +30,7 @@ const MainOffers = (props) => {
 
             <Map
               localOffers={localOffers}
-              city={cityCoords}
+              cityCoords={cityCoords}
               cityZoom={cityZoom}
               locationZoom={locationZoom}
               activeCard={activeCard}
@@ -45,8 +45,57 @@ const MainOffers = (props) => {
 
 MainOffers.propTypes = {
   city: PropTypes.string.isRequired,
-  offers: PropTypes.object.isRequired,
-  activeCard: PropTypes.object,
+  offers: PropTypes.shape({
+    city: PropTypes.string.isRequired,
+    cityCoords: PropTypes.arrayOf(PropTypes.number).isRequired,
+    cityZoom: PropTypes.number,
+    localOffers: PropTypes.arrayOf(PropTypes.shape({
+      isPremium: PropTypes.bool.isRequired,
+      pictures: PropTypes.arrayOf(PropTypes.string).isRequired,
+      price: PropTypes.number.isRequired,
+      isFavourite: PropTypes.bool.isRequired,
+      grade: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      bedroom: PropTypes.number.isRequired,
+      maxAdults: PropTypes.number.isRequired,
+      facilities: PropTypes.arrayOf(PropTypes.string).isRequired,
+      coords: PropTypes.arrayOf(PropTypes.number).isRequired,
+      locationZoom: PropTypes.number.isRequired,
+      id: PropTypes.number.isRequired,
+      description: PropTypes.string.isRequired,
+      previewImage: PropTypes.string.isRequired,
+      host: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        isPro: PropTypes.bool.isRequired,
+        avatarUrl: PropTypes.string.isRequired,
+      }).isRequired,
+    })),
+  }),
+  activeCard: PropTypes.shape({
+    isPremium: PropTypes.bool.isRequired,
+    pictures: PropTypes.arrayOf(PropTypes.string).isRequired,
+    price: PropTypes.number.isRequired,
+    isFavourite: PropTypes.bool.isRequired,
+    grade: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    bedroom: PropTypes.number.isRequired,
+    maxAdults: PropTypes.number.isRequired,
+    facilities: PropTypes.arrayOf(PropTypes.string).isRequired,
+    coords: PropTypes.arrayOf(PropTypes.number).isRequired,
+    locationZoom: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+    previewImage: PropTypes.string.isRequired,
+    host: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      isPro: PropTypes.bool.isRequired,
+      avatarUrl: PropTypes.string.isRequired,
+    }).isRequired,
+  }),
   onActiveCard: PropTypes.func.isRequired,
 };
 

@@ -16,7 +16,7 @@ class Map extends PureComponent {
   }
 
   _initMap() {
-    const {city} = this.props;
+    const {cityCoords} = this.props;
 
     this._icon = LeafLet.icon({
       iconUrl: `/img/pin.svg`,
@@ -29,14 +29,14 @@ class Map extends PureComponent {
     });
 
     this._map = LeafLet.map(`map`, {
-      center: city,
+      center: cityCoords,
       zoom: this._cityZoom,
       zoomControl: false,
       marker: true,
       layers: [],
     });
 
-    this._map.setView(city, this._cityZoom);
+    this._map.setView(cityCoords, this._cityZoom);
 
     this.layerGroup = LeafLet.layerGroup();
 
@@ -86,7 +86,7 @@ class Map extends PureComponent {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.city !== this.props.city) {
+    if (prevProps.cityCoords !== this.props.cityCoords) {
       this._updateMap();
       return;
     }
@@ -108,11 +108,55 @@ class Map extends PureComponent {
 
 
 Map.propTypes = {
-  localOffers: PropTypes.array.isRequired,
-  city: PropTypes.array.isRequired,
+  localOffers: PropTypes.arrayOf(PropTypes.shape({
+    isPremium: PropTypes.bool.isRequired,
+    pictures: PropTypes.arrayOf(PropTypes.string).isRequired,
+    price: PropTypes.number.isRequired,
+    isFavourite: PropTypes.bool.isRequired,
+    grade: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    bedroom: PropTypes.number.isRequired,
+    maxAdults: PropTypes.number.isRequired,
+    facilities: PropTypes.arrayOf(PropTypes.string).isRequired,
+    coords: PropTypes.arrayOf(PropTypes.number).isRequired,
+    locationZoom: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+    previewImage: PropTypes.string.isRequired,
+    host: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      isPro: PropTypes.bool.isRequired,
+      avatarUrl: PropTypes.string.isRequired,
+    }).isRequired,
+  })),
+  cityCoords: PropTypes.arrayOf(PropTypes.number).isRequired,
   cityZoom: PropTypes.number.isRequired,
   locationZoom: PropTypes.number.isRequired,
-  activeCard: PropTypes.object,
+  activeCard: PropTypes.shape({
+    isPremium: PropTypes.bool.isRequired,
+    pictures: PropTypes.arrayOf(PropTypes.string).isRequired,
+    price: PropTypes.number.isRequired,
+    isFavourite: PropTypes.bool.isRequired,
+    grade: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    bedroom: PropTypes.number.isRequired,
+    maxAdults: PropTypes.number.isRequired,
+    facilities: PropTypes.arrayOf(PropTypes.string).isRequired,
+    coords: PropTypes.arrayOf(PropTypes.number).isRequired,
+    locationZoom: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+    previewImage: PropTypes.string.isRequired,
+    host: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      isPro: PropTypes.bool.isRequired,
+      avatarUrl: PropTypes.string.isRequired,
+    }).isRequired,
+  }),
 };
 
 export default Map;
