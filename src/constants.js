@@ -11,7 +11,7 @@ const AppRoute = {
   LOGIN: `/login`,
   OFFER: `/offer/:offerId`,
   ROOT: `/`,
-  FAVOURITE: `/favourite`,
+  FAVOURITE: `/favorites`,
 };
 
 export {SORTS, AppRoute};

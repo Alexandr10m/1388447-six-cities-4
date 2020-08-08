@@ -33,7 +33,7 @@ describe(`Snapshot of PrivateRoute`, () => {
             <Router history={history}>
               <PrivateRoute
                 render={()=>(<FavouritePage favouriteOffers={favourite}/>)}
-                path={`/favourite`}
+                path={`/favorites`}
                 exact={true}
                 authorizationStatus={AuthorizationStatus.NO_AUTH}
               />
