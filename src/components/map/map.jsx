@@ -15,6 +15,26 @@ class Map extends PureComponent {
     this._markers = null;
   }
 
+  componentDidMount() {
+    this._initMap();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.cityCoords !== this.props.cityCoords) {
+      this._updateMap();
+      return;
+    }
+
+    if (prevProps.activeCard !== this.props.activeCard) {
+      this._updateMarkers();
+      return;
+    }
+  }
+
+  componentWillUnmount() {
+    this._map = null;
+  }
+
   _initMap() {
     const {cityCoords} = this.props;
 
@@ -79,26 +99,6 @@ class Map extends PureComponent {
     this.layerGroup.remove();
     this._map.remove();
     this._initMap();
-  }
-
-  componentDidMount() {
-    this._initMap();
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.cityCoords !== this.props.cityCoords) {
-      this._updateMap();
-      return;
-    }
-
-    if (prevProps.activeCard !== this.props.activeCard) {
-      this._updateMarkers();
-      return;
-    }
-  }
-
-  componentWillUnmount() {
-    this._map = null;
   }
 
   render() {
