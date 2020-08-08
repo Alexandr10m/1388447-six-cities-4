@@ -3,10 +3,10 @@
 exports[`Snapshot of ListCities ListCities should render correctly 1`] = `
 <ul
   className="locations__list tabs__list"
-  onClick={[Function]}
 >
   <li
     className="locations__item"
+    onClick={[Function]}
   >
     <a
       className="locations__item-link tabs__item tabs__item--active"
@@ -20,6 +20,7 @@ exports[`Snapshot of ListCities ListCities should render correctly 1`] = `
   </li>
   <li
     className="locations__item"
+    onClick={[Function]}
   >
     <a
       className="locations__item-link tabs__item "
@@ -33,6 +34,7 @@ exports[`Snapshot of ListCities ListCities should render correctly 1`] = `
   </li>
   <li
     className="locations__item"
+    onClick={[Function]}
   >
     <a
       className="locations__item-link tabs__item "

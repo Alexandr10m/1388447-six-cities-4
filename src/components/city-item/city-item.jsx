@@ -4,11 +4,11 @@ import {Link} from "react-router-dom";
 
 
 const CityItem = (props) => {
-  const {city, currentCity = `Paris`} = props;
+  const {city, currentCity = `Paris`, onCityClick} = props;
   const activeClass = city === currentCity ? `tabs__item--active` : ``;
 
   return (
-    <li className="locations__item">
+    <li onClick={onCityClick} className="locations__item">
       <Link
         to={`/${city}`}
         className={`locations__item-link tabs__item ${activeClass}`}>
@@ -21,5 +21,6 @@ const CityItem = (props) => {
 CityItem.propTypes = {
   city: PropTypes.string.isRequired,
   currentCity: PropTypes.string.isRequired,
+  onCityClick: PropTypes.func.isRequired,
 };
 export default CityItem;

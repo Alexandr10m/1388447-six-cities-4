@@ -12,6 +12,7 @@ describe(`Snapshot of CityItem`, () => {
             <CityItem
               city={`Paris`}
               currentCity={`Paris`}
+              onCityClick={()=>{}}
             />
           </BrowserRouter>)
       .toJSON();
@@ -26,6 +27,7 @@ describe(`Snapshot of CityItem`, () => {
             <CityItem
               city={`Paris`}
               currentCity={`Amsterdame`}
+              onCityClick={()=>{}}
             />
           </BrowserRouter>)
       .toJSON();
