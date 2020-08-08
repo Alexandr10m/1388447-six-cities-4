@@ -38,7 +38,7 @@ exports[`Snapshot of Login Should render with email 1`] = `
           >
             <a
               className="header__nav-link header__nav-link--profile"
-              href="/favourite"
+              href="/favorites"
               onClick={[Function]}
             >
               <div
@@ -96,7 +96,7 @@ exports[`Snapshot of Login Should render without email - Sign in 1`] = `
           >
             <a
               className="header__nav-link header__nav-link--profile"
-              href="/favourite"
+              href="/favorites"
               onClick={[Function]}
             >
               <div

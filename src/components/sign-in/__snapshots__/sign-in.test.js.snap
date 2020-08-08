@@ -41,7 +41,7 @@ exports[`Snapshot of SignIn Should render correctly 1`] = `
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="/favourite"
+                href="/favorites"
                 onClick={[Function]}
               >
                 <div

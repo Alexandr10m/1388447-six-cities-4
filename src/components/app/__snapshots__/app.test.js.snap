@@ -41,7 +41,7 @@ exports[`Snapshot of App AppComponent should render Main page 1`] = `
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="/favourite"
+                href="/favorites"
                 onClick={[Function]}
               >
                 <div
@@ -435,7 +435,7 @@ exports[`Snapshot of App AppComponent should render OfferPage with offerWithoutF
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="/favourite"
+                href="/favorites"
                 onClick={[Function]}
               >
                 <div
@@ -794,7 +794,7 @@ exports[`Snapshot of App AppComponent should render SignIn page 1`] = `
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="/favourite"
+                href="/favorites"
                 onClick={[Function]}
               >
                 <div

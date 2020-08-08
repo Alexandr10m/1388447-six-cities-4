@@ -41,7 +41,7 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="/favourite"
+                href="/favorites"
                 onClick={[Function]}
               >
                 <div
@@ -687,7 +687,7 @@ exports[`Snapshot of OfferPage OfferPage should render whith Favourite 1`] = `
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="/favourite"
+                href="/favorites"
                 onClick={[Function]}
               >
                 <div

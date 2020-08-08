@@ -41,7 +41,7 @@ exports[`Snapshot of FavouritePage FavouritePage should render favourite-empty c
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="/favourite"
+                href="/favorites"
                 onClick={[Function]}
               >
                 <div
@@ -151,7 +151,7 @@ exports[`Snapshot of FavouritePage FavouritePage should render favourite-offers 
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="/favourite"
+                href="/favorites"
                 onClick={[Function]}
               >
                 <div
