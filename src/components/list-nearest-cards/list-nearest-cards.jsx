@@ -1,31 +1,29 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import CardNearest from "../card-nearest/card-nearest.jsx";
 
 
 const MAX_COUNT_NEAREST_OFFERS = 3;
 
-class ListNearestCards extends PureComponent {
-  render() {
-    const {offers} = this.props;
+const ListNearestCards = (props) => {
+  const {offers} = props;
 
-    return (
-      <div className="near-places__list places__list">
-        {offers.map((offer, i) => {
-          if (i > MAX_COUNT_NEAREST_OFFERS) {
-            return false;
-          }
-          return (
-            <CardNearest
-              key={`${i}-${offer.title}`}
-              offer={offer}
+  return (
+    <div className="near-places__list places__list">
+      {offers.map((offer, i) => {
+        if (i > MAX_COUNT_NEAREST_OFFERS) {
+          return false;
+        }
+        return (
+          <CardNearest
+            key={`${i}-${offer.title}`}
+            offer={offer}
 
-            />);
-        })}
-      </div>
-    );
-  }
-}
+          />);
+      })}
+    </div>
+  );
+};
 
 
 ListNearestCards.propTypes = {

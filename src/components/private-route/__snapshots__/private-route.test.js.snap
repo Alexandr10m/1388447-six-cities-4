@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot of PrivateRoute Should render correct 1`] = `null`;
+
+exports[`Snapshot of PrivateRoute Should render correct FavouritePage component  1`] = `null`;
+
+exports[`Snapshot of PrivateRoute Should render correct SignIn component  1`] = `null`;

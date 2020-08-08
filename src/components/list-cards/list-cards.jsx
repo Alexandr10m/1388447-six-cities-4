@@ -1,30 +1,28 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Card from "../card/card.jsx";
 import {connect} from "react-redux";
 import {getLocalOffers} from "../../reducer/state/selector.js";
 
 
-class ListCards extends PureComponent {
+const ListCards = (props) => {
 
-  render() {
-    const {localOffers, onActiveCard} = this.props;
+  const {localOffers, onActiveCard} = props;
 
-    return (
-      <div className="cities__places-list places__list tabs__content">
+  return (
+    <div className="cities__places-list places__list tabs__content">
 
-        {localOffers.map((offer, i) => {
-          return <Card
-            key={`${i}-${offer.id}`}
-            offer={offer}
-            onActiveCard={onActiveCard}
-          />;
-        })}
+      {localOffers.map((offer, i) => {
+        return <Card
+          key={`${i}-${offer.id}`}
+          offer={offer}
+          onActiveCard={onActiveCard}
+        />;
+      })}
 
-      </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 
 ListCards.propTypes = {

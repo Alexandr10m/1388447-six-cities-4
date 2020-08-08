@@ -2,7 +2,7 @@ import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 import {StatusOfReviewLoad} from "../../reducer/data/data.js";
 
-const RATING_TEXT = [`perfect`, `good`, `not bad`, `badly`, `terribly`];
+const RATINGS_TEXT = [`perfect`, `good`, `not bad`, `badly`, `terribly`];
 const MIN_LENGTH_TEXT = 50;
 const MAX_LENGTH_TEXT = 300;
 const checkCorrectLengthText = (text) => text >= MIN_LENGTH_TEXT && text <= MAX_LENGTH_TEXT;
@@ -20,7 +20,7 @@ const withComment = (Component) => {
         disabledForm: false,
       };
 
-      this._starRefs = RATING_TEXT.map(() => createRef());
+      this._starRefs = RATINGS_TEXT.map(() => createRef());
 
       this.handleFormSubmit = this.handleFormSubmit.bind(this);
       this.handleRateChange = this.handleRateChange.bind(this);
@@ -101,9 +101,9 @@ const withComment = (Component) => {
     }
 
     _createStarsMarkup() {
-      const startsCount = RATING_TEXT.length;
+      const startsCount = RATINGS_TEXT.length;
 
-      const starsMarkup = RATING_TEXT.map((it, i) => {
+      const starsMarkup = RATINGS_TEXT.map((it, i) => {
         const id = startsCount - i;
         return (
           <React.Fragment key={id}>

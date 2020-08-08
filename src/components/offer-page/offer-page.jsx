@@ -18,6 +18,7 @@ import Preload from "../preload/preload.jsx";
 import {getReviews, getLoadingReviewsInProgress} from "../../reducer/data/selectors.js";
 
 
+const MAX_COUNT_PICTURE = 5;
 class OfferPage extends PureComponent {
   constructor(props) {
     super(props);
@@ -112,7 +113,7 @@ class OfferPage extends PureComponent {
               <div className="property__gallery">
 
                 {pictures.map((picture, i) => {
-                  if (i <= 5) {
+                  if (i <= MAX_COUNT_PICTURE) {
                     return (
                       <div className="property__image-wrapper" key={picture + i}>
                         <img className="property__image" src={picture} alt="Photo studio"/>

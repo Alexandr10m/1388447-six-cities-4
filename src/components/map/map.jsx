@@ -97,12 +97,12 @@ class Map extends PureComponent {
     }
   }
 
-  render() {
-    return <div id="map" style={{width: `100%`, height: `100%`}}></div>;
-  }
-
   componentWillUnmount() {
     this._map = null;
+  }
+
+  render() {
+    return <div id="map" style={{width: `100%`, height: `100%`}}></div>;
   }
 }
 
