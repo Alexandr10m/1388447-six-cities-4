@@ -18,27 +18,31 @@ const createAPI = (handlerNetworkErorr) => {
   const onSuccess = (response) => response;
 
   const onFail = (err) => {
-    const {response} = err;
+    if (err.response) {
+      const {response} = err;
 
-    const isAuthError = response.status === ErrorCode.UNAUTHORIZED;
-    const isBadRequse = response.status >= ErrorCode.BAD_REQUEST && response.status < ErrorCode.SERVER_NOT_RESPONDING;
-    const isServerNotResponding = response.status >= ErrorCode.SERVER_NOT_RESPONDING;
+      const isAuthError = response.status === ErrorCode.UNAUTHORIZED;
+      const isBadRequse = response.status >= ErrorCode.BAD_REQUEST && response.status < ErrorCode.SERVER_NOT_RESPONDING;
+      const isServerNotResponding = response.status >= ErrorCode.SERVER_NOT_RESPONDING;
 
-    if (isAuthError) {
-      onUnauthorized();
-      throw err;
-    }
-    if (isBadRequse) {
-      onNetworkError(`Failed to send request to server. Sorry... :(`);
-      throw err;
-    }
-    if (isServerNotResponding) {
-      onNetworkError(`Server not responding. Sorry... :(`);
+      if (isAuthError) {
+        onUnauthorized();
+        throw err;
+      }
+      if (isBadRequse) {
+        onNetworkError(`Failed to send request to server. Sorry... :(`);
+        throw err;
+      }
+      if (isServerNotResponding) {
+        onNetworkError(`Server not responding. Sorry... :(`);
+        throw err;
+      }
+
+      onNetworkError(`Ooops, somthing went wrong`);
       throw err;
     }
 
     onNetworkError(`Ooops, somthing went wrong`);
-    throw err;
   };
 
   api.interceptors.response.use(onSuccess, onFail);
