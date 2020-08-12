@@ -1,8 +1,11 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 
 
-const MainEmpty = (props) => {
+interface Props {
+  city: string;
+}
+
+const MainEmpty: React.FunctionComponent<Props> = (props: Props) => {
   const {city} = props;
   return (
     <div className="cities">
@@ -16,11 +19,6 @@ const MainEmpty = (props) => {
         <div className="cities__right-section"></div>
       </div>
     </div>);
-};
-
-
-MainEmpty.propTypes = {
-  city: PropTypes.string.isRequired,
 };
 
 

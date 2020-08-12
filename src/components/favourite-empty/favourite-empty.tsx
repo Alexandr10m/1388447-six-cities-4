@@ -1,7 +1,7 @@
 import * as React from "react";
 
 
-const FavouriteEmpty = () => {
+const FavouriteEmpty: React.FunctionComponent = () => {
 
   return (
     <section className="favorites favorites--empty">

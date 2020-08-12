@@ -1,13 +1,29 @@
 import * as React from "react";
+import {Subtract} from "utility-types";
+import {LocalOffer} from "../../types";
 
+
+interface State {
+  activeCard: LocalOffer | null;
+}
+
+interface InjectingProps {
+  activeCard: LocalOffer | null;
+  onActiveCard: (offer: LocalOffer) => void;
+}
 
 const withActiveCard = (Component) => {
-  class WithActiveCard extends PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectingProps>;
+
+  class WithActiveCard extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
+
       this.state = {
         activeCard: null,
       };
+
       this._hanlerCardMouseEnter = this._hanlerCardMouseEnter.bind(this);
     }
 
@@ -25,10 +41,6 @@ const withActiveCard = (Component) => {
       );
     }
   }
-
-
-  WithActiveCard.propTypes = {};
-
 
   return WithActiveCard;
 };

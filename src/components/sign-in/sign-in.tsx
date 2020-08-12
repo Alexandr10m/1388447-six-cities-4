@@ -1,17 +1,36 @@
 import * as React from "react";
-import PropTypes from "prop-types";
-import Login from "../login/login.js";
+import Login from "../login/login";
 import {connect} from "react-redux";
-import {getCity} from "../../reducer/state/selector.js";
-import {Operation} from "../../reducer/user/user.js";
+import {getCity} from "../../reducer/state/selector";
+import {Operation} from "../../reducer/user/user";
 import {Link} from "react-router-dom";
 
 
-const SignIn = (props) => {
-  const {city, onLogin, login, password, loginError, passwordError, disableButton, onSubmit} = props;
+interface Props {
+  city: string;
+  login: React.ReactNode;
+  password: React.ReactNode;
+  loginError: React.ReactNode;
+  passwordError: React.ReactNode;
+  disableButton: boolean;
+  onLogin: () => void;
+  onSubmit: (onLogin: () => void) => void;
+}
+
+const SignIn: React.FunctionComponent<Props> = (props: Props) => {
+  const {city,
+    login,
+    password,
+    loginError,
+    passwordError,
+    disableButton,
+    onLogin,
+    onSubmit,
+  } = props;
 
   const _handleSubmit = (evt) => {
     evt.preventDefault();
+
     onSubmit(onLogin);
   };
 
@@ -58,19 +77,6 @@ const SignIn = (props) => {
   );
 };
 
-
-SignIn.propTypes = {
-  city: PropTypes.string.isRequired,
-  onLogin: PropTypes.func.isRequired,
-  login: PropTypes.node.isRequired,
-  password: PropTypes.node.isRequired,
-  loginError: PropTypes.node.isRequired,
-  passwordError: PropTypes.node.isRequired,
-  disableButton: PropTypes.bool.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-};
-
-
 const mapStateToProps = (state) => ({
   city: getCity(state),
 });
@@ -80,6 +86,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(Operation.login(authData));
   },
 });
+
 
 export {SignIn};
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

@@ -1,14 +1,49 @@
 import * as React from "react";
-import PropTypes from "prop-types";
-import {StatusOfReviewLoad} from "../../reducer/data/data.js";
+import {StatusOfReviewLoad} from "../../reducer/data/data";
+import {Subtract} from "utility-types";
+
+
+interface Props {
+  onSendComment: ({comment, rating}: {comment: string, rating: number}, offerId: number) => void;
+  offerId: number;
+  statusOfReviewLoad: string;
+  changeStatusOfReviewLoad: (tatusOfReviewLoad: string) => void;
+}
+
+interface State {
+  rate: number;
+  commentText: string;
+  buttonDisable: boolean;
+  isValidText: boolean;
+  isValidRate: boolean;
+  disabledForm: boolean;
+}
+
+interface InjectingProps {
+  stars: React.ReactNode;
+  textArea: React.ReactNode;
+  startsError: React.ReactNode | false;
+  textAreaError: React.ReactNode | false;
+  loadError: React.ReactNode | false;
+  buttonDisable: boolean;
+  onSubmit: ({comment, rating}: {comment: string, rating: number}, offerId: number) => void;
+  onRatingChange: (value: string) => void;
+}
 
 const RATINGS_TEXT = [`perfect`, `good`, `not bad`, `badly`, `terribly`];
+
 const MIN_LENGTH_TEXT = 50;
 const MAX_LENGTH_TEXT = 300;
+
 const checkCorrectLengthText = (text) => text >= MIN_LENGTH_TEXT && text <= MAX_LENGTH_TEXT;
 
 const withComment = (Component) => {
-  class WithComment extends PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Props & Subtract<P, InjectingProps>;
+
+  class WithComment extends React.PureComponent<T, State> {
+    private _starRefs : React.RefObject<HTMLInputElement>[];
+
     constructor(props) {
       super(props);
       this.state = {
@@ -20,11 +55,25 @@ const withComment = (Component) => {
         disabledForm: false,
       };
 
-      this._starRefs = RATINGS_TEXT.map(() => createRef());
+      this._starRefs = RATINGS_TEXT.map(() => React.createRef());
 
       this.handleFormSubmit = this.handleFormSubmit.bind(this);
       this.handleRateChange = this.handleRateChange.bind(this);
       this.handleUserCommentEnter = this.handleUserCommentEnter.bind(this);
+    }
+
+    componentDidUpdate(prevProps) {
+      if (prevProps.statusOfReviewLoad !== this.props.statusOfReviewLoad) {
+        const {statusOfReviewLoad} = this.props;
+        if (statusOfReviewLoad === StatusOfReviewLoad.LOADED) {
+          this._disableForm(false);
+          this._resetForm();
+        }
+        if (statusOfReviewLoad === StatusOfReviewLoad.ERROR) {
+          this._disableForm(false);
+        }
+        this._resetStatusOfReviewLoad();
+      }
     }
 
     handleUserCommentEnter(evt) {
@@ -32,8 +81,8 @@ const withComment = (Component) => {
       this.setState({commentText: value}, this._validateForm);
     }
 
-    handleRateChange(evt) {
-      const {value} = evt.target;
+    handleRateChange({target: {value}}) {
+      // const {value} = evt.target;
       this.setState({rate: +value}, this._validateForm);
     }
 
@@ -148,20 +197,6 @@ const withComment = (Component) => {
       return statusOfReviewLoad === StatusOfReviewLoad.ERROR && <div style={{color: `red`}}> Somthing went wrong</div>;
     }
 
-    componentDidUpdate(prevProps) {
-      if (prevProps.statusOfReviewLoad !== this.props.statusOfReviewLoad) {
-        const {statusOfReviewLoad} = this.props;
-        if (statusOfReviewLoad === StatusOfReviewLoad.LOADED) {
-          this._disableForm(false);
-          this._resetForm();
-        }
-        if (statusOfReviewLoad === StatusOfReviewLoad.ERROR) {
-          this._disableForm(false);
-        }
-        this._resetStatusOfReviewLoad();
-      }
-    }
-
     render() {
       return (
         <Component
@@ -179,14 +214,8 @@ const withComment = (Component) => {
     }
   }
 
-  WithComment.propTypes = {
-    onSendComment: PropTypes.func.isRequired,
-    offerId: PropTypes.number.isRequired,
-    statusOfReviewLoad: PropTypes.string.isRequired,
-    changeStatusOfReviewLoad: PropTypes.func.isRequired,
-  };
-
   return WithComment;
 };
+
 
 export default withComment;

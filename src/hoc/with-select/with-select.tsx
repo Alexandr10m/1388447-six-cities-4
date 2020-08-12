@@ -1,8 +1,22 @@
 import * as React from "react";
+import {Subtract} from "utility-types";
 
+
+interface State {
+  isShowOptions: boolean;
+}
+
+interface InjectedProps {
+  isShowOptions: boolean;
+  onToggleViewOptions: () => void;
+  onHideOptions: () => void;
+}
 
 const withSelect = (Component) => {
-  class WithSelect extends PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectedProps>;
+
+  class WithSelect extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 
@@ -32,8 +46,6 @@ const withSelect = (Component) => {
       );
     }
   }
-
-  WithSelect.propTypes = {};
 
   return WithSelect;
 };

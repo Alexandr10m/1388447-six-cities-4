@@ -1,10 +1,15 @@
 import * as React from "react";
-import PropTypes from "prop-types";
-import FavouriteLocationItem from "../favourite-location-item/favourite-location-item.jsx";
+import FavouriteLocationItem from "../favourite-location-item/favourite-location-item";
 import {Link} from "react-router-dom";
+import {LocalOffer} from "../../types";
 
 
-const FavouriteLocation = (props) => {
+interface Props {
+  city: string;
+  localOffers: LocalOffer[];
+}
+
+const FavouriteLocation: React.FunctionComponent<Props> = (props: Props) => {
   const {city, localOffers} = props;
 
   return (
@@ -30,12 +35,6 @@ const FavouriteLocation = (props) => {
       </div>
     </li>
   );
-};
-
-
-FavouriteLocation.propTypes = {
-  city: PropTypes.string.isRequired,
-  localOffers: PropTypes.array.isRequired,
 };
 
 

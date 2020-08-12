@@ -1,17 +1,32 @@
 import * as React from "react";
-import PropTypes from "prop-types";
-import {firstWordInUpper, rating} from "../../utils.js";
+import {firstWordInUpper, rating} from "../../utils";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {Operation} from "../../reducer/data/data.js";
-import history from "../../history.js";
-import {AppRoute} from "../../constants.js";
-import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {Operation} from "../../reducer/data/data";
+import history from "../../history";
+import {AppRoute} from "../../constants";
+import {getAuthorizationStatus} from "../../reducer/user/selectors";
+import {AuthorizationStatus} from "../../reducer/user/user";
+import {LocalOffer} from "../../types";
 
 
-const Card = (props) => {
-  const {offer, onActiveCard, sendFavouriteOption, authorizationStatus} = props;
+interface Props {
+  offer: LocalOffer;
+  onActiveCard: (offer: LocalOffer) => void;
+  sendFavouriteOption: ({id, status}: {id: number, status: number}) => void;
+  authorizationStatus: string;
+  className: string | undefined;
+}
+
+const Card: React.FunctionComponent<Props> = (props: Props) => {
+  const {
+    offer,
+    onActiveCard,
+    sendFavouriteOption,
+    authorizationStatus,
+    className,
+  } = props;
+
   const {
     grade,
     title,
@@ -19,7 +34,6 @@ const Card = (props) => {
     price,
     isFavourite,
     type,
-    className,
     previewImage,
     id,
   } = offer;
@@ -97,23 +111,6 @@ const Card = (props) => {
   );
 };
 
-Card.propTypes = {
-  sendFavouriteOption: PropTypes.func.isRequired,
-  offer: PropTypes.shape({
-    isPremium: PropTypes.bool.isRequired,
-    previewImage: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    isFavourite: PropTypes.bool.isRequired,
-    grade: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    className: PropTypes.string,
-    id: PropTypes.number.isRequired
-  }),
-  onActiveCard: PropTypes.func,
-  authorizationStatus: PropTypes.string.isRequired,
-};
-
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
 });
@@ -123,6 +120,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(Operation.sendFavouriteOption(options));
   },
 });
+
 
 export {Card};
 export default connect(mapStateToProps, mapDispatchToProps)(Card);

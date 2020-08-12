@@ -1,10 +1,19 @@
 import * as React from "react";
-import PropTypes from "prop-types";
-import CityItem from "../city-item/city-item.js";
+import CityItem from "../city-item/city-item";
 
 
-const ListCities = (props) => {
-  const {cities, currentCity, onCityClick} = props;
+interface Props {
+  cities: string[];
+  currentCity: string;
+  onCityClick: (city: string) => void;
+}
+
+const ListCities: React.FunctionComponent<Props> = (props: Props) => {
+  const {
+    cities,
+    currentCity,
+    onCityClick,
+  } = props;
 
   const handlerCityClick = (evt) => {
 
@@ -24,11 +33,5 @@ const ListCities = (props) => {
   );
 };
 
-
-ListCities.propTypes = {
-  cities: PropTypes.arrayOf(PropTypes.string).isRequired,
-  currentCity: PropTypes.string.isRequired,
-  onCityClick: PropTypes.func.isRequired,
-};
 
 export default ListCities;

@@ -1,17 +1,23 @@
 import * as React from "react";
-import PropTypes from "prop-types";
-import Login from "../login/login.jsx";
-import FavouriteOffers from "../favourite-offers/favourite-offers.js";
-import FavouriteEmpty from "../favourite-empty/favourite-empty.js";
+import Login from "../login/login";
+import FavouriteOffers from "../favourite-offers/favourite-offers";
+import FavouriteEmpty from "../favourite-empty/favourite-empty";
 import {connect} from "react-redux";
-import {Operation} from "../../reducer/data/data.js";
-import {getFavourite, getLoadFavouriteProgress} from "../../reducer/data/selectors.js";
+import {Operation} from "../../reducer/data/data";
+import {getFavourite, getLoadFavouriteProgress} from "../../reducer/data/selectors";
 import {Link} from "react-router-dom";
-import {AppRoute} from "../../constants.js";
-import Preload from "../preload/preload.jsx";
+import {AppRoute} from "../../constants";
+import Preload from "../preload/preload";
+import {CityOffers} from "../../types";
 
 
-class FavouritePage extends PureComponent {
+interface Props {
+  favouriteOffers: CityOffers[];
+  isLoadFavourite: boolean;
+  loadFavouriteOffers: () => void;
+}
+
+class FavouritePage extends React.PureComponent<Props> {
   constructor(props) {
     super(props);
   }
@@ -63,41 +69,6 @@ class FavouritePage extends PureComponent {
     return this._showFavourite();
   }
 }
-
-
-FavouritePage.propTypes = {
-  favouriteOffers: PropTypes.arrayOf(PropTypes.shape({
-    city: PropTypes.string.isRequired,
-    cityCoords: PropTypes.arrayOf(PropTypes.number),
-    cityZoom: PropTypes.number,
-    localOffers: PropTypes.arrayOf(PropTypes.shape({
-      isPremium: PropTypes.bool.isRequired,
-      pictures: PropTypes.arrayOf(PropTypes.string).isRequired,
-      price: PropTypes.number.isRequired,
-      isFavourite: PropTypes.bool.isRequired,
-      grade: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-      bedroom: PropTypes.number.isRequired,
-      maxAdults: PropTypes.number.isRequired,
-      facilities: PropTypes.arrayOf(PropTypes.string).isRequired,
-      coords: PropTypes.arrayOf(PropTypes.number).isRequired,
-      locationZoom: PropTypes.number.isRequired,
-      id: PropTypes.number.isRequired,
-      description: PropTypes.string.isRequired,
-      previewImage: PropTypes.string.isRequired,
-      host: PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        isPro: PropTypes.bool.isRequired,
-        avatarUrl: PropTypes.string.isRequired,
-      }).isRequired,
-    })),
-  })),
-  isLoadFavourite: PropTypes.bool.isRequired,
-  loadFavouriteOffers: PropTypes.func.isRequired,
-};
-
 
 const mapStateToProps = (state) => ({
   favourite: getFavourite(state),

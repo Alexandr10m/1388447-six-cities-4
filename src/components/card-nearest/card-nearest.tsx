@@ -1,8 +1,16 @@
 import * as React from "react";
-import Card from "../card/card.js";
+import Card from "../card/card";
+import {Subtract} from "utility-types";
 
 
-const CardNearest = (props) => {
+interface InjectingProps {
+  className: string;
+}
+
+type P = React.ComponentProps<typeof Card>;
+type T = Subtract<P, InjectingProps>;
+
+const CardNearest: React.FunctionComponent<T> = (props: T) => {
   const className = `near-places__card`;
 
   return (
@@ -13,8 +21,6 @@ const CardNearest = (props) => {
     />
   );
 };
-
-Card.propTypes = {};
 
 
 export default CardNearest;

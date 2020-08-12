@@ -1,8 +1,18 @@
 import * as React from "react";
-import PropTypes from "prop-types";
+import {Host} from "../../types";
 
-const Host = (props) => {
-  const {description, host} = props;
+
+interface Props {
+  description: string;
+  host: Host;
+}
+
+const Host: React.FunctionComponent<Props> = (props: Props) => {
+  const {
+    description,
+    host,
+  } = props;
+
   const {name, isPro, avatarUrl} = host;
   const proClass = isPro && `property__avatar-wrapper--pro`;
 
@@ -24,15 +34,6 @@ const Host = (props) => {
       </div>
     </div>
   );
-};
-
-Host.propTypes = {
-  description: PropTypes.string.isRequired,
-  host: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    isPro: PropTypes.bool.isRequired,
-    avatarUrl: PropTypes.string.isRequired,
-  }),
 };
 
 

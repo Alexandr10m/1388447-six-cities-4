@@ -1,10 +1,17 @@
 import * as React from "react";
-import PropTypes from "prop-types";
-import {rating, getDate, getMonthAndYear} from "../../utils.js";
+import {rating, getDate, getMonthAndYear} from "../../utils";
+import {Review as ReviewInterface} from "../../types";
 
 
-const Review = (props) => {
-  const {user, text, date, grade} = props;
+type Props = ReviewInterface;
+
+const Review: React.FunctionComponent<Props> = (props: Props) => {
+  const {
+    user,
+    text,
+    date,
+    grade,
+  } = props;
   const {avatarUrl, name} = user;
 
   return (
@@ -29,16 +36,6 @@ const Review = (props) => {
       </div>
     </li>
   );
-};
-
-Review.propTypes = {
-  user: PropTypes.shape({
-    avatarUrl: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-  }).isRequired,
-  text: PropTypes.string.isRequired,
-  date: PropTypes.instanceOf(Date).isRequired,
-  grade: PropTypes.number.isRequired,
 };
 
 

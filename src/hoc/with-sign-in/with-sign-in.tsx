@@ -1,14 +1,36 @@
 import * as React from "react";
+import {Subtract} from "utility-types";
 
+
+interface State {
+  login: string;
+  password: string;
+  disableButton: boolean;
+  isValidLogin: boolean;
+  isValidPassword: boolean;
+}
+
+interface InjectingProps {
+  login: React.ReactNode;
+  password: React.ReactNode;
+  loginError: React.ReactNode | false;
+  passwordError: React.ReactNode | false;
+  disableButton: boolean;
+  onSubmit: (onLogin: ({login, password}: {login: string, password: string}) => void) => void;
+}
 
 const MIN_LENGTH_PASSWORD = 4;
+
 const checkLogin = (login) => {
   const isCorrectLogin = login.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
   return !!isCorrectLogin;
 };
 
 const withSignIn = (Component) => {
-  class WithSignIn extends PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectingProps>;
+
+  class WithSignIn extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 
@@ -128,8 +150,6 @@ const withSignIn = (Component) => {
       );
     }
   }
-
-  WithSignIn.propTypes = {};
 
   return WithSignIn;
 };

@@ -1,22 +1,38 @@
 import * as React from "react";
-import Review from "../review/review.js";
-import PropTypes from "prop-types";
-import Form from "../review-form/review-form.js";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
+import Review from "../review/review";
+import Form from "../review-form/review-form";
+import {AuthorizationStatus} from "../../reducer/user/user";
 import {connect} from "react-redux";
-import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
-import {Operation} from "../../reducer/data/data.js";
-import withComment from "../../hoc/with-comment/with-comment.js";
-import {getStatusOfReviewLoad} from "../../reducer/data/selectors.js";
-import {ActionCreator} from "../../reducer/data/data.js";
+import {getAuthorizationStatus} from "../../reducer/user/selectors";
+import {Operation} from "../../reducer/data/data";
+import withComment from "../../hoc/with-comment/with-comment";
+import {getStatusOfReviewLoad} from "../../reducer/data/selectors";
+import {ActionCreator} from "../../reducer/data/data";
+import {Review as ReviewInterface} from "../../types";
 
+
+interface Props {
+  reviews: ReviewInterface[];
+  authorizationStatus: string;
+  offerId: number;
+  statusOfReviewLoad: string;
+  changeStatusOfReviewLoad: (statusOfReviewLoad: string) => void;
+  onSendComment: ({comment, rating}: {comment: string, rating: number}, offerId: number) => void;
+}
 
 const MAX_COUNT_REVIEWS = 10;
 
 const ReviewForm = withComment(Form);
 
-const ReviewList = (props) => {
-  const {reviews, authorizationStatus, onSendComment, offerId, statusOfReviewLoad, changeStatusOfReviewLoad} = props;
+const ReviewList: React.FunctionComponent<Props> = (props: Props) => {
+  const {
+    reviews,
+    authorizationStatus,
+    offerId,
+    statusOfReviewLoad,
+    changeStatusOfReviewLoad,
+    onSendComment,
+  } = props;
 
   const isShowingReviewForm = authorizationStatus === AuthorizationStatus.AUTH;
   const isReviews = reviews.length !== 0;
@@ -46,29 +62,6 @@ const ReviewList = (props) => {
   );
 };
 
-
-ReviewList.propTypes = {
-  offerId: PropTypes.number.isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
-  onSendComment: PropTypes.func.isRequired,
-  reviews: PropTypes.arrayOf(PropTypes.shape({
-    text: PropTypes.string.isRequired,
-    date: PropTypes.instanceOf(Date),
-    id: PropTypes.number.isRequired,
-    grade: PropTypes.number.isRequired,
-    user: PropTypes.shape({
-      avatarUrl: PropTypes.string.isRequired,
-      email: PropTypes.string,
-      id: PropTypes.number.isRequired,
-      isPro: PropTypes.bool.isRequired,
-      name: PropTypes.string.isRequired,
-    }).isRequired
-  })).isRequired,
-  statusOfReviewLoad: PropTypes.string.isRequired,
-  changeStatusOfReviewLoad: PropTypes.func.isRequired,
-};
-
-
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
   statusOfReviewLoad: getStatusOfReviewLoad(state),
@@ -82,6 +75,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.changeStatusOfReviewLoad(status));
   }
 });
+
 
 export {ReviewList};
 export default connect(mapStateToProps, mapDispatchToProps)(ReviewList);

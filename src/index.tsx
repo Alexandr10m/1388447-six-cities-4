@@ -1,16 +1,14 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 import {createStore, applyMiddleware, compose} from "redux";
 import {Provider} from "react-redux";
-import App from "./components/app/app.jsx";
-import reducer from "./reducer/reducer.js";
+import App from "./components/app/app";
+import reducer from "./reducer/reducer";
 import thunk from "redux-thunk";
-import createAPI from "./api.js";
-import {ActionCreator as UserActionCreator, AuthorizationStatus} from "./reducer/user/user.js";
-import {ActionCreator as DataActionCreator} from "./reducer/data/data.js";
+import createAPI from "./api";
+import {ActionCreator as UserActionCreator, AuthorizationStatus} from "./reducer/user/user";
+import {ActionCreator as DataActionCreator} from "./reducer/data/data";
 
-
-const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f;
 
 const handlerNetworkErorr = {
   onUnauthorized() {
@@ -27,7 +25,7 @@ const api = createAPI(handlerNetworkErorr);
 
 const store = createStore(reducer, compose(
     applyMiddleware(thunk.withExtraArgument(api)),
-    reduxDevTools
+    (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
 ));
 
 ReactDOM.render(

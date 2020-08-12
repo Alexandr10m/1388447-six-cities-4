@@ -1,14 +1,22 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {getEmail} from "../../reducer/user/selectors.js";
+import {getEmail} from "../../reducer/user/selectors";
 import {Link} from "react-router-dom";
-import {AppRoute} from "../../constants.js";
-import {ActionCreator} from "../../reducer/state/state.js";
+import {AppRoute} from "../../constants";
+import {ActionCreator} from "../../reducer/state/state";
 
 
-const Login = (props) => {
-  const {email, onCityClick} = props;
+interface Props {
+  email: string | undefined;
+  onCityClick: (city: string) => void;
+}
+
+const Login: React.FunctionComponent<Props> = (props: Props) => {
+  const {
+    email,
+    onCityClick,
+  } = props;
+
   const defaultText = `Sign in`;
   const showText = email || defaultText;
 
@@ -50,12 +58,6 @@ const Login = (props) => {
       </div>
     </header>
   );
-};
-
-
-Login.propTypes = {
-  email: PropTypes.string,
-  onCityClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

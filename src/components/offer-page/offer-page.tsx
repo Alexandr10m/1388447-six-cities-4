@@ -1,25 +1,43 @@
 import * as React from "react";
-import PropTypes from "prop-types";
-import {firstWordInUpper, rating} from "../../utils.js";
-import ReviewList from "../review-list/review-list.jsx";
-import Map from "../map/map.js";
-import ListNearestCards from "../list-nearest-cards/list-nearest-cards.js";
-import Host from "../host/host.js";
-import Login from "../login/login.js";
+import {firstWordInUpper, rating} from "../../utils";
+import ReviewList from "../review-list/review-list";
+import Map from "../map/map";
+import ListNearestCards from "../list-nearest-cards/list-nearest-cards";
+import Host from "../host/host";
+import Login from "../login/login";
 import {connect} from "react-redux";
-import {getCity} from "../../reducer/state/selector.js";
-import {getOffers, getNearbyOffers, getLoadingNearbyOffersInProgress} from "../../reducer/data/selectors.js";
-import {Operation, ActionCreator} from "../../reducer/data/data.js";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
-import history from "../../history.js";
-import {AppRoute} from "../../constants.js";
-import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
-import Preload from "../preload/preload.jsx";
-import {getReviews, getLoadingReviewsInProgress} from "../../reducer/data/selectors.js";
+import {getCity} from "../../reducer/state/selector";
+import {getOffers, getNearbyOffers, getLoadingNearbyOffersInProgress} from "../../reducer/data/selectors";
+import {Operation, ActionCreator} from "../../reducer/data/data";
+import {AuthorizationStatus} from "../../reducer/user/user";
+import history from "../../history";
+import {AppRoute} from "../../constants";
+import {getAuthorizationStatus} from "../../reducer/user/selectors";
+import Preload from "../preload/preload";
+import {getReviews, getLoadingReviewsInProgress} from "../../reducer/data/selectors";
+import {RouteProps} from "react-router-dom";
+import {CityOffers, LocalOffer, Review} from "../../types";
 
+
+type Props = RouteProps & {
+  offers: CityOffers[];
+  reviews: Review[];
+  nearbyOffers: LocalOffer[];
+  authorizationStatus: string;
+  sendFavouriteOption: ({id, status}: {id: number, status: number}) => void;
+  loadReviews: (offerId: number) => void;
+  changeLoadingRequestsProgress: () => void;
+  loadNearbyOffers: (offerId: number) => void;
+  isLoadingNearbyOffers: boolean;
+  isLoadingReviews: boolean;
+}
 
 const MAX_COUNT_PICTURE = 5;
-class OfferPage extends PureComponent {
+
+class OfferPage extends React.PureComponent<Props> {
+  private _offerId: number;
+  private _isFavourite: boolean;
+
   constructor(props) {
     super(props);
 
@@ -30,7 +48,11 @@ class OfferPage extends PureComponent {
   }
 
   componentDidMount() {
-    const {loadReviews, loadNearbyOffers, match} = this.props;
+    const {
+      loadReviews,
+      loadNearbyOffers,
+      match,
+    } = this.props;
     const offerId = +match.params.offerId;
 
     loadReviews(offerId);
@@ -55,7 +77,10 @@ class OfferPage extends PureComponent {
   }
 
   _handlerButtonFavouriteClick() {
-    const {sendFavouriteOption, authorizationStatus} = this.props;
+    const {
+      sendFavouriteOption,
+      authorizationStatus,
+    } = this.props;
 
     if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
       history.push(AppRoute.LOGIN);
@@ -72,7 +97,12 @@ class OfferPage extends PureComponent {
   }
 
   _showOffer() {
-    const {match, offers, nearbyOffers, reviews} = this.props;
+    const {
+      match,
+      offers,
+      nearbyOffers,
+      reviews,
+    } = this.props;
 
     this._offerId = +match.params.offerId;
 
@@ -225,82 +255,6 @@ class OfferPage extends PureComponent {
   }
 }
 
-OfferPage.propTypes = {
-  match: PropTypes.object.isRequired,
-  offers: PropTypes.arrayOf(PropTypes.shape({
-    city: PropTypes.string.isRequired,
-    cityCoords: PropTypes.arrayOf(PropTypes.number).isRequired,
-    cityZoom: PropTypes.number.isRequired,
-    localOffers: PropTypes.arrayOf(PropTypes.shape({
-      isPremium: PropTypes.bool.isRequired,
-      pictures: PropTypes.arrayOf(PropTypes.string).isRequired,
-      price: PropTypes.number.isRequired,
-      isFavourite: PropTypes.bool.isRequired,
-      grade: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-      bedroom: PropTypes.number.isRequired,
-      maxAdults: PropTypes.number.isRequired,
-      facilities: PropTypes.arrayOf(PropTypes.string).isRequired,
-      coords: PropTypes.arrayOf(PropTypes.number).isRequired,
-      locationZoom: PropTypes.number.isRequired,
-      id: PropTypes.number.isRequired,
-      description: PropTypes.string.isRequired,
-      previewImage: PropTypes.string.isRequired,
-      host: PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        isPro: PropTypes.bool.isRequired,
-        avatarUrl: PropTypes.string.isRequired,
-      }).isRequired,
-    })),
-  })).isRequired,
-  reviews: PropTypes.arrayOf(PropTypes.shape({
-    text: PropTypes.string.isRequired,
-    date: PropTypes.instanceOf(Date),
-    id: PropTypes.number.isRequired,
-    grade: PropTypes.number.isRequired,
-    user: PropTypes.shape({
-      avatarUrl: PropTypes.string.isRequired,
-      email: PropTypes.string,
-      id: PropTypes.number.isRequired,
-      isPro: PropTypes.bool.isRequired,
-      name: PropTypes.string.isRequired,
-    }).isRequired
-  })).isRequired,
-  nearbyOffers: PropTypes.arrayOf(PropTypes.shape({
-    isPremium: PropTypes.bool.isRequired,
-    pictures: PropTypes.arrayOf(PropTypes.string).isRequired,
-    price: PropTypes.number.isRequired,
-    isFavourite: PropTypes.bool.isRequired,
-    grade: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    bedroom: PropTypes.number.isRequired,
-    maxAdults: PropTypes.number.isRequired,
-    facilities: PropTypes.arrayOf(PropTypes.string).isRequired,
-    coords: PropTypes.arrayOf(PropTypes.number).isRequired,
-    locationZoom: PropTypes.number.isRequired,
-    id: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired,
-    previewImage: PropTypes.string.isRequired,
-    host: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      isPro: PropTypes.bool.isRequired,
-      avatarUrl: PropTypes.string.isRequired,
-    }).isRequired,
-  })),
-  authorizationStatus: PropTypes.string.isRequired,
-  sendFavouriteOption: PropTypes.func.isRequired,
-  loadReviews: PropTypes.func.isRequired,
-  changeLoadingRequestsProgress: PropTypes.func.isRequired,
-  loadNearbyOffers: PropTypes.func.isRequired,
-  isLoadingNearbyOffers: PropTypes.bool.isRequired,
-  isLoadingReviews: PropTypes.bool.isRequired,
-};
-
-
 const mapStateToProps = (state) => ({
   city: getCity(state),
   offers: getOffers(state),
@@ -326,6 +280,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.loadingNearbestOffersProgress(true));
   },
 });
+
 
 export {OfferPage};
 export default connect(mapStateToProps, mapDispatchToProps)(OfferPage);

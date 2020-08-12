@@ -1,21 +1,32 @@
 import * as React from "react";
-import PropTypes from "prop-types";
-import ListCities from "../list-cities/list-cities.js";
-import MainEmpty from "../main-empty/main-empty.jsx";
-import MainOffersScreen from "../main-offers/main-offers.jsx";
-import Login from "../login/login.js";
+import ListCities from "../list-cities/list-cities";
+import MainEmpty from "../main-empty/main-empty";
+import MainOffersScreen from "../main-offers/main-offers";
+import Login from "../login/login";
 import {connect} from "react-redux";
-import {getOffers, getCities} from "../../reducer/data/selectors.js";
-import {Route, Switch, useRouteMatch} from "react-router-dom";
-import {OfferPage} from "../offer-page/offer-page.jsx";
-import {ActionCreator} from "../../reducer/state/state.js";
-import withActiveCard from "../../hoc/with-active-card/with-active-card.js";
+import {getOffers, getCities} from "../../reducer/data/selectors";
+import {Route, Switch, useRouteMatch, RouteProps} from "react-router-dom";
+import {OfferPage} from "../offer-page/offer-page";
+import {ActionCreator} from "../../reducer/state/state";
+import withActiveCard from "../../hoc/with-active-card/with-active-card";
+import {CityOffers} from "../../types";
 
+
+type Props = RouteProps & {
+  offers: CityOffers[];
+  cities: string[];
+  onCityClick: () => void;
+}
 
 const MainOffers = withActiveCard(MainOffersScreen);
 
-const Main = (props) => {
-  const {match, offers, onCityClick, cities} = props;
+const Main: React.FunctionComponent<Props> = (props: Props) => {
+  const {
+    match,
+    offers,
+    onCityClick,
+    cities,
+  } = props;
 
   let {path, url} = useRouteMatch();
   const city = match.params.city;
@@ -57,41 +68,6 @@ const Main = (props) => {
   );
 };
 
-
-Main.propTypes = {
-  match: PropTypes.object.isRequired,
-  offers: PropTypes.arrayOf(PropTypes.shape({
-    city: PropTypes.string.isRequired,
-    cityCoords: PropTypes.arrayOf(PropTypes.number).isRequired,
-    cityZoom: PropTypes.number,
-    localOffers: PropTypes.arrayOf(PropTypes.shape({
-      isPremium: PropTypes.bool.isRequired,
-      pictures: PropTypes.arrayOf(PropTypes.string).isRequired,
-      price: PropTypes.number.isRequired,
-      isFavourite: PropTypes.bool.isRequired,
-      grade: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-      bedroom: PropTypes.number.isRequired,
-      maxAdults: PropTypes.number.isRequired,
-      facilities: PropTypes.arrayOf(PropTypes.string).isRequired,
-      coords: PropTypes.arrayOf(PropTypes.number).isRequired,
-      locationZoom: PropTypes.number.isRequired,
-      id: PropTypes.number.isRequired,
-      description: PropTypes.string.isRequired,
-      previewImage: PropTypes.string.isRequired,
-      host: PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        isPro: PropTypes.bool.isRequired,
-        avatarUrl: PropTypes.string.isRequired,
-      }).isRequired,
-    })),
-  })).isRequired,
-  cities: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onCityClick: PropTypes.func.isRequired,
-};
-
 const mapStateToProps = (state) => ({
   offers: getOffers(state),
   cities: getCities(state),
@@ -103,6 +79,6 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
+
 export {Main};
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
-

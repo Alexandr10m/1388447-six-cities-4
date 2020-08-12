@@ -1,11 +1,9 @@
 import * as React from "react";
 
 
-const Preload = () => {
+const Preload: React.FunctionComponent = () => {
   return <div>... in progress</div>;
 };
-
-Preload.propTypes = {};
 
 
 export default Preload;

@@ -1,13 +1,20 @@
 import * as React from "react";
-import PropTypes from "prop-types";
-import {SORTS} from "../../constants.js";
-import {getOptionValue} from "../../utils.js";
-import {ActionCreator} from "../../reducer/state/state.js";
+import {SORTS} from "../../constants";
+import {getOptionValue} from "../../utils";
+import {ActionCreator} from "../../reducer/state/state";
 import {connect} from "react-redux";
-import {getSortType} from "../../reducer/state/selector.js";
+import {getSortType} from "../../reducer/state/selector";
 
 
-const Sort = (props) => {
+interface Props {
+  onSelectClick: (textContent: string) => void;
+  onHideOptions: () => void;
+  sortType: string;
+  isShowOptions: boolean;
+  onToggleViewOptions: () => void;
+}
+
+const Sort: React.FunctionComponent<Props> = (props: Props) => {
   const _handleSelectClick = (evt) => {
     if (evt.target.tagName !== `LI`) {
       return;
@@ -50,14 +57,6 @@ const Sort = (props) => {
       </select>
     </form>
   );
-};
-
-Sort.propTypes = {
-  sortType: PropTypes.string,
-  isShowOptions: PropTypes.bool.isRequired,
-  onSelectClick: PropTypes.func.isRequired,
-  onHideOptions: PropTypes.func.isRequired,
-  onToggleViewOptions: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

@@ -1,10 +1,20 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 
+interface Props {
+  city: string;
+  currentCity: string | undefined;
+  onCityClick: (evt: any) => void;
+}
 
-const CityItem = (props) => {
-  const {city, currentCity = `Paris`, onCityClick} = props;
+
+const CityItem: React.FunctionComponent<Props> = (props: Props) => {
+  const {
+    city,
+    currentCity = `Paris`,
+    onCityClick,
+  } = props;
+
   const activeClass = city === currentCity ? `tabs__item--active` : ``;
 
   return (
@@ -18,9 +28,5 @@ const CityItem = (props) => {
   );
 };
 
-CityItem.propTypes = {
-  city: PropTypes.string.isRequired,
-  currentCity: PropTypes.string.isRequired,
-  onCityClick: PropTypes.func.isRequired,
-};
+
 export default CityItem;

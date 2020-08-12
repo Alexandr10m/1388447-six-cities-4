@@ -1,10 +1,13 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 import {getTextError} from "../../reducer/data/selectors";
 import {connect} from "react-redux";
 
 
-const NetworkError = (props) => {
+interface Props {
+  textError: string;
+}
+
+const NetworkError: React.FunctionComponent<Props> = (props: Props) => {
   const {textError} = props;
   return (
     <div className="page page--gray page--main">
@@ -22,10 +25,6 @@ const NetworkError = (props) => {
       </main>
     </div>
   );
-};
-
-NetworkError.propTypes = {
-  textError: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({

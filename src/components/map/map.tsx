@@ -1,9 +1,24 @@
 import * as React from "react";
-import PropTypes from "prop-types";
-import LeafLet from "leaflet";
+import * as LeafLet from "leaflet";
+import {LocalOffer} from "../../types";
 
+interface Props {
+  localOffers: LocalOffer[];
+  cityCoords: number[];
+  cityZoom: number;
+  locationZoom: number;
+  activeCard: LocalOffer;
+}
 
-class Map extends PureComponent {
+class Map extends React.PureComponent<Props> {
+  private _cityZoom: number;
+  private _offerZoom: number;
+  private _icon: string | null;
+  private _activeIcon: string | null;
+  private _map: any;
+  private layerGroup: any;
+  // private _layer: any;
+
   constructor(props) {
     super(props);
 
@@ -12,7 +27,7 @@ class Map extends PureComponent {
     this._icon = null;
     this._activeIcon = null;
     this._map = null;
-    this._markers = null;
+    // this._markers = null;
   }
 
   componentDidMount() {
@@ -60,7 +75,11 @@ class Map extends PureComponent {
 
     this.layerGroup = LeafLet.layerGroup();
 
-    this._layer = LeafLet.tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+    // this._layer = LeafLet.tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+    //   attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+    // })
+    // .addTo(this._map);
+    LeafLet.tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
       attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
     })
     .addTo(this._map);
@@ -106,57 +125,5 @@ class Map extends PureComponent {
   }
 }
 
-
-Map.propTypes = {
-  localOffers: PropTypes.arrayOf(PropTypes.shape({
-    isPremium: PropTypes.bool.isRequired,
-    pictures: PropTypes.arrayOf(PropTypes.string).isRequired,
-    price: PropTypes.number.isRequired,
-    isFavourite: PropTypes.bool.isRequired,
-    grade: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    bedroom: PropTypes.number.isRequired,
-    maxAdults: PropTypes.number.isRequired,
-    facilities: PropTypes.arrayOf(PropTypes.string).isRequired,
-    coords: PropTypes.arrayOf(PropTypes.number).isRequired,
-    locationZoom: PropTypes.number.isRequired,
-    id: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired,
-    previewImage: PropTypes.string.isRequired,
-    host: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      isPro: PropTypes.bool.isRequired,
-      avatarUrl: PropTypes.string.isRequired,
-    }).isRequired,
-  })),
-  cityCoords: PropTypes.arrayOf(PropTypes.number).isRequired,
-  cityZoom: PropTypes.number.isRequired,
-  locationZoom: PropTypes.number.isRequired,
-  activeCard: PropTypes.shape({
-    isPremium: PropTypes.bool.isRequired,
-    pictures: PropTypes.arrayOf(PropTypes.string).isRequired,
-    price: PropTypes.number.isRequired,
-    isFavourite: PropTypes.bool.isRequired,
-    grade: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    bedroom: PropTypes.number.isRequired,
-    maxAdults: PropTypes.number.isRequired,
-    facilities: PropTypes.arrayOf(PropTypes.string).isRequired,
-    coords: PropTypes.arrayOf(PropTypes.number).isRequired,
-    locationZoom: PropTypes.number.isRequired,
-    id: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired,
-    previewImage: PropTypes.string.isRequired,
-    host: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      isPro: PropTypes.bool.isRequired,
-      avatarUrl: PropTypes.string.isRequired,
-    }).isRequired,
-  }),
-};
 
 export default Map;

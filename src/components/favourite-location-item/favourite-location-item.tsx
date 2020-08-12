@@ -1,12 +1,17 @@
 import * as React from "react";
-import PropTypes from "prop-types";
-import {rating} from "../../utils.js";
+import {rating} from "../../utils";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {Operation} from "../../reducer/data/data.js";
+import {Operation} from "../../reducer/data/data";
+import {LocalOffer} from "../../types";
 
 
-const FavouriteLocationItem = (props) => {
+interface Props {
+  sendFavouriteOption: ({id, status}: {id: number, status: number}) => void;
+  offer: LocalOffer;
+}
+
+const FavouriteLocationItem: React.FunctionComponent<Props> = (props: Props) => {
   const {offer} = props;
   const {
     isPremium: isShowingPremium,
@@ -75,27 +80,12 @@ const FavouriteLocationItem = (props) => {
   );
 };
 
-FavouriteLocationItem.propTypes = {
-  sendFavouriteOption: PropTypes.func.isRequired,
-  offer: PropTypes.shape({
-    isPremium: PropTypes.bool.isRequired,
-    previewImage: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    isFavourite: PropTypes.bool.isRequired,
-    grade: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-  }),
-
-};
-
-
 const mapDispatchToProps = (dispatch) => ({
   sendFavouriteOption(options) {
     dispatch(Operation.sendFavouriteOption(options));
   }
 });
+
 
 export {FavouriteLocationItem};
 export default connect(null, mapDispatchToProps)(FavouriteLocationItem);
