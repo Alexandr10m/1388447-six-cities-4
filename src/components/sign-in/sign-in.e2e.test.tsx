@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import {mount} from "enzyme";
 import {SignIn} from "./sign-in.js";
 import {Provider} from "react-redux";

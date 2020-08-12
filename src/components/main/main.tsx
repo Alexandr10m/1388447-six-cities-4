@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import PropTypes from "prop-types";
 import ListCities from "../list-cities/list-cities.js";
 import MainEmpty from "../main-empty/main-empty.jsx";

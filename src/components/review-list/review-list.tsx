@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import Review from "../review/review.js";
 import PropTypes from "prop-types";
 import Form from "../review-form/review-form.js";

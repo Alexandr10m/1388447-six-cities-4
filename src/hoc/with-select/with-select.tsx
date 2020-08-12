@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import * as React from "react";
 
 
 const withSelect = (Component) => {

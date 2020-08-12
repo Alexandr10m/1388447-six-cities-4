@@ -1,5 +1,5 @@
-import React from "react";
-import renderer from "react-test-renderer";
+import * as React from "react";
+import * as renderer from "react-test-renderer";
 import withComment from "./with-comment.js";
 import {StatusOfReviewLoad} from "../../reducer/data/data.js";
 

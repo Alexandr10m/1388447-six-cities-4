@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import * as React from "react";
 import PropTypes from "prop-types";
 import {firstWordInUpper, rating} from "../../utils.js";
 import ReviewList from "../review-list/review-list.jsx";

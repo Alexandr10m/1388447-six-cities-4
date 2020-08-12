@@ -1,5 +1,5 @@
-import React from "react";
-import renderer from "react-test-renderer";
+import * as React from "react";
+import * as renderer from "react-test-renderer";
 import CityItem from "./city-item.js";
 import {BrowserRouter} from "react-router-dom";
 

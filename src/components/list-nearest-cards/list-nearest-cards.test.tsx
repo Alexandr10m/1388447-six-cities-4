@@ -1,5 +1,5 @@
-import React from "react";
-import renderer from "react-test-renderer";
+import * as React from "react";
+import * as renderer from "react-test-renderer";
 import ListNearestCards from "./list-nearest-cards.js";
 import {BrowserRouter} from "react-router-dom";
 import configureStore from "redux-mock-store";

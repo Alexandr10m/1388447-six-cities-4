@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import * as React from "react";
 import Main from "../main/main.jsx";
 import OfferPage from "../offer-page/offer-page.jsx";
 import {Switch, Route, Router, Redirect} from "react-router-dom";
@@ -21,7 +21,7 @@ import NetworkError from "../network-error/network-error.jsx";
 
 const SignIn = withSignIn(SignInPage);
 
-class App extends PureComponent {
+class App extends React.PureComponent {
   constructor(props) {
     super(props);
   }

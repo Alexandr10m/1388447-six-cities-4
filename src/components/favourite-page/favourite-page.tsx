@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import * as React from "react";
 import PropTypes from "prop-types";
 import Login from "../login/login.jsx";
 import FavouriteOffers from "../favourite-offers/favourite-offers.js";

@@ -1,4 +1,4 @@
-import React, {PureComponent, createRef} from "react";
+import * as React from "react";
 import PropTypes from "prop-types";
 import {StatusOfReviewLoad} from "../../reducer/data/data.js";
 

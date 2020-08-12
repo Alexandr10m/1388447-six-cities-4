@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import {shallow} from "enzyme";
 import withComment from "./with-comment.js";
 import {StatusOfReviewLoad} from "../../reducer/data/data.js";
