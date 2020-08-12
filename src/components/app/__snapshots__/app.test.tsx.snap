@@ -326,7 +326,7 @@ exports[`Snapshot of App AppComponent should render Main page 1`] = `
                     href="/offer/1"
                     onClick={[Function]}
                   >
-                    Penthouse, 4-5 rooms + 5 balconies
+                    Penthouse
                   </a>
                 </h2>
                 <p
@@ -722,7 +722,7 @@ exports[`Snapshot of App AppComponent should render OfferPage with offerWithoutF
                     href="/offer/1"
                     onClick={[Function]}
                   >
-                    Penthouse, 4-5 rooms + 5 balconies
+                    Penthouse
                   </a>
                 </h2>
                 <p
@@ -1083,7 +1083,7 @@ exports[`Snapshot of App AppComponent should render SignIn page 1`] = `
                     href="/offer/1"
                     onClick={[Function]}
                   >
-                    Penthouse, 4-5 rooms + 5 balconies
+                    Penthouse
                   </a>
                 </h2>
                 <p

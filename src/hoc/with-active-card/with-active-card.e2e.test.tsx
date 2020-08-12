@@ -1,73 +1,62 @@
 import * as React from "react";
-import {shallow} from "enzyme";
-import withActiveCard from "./with-active-card.js";
+import * as Adapter from "enzyme-adapter-react-16";
+import {configure, shallow} from "enzyme";
+import withActiveCard from "./with-active-card";
+import {LocalOffer} from "../../types";
 
 
-const offerWithPremium = {
-  isPremium: true,
-  pictures: [`picture`],
-  price: 100,
-  isFavourite: false,
-  grade: 4,
-  title: `title`,
-  type: `Hotel`,
-  bedroom: 1,
-  maxAdults: 1,
-  facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
-  coords: [52.3909553943508, 4.85309666406198],
-  id: 0,
-};
+configure({adapter: new Adapter()});
 
-const offerWithoutPremium = {
-  isPremium: true,
-  pictures: [`picture`],
-  price: 100,
-  isFavourite: false,
-  grade: 4,
-  title: `title`,
-  type: `Hotel`,
-  bedroom: 1,
-  maxAdults: 1,
-  facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
-  coords: [52.3909553943508, 4.85309666406198],
+const offerWithPremium: LocalOffer = {
+  bedroom: 2,
+  coords: [48.865610000000004, 2.350499],
+  description: `in city center.`,
+  facilities: [`Air conditioning`, `Breakfast`],
+  grade: 3.6,
+  host: {
+    avatarUrl: `img/avatar-angelina.jpg`,
+    id: 25,
+    isPro: true,
+    name: `Angelina`,
+  },
   id: 1,
-};
-
-const offerWithFavourite = {
-  isPremium: true,
-  pictures: [`picture`],
-  price: 100,
-  isFavourite: true,
-  grade: 4,
-  title: `title`,
-  type: `Hotel`,
-  bedroom: 1,
-  maxAdults: 1,
-  facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
-  coords: [52.3909553943508, 4.85309666406198],
-  id: 2,
-};
-
-const offerWithoutFavourite = {
-  isPremium: true,
-  pictures: [`picture`],
-  price: 100,
   isFavourite: false,
-  grade: 4,
-  title: `title`,
-  type: `Hotel`,
-  bedroom: 1,
-  maxAdults: 1,
-  facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
-  coords: [52.3909553943508, 4.85309666406198],
-  id: 3,
+  isPremium: true,
+  locationZoom: 16,
+  maxAdults: 8,
+  pictures: [`https://`, `https`],
+  previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
+  price: 397,
+  title: `Penthouse`,
+  type: `hotel`,
+};
+const offerWithFavourite: LocalOffer = {
+  bedroom: 2,
+  coords: [48.865610000000004, 2.350499],
+  description: `in city center.`,
+  facilities: [`Air conditioning`, `Breakfast`],
+  grade: 3.6,
+  host: {
+    avatarUrl: `img/avatar-angelina.jpg`,
+    id: 25,
+    isPro: true,
+    name: `Angelina`,
+  },
+  id: 1,
+  isFavourite: true,
+  isPremium: false,
+  locationZoom: 16,
+  maxAdults: 8,
+  pictures: [`https://`, `https`],
+  previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
+  price: 397,
+  title: `Penthouse`,
+  type: `hotel`,
 };
 
-const offers = [
+const offers: LocalOffer[] = [
   offerWithPremium,
-  offerWithoutPremium,
   offerWithFavourite,
-  offerWithoutFavourite
 ];
 const MockComponent = () => <div/>;
 

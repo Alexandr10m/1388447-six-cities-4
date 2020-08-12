@@ -1,10 +1,11 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
-import {Login} from "./login.js";
+import {Login} from "./login";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
-import NameSpace from "../../reducer/name-space.js";
+import NameSpace from "../../reducer/name-space";
 import {BrowserRouter} from "react-router-dom";
+import {noop} from "../../utils";
 
 
 const mockStore = configureStore([]);
@@ -14,7 +15,7 @@ describe(`Snapshot of Login`, () => {
     const store = mockStore({
       [NameSpace.USER]: {
         authInfo: {
-          email: null,
+          email: undefined,
         },
       },
     });
@@ -24,7 +25,8 @@ describe(`Snapshot of Login`, () => {
           <Provider store={store}>
             <BrowserRouter>
               <Login
-                onCityClick={()=>{}}
+                onCityClick={noop}
+                email={undefined}
               />
             </BrowserRouter>
           </Provider>)
@@ -47,7 +49,8 @@ describe(`Snapshot of Login`, () => {
           <Provider store={store}>
             <BrowserRouter>
               <Login
-                onCityClick={()=>{}}
+                onCityClick={noop}
+                email={`email`}
               />
             </BrowserRouter>
           </Provider>)

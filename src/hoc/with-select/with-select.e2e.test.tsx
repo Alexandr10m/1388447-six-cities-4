@@ -1,7 +1,10 @@
 import * as React from "react";
-import {shallow} from "enzyme";
-import withSelect from "./with-select.js";
+import * as Adapter from "enzyme-adapter-react-16";
+import {configure, shallow} from "enzyme";
+import withSelect from "./with-select";
 
+
+configure({adapter: new Adapter()});
 
 const MockComponent = () => <form/>;
 

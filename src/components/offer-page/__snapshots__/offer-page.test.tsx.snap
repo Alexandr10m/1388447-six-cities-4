@@ -77,7 +77,7 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
             <img
               alt="Photo studio"
               className="property__image"
-              src="https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg"
+              src="https://"
             />
           </div>
           <div
@@ -86,7 +86,7 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
             <img
               alt="Photo studio"
               className="property__image"
-              src="https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg"
+              src="https"
             />
           </div>
         </div>
@@ -110,7 +110,7 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
             <h1
               className="property__name"
             >
-              Penthouse, 4-5 rooms + 5 balconies
+              Penthouse
             </h1>
             <button
               className="property__bookmark-button  button"
@@ -252,7 +252,7 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
               <p
                 className="property__text"
               >
-                Discover daily local life in city center.
+                in city center.
               </p>
             </div>
           </div>
@@ -534,18 +534,11 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
           className="near-places__list places__list"
         >
           <article
-            className="cities__place-card place-card"
+            className="near-places__card place-card"
             onMouseEnter={[Function]}
           >
             <div
-              className="place-card__mark"
-            >
-              <span>
-                Premium
-              </span>
-            </div>
-            <div
-              className="cities__image-wrapper place-card__image-wrapper"
+              className="near-places__image-wrapper place-card__image-wrapper"
             >
               <a
                 href="/offer/2"
@@ -629,7 +622,7 @@ exports[`Snapshot of OfferPage OfferPage should render whit Premium 1`] = `
                   href="/offer/2"
                   onClick={[Function]}
                 >
-                  Penthouse, 4-5 rooms + 5 balconies
+                  Penthouse
                 </a>
               </h2>
               <p
@@ -723,7 +716,7 @@ exports[`Snapshot of OfferPage OfferPage should render whith Favourite 1`] = `
             <img
               alt="Photo studio"
               className="property__image"
-              src="https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg"
+              src="https://"
             />
           </div>
           <div
@@ -732,7 +725,7 @@ exports[`Snapshot of OfferPage OfferPage should render whith Favourite 1`] = `
             <img
               alt="Photo studio"
               className="property__image"
-              src="https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg"
+              src="https"
             />
           </div>
         </div>
@@ -744,19 +737,12 @@ exports[`Snapshot of OfferPage OfferPage should render whith Favourite 1`] = `
           className="property__wrapper"
         >
           <div
-            className="property__mark"
-          >
-            <span>
-              Premium
-            </span>
-          </div>
-          <div
             className="property__name-wrapper"
           >
             <h1
               className="property__name"
             >
-              Penthouse, 4-5 rooms + 5 balconies
+              Penthouse
             </h1>
             <button
               className="property__bookmark-button property__bookmark-button--active button"
@@ -876,20 +862,20 @@ exports[`Snapshot of OfferPage OfferPage should render whith Favourite 1`] = `
               className="property__host-user user"
             >
               <div
-                className="property__avatar-wrapper false user__avatar-wrapper"
+                className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper"
               >
                 <img
                   alt="Host avatar"
                   className="property__avatar user__avatar"
                   height="74"
-                  src="/img/avatarangelina.jpg"
+                  src="/img/avatar-angelina.jpg"
                   width="74"
                 />
               </div>
               <span
                 className="property__user-name"
               >
-                Angela
+                Angelina
               </span>
             </div>
             <div
@@ -898,7 +884,7 @@ exports[`Snapshot of OfferPage OfferPage should render whith Favourite 1`] = `
               <p
                 className="property__text"
               >
-                Discover daily local life in city center.
+                in city center.
               </p>
             </div>
           </div>
@@ -1180,18 +1166,11 @@ exports[`Snapshot of OfferPage OfferPage should render whith Favourite 1`] = `
           className="near-places__list places__list"
         >
           <article
-            className="cities__place-card place-card"
+            className="near-places__card place-card"
             onMouseEnter={[Function]}
           >
             <div
-              className="place-card__mark"
-            >
-              <span>
-                Premium
-              </span>
-            </div>
-            <div
-              className="cities__image-wrapper place-card__image-wrapper"
+              className="near-places__image-wrapper place-card__image-wrapper"
             >
               <a
                 href="/offer/2"
@@ -1275,7 +1254,7 @@ exports[`Snapshot of OfferPage OfferPage should render whith Favourite 1`] = `
                   href="/offer/2"
                   onClick={[Function]}
                 >
-                  Penthouse, 4-5 rooms + 5 balconies
+                  Penthouse
                 </a>
               </h2>
               <p

@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
-import withActiveCard from "./with-active-card.js";
+import withActiveCard from "./with-active-card";
+import {noop} from "../../utils";
 
 
 const MockComponent = () => <div/>;
@@ -12,7 +13,7 @@ describe(`Snapshot of withActiveCards`, () => {
     const tree = renderer
       .create(
           <MockComponentWrapped
-            onActiveCard={()=>{}}
+            onActiveCard={noop}
           />
       )
       .toJSON();

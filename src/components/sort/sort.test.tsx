@@ -2,94 +2,108 @@ import * as React from "react";
 import * as renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
-import {Sort} from "./sort.js";
-import NameSpace from "../../reducer/name-space.js";
+import {Sort} from "./sort";
+import NameSpace from "../../reducer/name-space";
+import {LocalOffer, CityOffers} from "../../types";
+import {noop} from "../../utils";
 
 
 const mockStore = configureStore([]);
 
-const offerWithPremium = {
-  isPremium: true,
-  pictures: [`picture`],
-  price: 100,
-  isFavourite: false,
-  grade: 4,
-  title: `title`,
-  type: `Hotel`,
-  bedroom: 1,
-  maxAdults: 1,
-  facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
-  coords: [52.3909553943508, 4.85309666406198],
-  id: 0,
-  reviews: [{
-    image: `img/avatar-max.jpg`,
-    text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
-    name: `Max`,
-    time: `April 2019`,
-  }],
-};
-const offerWithoutPremium = {
-  isPremium: true,
-  pictures: [`picture`],
-  price: 100,
-  isFavourite: false,
-  grade: 4,
-  title: `title`,
-  type: `Hotel`,
-  bedroom: 1,
-  maxAdults: 1,
-  facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
-  coords: [52.3909553943508, 4.85309666406198],
-  id: 2,
-  reviews: [{
-    image: `img/avatar-max.jpg`,
-    text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
-    name: `Max`,
-    time: `April 2019`,
-  }],
-};
-const offerWithFavourite = {
-  isPremium: true,
-  pictures: [`picture`],
-  price: 100,
-  isFavourite: true,
-  grade: 4,
-  title: `title`,
-  type: `Hotel`,
-  bedroom: 1,
-  maxAdults: 1,
-  facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
-  coords: [52.3909553943508, 4.85309666406198],
+const offerWithPremium: LocalOffer = {
+  bedroom: 2,
+  coords: [48.865610000000004, 2.350499],
+  description: `in city center.`,
+  facilities: [`Air conditioning`, `Breakfast`],
+  grade: 3.6,
+  host: {
+    avatarUrl: `img/avatar-angelina.jpg`,
+    id: 25,
+    isPro: true,
+    name: `Angelina`,
+  },
   id: 1,
-  reviews: [{
-    image: `img/avatar-max.jpg`,
-    text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
-    name: `Max`,
-    time: `April 2019`,
-  }],
-};
-const offerWithoutFavourite = {
-  isPremium: true,
-  pictures: [`picture`],
-  price: 100,
   isFavourite: false,
-  grade: 4,
-  title: `title`,
-  type: `Hotel`,
-  bedroom: 1,
-  maxAdults: 1,
-  facilities: [`Wi-Fi`, `Heating`, `Kitchen`],
-  coords: [52.3909553943508, 4.85309666406198],
-  id: 3,
-  reviews: [{
-    image: `img/avatar-max.jpg`,
-    text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
-    name: `Max`,
-    time: `April 2019`,
-  }],
+  isPremium: true,
+  locationZoom: 16,
+  maxAdults: 8,
+  pictures: [`https://`, `https`],
+  previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
+  price: 397,
+  title: `Penthouse`,
+  type: `hotel`,
+};
+const offerWithoutPremium: LocalOffer = {
+  bedroom: 2,
+  coords: [48.865610000000004, 2.350499],
+  description: `in city center.`,
+  facilities: [`Air conditioning`, `Breakfast`],
+  grade: 3.6,
+  host: {
+    avatarUrl: `img/avatar-angelina.jpg`,
+    id: 25,
+    isPro: true,
+    name: `Angelina`,
+  },
+  id: 1,
+  isFavourite: true,
+  isPremium: false,
+  locationZoom: 16,
+  maxAdults: 8,
+  pictures: [`https://`, `https`],
+  previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
+  price: 397,
+  title: `Penthouse`,
+  type: `hotel`,
+};
+const offerWithFavourite: LocalOffer = {
+  bedroom: 2,
+  coords: [48.865610000000004, 2.350499],
+  description: `in city center.`,
+  facilities: [`Air conditioning`, `Breakfast`],
+  grade: 3.6,
+  host: {
+    avatarUrl: `img/avatar-angelina.jpg`,
+    id: 25,
+    isPro: true,
+    name: `Angelina`,
+  },
+  id: 1,
+  isFavourite: true,
+  isPremium: false,
+  locationZoom: 16,
+  maxAdults: 8,
+  pictures: [`https://`, `https`],
+  previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
+  price: 397,
+  title: `Penthouse`,
+  type: `hotel`,
+};
+const offerWithoutFavourite: LocalOffer = {
+  bedroom: 2,
+  coords: [48.865610000000004, 2.350499],
+  description: `in city center.`,
+  facilities: [`Air conditioning`, `Breakfast`],
+  grade: 3.6,
+  host: {
+    avatarUrl: `img/avatar-angelina.jpg`,
+    id: 25,
+    isPro: true,
+    name: `Angelina`,
+  },
+  id: 1,
+  isFavourite: false,
+  isPremium: false,
+  locationZoom: 16,
+  maxAdults: 8,
+  pictures: [`https://`, `https`],
+  previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
+  price: 397,
+  title: `Penthouse`,
+  type: `hotel`,
 };
 
-const offers = {
+const offers: CityOffers = {
   city: `Amsterdam`,
   cityCoords: [52.38333, 4.9],
   cityZoom: 13,
@@ -119,9 +133,9 @@ describe(`Snapshot of Sort`, () => {
           <Sort
             sortType={`Price: low to high`}
             isShowOptions={false}
-            onHideOptions={()=>{}}
-            onSelectClick={()=>{}}
-            onToggleViewOptions={()=>{}}
+            onHideOptions={noop}
+            onSelectClick={noop}
+            onToggleViewOptions={noop}
           />
         </Provider>)
     .toJSON();

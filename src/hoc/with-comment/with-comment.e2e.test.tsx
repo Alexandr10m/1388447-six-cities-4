@@ -1,8 +1,12 @@
 import * as React from "react";
-import {shallow} from "enzyme";
-import withComment from "./with-comment.js";
-import {StatusOfReviewLoad} from "../../reducer/data/data.js";
+import * as Adapter from "enzyme-adapter-react-16";
+import {configure, shallow} from "enzyme";
+import withComment from "./with-comment";
+import {StatusOfReviewLoad} from "../../reducer/data/data";
+import {noop} from "../../utils";
 
+
+configure({adapter: new Adapter()});
 
 const MockComponent = () => <form></form>;
 
@@ -19,8 +23,8 @@ describe(`E2E of withComment`, () => {
     const wrapper = shallow(
         <MockComponentWrapped
           statusOfReviewLoad={StatusOfReviewLoad.NOT_IN_PROCESS}
-          changeStatusOfReviewLoad={()=>{}}
-          onSendComment={()=>{}}
+          changeStatusOfReviewLoad={noop}
+          onSendComment={noop}
           offerId={1}
         />);
     wrapper.props().onRatingChange(evtMock);

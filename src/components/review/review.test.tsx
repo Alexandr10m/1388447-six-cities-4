@@ -1,8 +1,9 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
-import Review from "./review.js";
+import Review from "./review";
+import {Review as ReviewInterface} from "../../types";
 
-const review = {
+const review: ReviewInterface = {
   date: new Date(1),
   grade: 4,
   id: 1,

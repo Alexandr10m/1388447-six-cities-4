@@ -17,7 +17,6 @@ class Map extends React.PureComponent<Props> {
   private _activeIcon: string | null;
   private _map: any;
   private layerGroup: any;
-  // private _layer: any;
 
   constructor(props) {
     super(props);
@@ -27,7 +26,6 @@ class Map extends React.PureComponent<Props> {
     this._icon = null;
     this._activeIcon = null;
     this._map = null;
-    // this._markers = null;
   }
 
   componentDidMount() {

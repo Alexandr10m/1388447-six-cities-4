@@ -5,7 +5,7 @@ exports[`Snapshot of ListNearestCards Card should render correctly with Primium 
   className="near-places__list places__list"
 >
   <article
-    className="cities__place-card place-card"
+    className="near-places__card place-card"
     onMouseEnter={[Function]}
   >
     <div
@@ -16,7 +16,7 @@ exports[`Snapshot of ListNearestCards Card should render correctly with Primium 
       </span>
     </div>
     <div
-      className="cities__image-wrapper place-card__image-wrapper"
+      className="near-places__image-wrapper place-card__image-wrapper"
     >
       <a
         href="/offer/1"
@@ -100,7 +100,7 @@ exports[`Snapshot of ListNearestCards Card should render correctly with Primium 
           href="/offer/1"
           onClick={[Function]}
         >
-          Penthouse, 4-5 rooms + 5 balconies
+          Penthouse
         </a>
       </h2>
       <p
@@ -111,21 +111,14 @@ exports[`Snapshot of ListNearestCards Card should render correctly with Primium 
     </div>
   </article>
   <article
-    className="cities__place-card place-card"
+    className="near-places__card place-card"
     onMouseEnter={[Function]}
   >
     <div
-      className="place-card__mark"
-    >
-      <span>
-        Premium
-      </span>
-    </div>
-    <div
-      className="cities__image-wrapper place-card__image-wrapper"
+      className="near-places__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="/offer/2"
+        href="/offer/1"
         onClick={[Function]}
       >
         <img
@@ -203,10 +196,10 @@ exports[`Snapshot of ListNearestCards Card should render correctly with Primium 
         className="place-card__name"
       >
         <a
-          href="/offer/2"
+          href="/offer/1"
           onClick={[Function]}
         >
-          Penthouse, 4-5 rooms + 5 balconies
+          Penthouse
         </a>
       </h2>
       <p

@@ -1,20 +1,22 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
-import {OfferPage} from "./offer-page.js";
+import {OfferPage} from "./offer-page";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
-import NameSpace from "../../reducer/name-space.js";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
+import NameSpace from "../../reducer/name-space";
+import {AuthorizationStatus} from "../../reducer/user/user";
 import {BrowserRouter} from "react-router-dom";
-import {StatusOfReviewLoad} from "../../reducer/data/data.js";
+import {StatusOfReviewLoad} from "../../reducer/data/data";
+import {LocalOffer, CityOffers, Review} from "../../types";
+import {noop} from "../../utils";
 
 
 const mockStore = configureStore([]);
 
-const offerWithPremium = {
+const offerWithPremium: LocalOffer = {
   bedroom: 2,
   coords: [48.865610000000004, 2.350499],
-  description: `Discover daily local life in city center.`,
+  description: `in city center.`,
   facilities: [`Air conditioning`, `Breakfast`],
   grade: 3.6,
   host: {
@@ -28,37 +30,37 @@ const offerWithPremium = {
   isPremium: true,
   locationZoom: 16,
   maxAdults: 8,
-  pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`],
+  pictures: [`https://`, `https`],
   previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
   price: 397,
-  title: `Penthouse, 4-5 rooms + 5 balconies`,
+  title: `Penthouse`,
   type: `hotel`,
 };
-const offerWithFavourite = {
+const offerWithFavourite: LocalOffer = {
   bedroom: 2,
   coords: [48.865610000000004, 2.350499],
-  description: `Discover daily local life in city center.`,
+  description: `in city center.`,
   facilities: [`Air conditioning`, `Breakfast`],
   grade: 3.6,
   host: {
-    avatarUrl: `img/avatarangelina.jpg`,
+    avatarUrl: `img/avatar-angelina.jpg`,
     id: 25,
-    isPro: false,
-    name: `Angela`,
+    isPro: true,
+    name: `Angelina`,
   },
   id: 2,
   isFavourite: true,
-  isPremium: true,
+  isPremium: false,
   locationZoom: 16,
   maxAdults: 8,
-  pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`],
+  pictures: [`https://`, `https`],
   previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
   price: 397,
-  title: `Penthouse, 4-5 rooms + 5 balconies`,
+  title: `Penthouse`,
   type: `hotel`,
 };
 
-const reviews = [{
+const reviews: Review[] = [{
   date: new Date(1),
   grade: 4,
   id: 1,
@@ -72,9 +74,9 @@ const reviews = [{
   },
 }];
 
-const nearbyOffers = [offerWithFavourite];
+const nearbyOffers: LocalOffer[] = [offerWithFavourite];
 
-const allOffers = [
+const allOffers: CityOffers[] = [
   {
     city: `Paris`,
     cityCoords: [48.85661, 2.351499],
@@ -125,13 +127,13 @@ describe(`Snapshot of OfferPage`, () => {
               <OfferPage
                 match={match}
                 offers={allOffers}
-                sendFavouriteOption={()=>{}}
+                sendFavouriteOption={noop}
                 reviews={reviews}
                 nearbyOffers={nearbyOffers}
                 authorizationStatus={AuthorizationStatus.AUTH}
-                loadReviews={()=>{}}
-                changeLoadingRequestsProgress={()=>{}}
-                loadNearbyOffers={()=>{}}
+                loadReviews={noop}
+                changeLoadingRequestsProgress={noop}
+                loadNearbyOffers={noop}
                 isLoadingNearbyOffers={false}
                 isLoadingReviews={false}
                 statusOfReviewLoad={StatusOfReviewLoad.NOT_IN_PROCESS}
@@ -156,13 +158,13 @@ describe(`Snapshot of OfferPage`, () => {
               <OfferPage
                 match={match}
                 offers={allOffers}
-                sendFavouriteOption={()=>{}}
+                sendFavouriteOption={noop}
                 reviews={reviews}
                 nearbyOffers={nearbyOffers}
                 authorizationStatus={AuthorizationStatus.AUTH}
-                loadReviews={()=>{}}
-                changeLoadingRequestsProgress={()=>{}}
-                loadNearbyOffers={()=>{}}
+                loadReviews={noop}
+                changeLoadingRequestsProgress={noop}
+                loadNearbyOffers={noop}
                 isLoadingNearbyOffers={false}
                 isLoadingReviews={false}
                 statusOfReviewLoad={StatusOfReviewLoad.NOT_IN_PROCESS}

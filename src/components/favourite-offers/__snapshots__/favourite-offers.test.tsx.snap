@@ -1,144 +1,61 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Snapshot of MainOffers Should render correctly 1`] = `
-<div
-  className="cities"
+exports[`Snapshot of FavouriteOffers Should render correctly 1`] = `
+<section
+  className="favorites"
 >
-  <div
-    className="cities__places-container container"
+  <h1
+    className="favorites__title"
   >
-    <section
-      className="cities__places places"
+    Saved listing
+  </h1>
+  <ul
+    className="favorites__list"
+  >
+    <li
+      className="favorites__locations-items"
     >
-      <h2
-        className="visually-hidden"
-      >
-        Places
-      </h2>
-      <b
-        className="places__found"
-      >
-        2
-         places to stay in 
-        Paris
-      </b>
-      <form
-        action="#"
-        className="places__sorting"
-        method="get"
-      >
-        <span
-          className="places__sorting-caption"
-        >
-          Sort by 
-        </span>
-        <span
-          className="places__sorting-type"
-          onClick={[Function]}
-          tabIndex="0"
-        >
-          Price: low to high
-          <svg
-            className="places__sorting-arrow"
-            height="4"
-            width="7"
-          >
-            <use
-              xlinkHref="#icon-arrow-select"
-            />
-          </svg>
-        </span>
-        <ul
-          className="places__options places__options--custom "
-          onClick={[Function]}
-        >
-          <li
-            className="places__option "
-            tabIndex="0"
-          >
-            Popular
-          </li>
-          <li
-            className="places__option places__option--active"
-            tabIndex="0"
-          >
-            Price: low to high
-          </li>
-          <li
-            className="places__option "
-            tabIndex="0"
-          >
-            Price: high to low
-          </li>
-          <li
-            className="places__option "
-            tabIndex="0"
-          >
-            Top rated first
-          </li>
-        </ul>
-        <select
-          className="places__sorting-type visually-hidden"
-          id="places-sorting"
-        >
-          <option
-            className="places__option"
-            value="popular"
-          >
-            Popular
-          </option>
-          <option
-            className="places__option"
-            value="to-high"
-          >
-            Price: low to high
-          </option>
-          <option
-            className="places__option"
-            value="to-low"
-          >
-            Price: high to low
-          </option>
-          <option
-            className="places__option"
-            value="top-rated"
-          >
-            Top rated first
-          </option>
-        </select>
-      </form>
       <div
-        className="cities__places-list places__list tabs__content"
+        className="favorites__locations locations locations--current"
       >
-        <article
-          className="cities__place-card place-card"
-          onMouseEnter={[Function]}
+        <div
+          className="locations__item"
         >
-          <div
-            className="place-card__mark"
+          <a
+            className="locations__item-link"
+            href="/Paris"
+            onClick={[Function]}
           >
             <span>
-              Premium
+              Paris
             </span>
-          </div>
+          </a>
+        </div>
+      </div>
+      <div
+        className="favorites__places"
+      >
+        <article
+          className="favorites__card place-card"
+        >
           <div
-            className="cities__image-wrapper place-card__image-wrapper"
+            className="favorites__image-wrapper place-card__image-wrapper"
           >
             <a
-              href="/offer/2"
+              href="/offer/1"
               onClick={[Function]}
             >
               <img
                 alt="Place image"
                 className="place-card__image"
-                height="200"
+                height="110"
                 src="https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg"
-                width="260"
+                width="150"
               />
             </a>
           </div>
           <div
-            className="place-card__info"
+            className="favorites__card-info place-card__info"
           >
             <div
               className="place-card__price-wrapper"
@@ -149,7 +66,6 @@ exports[`Snapshot of MainOffers Should render correctly 1`] = `
                 <b
                   className="place-card__price-value"
                 >
-                  €
                   397
                 </b>
                 <span
@@ -175,7 +91,7 @@ exports[`Snapshot of MainOffers Should render correctly 1`] = `
                 <span
                   className="visually-hidden"
                 >
-                  To bookmarks
+                  In bookmarks
                 </span>
               </button>
             </div>
@@ -203,22 +119,46 @@ exports[`Snapshot of MainOffers Should render correctly 1`] = `
               className="place-card__name"
             >
               <a
-                href="/offer/2"
+                href="/offer/1"
                 onClick={[Function]}
               >
-                Penthouse, 4-5 rooms + 5 balconies
+                Penthouse
               </a>
             </h2>
             <p
               className="place-card__type"
             >
-              Hotel
+              hotel
             </p>
           </div>
         </article>
+      </div>
+    </li>
+    <li
+      className="favorites__locations-items"
+    >
+      <div
+        className="favorites__locations locations locations--current"
+      >
+        <div
+          className="locations__item"
+        >
+          <a
+            className="locations__item-link"
+            href="/Amsterdam"
+            onClick={[Function]}
+          >
+            <span>
+              Amsterdam
+            </span>
+          </a>
+        </div>
+      </div>
+      <div
+        className="favorites__places"
+      >
         <article
-          className="cities__place-card place-card"
-          onMouseEnter={[Function]}
+          className="favorites__card place-card"
         >
           <div
             className="place-card__mark"
@@ -228,23 +168,23 @@ exports[`Snapshot of MainOffers Should render correctly 1`] = `
             </span>
           </div>
           <div
-            className="cities__image-wrapper place-card__image-wrapper"
+            className="favorites__image-wrapper place-card__image-wrapper"
           >
             <a
-              href="/offer/0"
+              href="/offer/1"
               onClick={[Function]}
             >
               <img
                 alt="Place image"
                 className="place-card__image"
-                height="200"
+                height="110"
                 src="https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg"
-                width="260"
+                width="150"
               />
             </a>
           </div>
           <div
-            className="place-card__info"
+            className="favorites__card-info place-card__info"
           >
             <div
               className="place-card__price-wrapper"
@@ -255,7 +195,6 @@ exports[`Snapshot of MainOffers Should render correctly 1`] = `
                 <b
                   className="place-card__price-value"
                 >
-                  €
                   397
                 </b>
                 <span
@@ -265,7 +204,7 @@ exports[`Snapshot of MainOffers Should render correctly 1`] = `
                 </span>
               </div>
               <button
-                className="place-card__bookmark-button false button"
+                className="place-card__bookmark-button  button"
                 onClick={[Function]}
                 type="button"
               >
@@ -281,7 +220,7 @@ exports[`Snapshot of MainOffers Should render correctly 1`] = `
                 <span
                   className="visually-hidden"
                 >
-                  To bookmarks
+                  In bookmarks
                 </span>
               </button>
             </div>
@@ -309,38 +248,21 @@ exports[`Snapshot of MainOffers Should render correctly 1`] = `
               className="place-card__name"
             >
               <a
-                href="/offer/0"
+                href="/offer/1"
                 onClick={[Function]}
               >
-                Penthouse, 4-5 rooms + 5 balconies
+                Penthouse
               </a>
             </h2>
             <p
               className="place-card__type"
             >
-              Hotel
+              hotel
             </p>
           </div>
         </article>
       </div>
-    </section>
-    <div
-      className="cities__right-section"
-    >
-      <section
-        className="cities__map map"
-      >
-        <div
-          id="map"
-          style={
-            Object {
-              "height": "100%",
-              "width": "100%",
-            }
-          }
-        />
-      </section>
-    </div>
-  </div>
-</div>
+    </li>
+  </ul>
+</section>
 `;

@@ -1,9 +1,9 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
-import {NetworkError} from "./network-error.js";
+import {NetworkError} from "./network-error";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
-import NameSpace from "../../reducer/name-space.js";
+import NameSpace from "../../reducer/name-space";
 
 
 const mockStore = configureStore([]);

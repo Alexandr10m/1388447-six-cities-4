@@ -17,7 +17,7 @@ interface Props {
   offerId: number;
   statusOfReviewLoad: string;
   changeStatusOfReviewLoad: (statusOfReviewLoad: string) => void;
-  onSendComment: ({comment, rating}: {comment: string, rating: number}, offerId: number) => void;
+  onSendComment: ({comment, rating}: {comment: string; rating: number}, offerId: number) => void;
 }
 
 const MAX_COUNT_REVIEWS = 10;

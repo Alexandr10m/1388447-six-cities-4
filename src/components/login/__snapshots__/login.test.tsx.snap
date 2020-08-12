@@ -47,7 +47,7 @@ exports[`Snapshot of Login Should render with email 1`] = `
               <span
                 className="header__login"
               >
-                Sign in
+                email
               </span>
             </a>
           </li>

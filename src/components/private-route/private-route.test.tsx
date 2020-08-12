@@ -1,13 +1,13 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
-import {PrivateRoute} from "./private-route.js";
+import {PrivateRoute} from "./private-route";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
-import NameSpace from "../../reducer/name-space.js";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
+import NameSpace from "../../reducer/name-space";
+import {AuthorizationStatus} from "../../reducer/user/user";
 import {Router} from "react-router-dom";
-import FavouritePage from "../favourite-page/favourite-page.js";
-import history from "../../history.js";
+import FavouritePage from "../favourite-page/favourite-page";
+import history from "../../history";
 
 
 const mockStore = configureStore([]);

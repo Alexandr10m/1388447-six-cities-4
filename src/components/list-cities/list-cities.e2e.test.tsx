@@ -1,7 +1,11 @@
 import * as React from "react";
-import {mount} from "enzyme";
-import ListCities from "./list-cities.js";
+import * as Adapter from "enzyme-adapter-react-16";
+import {configure, mount} from "enzyme";
+import ListCities from "./list-cities";
 import {BrowserRouter} from "react-router-dom";
+
+
+configure({adapter: new Adapter()});
 
 const mockEvt = {
   target: {

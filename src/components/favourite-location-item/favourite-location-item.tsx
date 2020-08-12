@@ -7,7 +7,7 @@ import {LocalOffer} from "../../types";
 
 
 interface Props {
-  sendFavouriteOption: ({id, status}: {id: number, status: number}) => void;
+  sendFavouriteOption: ({id, status}: {id: number; status: number}) => void;
   offer: LocalOffer;
 }
 

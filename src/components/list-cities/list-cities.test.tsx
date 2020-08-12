@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
-import ListCities from "./list-cities.js";
+import ListCities from "./list-cities";
 import {BrowserRouter} from "react-router-dom";
+import {noop} from "../../utils";
 
 
 describe(`Snapshot of ListCities`, () => {
@@ -12,7 +13,7 @@ describe(`Snapshot of ListCities`, () => {
             <ListCities
               cities={[`Amsterdam`, `Dusseldorf`, `Hamburg`]}
               currentCity={`Amsterdam`}
-              onCityClick={()=>{}}
+              onCityClick={noop}
             />
           </BrowserRouter>)
       .toJSON();

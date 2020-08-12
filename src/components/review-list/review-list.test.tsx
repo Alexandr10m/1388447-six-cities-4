@@ -1,15 +1,17 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
-import {ReviewList} from "./review-list.js";
+import {ReviewList} from "./review-list";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
-import NameSpace from "../../reducer/name-space.js";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
-import {StatusOfReviewLoad} from "../../reducer/data/data.js";
+import NameSpace from "../../reducer/name-space";
+import {AuthorizationStatus} from "../../reducer/user/user";
+import {StatusOfReviewLoad} from "../../reducer/data/data";
+import {Review} from "../../types";
+import {noop} from "../../utils";
 
 
 const mockStore = configureStore([]);
-const reviews = [{
+const reviews: Review[] = [{
   date: new Date(1),
   grade: 4,
   id: 1,
@@ -36,10 +38,10 @@ describe(`Snapshot of ReviewList`, () => {
             <ReviewList
               reviews={reviews}
               authorizationStatus={AuthorizationStatus.AUTH}
-              onSendComment={()=>{}}
+              onSendComment={noop}
               offerId={1}
               statusOfReviewLoad={StatusOfReviewLoad.NOT_IN_PROCESS}
-              changeStatusOfReviewLoad={()=>{}}
+              changeStatusOfReviewLoad={noop}
             />
           </Provider>)
       .toJSON();
@@ -59,10 +61,10 @@ describe(`Snapshot of ReviewList`, () => {
             <ReviewList
               reviews={reviews}
               authorizationStatus={AuthorizationStatus.NO_AUTH}
-              onSendComment={()=>{}}
+              onSendComment={noop}
               offerId={1}
               statusOfReviewLoad={StatusOfReviewLoad.NOT_IN_PROCESS}
-              changeStatusOfReviewLoad={()=>{}}
+              changeStatusOfReviewLoad={noop}
             />
           </Provider>)
       .toJSON();

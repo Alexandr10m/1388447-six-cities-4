@@ -1,17 +1,19 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
-import CardNearest from "./card-nearest.js";
+import CardNearest from "./card-nearest";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
-import NameSpace from "../../reducer/name-space.js";
+import NameSpace from "../../reducer/name-space";
 import {BrowserRouter} from "react-router-dom";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {AuthorizationStatus} from "../../reducer/user/user";
+import {LocalOffer} from "../../types";
+import {noop} from "../../utils";
 
 
-const offerWithPremium = {
+const offerWithPremium: LocalOffer = {
   bedroom: 2,
   coords: [48.865610000000004, 2.350499],
-  description: `Discover daily local life in city center.`,
+  description: `in city center.`,
   facilities: [`Air conditioning`, `Breakfast`],
   grade: 3.6,
   host: {
@@ -20,38 +22,38 @@ const offerWithPremium = {
     isPro: true,
     name: `Angelina`,
   },
-  id: 0,
+  id: 1,
   isFavourite: false,
   isPremium: true,
   locationZoom: 16,
   maxAdults: 8,
-  pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`],
+  pictures: [`https://`, `https`],
   previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
   price: 397,
-  title: `Penthouse, 4-5 rooms + 5 balconies`,
+  title: `Penthouse`,
   type: `hotel`,
 };
-const offerWithFavourite = {
+const offerWithFavourite: LocalOffer = {
   bedroom: 2,
   coords: [48.865610000000004, 2.350499],
-  description: `Discover daily local life in city center.`,
+  description: `in city center.`,
   facilities: [`Air conditioning`, `Breakfast`],
   grade: 3.6,
   host: {
-    avatarUrl: `img/avatarangelina.jpg`,
+    avatarUrl: `img/avatar-angelina.jpg`,
     id: 25,
-    isPro: false,
-    name: `Angela`,
+    isPro: true,
+    name: `Angelina`,
   },
-  id: 2,
+  id: 1,
   isFavourite: true,
-  isPremium: true,
+  isPremium: false,
   locationZoom: 16,
   maxAdults: 8,
-  pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`],
+  pictures: [`https://`, `https`],
   previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
   price: 397,
-  title: `Penthouse, 4-5 rooms + 5 balconies`,
+  title: `Penthouse`,
   type: `hotel`,
 };
 
@@ -74,8 +76,8 @@ describe(`Snapshot of CardNearest`, () => {
               <CardNearest
                 city={`Amsterdam`}
                 offer={offerWithPremium}
-                onCardMouseEnter={() => {}}
-                sendFavouriteOption={() => {}}
+                onCardMouseEnter={noop}
+                sendFavouriteOption={noop}
               />
             </BrowserRouter>
           </Provider>)
@@ -92,8 +94,8 @@ describe(`Snapshot of CardNearest`, () => {
               <CardNearest
                 city={`Amsterdam`}
                 offer={offerWithFavourite}
-                onCardMouseEnter={() => {}}
-                sendFavouriteOption={() => {}}
+                onCardMouseEnter={noop}
+                sendFavouriteOption={noop}
               />
             </BrowserRouter>
           </Provider>)

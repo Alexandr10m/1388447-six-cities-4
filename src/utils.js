@@ -54,5 +54,7 @@ const getMonthAndYear = (date) => {
   return `${MONTHS[date.getMonth()]} ${date.getFullYear()}`;
 };
 
+const noop = () => {};
 
-export {firstWordInUpper, rating, extend, getOptionValue, getDate, getMonthAndYear};
+
+export {firstWordInUpper, rating, extend, getOptionValue, getDate, getMonthAndYear, noop};

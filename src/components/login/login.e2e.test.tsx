@@ -1,7 +1,10 @@
 import * as React from "react";
-import {shallow} from "enzyme";
-import {Login} from "./login.js";
+import * as Adapter from "enzyme-adapter-react-16";
+import {configure, shallow} from "enzyme";
+import {Login} from "./login";
 
+
+configure({adapter: new Adapter()});
 
 describe(`E2E test of Login`, () => {
   it(`click on logo should call function one time`, () => {
@@ -9,6 +12,7 @@ describe(`E2E test of Login`, () => {
     const loginComponent = shallow(
         <Login
           onCityClick={onCityClick}
+          email={`email`}
         />
     );
 

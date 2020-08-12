@@ -24,7 +24,7 @@ type Props = RouteProps & {
   reviews: Review[];
   nearbyOffers: LocalOffer[];
   authorizationStatus: string;
-  sendFavouriteOption: ({id, status}: {id: number, status: number}) => void;
+  sendFavouriteOption: ({id, status}: {id: number; status: number}) => void;
   loadReviews: (offerId: number) => void;
   changeLoadingRequestsProgress: () => void;
   loadNearbyOffers: (offerId: number) => void;

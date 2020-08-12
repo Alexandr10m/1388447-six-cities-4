@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
-import CityItem from "./city-item.js";
+import CityItem from "./city-item";
 import {BrowserRouter} from "react-router-dom";
+import {noop} from "../../utils";
 
 
 describe(`Snapshot of CityItem`, () => {
@@ -12,7 +13,7 @@ describe(`Snapshot of CityItem`, () => {
             <CityItem
               city={`Paris`}
               currentCity={`Paris`}
-              onCityClick={()=>{}}
+              onCityClick={noop}
             />
           </BrowserRouter>)
       .toJSON();
@@ -27,7 +28,7 @@ describe(`Snapshot of CityItem`, () => {
             <CityItem
               city={`Paris`}
               currentCity={`Amsterdame`}
-              onCityClick={()=>{}}
+              onCityClick={noop}
             />
           </BrowserRouter>)
       .toJSON();

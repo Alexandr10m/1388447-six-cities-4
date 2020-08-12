@@ -16,7 +16,7 @@ interface InjectingProps {
   loginError: React.ReactNode | false;
   passwordError: React.ReactNode | false;
   disableButton: boolean;
-  onSubmit: (onLogin: ({login, password}: {login: string, password: string}) => void) => void;
+  onSubmit: (onLogin: ({login, password}: {login: string; password: string}) => void) => void;
 }
 
 const MIN_LENGTH_PASSWORD = 4;

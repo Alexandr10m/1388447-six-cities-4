@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
-import Preload from "./preload.js";
+import Preload from "./preload";
 
 
 describe(`Snapshot of Preload`, () => {

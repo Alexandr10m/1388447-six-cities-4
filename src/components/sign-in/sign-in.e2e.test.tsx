@@ -1,15 +1,20 @@
 import * as React from "react";
-import {mount} from "enzyme";
-import {SignIn} from "./sign-in.js";
+import * as Adapter from "enzyme-adapter-react-16";
+import {configure, mount} from "enzyme";
+import {SignIn} from "./sign-in";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
-import NameSpace from "../../reducer/name-space.js";
+import NameSpace from "../../reducer/name-space";
 import {BrowserRouter} from "react-router-dom";
+import {noop} from "../../utils";
 
+
+configure({adapter: new Adapter()});
 
 const mockStore = configureStore([]);
+
 const mockEvent = {
-  preventDefault: ()=>{},
+  preventDefault: noop,
 };
 
 describe(`E2E of SingIn`, () => {

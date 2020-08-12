@@ -95,7 +95,7 @@ exports[`Snapshot of FavouriteLocationItem Shoul render correctly 1`] = `
         href="/offer/1"
         onClick={[Function]}
       >
-        Penthouse, 4-5 rooms + 5 balconies
+        Penthouse
       </a>
     </h2>
     <p

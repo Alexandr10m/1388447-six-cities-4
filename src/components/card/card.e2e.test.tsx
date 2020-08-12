@@ -1,13 +1,18 @@
 import * as React from "react";
-import {shallow} from "enzyme";
-import {Card} from "./card.js";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
+import * as Adapter from "enzyme-adapter-react-16";
+import {configure, shallow} from "enzyme";
+import {Card} from "./card";
+import {AuthorizationStatus} from "../../reducer/user/user";
+import {LocalOffer} from "../../types";
+import {noop} from "../../utils";
 
 
-const offer = {
+configure({adapter: new Adapter()});
+
+const offer: LocalOffer = {
   bedroom: 2,
   coords: [48.865610000000004, 2.350499],
-  description: `Discover daily local life in city center.`,
+  description: `in city center.`,
   facilities: [`Air conditioning`, `Breakfast`],
   grade: 3.6,
   host: {
@@ -16,15 +21,15 @@ const offer = {
     isPro: true,
     name: `Angelina`,
   },
-  id: 0,
+  id: 1,
   isFavourite: false,
   isPremium: true,
   locationZoom: 16,
   maxAdults: 8,
-  pictures: [`https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/3.jpg`, `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/12.jpg`],
+  pictures: [`https://`, `https`],
   previewImage: `https://htmlacademy-react-3.appspot.com/six-cities/static/hotel/5.jpg`,
   price: 397,
-  title: `Penthouse, 4-5 rooms + 5 balconies`,
+  title: `Penthouse`,
   type: `hotel`,
 };
 
@@ -34,9 +39,10 @@ describe(`E2E test of Card`, () => {
     const cardComponent = shallow(
         <Card
           offer={offer}
-          sendFavouriteOption={() => {}}
+          sendFavouriteOption={noop}
           onActiveCard={onActiveCard}
           authorizationStatus={AuthorizationStatus.AUTH}
+          className={undefined}
         />
     );
 
@@ -53,8 +59,9 @@ describe(`E2E test of Card`, () => {
         <Card
           offer={offer}
           sendFavouriteOption={sendFavouriteOption}
-          onActiveCard={() => {}}
+          onActiveCard={noop}
           authorizationStatus={AuthorizationStatus.AUTH}
+          className={undefined}
         />
     );
 
@@ -70,8 +77,9 @@ describe(`E2E test of Card`, () => {
         <Card
           offer={offer}
           sendFavouriteOption={sendFavouriteOption}
-          onActiveCard={() => {}}
+          onActiveCard={noop}
           authorizationStatus={AuthorizationStatus.AUTH}
+          className={undefined}
         />
     );
 

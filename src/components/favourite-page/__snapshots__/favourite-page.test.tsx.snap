@@ -213,17 +213,10 @@ exports[`Snapshot of FavouritePage FavouritePage should render favourite-offers 
                 className="favorites__card place-card"
               >
                 <div
-                  className="place-card__mark"
-                >
-                  <span>
-                    Premium
-                  </span>
-                </div>
-                <div
                   className="favorites__image-wrapper place-card__image-wrapper"
                 >
                   <a
-                    href="/offer/2"
+                    href="/offer/1"
                     onClick={[Function]}
                   >
                     <img
@@ -300,10 +293,10 @@ exports[`Snapshot of FavouritePage FavouritePage should render favourite-offers 
                     className="place-card__name"
                   >
                     <a
-                      href="/offer/2"
+                      href="/offer/1"
                       onClick={[Function]}
                     >
-                      Penthouse, 4-5 rooms + 5 balconies
+                      Penthouse
                     </a>
                   </h2>
                   <p
@@ -432,7 +425,7 @@ exports[`Snapshot of FavouritePage FavouritePage should render favourite-offers 
                       href="/offer/1"
                       onClick={[Function]}
                     >
-                      Penthouse, 4-5 rooms + 5 balconies
+                      Penthouse
                     </a>
                   </h2>
                   <p

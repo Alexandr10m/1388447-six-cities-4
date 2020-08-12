@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
-import FavouriteEmpty from "./favourite-empty.js";
+import FavouriteEmpty from "./favourite-empty";
 
 
 describe(`Snapshot of FavouriteEmpty`, () => {

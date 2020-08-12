@@ -4,7 +4,7 @@ import {Subtract} from "utility-types";
 
 
 interface Props {
-  onSendComment: ({comment, rating}: {comment: string, rating: number}, offerId: number) => void;
+  onSendComment: ({comment, rating}: {comment: string; rating: number}, offerId: number) => void;
   offerId: number;
   statusOfReviewLoad: string;
   changeStatusOfReviewLoad: (tatusOfReviewLoad: string) => void;
@@ -26,7 +26,7 @@ interface InjectingProps {
   textAreaError: React.ReactNode | false;
   loadError: React.ReactNode | false;
   buttonDisable: boolean;
-  onSubmit: ({comment, rating}: {comment: string, rating: number}, offerId: number) => void;
+  onSubmit: ({comment, rating}: {comment: string; rating: number}, offerId: number) => void;
   onRatingChange: (value: string) => void;
 }
 
@@ -42,7 +42,7 @@ const withComment = (Component) => {
   type T = Props & Subtract<P, InjectingProps>;
 
   class WithComment extends React.PureComponent<T, State> {
-    private _starRefs : React.RefObject<HTMLInputElement>[];
+    private _starRefs: React.RefObject<HTMLInputElement>[];
 
     constructor(props) {
       super(props);

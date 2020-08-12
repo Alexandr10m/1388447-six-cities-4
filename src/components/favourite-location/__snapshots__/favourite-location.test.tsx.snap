@@ -28,13 +28,6 @@ exports[`Snapshot of FavouriteLocation Should render correctly 1`] = `
       className="favorites__card place-card"
     >
       <div
-        className="place-card__mark"
-      >
-        <span>
-          Premium
-        </span>
-      </div>
-      <div
         className="favorites__image-wrapper place-card__image-wrapper"
       >
         <a
@@ -118,7 +111,7 @@ exports[`Snapshot of FavouriteLocation Should render correctly 1`] = `
             href="/offer/2"
             onClick={[Function]}
           >
-            Penthouse, 4-5 rooms + 5 balconies
+            Penthouse
           </a>
         </h2>
         <p
@@ -222,7 +215,7 @@ exports[`Snapshot of FavouriteLocation Should render correctly 1`] = `
             href="/offer/1"
             onClick={[Function]}
           >
-            Penthouse, 4-5 rooms + 5 balconies
+            Penthouse
           </a>
         </h2>
         <p

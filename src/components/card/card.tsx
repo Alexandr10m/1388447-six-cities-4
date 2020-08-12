@@ -13,7 +13,7 @@ import {LocalOffer} from "../../types";
 interface Props {
   offer: LocalOffer;
   onActiveCard: (offer: LocalOffer) => void;
-  sendFavouriteOption: ({id, status}: {id: number, status: number}) => void;
+  sendFavouriteOption: ({id, status}: {id: number; status: number}) => void;
   authorizationStatus: string;
   className: string | undefined;
 }

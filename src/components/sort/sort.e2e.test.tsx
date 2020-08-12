@@ -1,7 +1,11 @@
 import * as React from "react";
-import {mount} from "enzyme";
-import {Sort} from "./sort.js";
+import * as Adapter from "enzyme-adapter-react-16";
+import {configure, mount} from "enzyme";
+import {Sort} from "./sort";
+import {noop} from "../../utils";
 
+
+configure({adapter: new Adapter()});
 
 describe(`E2E of Sort`, () => {
   it(`Element li of Sort should pressed one time`, () => {
@@ -11,8 +15,8 @@ describe(`E2E of Sort`, () => {
           sortType={`Popular`}
           onSelectClick={onSelectClick}
           isShowOptions={false}
-          onHideOptions={()=>{}}
-          onToggleViewOptions={()=>{}}
+          onHideOptions={noop}
+          onToggleViewOptions={noop}
         />
     );
 
@@ -29,8 +33,8 @@ describe(`E2E of Sort`, () => {
           sortType={`Popular`}
           onSelectClick={onSelectClick}
           isShowOptions={false}
-          onHideOptions={()=>{}}
-          onToggleViewOptions={()=>{}}
+          onHideOptions={noop}
+          onToggleViewOptions={noop}
         />
     );
 

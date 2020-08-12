@@ -28,7 +28,7 @@ const Main: React.FunctionComponent<Props> = (props: Props) => {
     cities,
   } = props;
 
-  let {path, url} = useRouteMatch();
+  const {path, url} = useRouteMatch();
   const city = match.params.city;
   const showOffers = offers.find((it) => it.city === city);
 

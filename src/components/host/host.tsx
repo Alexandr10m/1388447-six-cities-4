@@ -1,10 +1,10 @@
 import * as React from "react";
-import {Host} from "../../types";
+import {Host as HostInterface} from "../../types";
 
 
 interface Props {
   description: string;
-  host: Host;
+  host: HostInterface;
 }
 
 const Host: React.FunctionComponent<Props> = (props: Props) => {

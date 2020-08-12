@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
-import ReviewForm from "./review-form.js";
+import ReviewForm from "./review-form";
+import {noop} from "../../utils";
 
 
 describe(`Snapshot of ReviewForm`, () => {
@@ -13,8 +14,8 @@ describe(`Snapshot of ReviewForm`, () => {
             startsError={false}
             textAreaError={false}
             buttonDisable={false}
-            onSubmit={()=>{}}
-            onRatingChange={()=>{}}
+            onSubmit={noop}
+            onRatingChange={noop}
             loadError={false}
           >
             <div/>
@@ -33,8 +34,8 @@ describe(`Snapshot of ReviewForm`, () => {
             startsError={<div/>}
             textAreaError={<div/>}
             buttonDisable={false}
-            onSubmit={()=>{}}
-            onRatingChange={()=>{}}
+            onSubmit={noop}
+            onRatingChange={noop}
             loadError={<div/>}
           >
             <div/>

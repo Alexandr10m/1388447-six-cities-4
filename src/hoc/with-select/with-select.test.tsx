@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
-import withSelect from "./with-select.js";
+import withSelect from "./with-select";
 
 
 const MockComponent = () => <form/>;

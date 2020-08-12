@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
-import withSignIn from "./with-sign-in.js";
+import withSignIn from "./with-sign-in";
 
 
 const MockComponent = () => <form></form>;
