@@ -15,7 +15,7 @@ interface Props {
   onActiveCard: (offer: LocalOffer) => void;
   sendFavouriteOption: ({id, status}: {id: number; status: number}) => void;
   authorizationStatus: string;
-  className: string | undefined;
+  className?: string | undefined;
 }
 
 const Card: React.FunctionComponent<Props> = (props: Props) => {

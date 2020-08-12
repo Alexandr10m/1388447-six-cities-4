@@ -7,7 +7,7 @@ import {ActionCreator} from "../../reducer/state/state";
 
 
 interface Props {
-  email: string | undefined;
+  email?: string | undefined;
   onCityClick: (city: string) => void;
 }
 

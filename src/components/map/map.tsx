@@ -7,7 +7,7 @@ interface Props {
   cityCoords: number[];
   cityZoom: number;
   locationZoom: number;
-  activeCard: LocalOffer;
+  activeCard?: LocalOffer;
 }
 
 class Map extends React.PureComponent<Props> {
@@ -73,10 +73,6 @@ class Map extends React.PureComponent<Props> {
 
     this.layerGroup = LeafLet.layerGroup();
 
-    // this._layer = LeafLet.tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-    //   attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-    // })
-    // .addTo(this._map);
     LeafLet.tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
       attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
     })

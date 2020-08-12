@@ -5,7 +5,7 @@ import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import NameSpace from "../../reducer/name-space";
 import {BrowserRouter} from "react-router-dom";
-import {LocalOffer, CityOffers} from "../../types";
+import {LocalOffer} from "../../types";
 
 
 const mockStore = configureStore([]);
@@ -57,7 +57,7 @@ const offerWithFavourite: LocalOffer = {
   type: `hotel`,
 };
 
-const favouriteOffers: CityOffers[] = [
+const favouriteOffers = [
   {
     city: `Paris`,
     cityCoords: [48.85661, 2.351499],
@@ -76,7 +76,9 @@ describe(`Snapshot of FavouriteOffers`, () => {
   it(`Should render correctly`, () => {
     const store = mockStore({
       [NameSpace.STATE]: {},
-      [NameSpace.DATA]: {},
+      [NameSpace.DATA]: {
+        favourite: favouriteOffers,
+      },
       [NameSpace.USER]: {},
     });
     const tree = renderer

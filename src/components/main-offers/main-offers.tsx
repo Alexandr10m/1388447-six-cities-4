@@ -26,7 +26,6 @@ const MainOffers: React.FunctionComponent<Props> = (props: Props) => {
   const {localOffers, cityCoords, cityZoom} = offers;
   const locationZoom = localOffers[0].locationZoom;
 
-
   return (
     <div className="cities">
       <div className="cities__places-container container">
