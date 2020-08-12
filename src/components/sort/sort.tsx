@@ -30,7 +30,7 @@ const Sort: React.FunctionComponent<Props> = (props: Props) => {
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by </span>
-      <span onClick={onToggleViewOptions} className="places__sorting-type" tabIndex="0">
+      <span onClick={onToggleViewOptions} className="places__sorting-type" tabIndex={0}>
         {currentSort}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"/>
@@ -41,7 +41,7 @@ const Sort: React.FunctionComponent<Props> = (props: Props) => {
         {SORTS.map((sort, i) => {
           const activeClass = sort === currentSort ? `places__option--active` : ``;
           return (
-            <li key={`${sort}-${i}`} className={`places__option ${activeClass}`} tabIndex="0">{sort}</li>
+            <li key={`${sort}-${i}`} className={`places__option ${activeClass}`} tabIndex={0}>{sort}</li>
           );
         })}
 
