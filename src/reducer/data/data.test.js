@@ -105,7 +105,8 @@ const offersWithChangedFavouriteOffer = [
     cityCoords: [52.38333, 4.9],
     cityZoom: 13,
     localOffers: [offerWithPremiumAndFavourite],
-  }];
+  }
+];
 
 describe(`Test of reducer data.js`, () => {
   it(`Reducer without additional parameters should return initial state`, () => {

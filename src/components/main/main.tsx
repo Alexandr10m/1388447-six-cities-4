@@ -28,7 +28,7 @@ const Main: React.FunctionComponent<Props> = (props: Props) => {
     cities,
   } = props;
 
-  const {path, url} = useRouteMatch();
+  // const {path, url} = useRouteMatch();
   const city = match.params.city;
   const showOffers = offers.find((it) => it.city === city);
 
@@ -54,16 +54,16 @@ const Main: React.FunctionComponent<Props> = (props: Props) => {
 
         {isEmptylocalOffers ? <MainEmpty city={city}/>
           : <MainOffers
-            url={url}
+            // url={url}
             city={city}
             offers={showOffers}
           />
         }
 
       </main>
-      <Switch>
+      {/* <Switch>
         <Route exact path={`${path}/:offerId`} component={OfferPage}/>
-      </Switch>
+      </Switch> */}
     </div>
   );
 };

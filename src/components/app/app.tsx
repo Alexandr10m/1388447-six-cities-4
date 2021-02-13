@@ -21,11 +21,11 @@ import {CityOffers} from "../../types";
 
 interface Props {
   favourite: CityOffers[];
-authorizationStatus: string;
-checkAuth: () => void;
-loadOffers: () => void;
-isLoadOffes: boolean;
-isErrorOfNetwork: boolean;
+  authorizationStatus: string;
+  checkAuth: () => void;
+  loadOffers: () => void;
+  isLoadOffes: boolean;
+  isErrorOfNetwork: boolean;
 }
 
 const SignIn = withSignIn(SignInPage);
