@@ -51,6 +51,8 @@
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^25.0.0",
     "@ckeditor/ckeditor5-react": "^3.0.1",
+    "@sentry/react": "^6.1.0",
+    "@sentry/tracing": "^6.1.0",
     "axios": "0.19.2",
     "history": "4.10.1",
     "leaflet": "1.6.0",
