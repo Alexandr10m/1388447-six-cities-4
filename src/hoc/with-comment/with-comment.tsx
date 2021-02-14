@@ -1,6 +1,7 @@
 import * as React from "react";
 import {StatusOfReviewLoad} from "../../reducer/data/data";
 import {Subtract} from "utility-types";
+
 import {CKEditor} from "@ckeditor/ckeditor5-react";
 import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
@@ -174,7 +175,6 @@ const withComment = (Component) => {
     }
 
     createEditorMarkup() {
-      {console.log(<CKEditor/>)}
         return (
         <CKEditor
             data={this.state.commentText}
