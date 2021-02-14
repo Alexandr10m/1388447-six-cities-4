@@ -1,6 +1,8 @@
 import * as React from "react";
 import {StatusOfReviewLoad} from "../../reducer/data/data";
 import {Subtract} from "utility-types";
+import {CKEditor} from "@ckeditor/ckeditor5-react";
+import * as ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 
 interface Props {
@@ -17,6 +19,7 @@ interface State {
   isValidText: boolean;
   isValidRate: boolean;
   disabledForm: boolean;
+  isEditorWork: boolean;
 }
 
 interface InjectingProps {
@@ -53,6 +56,7 @@ const withComment = (Component) => {
         isValidText: true,
         isValidRate: true,
         disabledForm: false,
+        isEditorWork: false,
       };
 
       this._starRefs = RATINGS_TEXT.map(() => React.createRef());
@@ -60,6 +64,7 @@ const withComment = (Component) => {
       this.handleFormSubmit = this.handleFormSubmit.bind(this);
       this.handleRateChange = this.handleRateChange.bind(this);
       this.handleUserCommentEnter = this.handleUserCommentEnter.bind(this);
+      this.handleCkeditorState = this.handleCkeditorState.bind(this);
     }
 
     componentDidUpdate(prevProps) {
@@ -76,13 +81,12 @@ const withComment = (Component) => {
       }
     }
 
-    handleUserCommentEnter(evt) {
-      const {value} = evt.target;
+    handleUserCommentEnter(evt, editor) {
+      const value = editor.getData();
       this.setState({commentText: value}, this._validateForm);
     }
 
     handleRateChange({target: {value}}) {
-      // const {value} = evt.target;
       this.setState({rate: +value}, this._validateForm);
     }
 
@@ -169,20 +173,35 @@ const withComment = (Component) => {
       return starsMarkup;
     }
 
-    _createTextAreaMarkup() {
-      return (
-        <textarea
-          onChange={this.handleUserCommentEnter}
-          value={this.state.commentText}
-          disabled={this.state.disabledForm}
-          className="reviews__textarea form__textarea"
-          id="review"
-          name="review"
-          placeholder="Tell how was your stay, what you like and what can be improved"
-        >
-        </textarea>
-      );
+    createEditorMarkup() {
+      {console.log(<CKEditor/>)}
+        return (
+        <CKEditor
+            data={this.state.commentText}
+            editor={ClassicEditor}
+            onChange={this.handleUserCommentEnter}
+        />);
     }
+
+    handleCkeditorState (event, editor) {
+      const data = editor.getData();
+      console.log(data);
+    }
+
+    // _createTextAreaMarkup() {
+    //   return (
+    //     <textarea
+    //       onChange={this.handleUserCommentEnter}
+    //       value={this.state.commentText}
+    //       disabled={this.state.disabledForm}
+    //       className="reviews__textarea form__textarea"
+    //       id="review"
+    //       name="review"
+    //       placeholder="Tell how was your stay, what you like and what can be improved"
+    //     >
+    //     </textarea>
+    //   );
+    // }
 
     _createTextErrorMarkup() {
       return !this.state.isValidRate && <div style={{color: `red`}}> You need to rate</div>;
@@ -198,15 +217,16 @@ const withComment = (Component) => {
     }
 
     render() {
+      const {buttonDisable} = this.state;
       return (
         <Component
           {...this.props}
           stars={this._createStarsMarkup()}
-          textArea={this._createTextAreaMarkup()}
+          textArea={this.createEditorMarkup()}
           startsError={this._createRatingErrorMarkup()}
           textAreaError={this._createTextErrorMarkup()}
           loadError={this._createLoadErrorMarkup()}
-          buttonDisable={this.state.buttonDisable}
+          buttonDisable={buttonDisable}
           onSubmit={this.handleFormSubmit}
           onRatingChange={this.handleRateChange}
         />
