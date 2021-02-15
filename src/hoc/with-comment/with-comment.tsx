@@ -65,7 +65,6 @@ const withComment = (Component) => {
       this.handleFormSubmit = this.handleFormSubmit.bind(this);
       this.handleRateChange = this.handleRateChange.bind(this);
       this.handleUserCommentEnter = this.handleUserCommentEnter.bind(this);
-      this.handleCkeditorState = this.handleCkeditorState.bind(this);
     }
 
     componentDidUpdate(prevProps) {
@@ -82,38 +81,16 @@ const withComment = (Component) => {
       }
     }
 
-    handleUserCommentEnter(evt, editor) {
-      const value = editor.getData();
-      this.setState({commentText: value}, this._validateForm);
-    }
-
-    handleRateChange({target: {value}}) {
-      this.setState({rate: +value}, this._validateForm);
-    }
-
-    handleFormSubmit(evt) {
-
-      evt.preventDefault();
-      const {onSendComment, offerId} = this.props;
-
-      if (!this._validateForm()) {
-        return;
-      }
-
-      this._disableForm(true);
-
-      const dataComment = {
-        comment: this.state.commentText,
-        rating: this.state.rate,
-      };
-      onSendComment(dataComment, offerId);
-    }
-
-    _disableButton(bool) {
+    private _disableButton(bool: boolean): void {
       this.setState({buttonDisable: bool});
     }
-
-    _validateForm() {
+// ----start-----FOR ASFERRO
+    private _setLocalStorage(text: string): void {
+      localStorage.setItem(`textFromEditor`, JSON.stringify(text));
+      console.log(localStorage.getItem(`textFromEditor`));
+    }
+// ----end-----FOR ASFERRO
+    private _validateForm(): boolean {
       const isCorrectText = checkCorrectLengthText(this.state.commentText.length);
       const isSelectedRating = this.state.rate > 0;
 
@@ -131,12 +108,12 @@ const withComment = (Component) => {
       return isCorrectText && isSelectedRating;
     }
 
-    _disableForm(bool) {
+    private _disableForm(bool: boolean): void {
       this._disableButton(bool);
       this.setState({disabledForm: bool});
     }
 
-    _resetForm() {
+    private _resetForm(): void {
       this.setState({
         commentText: ``,
         rate: 0,
@@ -149,12 +126,25 @@ const withComment = (Component) => {
       this._disableForm(false);
     }
 
-    _resetStatusOfReviewLoad() {
+    private _resetStatusOfReviewLoad(): void {
       const {changeStatusOfReviewLoad} = this.props;
       changeStatusOfReviewLoad(StatusOfReviewLoad.NOT_IN_PROCESS);
     }
 
-    _createStarsMarkup() {
+    private _createTextErrorMarkup(): boolean | React.ReactNode {
+      return !this.state.isValidRate && <div style={{color: `red`}}> You need to rate</div>;
+    }
+
+    private _createRatingErrorMarkup(): boolean | React.ReactNode {
+      return !this.state.isValidText && <div style={{color: `red`}}> You need to enter 50 - 300 characters, but entered {this.state.commentText.length}</div>;
+    }
+
+    private _createLoadErrorMarkup(): boolean | React.ReactNode {
+      const {statusOfReviewLoad} = this.props;
+      return statusOfReviewLoad === StatusOfReviewLoad.ERROR && <div style={{color: `red`}}> Somthing went wrong</div>;
+    }
+
+    private _createStarsMarkup(): React.ReactNode {
       const startsCount = RATINGS_TEXT.length;
 
       const starsMarkup = RATINGS_TEXT.map((it, i) => {
@@ -173,48 +163,46 @@ const withComment = (Component) => {
 
       return starsMarkup;
     }
+// ----start-----FOR ASFERRO
+    handleUserCommentEnter(evt: React.FormEvent<HTMLDivElement>, editor:InstanceType<CKEditor>): void {
+      const value = editor.getData();
+      this.setState({commentText: value}, this._validateForm);
 
-    createEditorMarkup() {
-        return (
-        <CKEditor
-            data={this.state.commentText}
-            editor={ClassicEditor}
-            onChange={this.handleUserCommentEnter}
-        />);
+      this._setLocalStorage(value);
     }
 
-    handleCkeditorState (event, editor) {
-      const data = editor.getData();
-      console.log(data);
+    createEditorMarkup(): React.ReactNode {
+      return (
+      <CKEditor
+          data={this.state.commentText}
+          editor={ClassicEditor}
+          onChange={this.handleUserCommentEnter}
+      />);
+    }
+// ----end-----FOR ASFERRO
+
+    handleRateChange({target: {value}}) {
+      this.setState({rate: +value}, this._validateForm);
     }
 
-    // _createTextAreaMarkup() {
-    //   return (
-    //     <textarea
-    //       onChange={this.handleUserCommentEnter}
-    //       value={this.state.commentText}
-    //       disabled={this.state.disabledForm}
-    //       className="reviews__textarea form__textarea"
-    //       id="review"
-    //       name="review"
-    //       placeholder="Tell how was your stay, what you like and what can be improved"
-    //     >
-    //     </textarea>
-    //   );
-    // }
+    handleFormSubmit(evt): void {
 
-    _createTextErrorMarkup() {
-      return !this.state.isValidRate && <div style={{color: `red`}}> You need to rate</div>;
+      evt.preventDefault();
+      const {onSendComment, offerId} = this.props;
+
+      if (!this._validateForm()) {
+        return;
+      }
+
+      this._disableForm(true);
+
+      const dataComment = {
+        comment: this.state.commentText,
+        rating: this.state.rate,
+      };
+      onSendComment(dataComment, offerId);
     }
 
-    _createRatingErrorMarkup() {
-      return !this.state.isValidText && <div style={{color: `red`}}> You need to enter 50 - 300 characters, but entered {this.state.commentText.length}</div>;
-    }
-
-    _createLoadErrorMarkup() {
-      const {statusOfReviewLoad} = this.props;
-      return statusOfReviewLoad === StatusOfReviewLoad.ERROR && <div style={{color: `red`}}> Somthing went wrong</div>;
-    }
 
     render() {
       const {buttonDisable} = this.state;

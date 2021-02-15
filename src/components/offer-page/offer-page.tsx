@@ -245,6 +245,8 @@ class OfferPage extends React.PureComponent<Props> {
   }
 
   render() {
+    // -----start for Asferro
+    // let a;
     const {isLoadingReviews, isLoadingNearbyOffers} = this.props;
 
     if (isLoadingNearbyOffers || isLoadingReviews) {
@@ -252,6 +254,8 @@ class OfferPage extends React.PureComponent<Props> {
     }
 
     return this._showOffer();
+    // return a;
+    // -----start for Asferro
   }
 }
 
